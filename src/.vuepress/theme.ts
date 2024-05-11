@@ -1,16 +1,16 @@
 import { hopeTheme } from "vuepress-theme-hope";
 import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
-import { MR_HOPE_AVATAR } from "./logo.js";
 
 export default hopeTheme({
   // 全屏按钮
   fullscreen: true,
-  hostname: "https://mister-hope.github.io",
-
+  // 当前网站部署到的域名
+  hostname: "https://zhf521.github.io/MyBlog/",
+  // 文章显示的默认作者
   author: {
-    name: "Mr.Hope",
-    url: "https://mister-hope.com",
+    name: "茕茕",
+    url: "https://zhf521.github.io/MyBlog/",
   },
 
   iconAssets: "fontawesome-with-brands",
@@ -23,18 +23,17 @@ export default hopeTheme({
 
   // 导航栏
   navbar,
-
   // 侧边栏
   sidebar,
-
   // 页脚
-  footer: "默认页脚",
+  // footer: "默认页脚",
+  copyright: "Copyright © 2024-present 茕茕",
   displayFooter: true,
 
   // 博客相关
   blog: {
     description: "前端开发者，热爱生活，热爱学习",
-    intro: "/intro.html",
+    intro: "/AboutMe.html",
     medias: {
       // Baidu: "https://example.com",
       BiliBili: "https://space.bilibili.com/401106272",
@@ -71,11 +70,11 @@ export default hopeTheme({
   },
 
   // 加密配置
-  encrypt: {
-    config: {
-      "/demo/encrypt.html": ["1234"],
-    },
-  },
+  // encrypt: {
+  //   config: {
+  //     "/demo/encrypt.html": ["1234"],
+  //   },
+  // },
 
   // 多语言配置
   metaLocales: {

@@ -18,18 +18,15 @@ export default hopeTheme({
   logo: "https://theme-hope-assets.vuejs.press/logo.svg",
   // 仓库地址
   repo: "zhf521/MyBlog",
-
+  // 文档在仓库中的位置
   docsDir: "src",
-
   // 导航栏
   navbar,
   // 侧边栏
   sidebar,
-  // 页脚
-  // footer: "默认页脚",
+  // 页脚相关
   copyright: "Copyright © 2024-present 茕茕",
   displayFooter: true,
-
   // 博客相关
   blog: {
     description: "前端开发者，热爱生活，热爱学习",
@@ -86,14 +83,11 @@ export default hopeTheme({
   // 在这里配置主题提供的插件
   plugins: {
     blog: true,
-
-    // 启用之前需安装 @waline/client
-    // 警告: 这是一个仅供演示的测试服务，在生产环境中请自行部署并使用自己的服务！
-    // comment: {
-    //   provider: "Waline",
-    //   serverURL: "https://waline-comment.vuejs.press",
-    // },
-
+    // 评论
+    comment: {
+      provider: "Waline",
+      serverURL: "https://blog-comment-1zb34ue5e-zhf521s-projects.vercel.app/",
+    },
     components: {
       components: ["Badge", "VPCard"],
     },

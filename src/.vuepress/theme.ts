@@ -10,10 +10,10 @@ export default hopeTheme({
   // 文章显示的默认作者
   author: {
     name: "茕茕",
-    url: "https://zhf521.github.io/MyBlog/",
+    url: "/MyBlog/AboutMe/",
   },
-
-  iconAssets: "fontawesome-with-brands",
+  // 图标
+  iconAssets: "fontawesome",
 
   logo: "https://theme-hope-assets.vuejs.press/logo.svg",
 
@@ -33,7 +33,7 @@ export default hopeTheme({
   // 博客相关
   blog: {
     description: "前端开发者，热爱生活，热爱学习",
-    intro: "/AboutMe.html",
+    intro: "/AboutMe/",
     medias: {
       // Baidu: "https://example.com",
       BiliBili: "https://space.bilibili.com/401106272",
@@ -68,7 +68,6 @@ export default hopeTheme({
       // Zhihu: "https://example.com",
     },
   },
-
   // 加密配置
   // encrypt: {
   //   config: {

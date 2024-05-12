@@ -1,7 +1,7 @@
 ---
 home: true
 layout: BlogHome
-icon: home
+icon: house
 title: 首页
 heroImage: https://theme-hope-assets.vuejs.press/logo.svg
 heroText: 茕茕の博客

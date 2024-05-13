@@ -86,7 +86,7 @@ export default hopeTheme({
     // 评论
     comment: {
       provider: "Waline",
-      serverURL: "https://blog-comment-delta-seven.vercel.app/",
+      serverURL: "http://blog-comment.azhf8.top/",
     },
     components: {
       components: ["Badge", "VPCard"],

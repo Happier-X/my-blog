@@ -29,7 +29,7 @@ export default hopeTheme({
   displayFooter: true,
   // 博客相关
   blog: {
-    description: "前端开发者，热爱生活，热爱学习",
+    description: "分享我的学习和生活，希望你能有所收获",
     intro: "/AboutMe/",
     medias: {
       // Baidu: "https://example.com",

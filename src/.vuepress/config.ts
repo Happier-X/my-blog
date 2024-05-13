@@ -6,7 +6,7 @@ export default defineUserConfig({
 
   lang: "zh-CN",
   title: "茕茕の博客",
-  description: "分享我的学习和生活",
+  description: "分享我的学习和生活，希望你能有所收获",
 
   theme,
 

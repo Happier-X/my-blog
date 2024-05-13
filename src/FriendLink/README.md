@@ -3,6 +3,57 @@ title: 友链
 category: 杂记
 tag: 友链
 date: 2024-05-12
+sidebar: false
 ---
 
-test
+```component VPCard
+title: W1ndysの小屋
+desc: 欲戴皇冠，必承其重
+logo: https://avatars.githubusercontent.com/u/109416673?v=4
+link: https://blog.w1ndys.top/
+background: rgba(253, 230, 138, 0.15)
+```
+
+## 友链申请
+
+您可以在评论区留言，留言的格式如下：
+
+```txt
+昵称: 网站或个人昵称
+描述: 网站或个人简介
+头像: 头像链接
+地址: 完整的主页地址
+```
+
+::: tip
+如果超过三天未处理，您可以通过邮箱联系我：zhf5256@qq.com
+:::
+
+## 友链申请标准
+
+1. 网站内容必须合法，不得包含任何违法信息。
+2. 网站内容应有一定的原创性。
+3. 网站须保持一定的活跃度。
+4. 应确保已将本站添加到您的网站中。
+
+## 本站信息
+
+::: tabs
+@tab txt
+```txt
+昵称: 茕茕の博客
+描述: 分享我的学习和生活，希望你能有所收获
+头像: 头像链接
+地址: https://zhf521.github.io/MyBlog/
+```
+@tab json
+
+```json
+{
+  "name": "茕茕の博客",
+  "description": "分享我的学习和生活，希望你能有所收获",
+  "avatar": "https://file.mo7.cc/static/lxh_gif/lxh_71.gif",
+  "link": "https://zhf521.github.io/MyBlog/",
+}
+```
+:::

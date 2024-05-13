@@ -1,0 +1,47 @@
+---
+title: Nest学习记录-自定义装饰器
+order: 11
+date: 2024-03-05
+category: 软件开发
+tag:
+    - Nest
+---
+
+## 创建自定义装饰器
+
+Nest 允许我们创建自定义装饰器。
+
+使用以下命令来创建一个装饰器：
+
+```bash
+nest g decorator 装饰器名称
+```
+
+它的内容如下：
+
+```typescript
+// src/role/role.decorator.ts
+
+import { SetMetadata } from '@nestjs/common';
+
+export const Role = (...args: string[]) => SetMetadata('role', args);
+```
+
+## 装饰器聚合
+
+我们可以将多个装饰器聚合。
+
+```typescript
+// src/auth/auth.decorator.ts
+
+import { applyDecorators } from '@nestjs/common';
+
+export function Auth(...roles: Role[]) {
+    return applyDecorators(
+        SetMetadata('roles', roles),
+        UseGuards(AuthGuard, RolesGuard),
+        ApiBearerAuth(),
+        ApiUnauthorizedResponse({ description: 'Unauthorized"' })
+    );
+}
+```

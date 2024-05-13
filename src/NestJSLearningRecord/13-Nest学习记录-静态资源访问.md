@@ -1,0 +1,33 @@
+---
+title: Nest学习记录-静态资源访问
+order: 13
+date: 2024-03-05
+category: 软件开发
+tag:
+    - Nest
+---
+
+## 配置
+
+创建一个 `public` 文件夹用来存放静态资源
+
+在 `main.ts` 文件中调用 useStaticAssets 来实现静态资源访问：
+
+```typescript
+// main.ts
+
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { NestExpressApplication } from '@nestjs/platform-express';
+
+async function bootstrap() {
+    const app = await NestFactory.create<NestExpressApplication>(AppModule);
+    app.useStaticAssets('public', { prefix: '/static' });
+    await app.listen(3000);
+}
+bootstrap();
+```
+
+## 访问
+
+在浏览器中访问 `localhost:3000/static/文件` 即可

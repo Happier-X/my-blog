@@ -1,0 +1,161 @@
+---
+title: Nest学习记录-守卫
+order: 9
+date: 2024-03-05
+category: 软件开发
+tag:
+    - Nest
+---
+
+## 什么是守卫
+
+守卫（Guards）是用于对 Nest 应用中的路由进行验证的。守卫根据运行时出现的某些条件（例如权限，角色，访问控制列表等）来确定给定的请求是否由路由处理程序处理。
+
+## 创建守卫
+
+我们使用以下命令来创建一个守卫：
+
+```bash
+nest g guard 守卫名称
+```
+
+守卫是一个使用 `@Injectable()` 装饰器装饰的类。守卫应该实现 `CanActivate` 接口。它的内容如下：
+
+```typescript
+// src/auth/auth.guard.ts
+
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { Observable } from 'rxjs';
+
+@Injectable()
+export class AuthGuard implements CanActivate {
+    // 如果返回为 true，则放行，否则拦截
+    // 这里可以根据具体业务逻辑进行判断
+    canActivate(
+        context: ExecutionContext
+    ): boolean | Promise<boolean> | Observable<boolean> {
+        return true;
+    }
+}
+```
+
+## 应用守卫
+
+### 应用于控制器或单个路由
+
+使用 `@UseGuards()` 装饰器来应用守卫：
+
+```typescript
+// src/article/article.controller.ts
+
+import { Controller, Post, Body, UseGuards } from '@nestjs/common';
+import { ArticleService } from './article.service';
+import { CreateArticleDto } from './dto/create-article.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
+
+@Controller('article')
+@UseGuards(AuthGuard)
+export class ArticleController {
+    constructor(private readonly articleService: ArticleService) {}
+
+    @Post()
+    create(@Body() createArticleDto: CreateArticleDto) {
+        return this.articleService.create(createArticleDto);
+    }
+}
+```
+
+或：
+
+```typescript
+// src/article/article.controller.ts
+
+import { Controller, Post, Body, UseGuards } from '@nestjs/common';
+import { ArticleService } from './article.service';
+import { CreateArticleDto } from './dto/create-article.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
+
+@Controller('article')
+export class ArticleController {
+    constructor(private readonly articleService: ArticleService) {}
+
+    @Post()
+    @UseGuards(AuthGuard)
+    create(@Body() createArticleDto: CreateArticleDto) {
+        return this.articleService.create(createArticleDto);
+    }
+}
+```
+
+### 应用于全局
+
+在 `main.ts` 中应用于全局：
+
+```typescript
+// src/main.ts
+
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { AuthGuard } from './auth/auth.guard';
+
+async function bootstrap() {
+    const app = await NestFactory.create(AppModule);
+    app.useGlobalGuards(new AuthGuard());
+    await app.listen(3000);
+}
+bootstrap();
+```
+
+## 反射器实现角色控制守卫
+
+Nest 提供了 `@SetMetadata()` 装饰器将定制元数据附加到路由处理程序。
+
+```typescript
+// src/article/article.controller.ts
+
+import { Controller, Get, SetMetadata, UseGuards } from '@nestjs/common';
+import { ArticleService } from './article.service';
+import { AuthGuard } from 'src/auth/auth.guard';
+
+@Controller('article')
+@UseGuards(AuthGuard)
+export class ArticleController {
+    constructor(private readonly articleService: ArticleService) {}
+
+    @Get()
+    @SetMetadata('role', ['admin']) // 第一个参数：key，第二个参数：自定义我们存放的权限
+    findAll() {
+        return this.articleService.findAll();
+    }
+}
+```
+
+在守卫中，我们使用反射器（Reflector）读取元数据，并检查当前用户是否具有所需的权限。
+
+```typescript
+// src/auth/auth.guard.ts
+
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { Observable } from 'rxjs';
+import type { Request } from 'express';
+
+@Injectable()
+export class AuthGuard implements CanActivate {
+    constructor(private Reflector: Reflector) {}
+    canActivate(
+        context: ExecutionContext
+    ): boolean | Promise<boolean> | Observable<boolean> {
+        const admin = this.Reflector.get<string[]>(
+            'role',
+            context.getHandler()
+        );
+        const request = context.switchToHttp().getRequest<Request>();
+        if (admin.includes(request.query.role as string)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+```

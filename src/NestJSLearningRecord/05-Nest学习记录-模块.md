@@ -1,0 +1,138 @@
+---
+title: Nest学习记录-模块
+order: 5
+date: 2024-03-05
+category: 软件开发
+tag:
+    - Nest
+---
+
+## 什么是模块
+
+模块（Modules）是应用程序的基本构建块，它封装了一组相关的功能和服务。
+
+在 Nest 中，模块是一个类，它使用 `@Module()` 装饰器进行装饰。在模块中，你可以定义控制器（Controllers）、提供者（Providers）和其他模块，以便将它们组织在一起。
+
+`@module()` 装饰器接受一个描述模块属性的对象，它有如下几个属性：
+
+- `imports`：导入其他模块，以允许模块之间共享 Providers
+- `exports`：导出其他模块需要共享的 Providers
+- `providers`：注册模块中所有用到的 Providers，模块内共享使用
+- `controllers`：声明模块的控制器
+
+## 全局模块
+
+使用 `@Global()` 装饰器定义的模块为全局模块，其他模块在使用全局模块时不需要在 `imports` 中导入该模块
+
+## 动态模块
+
+动态模块是指在运行时动态创建的模块。主要用于给模块传递参数。
+
+例如，我们创建一个新的 test 模块，默认是使用静态模块创建的：
+
+```typescript
+// src/app.module.ts
+
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { TestModule } from './test/test.module';
+
+@Module({
+    imports: [TestModule],
+    controllers: [AppController],
+    providers: [AppService],
+})
+export class AppModule {}
+```
+
+我们来看一下如何使用动态模块：
+
+定义动态模块：
+
+```typescript
+// src/test/test.module.ts
+
+import { DynamicModule, Module } from '@nestjs/common';
+import { TestService } from './test.service';
+import { TestController } from './test.controller';
+
+@Module({})
+export class TestModule {
+    static forRoot(options: string): DynamicModule {
+        return {
+            module: TestModule,
+            controllers: [TestController],
+            providers: [
+                {
+                    provide: 'TEST_CONFIG',
+                    useValue: options,
+                },
+                TestService,
+            ],
+        };
+    }
+}
+```
+
+在 `app.module.ts` 中使用动态模块：
+
+```typescript
+// src/app.module.ts
+
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { TestModule } from './test/test.module';
+
+@Module({
+    imports: [TestModule.forRoot('')],
+    controllers: [AppController],
+    providers: [AppService],
+})
+export class AppModule {}
+```
+
+此时，我们使用动态模块实现了之前静态模块的效果。如果我们需要传递参数该怎么做呢？
+
+我们可以在 `test.controller.ts` 中使用 `@Inject()` 装饰器来进行依赖注入：
+
+```typescript
+// src/test/test.controller.ts
+
+import { Controller, Get, Inject } from '@nestjs/common';
+import { TestService } from './test.service';
+
+@Controller('test')
+export class TestController {
+    constructor(
+        private readonly testService: TestService,
+        @Inject('TEST_CONFIG') private readonly testConfig: string
+    ) {}
+
+    @Get()
+    findAll() {
+        return this.testService.findAll() + ' ' + this.testConfig;
+    }
+}
+```
+
+此时，我们可以通过在模块入口处传递参数：
+
+```typescript
+// src/app.module.ts
+
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { TestModule } from './test/test.module';
+
+@Module({
+    imports: [TestModule.forRoot('我是传递的参数')],
+    controllers: [AppController],
+    providers: [AppService],
+})
+export class AppModule {}
+```
+
+这样我们就可以在导入一个模块的时候，传入参数，然后动态生成模块的内容。

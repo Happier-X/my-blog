@@ -1,0 +1,241 @@
+---
+title: Nest学习记录-管道
+order: 8
+date: 2024-03-05
+category: 软件开发
+tag:
+    - Nest
+---
+
+## 什么是管道
+
+管道（Pipes）是 Nest 提供的一种用于数据转换和验证的功能。通过使用管道，我们可以对控制器接收的数据进行转换和验证，然后再将其传递给服务层。
+
+## 内置管道
+
+Nest 内置了一些常用的管道，包括 `ValidationPipe`、`ParseIntPipe`、`ParseFloatPipe`、`ParseBoolPipe`、`ParseArrayPipe`、`ParseUUIDPipe`、
+`ParseEnumPipe`、
+`DefaultValuePipe`、
+`ParseFilePipe`。这些管道已经预先配置好了，我们可以直接导入使用。
+
+## 自定义管道
+
+我们还可以创建自定义管道，只需要继承 `PipeTransform` 接口，并实现 `transform` 方法即可。
+
+使用如下命令创建一个自定义管道：
+
+```bash
+nest g pipe 管道名称
+```
+
+管道内容如下：
+
+```typescript
+// src/my-pipes/my-pipes.pipes.ts
+
+import {
+    ArgumentMetadata,
+    BadRequestException,
+    Injectable,
+    PipeTransform,
+} from '@nestjs/common';
+
+@Injectable()
+export class MyPipesPipe implements PipeTransform {
+    transform(value: any, metadata: ArgumentMetadata) {
+        // value 是传过来的数据
+        // metadata 是关于数据的元数据信息
+        if (metadata.type === 'query' && typeof value !== 'string') {
+            throw new BadRequestException('Query parameter must be a string');
+        }
+        return value;
+    }
+}
+```
+
+## 管道的绑定方式
+
+管道有多种绑定方式。
+
+### 控制器绑定
+
+我们可以通过在控制器类上添加 `@UsePipes()` 装饰器来将管道绑定到控制器上：
+
+```typescript
+// src/user/user.controller.ts
+
+import {
+    Controller,
+    Get,
+    Post,
+    Body,
+    UsePipes,
+    ParseIntPipe,
+} from '@nestjs/common';
+import { UserService } from './user.service';
+import { CreateUserDto } from './dto/create-user.dto';
+
+@Controller('user')
+@UsePipes(ParseIntPipe)
+export class UserController {
+    constructor(private readonly userService: UserService) {}
+
+    @Post()
+    create(@Body() createUserDto: CreateUserDto) {
+        return this.userService.create(createUserDto);
+    }
+
+    @Get()
+    findAll() {
+        return this.userService.findAll();
+    }
+}
+```
+
+### 路由绑定
+
+我们还可以通过在路由上添加 `@UsePipes()` 装饰器来将管道绑定到路由上：
+
+```typescript
+// src/user/user.controller.ts
+
+import {
+    Controller,
+    Get,
+    Post,
+    Body,
+    UsePipes,
+    ParseIntPipe,
+} from '@nestjs/common';
+import { UserService } from './user.service';
+import { CreateUserDto } from './dto/create-user.dto';
+
+@Controller('user')
+export class UserController {
+    constructor(private readonly userService: UserService) {}
+
+    @Post()
+    create(@Body() createUserDto: CreateUserDto) {
+        return this.userService.create(createUserDto);
+    }
+
+    @Get()
+    @UsePipes(ParseIntPipe)
+    findAll() {
+        return this.userService.findAll();
+    }
+}
+```
+
+### 方法参数绑定
+
+我们还可以将管道绑定到方法参数上：
+
+```typescript
+// src/user/user.controller.ts
+
+import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
+import { UserService } from './user.service';
+
+@Controller('user')
+export class UserController {
+    constructor(private readonly userService: UserService) {}
+
+    @Get(':id')
+    findOne(@Param('id', ParseIntPipe) id: number) {
+        return this.userService.findOne(id);
+    }
+}
+```
+
+### 全局绑定
+
+我们还可以将管道绑定到全局，这样所有的控制器都会自动应用该管道。要实现全局绑定，我们需要在 `main.ts` 中添加以下代码：
+
+```typescript
+// src/main.ts
+
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { ParseIntPipe } from '@nestjs/common';
+
+async function bootstrap() {
+    const app = await NestFactory.create(AppModule);
+    app.useGlobalPipes(new ParseIntPipe());
+    await app.listen(3000);
+}
+bootstrap();
+```
+
+## 类验证器
+
+在 Nest 中，类验证器（Class Validator）是一种基于装饰器的验证机制，它允许你在类属性上使用装饰器来指定验证规则。这些装饰器来自 `class-validator` 库，这是一个流行的 Node.js 库，用于对象和值的验证。类验证器与 Nest 的管道（Pipe）功能结合使用时，可以提供强大的数据验证能力。
+
+以下是使用类验证器的基本步骤：
+
+1. 安装 `class-validator` 和 `class-transformer` 库，它们提供了类验证器所需的功能：
+
+    ```bash
+    npm install class-validator class-transformer
+    ```
+
+2. 创建数据传输对象（DTO）：创建一个类，使用装饰器来定义验证规则。例如，你可以使用 `IsString`、 `IsInt`、 `IsNotEmpty` 等装饰器来指定属性的类型和验证条件。
+
+    ```typescript
+    // src/user/dto/create-user.dto.ts
+
+    import { IsInt, IsNotEmpty, IsString, Min } from 'class-validator';
+
+    export class CreateUserDto {
+        @IsString()
+        @IsNotEmpty()
+        name: string;
+        @IsInt()
+        @Min(0)
+        age: number;
+    }
+    ```
+
+3. 在控制器中使用类验证器：在控制器方法中，你可以使用 `ValidationPipe` 来验证请求体。`ValidationPipe` 会自动使用 `class-validator`来验证传入的 DTO。
+
+    ```typescript
+    // src/user/user.controller.ts
+
+    import {
+        Controller,
+        Post,
+        Body,
+        UsePipes,
+        ValidationPipe,
+    } from '@nestjs/common';
+    import { UserService } from './user.service';
+    import { CreateUserDto } from './dto/create-user.dto';
+
+    @Controller('user')
+    export class UserController {
+        constructor(private readonly userService: UserService) {}
+
+        @Post()
+        @UsePipes(new ValidationPipe())
+        create(@Body() createUserDto: CreateUserDto) {
+            return this.userService.create(createUserDto);
+        }
+    }
+    ```
+
+    还可以在 `main.ts` 中注册全局验证管道：
+
+    ```typescript
+    // src/main.ts
+
+    import { NestFactory } from '@nestjs/core';
+    import { AppModule } from './app.module';
+    import { ValidationPipe } from '@nestjs/common';
+
+    async function bootstrap() {
+        const app = await NestFactory.create(AppModule);
+        app.useGlobalPipes(new ValidationPipe());
+        await app.listen(3000);
+    }
+    bootstrap();
+    ```

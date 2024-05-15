@@ -6,7 +6,7 @@ export default hopeTheme({
   // 全屏按钮
   fullscreen: true,
   // 当前网站部署到的域名
-  hostname: "https://zhf521.github.io/MyBlog/",
+  hostname: "https://blog.azhf8.top/",
   // 文章显示的默认作者
   author: {
     name: "茕茕",
@@ -15,7 +15,7 @@ export default hopeTheme({
   // 图标
   iconAssets: "fontawesome",
 
-  logo: "https://theme-hope-assets.vuejs.press/logo.svg",
+  logo: "https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/logo.png",
   // 仓库地址
   repo: "zhf521/MyBlog",
   // 文档在仓库中的位置
@@ -84,10 +84,10 @@ export default hopeTheme({
   plugins: {
     blog: true,
     // 评论
-    comment: {
-      provider: "Waline",
-      serverURL: "https://blog-comment.azhf8.top",
-    },
+    // comment: {
+    //   provider: "Waline",
+    //   serverURL: "https://blog-comment.azhf8.top",
+    // },
     components: {
       components: ["Badge", "VPCard"],
     },

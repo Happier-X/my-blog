@@ -23,5 +23,5 @@ sidebar: false
 - QQ：3407085928
 - 微信：Pisces12013
 - 邮箱：[zhf5256@qq.com](mailto:zhf5256@qq.com)
-- 博客：[茕茕の博客](https://zhf521.github.io/MyBlog/)
+- 博客：[茕茕の博客](https://blog.azhf8.top/)
 - GitHub：[https://github.com/zhf521](https://github.com/zhf521)

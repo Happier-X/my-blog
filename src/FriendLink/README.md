@@ -53,7 +53,7 @@ background: rgba(253, 230, 138, 0.15)
   "name": "茕茕の博客",
   "description": "分享我的学习和生活，希望你能有所收获",
   "avatar": "https://file.mo7.cc/static/lxh_gif/lxh_71.gif",
-  "link": "https://zhf521.github.io/MyBlog/",
+  "link": "https://blog.azhf8.top/",
 }
 ```
 :::

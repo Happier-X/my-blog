@@ -44,7 +44,7 @@ background: rgba(253, 230, 138, 0.15)
 昵称: 茕茕の博客
 描述: 分享我的学习和生活，希望你能有所收获
 头像: 头像链接
-地址: https://zhf521.github.io/MyBlog/
+地址: https://blog.azhf8.top/
 ```
 @tab json
 

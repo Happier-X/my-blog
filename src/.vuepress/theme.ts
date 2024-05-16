@@ -10,7 +10,7 @@ export default hopeTheme({
   // 文章显示的默认作者
   author: {
     name: "茕茕",
-    url: "/MyBlog/AboutMe/",
+    url: "/AboutMe/",
   },
   // 图标
   iconAssets: "fontawesome",

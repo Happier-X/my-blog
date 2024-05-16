@@ -9,30 +9,24 @@ sidebar: false
 ```component VPCard
 title: 软件工具
 desc: 软件工具推荐及使用技巧
-link: https://blog.azhf8.top/SoftwareTool/
+link: /SoftwareTool/
 background: rgba(253, 230, 138, 0.15)
 ```
 ```component VPCard
-title: W1ndysの小屋
-desc: 欲戴皇冠，必承其重
-link: https://blog.w1ndys.top/
+title: 开发技巧
+desc: 开发过程中遇到的问题及解决方法
+link: /DevelopmentSkills/
 background: rgba(253, 230, 138, 0.15)
 ```
 ```component VPCard
-title: W1ndysの小屋
-desc: 欲戴皇冠，必承其重
-link: https://blog.w1ndys.top/
+title: Nest学习记录
+desc: Nest学习过程中的笔记
+link: /NestJSLearningRecord/
 background: rgba(253, 230, 138, 0.15)
 ```
 ```component VPCard
-title: W1ndysの小屋
-desc: 欲戴皇冠，必承其重
-link: https://blog.w1ndys.top/
-background: rgba(253, 230, 138, 0.15)
-```
-```component VPCard
-title: W1ndysの小屋
-desc: 欲戴皇冠，必承其重
-link: https://blog.w1ndys.top/
+title: STM32学习记录
+desc: STM32学习过程中的笔记
+link: /STM32LearningRecord/
 background: rgba(253, 230, 138, 0.15)
 ```

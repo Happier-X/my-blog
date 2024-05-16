@@ -1,5 +1,5 @@
 ---
-title: Nest学习记录-创建 Nest 项目
+title: 创建 Nest 项目
 order: 1
 date: 2024-03-05
 category: 软件开发

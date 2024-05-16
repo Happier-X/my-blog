@@ -15,7 +15,7 @@ export default hopeTheme({
   // 图标
   iconAssets: "fontawesome",
 
-  logo: "https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/logo.png",
+  logo: "/logo.png",
   // 仓库地址
   repo: "zhf521/MyBlog",
   // 文档在仓库中的位置

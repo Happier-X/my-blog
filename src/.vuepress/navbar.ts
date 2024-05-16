@@ -18,6 +18,11 @@ export default navbar([
     link: "/tag/"
   },
   {
+    text: "合集",
+    icon: "box",
+    link: "/Collection/",
+  },
+  {
     text: "时间线",
     icon: "clock",
     link: "/timeline/",

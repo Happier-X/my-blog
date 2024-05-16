@@ -84,10 +84,10 @@ export default hopeTheme({
   plugins: {
     blog: true,
     // 评论
-    // comment: {
-    //   provider: "Waline",
-    //   serverURL: "https://blog-comment.azhf8.top",
-    // },
+    comment: {
+      provider: "Waline",
+      serverURL: "https://blog-comment.azhf8.top",
+    },
     components: {
       components: ["Badge", "VPCard"],
     },

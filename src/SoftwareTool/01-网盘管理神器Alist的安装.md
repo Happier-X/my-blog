@@ -1,10 +1,9 @@
 ---
-title: 网盘管理神器Alist的安装
+title: 网盘管理神器 Alist 的安装
 order: 1
 date: 2023-05-23
 category: 软件工具
-tag:
-  - Alist
+tag: Alist
 ---
 
 ## Windows 平台

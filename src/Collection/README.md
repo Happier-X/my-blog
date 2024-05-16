@@ -19,14 +19,14 @@ link: /DevelopmentSkills/
 background: rgba(253, 230, 138, 0.15)
 ```
 ```component VPCard
-title: Nest学习记录
-desc: Nest学习过程中的笔记
+title: Nest 学习记录
+desc: Nest 学习过程中的笔记
 link: /NestJSLearningRecord/
 background: rgba(253, 230, 138, 0.15)
 ```
 ```component VPCard
-title: STM32学习记录
-desc: STM32学习过程中的笔记
+title: STM32 学习记录
+desc: STM32 学习过程中的笔记
 link: /STM32LearningRecord/
 background: rgba(253, 230, 138, 0.15)
 ```

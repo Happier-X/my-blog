@@ -43,7 +43,7 @@ background: rgba(253, 230, 138, 0.15)
 ```txt
 昵称: 茕茕の博客
 描述: 分享我的学习和生活，希望你能有所收获
-头像: 头像链接
+头像: https://blog.azhf8.top/logo.png
 地址: https://blog.azhf8.top/
 ```
 @tab json
@@ -52,7 +52,7 @@ background: rgba(253, 230, 138, 0.15)
 {
   "name": "茕茕の博客",
   "description": "分享我的学习和生活，希望你能有所收获",
-  "avatar": "https://file.mo7.cc/static/lxh_gif/lxh_71.gif",
+  "avatar": "https://blog.azhf8.top/logo.png",
   "link": "https://blog.azhf8.top/",
 }
 ```

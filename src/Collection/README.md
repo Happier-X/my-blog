@@ -32,3 +32,9 @@ desc: STM32 学习过程中的笔记
 link: /STM32LearningRecord/
 background: rgba(253, 230, 138, 0.15)
 ```
+```component VPCard
+title: 摄影学习记录
+desc: 摄影学习过程中的笔记
+link: /PhotographyLearningRecord/
+background: rgba(253, 230, 138, 0.15)
+```

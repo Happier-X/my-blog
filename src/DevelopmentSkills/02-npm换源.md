@@ -3,8 +3,9 @@ title: npm 换源
 order: 2
 date: 2024-03-06
 category: 软件开发
-tag:
-  - npm
+tag: npm
+cover: /assets/images/npm 换源.png
+banner: /assets/images/npm 换源.png
 ---
 
 ## 查看当前镜像源

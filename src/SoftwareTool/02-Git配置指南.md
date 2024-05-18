@@ -3,8 +3,9 @@ title: Git 配置指南
 order: 2
 date: 2024-03-05
 category: 软件工具
-tag:
-  - Git
+tag: Git
+cover: /assets/images/Git 配置指南.png
+banner: /assets/images/Git 配置指南.png
 ---
 
 ## 查看配置信息

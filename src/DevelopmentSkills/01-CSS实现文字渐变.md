@@ -3,8 +3,9 @@ title: CSS 实现文字渐变
 order: 1
 date: 2024-03-06
 category: 软件开发
-tag: 
-  - CSS
+tag: CSS
+cover: /assets/images/CSS 实现文字渐变.png
+banner: /assets/images/CSS 实现文字渐变.png
 ---
 
 如果给文字直接设置渐变色会不生效：

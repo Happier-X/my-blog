@@ -1,7 +1,5 @@
 ---
 title: 合集
-category: 杂记
-tag: 合集
 date: 2024-05-11
 sidebar: false
 article: false

@@ -1,7 +1,5 @@
 ---
 title: 关于我
-category: 杂记
-tag: 关于我
 date: 2024-05-11
 sidebar: false
 cover: /assets/images/AboutMe.png

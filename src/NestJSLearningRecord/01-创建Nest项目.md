@@ -4,8 +4,6 @@ order: 1
 date: 2024-03-05
 category: 软件开发
 tag: Nest
-cover: /assets/images/创建 Nest 项目.png
-banner: /assets/images/创建 Nest 项目.png
 ---
 
 ## 安装 Nest CLI

@@ -4,8 +4,6 @@ order: 3
 date: 2024-03-07
 category: 软件开发
 tag: JavaScript
-cover: /assets/images/async 异常捕获.png
-banner: /assets/images/async 异常捕获.png
 ---
 
 ## 使用 try-catch 捕获异常

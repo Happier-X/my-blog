@@ -4,8 +4,6 @@ order: 5
 date: 2024-04-29
 category: 软件开发
 tag: CSS
-cover: /assets/images/CSS 实现导航栏固定效果.png
-banner: /assets/images/CSS 实现导航栏固定效果.png
 ---
 
 ## 效果描述

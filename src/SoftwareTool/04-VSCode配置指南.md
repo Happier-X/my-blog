@@ -4,8 +4,6 @@ order: 4
 date: 2024-03-09
 category: 软件工具
 tag: VSCode
-cover: /assets/images/VSCode 配置指南.png
-banner: /assets/images/VSCode 配置指南.png
 ---
 
 > 记录我常用的 VSCode 基础配置

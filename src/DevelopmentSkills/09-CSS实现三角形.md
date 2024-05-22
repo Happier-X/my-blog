@@ -4,8 +4,6 @@ order: 9
 date: 2024-04-29
 category: 软件开发
 tag: CSS
-cover: /assets/images/CSS 实现三角形.png
-banner: /assets/images/CSS 实现三角形.png
 ---
 
 网页中常见一些三角形，使用 CSS 边框可以 直接画出来，不必做成图片或者字体图标

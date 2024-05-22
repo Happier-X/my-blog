@@ -4,8 +4,6 @@ order: 1
 date: 2023-05-23
 category: 软件工具
 tag: Alist
-cover: /assets/images/网盘管理神器 Alist 的安装.png
-banner: /assets/images/网盘管理神器 Alist 的安装.png
 ---
 
 ## Windows 平台

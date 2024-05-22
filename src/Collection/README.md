@@ -37,8 +37,8 @@ link: /PhotographyLearningRecord/
 background: rgba(253, 230, 138, 0.15)
 ```
 ```component VPCard
-title: 旅游拍摄
-desc: 旅游过程中的美好记忆
-link: /TravelPhotography/
+title: 旅行记录
+desc: 旅行过程中的美好记忆
+link: /TravelRecord/
 background: rgba(253, 230, 138, 0.15)
 ```

@@ -4,4 +4,4 @@ article: false
 timeline: false
 ---
 
-<Catalog base='/TravelPhotography/' level='1' />
+<Catalog base='/TravelRecord/' level='1' />

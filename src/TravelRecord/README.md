@@ -1,5 +1,5 @@
 ---
-title: 
+title: 旅行记录
 article: false
 timeline: false
 ---

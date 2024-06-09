@@ -7,7 +7,7 @@ timeline: false
 ---
 
 ```component VPCard
-title: 软件工具
+title: 软件工具及使用技巧
 desc: 软件工具推荐及使用技巧
 link: /SoftwareTool/
 background: rgba(253, 230, 138, 0.15)

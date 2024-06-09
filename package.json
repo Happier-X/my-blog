@@ -11,6 +11,7 @@
     "docs:update-package": "npx vp-update"
   },
   "devDependencies": {
+    "@vue/repl": "^4.2.1",
     "@vuepress/bundler-vite": "2.0.0-rc.9",
     "@waline/client": "^3.1.3",
     "vue": "^3.4.27",

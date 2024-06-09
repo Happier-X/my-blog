@@ -38,7 +38,7 @@ background: rgba(253, 230, 138, 0.15)
 ```
 ```component VPCard
 title: 旅行记录
-desc: 旅行过程中的美好记忆
+desc: 旅行过程中的美好回忆
 link: /TravelRecord/
 background: rgba(253, 230, 138, 0.15)
 ```

@@ -6,5 +6,6 @@ export default sidebar({
   "/DevelopmentSkills/": "structure",
   "/NestJSLearningRecord/": "structure",
   "/PhotographyLearningRecord/": "structure",
-  // "/TravelRecord":"structure",
+  "/TravelRecord": "structure",
+  "/CubeFormulaSet": "structure",
 });

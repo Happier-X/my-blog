@@ -42,3 +42,10 @@ desc: 旅行过程中的美好回忆
 link: /TravelRecord/
 background: rgba(253, 230, 138, 0.15)
 ```
+
+```component VPCard
+title: 魔方公式集
+desc: 我的魔方公式集
+link: /CubeFormulaSet/
+background: rgba(253, 230, 138, 0.15)
+```

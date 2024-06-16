@@ -5,5 +5,6 @@ export default sidebar({
   "/STM32LearningRecord/": "structure",
   "/DevelopmentSkills/": "structure",
   "/NestJSLearningRecord/": "structure",
-  "/PhotographyLearningRecord/": "structure"
+  "/PhotographyLearningRecord/": "structure",
+  // "/TravelRecord":"structure",
 });

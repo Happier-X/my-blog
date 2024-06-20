@@ -4,6 +4,7 @@ order: 1
 date: 2024-03-05
 category: 软件开发
 tag: Nest
+excerpt: 如何创建一个 Nest 项目
 ---
 
 ## 安装 Nest CLI

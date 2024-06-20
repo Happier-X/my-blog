@@ -4,6 +4,7 @@ order: 7
 date: 2024-04-29
 category: 软件开发
 tag: echarts
+excerpt: 让 echarts 图表占满整个容器
 ---
 
 通过 `grid` 属性调整。

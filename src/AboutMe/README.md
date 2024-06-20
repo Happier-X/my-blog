@@ -2,6 +2,8 @@
 title: 关于我
 date: 2024-05-11
 sidebar: false
+article: false
+timeline: false
 ---
 
 你好，我来自山东济南，毕业于曲阜师范大学，喜欢编程，热爱技术，热爱生活

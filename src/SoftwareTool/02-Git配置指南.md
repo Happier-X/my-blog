@@ -4,6 +4,7 @@ order: 2
 date: 2024-03-05
 category: 软件工具
 tag: Git
+excerpt: Git 常用配置指南
 ---
 
 ## 查看配置信息

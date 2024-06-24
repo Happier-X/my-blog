@@ -44,14 +44,14 @@ background: rgba(253, 230, 138, 0.15)
 ```
 
 ```component VPCard
-title: 三速
+title: 三阶魔方速拧
 desc: 三阶魔方速拧公式及技巧
 link: /3x3x3/
 background: rgba(253, 230, 138, 0.15)
 ```
 
 ```component VPCard
-title: 三盲
+title: 三阶魔方盲拧
 desc: 三阶魔方盲拧公式及技巧
 link: /3x3x3BLD/
 background: rgba(253, 230, 138, 0.15)

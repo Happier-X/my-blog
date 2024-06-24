@@ -7,5 +7,5 @@ export default sidebar({
   "/NestJSLearningRecord/": "structure",
   "/PhotographyLearningRecord/": "structure",
   "/TravelRecord": "structure",
-  "/CubeFormulaSet": "structure",
+  "/3x3x3": "structure",
 });

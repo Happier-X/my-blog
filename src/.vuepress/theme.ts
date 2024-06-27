@@ -91,7 +91,8 @@ export default hopeTheme({
     components: {
       components: ["Badge", "VPCard"],
     },
-
+    // 搜索
+    searchPro: true,
     // 此处开启了很多功能用于演示，你应仅保留用到的功能。
     mdEnhance: {
       align: true,

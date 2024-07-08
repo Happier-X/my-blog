@@ -16,7 +16,7 @@ background: rgba(228,198,208,0.5)
 title: 开发技巧
 desc: 开发过程中遇到的问题及解决方法
 link: /DevelopmentSkills/
-background: rgba(6,82,121, 0.15)
+background: rgba(237,209,26, 0.5)
 ```
 ```component VPCard
 title: Nest 学习记录

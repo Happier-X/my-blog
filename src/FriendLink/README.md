@@ -11,7 +11,7 @@ title: W1ndysの小屋
 desc: 欲戴皇冠，必承其重
 logo: https://avatars.githubusercontent.com/u/109416673?v=4
 link: https://blog.w1ndys.top/
-background: rgba(161,175,201,0.5)
+background: rgba(161,175,201,0.15)
 ```
 
 ## 友链申请

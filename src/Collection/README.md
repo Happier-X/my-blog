@@ -61,6 +61,7 @@ background: rgb(241,243,247)
 ```component VPCard
 title: Go 学习记录
 desc: Go 学习过程中的笔记
+logo: https://go.dev/blog/go-brand/Go-Logo/PNG/Go-Logo_Blue.png
 link: /GoLearningRecord/
 background: rgb(241,243,247)
 ```

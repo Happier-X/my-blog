@@ -10,7 +10,7 @@ timeline: false
 title: 软件工具
 desc: 软件工具推荐及使用技巧
 link: /SoftwareTool/
-background: rgb(181, 25, 33)
+background: rgba(253, 230, 138, 0.15)
 ```
 ```component VPCard
 title: 开发技巧

@@ -10,7 +10,7 @@ timeline: false
 title: 软件工具
 desc: 软件工具推荐及使用技巧
 link: /SoftwareTool/
-background: rgba(253, 230, 138, 0.15)
+background: rgb(181, 25, 33)
 ```
 ```component VPCard
 title: 开发技巧
@@ -21,7 +21,7 @@ background: rgba(253, 230, 138, 0.15)
 ```component VPCard
 title: Nest 学习记录
 desc: Nest 学习过程中的笔记
-link: /NestJSLearningRecord/
+link: /NestLearningRecord/
 background: rgba(253, 230, 138, 0.15)
 ```
 ```component VPCard
@@ -54,5 +54,12 @@ background: rgba(253, 230, 138, 0.15)
 title: 三阶魔方盲拧
 desc: 三阶魔方盲拧公式及技巧
 link: /3x3x3BLD/
+background: rgba(253, 230, 138, 0.15)
+```
+
+```component VPCard
+title: Go 学习记录
+desc: Go 学习过程中的笔记
+link: /GoLearningRecord/
 background: rgba(253, 230, 138, 0.15)
 ```

@@ -21,6 +21,7 @@ background: rgb(241,243,247)
 ```component VPCard
 title: Nest 学习记录
 desc: Nest 学习过程中的笔记
+logo: https://nestjs.com/logo-small-gradient.76616405.svg
 link: /NestLearningRecord/
 background: rgb(241,243,247)
 ```

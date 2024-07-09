@@ -9,5 +9,8 @@ import BingHeroBackground from "vuepress-theme-hope/presets/BingHeroBackground.j
     <template #bg>
       <BingHeroBackground />
     </template>
+    <template #info="info">
+      <HitokotoBlogHero v-bind="info" />
+    </template>
   </BlogHero>
 </template>

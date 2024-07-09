@@ -1,5 +1,5 @@
 ---
-title: CMLL 公式
+title: 三速-CMLL 公式
 cover: https://t.alcy.cc/fj
 order: 1
 date: 2024-06-16
@@ -9,7 +9,7 @@ tag:
  - 公式集
  - 三阶魔方速拧
  - CMLL
-excerpt:  
+excerpt: false
 ---
 
 CMLL 是桥式方法的第三步，在完成左右桥之后。这一步的目标是在不考虑 M 层的情况下完成顶层的角块（包括位置和色相）

@@ -1,7 +1,6 @@
 ---
 title: CMLL 公式
-cover: https://imgapi.cn/api.php?zd=zsy&fl=fengjing
-banner: https://imgapi.cn/api.php?zd=zsy&fl=fengjing
+cover: https://t.alcy.cc/fj
 order: 1
 date: 2024-06-16
 category: 魔方

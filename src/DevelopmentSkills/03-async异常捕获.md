@@ -4,7 +4,7 @@ order: 3
 date: 2024-03-07
 category: 软件开发
 tag: JavaScript
-excerpt: 在使用 async 时如何优雅地捕获异常
+excerpt: false
 ---
 
 ## 使用 try-catch 捕获异常

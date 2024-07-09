@@ -7,7 +7,7 @@ tag:
   - Alist
   - 网盘
   - termux
-excerpt: 如何在 Windows 平台和 Android 平台安装 Alist
+excerpt: false
 ---
 
 ## Windows 平台

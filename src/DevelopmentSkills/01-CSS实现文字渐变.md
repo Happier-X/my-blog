@@ -4,7 +4,7 @@ order: 1
 date: 2024-03-06
 category: 软件开发
 tag: CSS
-excerpt: 用 CSS 实现文字渐变效果
+excerpt: false
 ---
 
 如果给文字直接设置渐变色会不生效：

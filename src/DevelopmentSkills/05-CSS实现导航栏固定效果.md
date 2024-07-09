@@ -4,7 +4,7 @@ order: 5
 date: 2024-04-29
 category: 软件开发
 tag: CSS
-excerpt: 导航栏固定效果的实现
+excerpt: false
 ---
 
 ## 效果描述

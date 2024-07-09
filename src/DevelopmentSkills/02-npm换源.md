@@ -4,7 +4,7 @@ order: 2
 date: 2024-03-06
 category: 软件开发
 tag: npm
-excerpt: 为 npm 换源
+excerpt: false
 ---
 
 ## 查看当前镜像源

@@ -4,7 +4,7 @@ order: 4
 date: 2024-03-09
 category: 软件工具
 tag: VSCode
-excerpt: 分享我的 VSCode 常用配置 
+excerpt: false 
 ---
 
 > 记录我常用的 VSCode 基础配置

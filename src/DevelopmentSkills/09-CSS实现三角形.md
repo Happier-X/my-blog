@@ -1,7 +1,8 @@
 ---
 title: CSS 实现三角形
+cover: https://t.alcy.cc/fj?t=1714370400
 order: 9
-date: 2024-04-29
+date: 2024-04-29 14:00
 category: 软件开发
 tag: CSS
 excerpt: false

@@ -1,5 +1,5 @@
 ---
-title: CSS 实现文字渐变
+title: 开发技巧-CSS 实现文字渐变
 cover: https://t.alcy.cc/fj?t=1709690400
 order: 1
 date: 2024-03-06 10:00

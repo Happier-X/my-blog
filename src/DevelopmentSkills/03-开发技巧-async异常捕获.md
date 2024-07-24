@@ -1,5 +1,5 @@
 ---
-title: async 异常捕获
+title: 开发技巧-async 异常捕获
 cover: https://t.alcy.cc/fj?t=1709776800
 order: 3
 date: 2024-03-07 10:00

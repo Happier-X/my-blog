@@ -1,7 +1,8 @@
 ---
-title: VSCode 配置指南
+title: 软件工具-VSCode 配置指南
+cover: https://t.alcy.cc/fj?t=1709949600
 order: 4
-date: 2024-03-09
+date: 2024-03-09 10:00
 category: 软件工具
 tag: VSCode
 excerpt: false 

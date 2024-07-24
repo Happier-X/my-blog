@@ -1,7 +1,8 @@
 ---
-title: Git 配置指南
+title: 软件工具-Git 配置指南
+cover: https://t.alcy.cc/fj?t=1709596800
 order: 2
-date: 2024-03-05
+date: 2024-03-05 08:00
 category: 软件工具
 tag: Git
 excerpt: false

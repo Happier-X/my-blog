@@ -1,7 +1,8 @@
 ---
-title: 网盘管理神器 Alist 的安装
+title: 软件工具-网盘管理神器 Alist 的安装
+cover: https://t.alcy.cc/fj?t=1684807200
 order: 1
-date: 2023-05-23
+date: 2023-05-23 10:00
 category: 软件工具
 tag: 
   - Alist

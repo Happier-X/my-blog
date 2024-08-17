@@ -1,7 +1,7 @@
 ---
 title: 开发技巧-async 异常捕获
 cover: https://t.alcy.cc/fj?t=1709776800
-order: 3
+order: 2
 date: 2024-03-07 10:00
 category: 软件开发
 tag: JavaScript

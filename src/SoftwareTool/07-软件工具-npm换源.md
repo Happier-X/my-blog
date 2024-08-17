@@ -1,8 +1,8 @@
 ---
-title: 开发技巧-npm 换源
-cover: https://t.alcy.cc/fj?t=1709694000
-order: 2
-date: 2024-03-06 11:00
+title: 软件工具-npm 换源
+cover: https://t.alcy.cc/fj?t=1723905000
+order: 7
+date: 2024-08-17 22:30
 category: 软件开发
 tag: npm
 excerpt: false

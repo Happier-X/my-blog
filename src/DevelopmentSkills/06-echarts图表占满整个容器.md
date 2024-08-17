@@ -1,5 +1,5 @@
 ---
-title: 开发技巧-echarts 图表占满整个容器
+title: echarts 图表占满整个容器
 cover: https://t.alcy.cc/fj?t=1714363200
 order: 6
 date: 2024-04-29 12:00

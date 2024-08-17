@@ -1,5 +1,5 @@
 ---
-title: 三速-CMLL 公式
+title: 桥式 CMLL 公式
 cover: https://t.alcy.cc/fj?t=1718499600
 order: 1
 date: 2024-06-16 09:00

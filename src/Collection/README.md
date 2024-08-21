@@ -21,23 +21,23 @@ logo: https://zhf-picture.oss-cn-qingdao.aliyuncs.com/Collection/开发技巧.sv
 background: rgba(161,175,201,0.15)
 ```
 ```component VPCard
-title: Nest 学习记录
+title: Nest 学习笔记
 desc: Nest 学习过程中的笔记
-link: /NestLearningRecord/
+link: /NestLearningNote/
 logo: https://zhf-picture.oss-cn-qingdao.aliyuncs.com/Collection/Nest学习记录.svg
 background: rgba(161,175,201,0.15)
 ```
 ```component VPCard
-title: STM32 学习记录
+title: STM32 学习笔记
 desc: STM32 学习过程中的笔记
-link: /STM32LearningRecord/
+link: /STM32LearningNote/
 logo: https://zhf-picture.oss-cn-qingdao.aliyuncs.com/Collection/STM32学习记录.svg
 background: rgba(161,175,201,0.15)
 ```
 ```component VPCard
-title: 摄影学习记录
+title: 摄影学习笔记
 desc: 摄影学习过程中的笔记
-link: /PhotographyLearningRecord/
+link: /PhotographyLearningNote/
 logo: https://zhf-picture.oss-cn-qingdao.aliyuncs.com/Collection/摄影学习记录.svg
 background: rgba(161,175,201,0.15)
 ```
@@ -66,9 +66,9 @@ background: rgba(161,175,201,0.15)
 ```
 
 ```component VPCard
-title: Go 学习记录
+title: Go 学习笔记
 desc: Go 学习过程中的笔记
-link: /GoLearningRecord/
+link: /GoLearningNote/
 logo: https://zhf-picture.oss-cn-qingdao.aliyuncs.com/Collection/Go学习记录.svg
 background: rgba(161,175,201,0.15)
 ```

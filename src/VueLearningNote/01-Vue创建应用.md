@@ -1,6 +1,6 @@
 ---
 title: Vue 创建应用
-cover: https://t.alcy.cc/fj?t=
+cover: https://t.alcy.cc/fj?t=1724250600
 order: 1
 date: 2024-08-21 22:30
 category: 软件开发

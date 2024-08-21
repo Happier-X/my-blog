@@ -72,3 +72,11 @@ link: /GoLearningNote/
 logo: https://zhf-picture.oss-cn-qingdao.aliyuncs.com/Collection/Go学习记录.svg
 background: rgba(161,175,201,0.15)
 ```
+
+```component VPCard
+title: Vue 学习笔记
+desc: Vue 学习过程中的笔记
+link: /VueLearningNote/
+logo: https://zhf-picture.oss-cn-qingdao.aliyuncs.com/Collection/Vue学习记录.svg
+background: rgba(161,175,201,0.15)
+```

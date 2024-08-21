@@ -2,12 +2,13 @@ import { sidebar } from "vuepress-theme-hope";
 
 export default sidebar({
   "/SoftwareTool/": "structure",
-  "/STM32LearningRecord/": "structure",
+  "/STM32LearningNote/": "structure",
   "/DevelopmentSkills/": "structure",
-  "/NestLearningRecord/": "structure",
-  "/PhotographyLearningRecord/": "structure",
+  "/NestLearningNote/": "structure",
+  "/PhotographyLearningNote/": "structure",
   "/TravelRecord": "structure",
   "/3x3x3": "structure",
   "/3x3x3BLD": "structure",
-  "/GoLearningRecord/": "structure",
+  "/GoLearningNote/": "structure",
+  "/VueLearningNote/": "structure",
 });

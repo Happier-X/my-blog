@@ -163,10 +163,9 @@ excerpt: false
 ### 行内代码
 
 ```markdown
-可以通过``，插入行内代码（`是Tab键上边、数字1键左侧的那个按键）
-
 `Markdown`
 ```
+
 `Markdown`
 
 ## 分隔线
@@ -187,36 +186,36 @@ _____
 
 ## 待办事项
 ```Markdown
-- [ ] 
+- [ ] 计划 A
+- [x] 计划 B
 ```
-- [ ]
-- [x]
+- [ ] 计划 A
+
+- [x] 计划 B
+
 ## 空格
-在一些编辑器或者支持markdown的笔记软件里，无论你打多少个空格，它只会显示单个空格的距离
 
-可以使用 HTML 中空格的字符实体——`&nbsp;` 
+在一些编辑器或者支持 Markdown 的笔记软件里，无论你打多少个空格，它只会显示单个空格的距离
 
-若要添加多个空格，就输入多个——`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`
+可以使用 HTML 中空格的字符实体 —— `&nbsp;` 
 
-例如：
+若要添加多个空格，就输入多个 —— `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`
 
 ```html
 这里有&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6个空格分隔
 ```
-结果：
+
 这里有&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6 个空格分隔
 
 ## 链接
 
 ### 超链接
 
-格式为 `[link text](link)`
-
 ```markdown
-[帮助文档](https://support.typora.io/Links/#faq)
+[哈哈哈](https://123.com)
 ```
 
-[帮助文档](https://support.typora.io/Links/#faq)
+[哈哈哈](https://123.com)
 
 ### 自动链接
 
@@ -230,7 +229,7 @@ _____
 
 <https://www.baidu.com>
 
-[123@email.com](mailto:123@email.com)
+<123@email.com>
 
 ## 图片
 
@@ -238,25 +237,7 @@ _____
 ![自己起的图片名字](图片地址或者图片本地存储的路径)
 ```
 
-### 网上的图片
-
-```markdown
-![炸鸡](https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1580814517&di=2630beac440e5dab0e44c7286a3b2b61&src=http://imgsrc.baidu.com/forum/w=580/sign=12c730c4ff03738dde4a0c2a831ab073/9497794f9258d1091818e6d6d858ccbf6d814d1b.jpg)
-```
-
-![炸鸡](https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1580814517&di=2630beac440e5dab0e44c7286a3b2b61&src=http://imgsrc.baidu.com/forum/w=580/sign=12c730c4ff03738dde4a0c2a831ab073/9497794f9258d1091818e6d6d858ccbf6d814d1b.jpg)
-
-### 本地图片
-
-```markdown
-![美食](美食.jpg)
-在同一个文件夹里（用相对路径）
-或者直接拷贝
-```
-
 ## 画图
-
-markdown 画图也是轻量级的，功能并不全
 
 Mermaid 是一个用于画流程图、状态图、时序图、甘特图的库，使用 JS 进行本地渲染，广泛集成于许多 Markdown 编辑器中
 

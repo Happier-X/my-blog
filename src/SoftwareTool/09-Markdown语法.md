@@ -72,53 +72,58 @@ excerpt: false
 ### 下标
 
 ```markdown
-水 $H_2O$
-双氧水 $H_2O_2$
+$H_2O$
+$H_2O_2$
 ```
 
-水 $H_2O$
-双氧水 $H_2O_2$
+$H_2O$
+
+$H_2O_2$
 
 ### 上标
 
 ```markdown
-面积 $m^2$
-体积 $m^3$
-3的xy次方 $3^{xy}$
+$m^2$
+$m^3$
+$3^{xy}$
 ```
 
-面积 $m^2$
-体积 $m^3$
-3 的 xy 次方 $3^{xy}$
+$m^2$
+
+$m^3$
+
+$3^{xy}$
 
 ### 运算符
 
 ```Markdown
-乘号: $\times$
-$10 = 2 \times 5$
-除号: $\div$
-加减号: $\pm$
-开方：$\sqrt{ x }$
-开n次方：$\sqrt[ n ]{ x }$
+$\times$
+$\div$
+$\pm$
+$\sqrt{ x }$
+$\sqrt[ n ]{ x }$
 ```
 
-乘号: $\times$
-$10 = 2 \times 5$
-除号: $\div$
-加减号: $\pm$
-开方：$\sqrt{ x }$
-开 n 次方：$\sqrt[ n ]{ x }$
+$\times$
+
+$\div$
+
+$\pm$
+
+$\sqrt{ x }$
+
+$\sqrt[ n ]{ x }$
 
 把符号往正上方或者正下方放
-
-比如 :
 ```Markdown
 $\max \limits_{x_0}$
 $\min \limits^{x_0}$
 $\min \limits^{x_0}_{x_0}$
 ```
 $\max \limits_{x_0}$
+
 $\min \limits^{x_0}$
+
 $\min\limits^{x_0}_{x_0}$
 
 > limits 只允许用于运算符上, 其他的不行
@@ -130,6 +135,7 @@ $\vec{ a }$
 $\vec a \cdot \vec b = 0$
 ```
 $\vec{ a }$
+
 $\vec a \cdot \vec b = 0$
 
 ### 微积分
@@ -140,6 +146,7 @@ $\lim\limits_{n \rightarrow +\infty} \frac{1}{n(n+1)}$
 ```
 
 $\int_0^2 x^2 {\rm d}x$
+
 $\lim\limits_{n \rightarrow +\infty} \frac{1}{n(n+1)}$
 
 ### 求和求极限
@@ -154,10 +161,15 @@ $\prod_{i=0}^n \frac{1}{i^2}$
 ```
 
 $\sum_{i = 1}^n{x_i}$
+
 $\sum\limits_{i = 1}^n{x_i}$
+
 $\sum_{i=0}^n \frac{1}{i^2}$
+
 $\sum\limits_{i=0}^n \frac{1}{i^2}$
+
 $\frac{\sum_{i = 1}^n{x_i}}{n}$
+
 $\prod_{i=0}^n \frac{1}{i^2}$
 
 ### 括号
@@ -169,8 +181,11 @@ $\left ()\right.$
 ```
 
 $\{ \}$
+
 ${a\choose b}$
+
 $\frac{x}{y}$
+
 $\left ()\right.$
 
 ### 省略号
@@ -181,85 +196,96 @@ $\left ()\right.$
 对角线方向的省略号 $\ddots$
 ```
 跟文本底线对齐的省略号 $\ldots$
+
 横向的省略号 $\cdots$
+
 竖向的省略号 $\vdots$
+
 对角线方向的省略号 $\ddots$
 ### 数学符号
 ```Markdown
-因为：$\because$
-所以：$\therefore$
-任意：$\forall$
-存在：$\exists$
-∣ ：$\mid$  
-\  ：$\backslash$ 
-∗ ：$\ast$ 
-≤ ：$\leq$  
-≥ ：$\geq$
-≠ ：$\neq$ 
-≈ ：$\approx$  
-≡ ：$\equiv$ 
-∑ ：$\sum$
-∏ ：$\prod$  
-∐ ：$\coprod$  
-⨀ ：$\bigodot$  
-⨂ ：$\bigotimes$  
-⨁ ：$\bigoplus$
+$\because$
+$\therefore$
+$\forall$
+$\exists$
+$\mid$  
+$\backslash$ 
+$\ast$ 
+$\leq$  
+$\geq$
+$\neq$ 
+$\approx$  
+$\equiv$ 
+$\sum$
+$\prod$  
+$\coprod$  
+$\bigodot$  
+$\bigotimes$  
+$\bigoplus$
 ```
-因为：$\because$
-所以：$\therefore$
-任意：$\forall$
-存在：$\exists$
-∣ ：$\mid$
-\  ：$\backslash$
-∗ ：$\ast$
-≤ ：$\leq$
-≥ ：$\geq$
-≠ ：$\neq$
-≈ ：$\approx$
-≡ ：$\equiv$
-∑ ：$\sum$
-∏ ：$\prod$
-∐ ：$\coprod$
-⨀ ：$\bigodot$
-⨂ ：$\bigotimes$
-⨁ ：$\bigoplus$
+$\because$
+
+$\therefore$
+
+$\forall$
+
+$\exists$
+
+$\mid$  
+
+$\backslash$ 
+
+$\ast$ 
+
+$\leq$  
+
+$\geq$
+
+$\neq$ 
+
+$\approx$  
+
+$\equiv$ 
+
+$\sum$
+
+$\prod$  
+
+$\coprod$  
+
+$\bigodot$  
+
+$\bigotimes$  
+
+$\bigoplus$
 ### 百分号、约等号
 ```Markdown
 $\%$
 $\approx$
 ```
 $\%$
+
 $\approx$
 
 ### 向上/下取整
 
 ```Markdown
-向上:
-
 $\lceil$  
 $\rceil$
-
-向下:
-
 $\lfloor$
 $\rfloor$
-
 $\lceil$$\frac{4}{5}$$\rceil$
 $\lfloor$$\frac{4}{5}$$\rfloor$
 ```
-向上:
+$\lceil$ $\rceil$
 
-$\lceil$
-$\rceil$
-
-向下:
-
-$\lfloor$
-$\rfloor$
+$\lfloor$ $\rfloor$
 
 $\lceil$ $\frac{4}{5}$ $\rceil$
+
 $\lfloor$ $\frac{4}{5}$ $\rfloor$
-### 3.12 希腊字母
+
+### 希腊字母
 
 | 希腊字母 | 写法 | 希腊字母|写法|
 | ---- | ---- | ----|----|
@@ -285,98 +311,134 @@ $\lfloor$ $\frac{4}{5}$ $\rfloor$
 |   $\Omega$    |   `$\Omega$`    | $\omega$     |   `$\omega$`   |
 ### 集合运算符
 ```Markdown
-∅: $\emptyset$ 
-∈: $\in$ 
-∉: $\notin$  
-⊂: $\subset$  
-⊃: $\supset$  
-⊆: $\subseteq$  
-⊇: $\supseteq$  
-⋂: $\bigcap$  
-⋃: $\bigcup$  
-⋁: $\bigvee$  
-⋀: $\bigwedge$  
-⨄: $\biguplus$  
-⨆: $\bigsqcup$
+$\emptyset$ 
+$\in$ 
+$\notin$  
+$\subset$  
+$\supset$  
+$\subseteq$  
+$\supseteq$  
+$\bigcap$  
+$\bigcup$  
+$\bigvee$  
+$\bigwedge$  
+$\biguplus$  
+$\bigsqcup$
 $A\\2$
 ```
-∅: $\emptyset$
-∈: $\in$
-∉: $\notin$
-⊂: $\subset$
-⊃: $\supset$
-⊆: $\subseteq$
-⊇: $\supseteq$
-⋂: $\bigcap$
-⋃: $\bigcup$
-⋁: $\bigvee$
-⋀: $\bigwedge$
-⨄: $\biguplus$
-⨆: $\bigsqcup$
+$\emptyset$ 
+
+$\in$ 
+
+$\notin$  
+
+$\subset$  
+
+$\supset$  
+
+$\subseteq$  
+
+$\supseteq$  
+
+$\bigcap$  
+
+$\bigcup$  
+
+$\bigvee$  
+
+$\bigwedge$  
+
+$\biguplus$  
+
+$\bigsqcup$
+
 $A\\2$
 
 ### 对数符号
 ```Markdown
-log:$\log$ 
-lg:$\lg$ 
-ln:$\ln$
+$\log$ 
+$\lg$ 
+$\ln$
 ```
-log: $\log$
-lg: $\lg$
-ln: $\ln$
+$\log$ 
+
+$\lg$ 
+
+$\ln$
 ### 箭头符号
 ```Markdown
-↑:$\uparrow$  
-↓:$\downarrow$  
-⇑:$\Uparrow$
-⇓:$\Downarrow$
-→:$\rightarrow$ 
-←:$\leftarrow$ 
-⇒:$\Rightarrow$  
-⇐:$\Leftarrow$
-⟶:$\longrightarrow$ 
-⟵:$\longleftarrow$
-⟹:$\Longrightarrow$
-⟸:$\Longleftarrow$
+$\uparrow$  
+$\downarrow$  
+$\Uparrow$
+$\Downarrow$
+$\rightarrow$ 
+$\leftarrow$ 
+$\Rightarrow$  
+$\Leftarrow$
+$\longrightarrow$ 
+$\longleftarrow$
+$\Longrightarrow$
+$\Longleftarrow$
 $\stackrel{+}{\Rightarrow}$
 $\stackrel{*}{\Rightarrow}$
 ```
-↑: $\uparrow$
-↓: $\downarrow$
-⇑: $\Uparrow$
-⇓: $\Downarrow$
-→: $\rightarrow$
-←: $\leftarrow$
-⇒: $\Rightarrow$
-⇐: $\Leftarrow$
-⟶: $\longrightarrow$
-⟵: $\longleftarrow$
-⟹: $\Longrightarrow$
-⟸: $\Longleftarrow$
+$\uparrow$  
+
+$\downarrow$  
+
+$\Uparrow$
+
+$\Downarrow$
+
+$\rightarrow$ 
+
+$\leftarrow$ 
+
+$\Rightarrow$  
+
+$\Leftarrow$
+
+$\longrightarrow$ 
+
+$\longleftarrow$
+
+$\Longrightarrow$
+
+$\Longleftarrow$
+
 $\stackrel{+}{\Rightarrow}$
+
 $\stackrel{*}{\Rightarrow}$
 
 ### 三角运算符
 ```Markdown
-⊥:$\bot$  
-∠:$\angle$  
-度数:$30^\circ$  
-sin:$\sin$  
-cos:$\cos$  
-tan:$\tan$  
-cot:$\cot$  
-sec:$\sec$ 
-csc:$\csc$
+$\bot$  
+$\angle$  
+$30^\circ$  
+$\sin$  
+$\cos$  
+$\tan$  
+$\cot$  
+$\sec$ 
+$\csc$
 ```
-⊥: $\bot$
-∠: $\angle$
-度数: $30^\circ$
-sin: $\sin$
-cos: $\cos$
-tan: $\tan$
-cot: $\cot$
-sec: $\sec$
-csc: $\csc$
+$\bot$  
+
+$\angle$  
+
+$30^\circ$  
+
+$\sin$  
+
+$\cos$  
+
+$\tan$  
+
+$\cot$  
+
+$\sec$ 
+
+$\csc$
 
 ### 分段函数的写法
 用法：`\begin{cases}xxxxxxx \\ xxxxxxx \end{cases}`

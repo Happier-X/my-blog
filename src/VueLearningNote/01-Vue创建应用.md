@@ -21,28 +21,19 @@ npm create vue@latest
 ```
 ├── node_modules
 ├── public
-│   └── index.html
 ├── src
 │   ├── assets
 │   ├── components
 │   ├── App.vue
-│   ├── main.js
-│   └── shims-vue.d.ts
+│   └──main.ts
 ├── .gitignore
-├── index.html
+├── env.d.ts // 为环境变量提供类型定义
+├── index.html // 入口文件
+├── package-lock.json
 ├── package.json
 ├── README.md
-└── tsconfig.json
-```
-
-## 项目运行
-
-```shell
-npm run dev
-```
-
-## 项目打包
-
-```shell
-npm run build
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
 ```

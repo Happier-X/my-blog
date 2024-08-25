@@ -15,7 +15,6 @@ excerpt: false
 ```shell
 npm create vue@latest
 ```
-
 ## 项目结构
 
 ```
@@ -37,3 +36,5 @@ npm create vue@latest
 ├── tsconfig.node.json
 └── vite.config.ts
 ```
+
+哈哈哈哈

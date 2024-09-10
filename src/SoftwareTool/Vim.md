@@ -1,7 +1,6 @@
 ---
 title: Vim
 cover: https://t.alcy.cc/fj?t=1724590800
-order: 10
 date: 2024-08-25 21:00
 category: 软件工具
 tag: 

@@ -20,7 +20,7 @@ excerpt: false
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入 Vue -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <title>Vue</title>
+    <title>创建应用</title>
 </head>
 <body>
     <!-- 指定一个 id 为 app 的 div 容器 -->
@@ -63,7 +63,7 @@ excerpt: false
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入 Vue -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <title>Vue</title>
+    <title>创建应用</title>
 </head>
 <body>
     <!-- 指定一个 id 为 app 的 div 容器 -->
@@ -106,7 +106,7 @@ excerpt: false
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue</title>
+    <title>创建应用</title>
 </head>
 <body>
     <!-- 指定一个 id 为 app 的 div 容器 -->
@@ -118,7 +118,7 @@ excerpt: false
         <p>{{message.text2}}</p>
     </div>
     <script type="module">
-        import { createApp, reactive } from 'https://unpkg.com/vue@3.4.38/dist/vue.esm-browser.js'
+        import { createApp, reactive } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
         // 创建一个 Vue 应用
         createApp({
             // setup 是一个特殊的函数，用于定义组件的响应式数据和方法等

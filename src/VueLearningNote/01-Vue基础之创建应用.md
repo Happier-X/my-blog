@@ -1,5 +1,5 @@
 ---
-title: Vue 创建应用
+title: Vue 基础之创建应用
 cover: https://t.alcy.cc/fj?t=1724250600
 order: 1
 date: 2024-08-21 22:30

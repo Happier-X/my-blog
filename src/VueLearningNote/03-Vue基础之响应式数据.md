@@ -1,5 +1,5 @@
 ---
-title: Vue 响应式数据
+title: Vue 基础之响应式数据
 cover: https://t.alcy.cc/fj?t=1724851800
 order: 3
 date: 2024-08-28 21:30

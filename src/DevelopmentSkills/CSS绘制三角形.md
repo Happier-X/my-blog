@@ -1,7 +1,6 @@
 ---
 title: CSS 绘制三角形
 cover: https://t.alcy.cc/fj?t=1714370400
-order: 8
 date: 2024-04-29 14:00
 category: 软件开发
 tag: CSS

@@ -11,7 +11,7 @@ excerpt: false
 
 使用 `v-on` 指令（简写为 `@`）来监听 DOM 事件
 
-用法：`v-on:事件="handler"`或 `@事件="handler"`
+用法：`v-on:事件="handler"` 或 `@事件="handler"`
 
 handler（事件处理器）的值可以是：
 

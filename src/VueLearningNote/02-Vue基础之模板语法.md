@@ -18,28 +18,18 @@ Mustache 语法（双大括号）是最基本的语法，用于在模板中插�
 双大括号中的内容会被 Vue 解析为 JavaScript 表达式，并替换为相应的值
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mustache 语法</title>
-</head>
-<body>
-    <div id="app">{{message}}</div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const message = ref('Hello Vue!')
-                return {
-                    message
-                }
-            }
-        }).mount('#app')
-    </script>
-</body>
-</html>
+<div id="app">{{message}}</div>
+<script type="module">
+    import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+    createApp({
+	setup() {
+	    const message = ref('Hello Vue!')
+	    return {
+		message
+	    }
+        }
+    }).mount('#app')
+</script>
 ```
 
 ## 指令

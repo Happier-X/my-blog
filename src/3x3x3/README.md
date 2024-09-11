@@ -2,6 +2,7 @@
 title: 三阶魔方速拧
 article: false
 timeline: false
+sidebar: false
 ---
 
 三阶魔方速拧相关公式及技巧

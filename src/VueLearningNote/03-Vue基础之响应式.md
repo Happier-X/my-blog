@@ -59,22 +59,22 @@ excerpt: false
 <body>
     <div id="app">
         <h1>{{count}}</h1>
-        <button @click="getMessage1">按钮1</button>
-        <button @click="getMessage2">按钮2</button>
+        <button @click="add1">按钮1</button>
+        <button @click="add2">按钮2</button>
     </div>
     <script type="module">
         import { createApp, ref, nextTick } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
         createApp({
             setup() {
                 const count = ref(0)
-                const getMessage1 = () => {
+                const add1= () => {
                     count.value++
                     // 传递一个回调函数
                     nextTick(() => {
                         console.log('DOM 更新后执行某些操作')
                     })
                 }
-                const getMessage2 = async () => {
+                const add2= async () => {
                     count.value++
                     // await 其返回的 Promise
                     await nextTick()
@@ -82,8 +82,8 @@ excerpt: false
                 }
                 return {
                     count,
-                    getMessage1,
-                    getMessage2
+                    add1,
+                    add2
                 }
             }
         }).mount('#app')

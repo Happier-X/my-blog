@@ -80,3 +80,44 @@ excerpt: false
 ```
 
 ### renderjs 调用逻辑层的方法
+
+使用 `this.$ownerInstance.callMethod(方法名,传递的数据)` 可以调用逻辑层中 methods 中定义的方法，并能传递数据
+
+```vue
+<template>
+    <view>
+        <button @click="render.test">点我触发render的test方法</button>
+    </view>
+</template>
+
+<script module="render" lang="renderjs">
+    export default {
+        methods: {
+	    test() {
+		console.log('我被逻辑层触发了')
+		setTimeout(() => {
+		    this.$ownerInstance.callMethod('test1', { data: 'hello' })
+		}, 2000)
+	    }
+	}
+    }
+</script>
+
+<script>
+    export default {
+	methods: {
+	    test1(value) {
+		console.log('我被 renderjs 触发了，并接收到了数据', value)
+	    }
+        }
+    }
+</script>
+```
+
+### 逻辑层向 renderjs 传递数据
+
+在模板中某个元素上（最多一层父元素）添加要传递的属性，并监听其变化
+
+```vue
+
+```

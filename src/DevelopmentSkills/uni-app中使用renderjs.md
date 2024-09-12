@@ -119,5 +119,47 @@ excerpt: false
 在模板中某个元素上（最多一层父元素）添加要传递的属性，并监听其变化
 
 ```vue
+<template>
+	<view>
+		<!-- 这里的 prop 是传递值的 key，可以起任意的名，message 是传递的值 -->
+		<!-- 后面的 change 用来监听 prop 绑定值的变化，即 message -->
+		<!-- 当 message 变化时会调用对应的方法 -->
+		<view :prop="message" :change:prop="test1"></view>
+		<button @click="render.test">点我触发render的test方法</button>
+	</view>
+</template>
 
+<script module="render" lang="renderjs">
+	export default {
+		methods: {
+			test() {
+				console.log('我被逻辑层触发了', this.message)
+				setTimeout(() => {
+					this.$ownerInstance.callMethod('test1', {
+						data: 'hello'
+					})
+				}, 2000)
+			}
+		}
+	}
+</script>
+
+<script>
+	export default {
+		data() {
+			return {
+				message: '123'
+			}
+		},
+		methods: {
+			test1(value) {
+				console.log('我被 renderjs 触发了，并接收到了数据', value)
+			}
+		}
+	}
+</script>
 ```
+
+### renderjs 向逻辑层传递数据
+
+见上文：renderjs 调用逻辑层的方法，调用方法时可以传递数据

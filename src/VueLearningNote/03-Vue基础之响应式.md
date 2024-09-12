@@ -1,8 +1,8 @@
 ---
 title: Vue 基础之响应式
-cover: https://t.alcy.cc/fj?t=1724851800
+cover: https://t.alcy.cc/fj?t=1726029000000
 order: 3
-date: 2024-08-28 21:30
+date: 2024-09-11 12:30
 category: 软件开发
 tag: Vue
 excerpt: false

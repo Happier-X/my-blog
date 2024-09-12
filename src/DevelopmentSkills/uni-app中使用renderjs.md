@@ -41,11 +41,11 @@ excerpt: false
 
 <script module="render" lang="renderjs">
     export default {
-	methods: {
-	    test() {
-	        console.log('我被逻辑层触发了')
-	    }
-	}
+        methods: {
+            test() {
+                console.log('我被逻辑层触发了')
+            }
+        }
     }
 </script>
 
@@ -60,21 +60,21 @@ excerpt: false
 <script module="render" lang="renderjs">
     export default {
         methods: {
-	    test() {
-		console.log('我被逻辑层触发了')
+            test() {
+                console.log('我被逻辑层触发了')
+            }
 	    }
-	}
     }
 </script>
 
 <script>
     export default {
-	methods: {
-	    handleClick() {
-		console.log('我想在逻辑层的方法中调用 renderjs 中的方法，但是这样不可行')
-		this.render.test() // 在 app 上会报错
-	    }
-	}
+        methods: {
+            handleClick() {
+                console.log('我想在逻辑层的方法中调用 renderjs 中的方法，但是这样不可行')
+                this.render.test() // 在 app 上会报错
+            }
+        }
     }
 </script>
 ```
@@ -93,22 +93,22 @@ excerpt: false
 <script module="render" lang="renderjs">
     export default {
         methods: {
-	    test() {
-		console.log('我被逻辑层触发了')
-		setTimeout(() => {
-		    this.$ownerInstance.callMethod('test1', { data: 'hello' })
-		}, 2000)
-	    }
-	}
+            test() {
+            console.log('我被逻辑层触发了')
+            setTimeout(() => {
+                this.$ownerInstance.callMethod('test1', { data: 'hello' })
+                }, 2000)
+            }
+        }
     }
 </script>
 
 <script>
     export default {
-	methods: {
-	    test1(value) {
-		console.log('我被 renderjs 触发了，并接收到了数据', value)
-	    }
+        methods: {
+            test1(value) {
+                console.log('我被 renderjs 触发了，并接收到了数据', value)
+            }
         }
     }
 </script>

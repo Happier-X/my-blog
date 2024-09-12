@@ -39,6 +39,38 @@ excerpt: false
 </body>
 ```
 
+### 在 template 中使用
+
+如果我们想要切换不止一个元素，可以用 `<template>` 元素包裹，最后渲染时并不会包含这个 `<template>` 元素
+
+```html
+<body>
+    <div id="app">
+        <template v-if="count === 0">
+            <div>元素1</div>
+            <div>元素2</div>
+            <div>元素3</div>
+        </template>
+        <button @click="add">按钮</button>
+    </div>
+    <script type="module">
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const count = ref(0)
+                const add = () => {
+                    count.value++
+                }
+                return {
+                    count,
+                    add,
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+```
+
 ## v-show
 
 根据表达式的真假条件性地显示或隐藏元素
@@ -68,3 +100,8 @@ excerpt: false
 ```
 
 ## v-if 对比 v-show
+
+- `v-if` 是“真正”的条件渲染，它会根据条件是否成立来决定是否渲染元素
+- `v-show` 只是简单地切换元素的 CSS 属性 `display`，元素始终会被渲染并保留在 DOM 中
+
+因此，`v-if` 有更高的切换开销，而 `v-show` 有更高的初始渲染开销。所以，如果需要非常频繁地切换，则使用 `v-show` 较好；如果在运行时条件很少改变，则使用 `v-if` 较好

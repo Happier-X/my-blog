@@ -1,0 +1,82 @@
+---
+title: uni-app 中使用 renderjs
+cover: https://t.alcy.cc/fj?t=1726106400000
+date: 2024-09-12 10:00
+category: 软件开发
+tag: uni-app
+excerpt: false
+---
+## 什么是 renderjs
+
+官方解释：`renderjs` 是一个运行在视图层的 js，它只支持 app-vue 和 web
+
+`renderjs` 的主要作用有2个：
+
+1. 大幅降低逻辑层和视图层的通讯损耗，提供高性能视图交互能力
+2. 在视图层操作 dom，运行 for web 的 js 库
+
+## 基本使用
+
+将 `script` 标签的 `lang` 设置为 `renderjs`
+
+设置 `module` 用于通信（相当于起了个名字）
+
+```v
+<script module="render" lang="renderjs">
+</script>
+```
+
+## 与逻辑层通信
+
+### 逻辑层调用 renderjs 中的方法
+
+在行内调用：`renderjs模块名称.renderjs模块内的方法`
+
+```vue
+<template>
+    <view>
+        <button @click="render.test">点我触发render的test方法</button>
+    </view>
+</template>
+
+<script module="render" lang="renderjs">
+    export default {
+	methods: {
+	    test() {
+	        console.log('我被逻辑层触发了')
+	    }
+	}
+    }
+</script>
+
+<script>
+	// 这里书写逻辑层代码
+</script>
+```
+
+注意：我们不能在逻辑层的方法中调用，后面会有解决办法
+
+```vue
+<script module="render" lang="renderjs">
+    export default {
+        methods: {
+	    test() {
+		console.log('我被逻辑层触发了')
+	    }
+	}
+    }
+</script>
+
+<script>
+    export default {
+	methods: {
+	    handleClick() {
+		console.log('我想在逻辑层的方法中调用 renderjs 中的方法，但是这样不可行')
+		this.render.test() // 在 app 上会报错
+	    }
+	}
+    }
+</script>
+```
+
+### renderjs 调用逻辑层的方法

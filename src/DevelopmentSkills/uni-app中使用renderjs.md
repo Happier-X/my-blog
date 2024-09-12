@@ -94,9 +94,9 @@ excerpt: false
     export default {
         methods: {
             test() {
-            console.log('我被逻辑层触发了')
-            setTimeout(() => {
-                this.$ownerInstance.callMethod('test1', { data: 'hello' })
+            	console.log('我被逻辑层触发了')
+            	setTimeout(() => {
+                	this.$ownerInstance.callMethod('test1', { data: 'hello' })
                 }, 2000)
             }
         }

@@ -29,7 +29,7 @@ handler（事件处理器）的值可以是：
         <button @click="add">按钮</button>
     </div>
     <script type="module">
-        import { createApp, ref, nextTick } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
         createApp({
             setup() {
                 const count = ref(0)
@@ -57,7 +57,7 @@ handler（事件处理器）的值可以是：
         <button @click="add">按钮</button>
     </div>
     <script type="module">
-        import { createApp, ref, nextTick } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
         createApp({
             setup() {
                 const count = ref(0)
@@ -87,7 +87,7 @@ handler（事件处理器）的值可以是：
         <button @click="count++">按钮</button>
     </div>
     <script type="module">
-        import { createApp, ref, nextTick } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
         createApp({
             setup() {
                 const count = ref(0)
@@ -111,7 +111,7 @@ handler（事件处理器）的值可以是：
         <button @click="add(2)">按钮</button>
     </div>
     <script type="module">
-        import { createApp, ref, nextTick } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
         createApp({
             setup() {
                 const count = ref(0)
@@ -143,7 +143,7 @@ handler（事件处理器）的值可以是：
         <button @click="(event) => add(2,event)">按钮</button>
     </div>
     <script type="module">
-        import { createApp, ref, nextTick } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
         createApp({
             setup() {
                 const count = ref(0)
@@ -197,7 +197,7 @@ Vue 中未提供的可以使用按键原始的 key 值去绑定，但注意要�
         <input @keyup.enter="add" />
     </div>
     <script type="module">
-        import { createApp, ref, nextTick } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
         createApp({
             setup() {
                 const count = ref(0)
@@ -229,7 +229,7 @@ Vue 中未提供的可以使用按键原始的 key 值去绑定，但注意要�
         <button @click.ctrl.a="add">按钮</button>
     </div>
     <script type="module">
-        import { createApp, ref, nextTick } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
         createApp({
             setup() {
                 const count = ref(0)
@@ -262,7 +262,7 @@ Vue 中未提供的可以使用按键原始的 key 值去绑定，但注意要�
         <button @click.exact="add3">按钮</button>
     </div>
     <script type="module">
-        import { createApp, ref, nextTick } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
         createApp({
             setup() {
                 const count = ref(0)
@@ -300,7 +300,7 @@ Vue 中未提供的可以使用按键原始的 key 值去绑定，但注意要�
         <button @click.right="add">按钮</button>
     </div>
     <script type="module">
-        import { createApp, ref, nextTick } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
         createApp({
             setup() {
                 const count = ref(0)

@@ -39,7 +39,7 @@ excerpt: false
 </body>
 ```
 
-### 在 template 中使用
+### 在 template 上使用
 
 如果我们想要切换不止一个元素，可以用 `<template>` 元素包裹，最后渲染时并不会包含这个 `<template>` 元素
 

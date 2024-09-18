@@ -7,7 +7,6 @@ category: 软件开发
 tag: Vue
 excerpt: false
 ---
-
 Vue 专门为 `class` 和 `style` 的 `v-bind` 用法提供了特殊的功能增强，除了字符串外，表达式的值也可以是对象或数组
 
 ## class 绑定
@@ -126,4 +125,95 @@ Vue 专门为 `class` 和 `style` 的 `v-bind` 用法提供了特殊的功能增
     </script>
 </body>
 ```
-### 组件中使用
+
+## style 绑定
+
+### 绑定对象
+
+我们可以传给 `v-bind:style`（简写为 `:style`）一个对象
+
+```html
+<body>
+    <div id="app">
+        <!-- 给 :style 传递一个对象 -->
+        <div :style="{ color: color1 , fontSize: '20px'}">盒子1</div>
+        <!-- 也可以直接绑定一个对象 -->
+        <div :style="styleObj">盒子2</div>
+        <!-- 可以绑定一个返回对象的计算属性 -->
+        <div :style="styleObj1">盒子3</div>
+    </div>
+    <script type="module">
+        import { createApp, ref, computed } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const color1 = ref('red')
+                const styleObj = ref({
+                    color: 'pink',
+                    fontSize: '30px',
+                })
+                const styleObj1 = computed(() => ({
+                    color: 'blue',
+                    fontSize: '40px',
+                }))
+                return {
+                    color1,
+                    styleObj,
+                    styleObj1,
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+```
+
+### 绑定数组
+
+可以把一个样式对象数组传给 `v-bind:style`（简写为 `:style`），以应用多个样式对象
+
+```html
+<body>
+    <div id="app">
+        <!-- 给 :style 传递一个数组 -->
+        <div :style="[styleObj,styleObj1]">盒子1</div>
+    </div>
+    <script type="module">
+        import { createApp, ref, computed } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const styleObj = ref({
+                    color: 'pink',
+                    fontSize: '30px',
+                })
+                const styleObj1 = computed(() => ({
+                    backgroundColor: 'blue',
+                    width: '100px',
+                }))
+                return {
+                    styleObj,
+                    styleObj1,
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+```
+
+### 自动添加前缀
+
+当 `:style` 使用需要添加浏览器引擎前缀的 CSS 属性时，Vue 会自动侦测并添加相应的前缀
+
+### 样式多值
+
+可以为 `:style` 绑定中的属性提供一个包含多个值的数组，常用于提供多个带前缀的值
+
+```html
+<div id="app">
+    <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">盒子</div>
+</div>
+```
+
+数组仅会渲染浏览器支持的最后一个值
+
+## 组件中使用
+
+详见：透传 Attributes

@@ -48,7 +48,7 @@ excerpt: false
         </select>
     </div>
     <script type="module">
-        import { createApp, ref, computed } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
         createApp({
             setup() {
                 const data = ref({

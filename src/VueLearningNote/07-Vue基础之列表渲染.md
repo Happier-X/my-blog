@@ -7,7 +7,7 @@ category: 软件开发
 tag: Vue
 excerpt: false
 ---
-## 基础使用
+## 基本用法
 
 使用 `v-for` 指令可以将一个数组渲染成一个列表
 

@@ -7,7 +7,7 @@ category: 软件开发
 tag: Vue
 excerpt: false
 ---
-## 基础使用
+## 基本用法
 
 使用指令 `v-bind` 来为 HTML 元素绑定属性，可以动态地改变属性值
 

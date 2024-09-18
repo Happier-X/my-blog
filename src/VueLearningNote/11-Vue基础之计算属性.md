@@ -1,7 +1,7 @@
 ---
 title: Vue 基础之计算属性
 cover: https://t.alcy.cc/fj?t=1726642800000
-order: 10
+order: 11
 date: 2024-09-18 15:00
 category: 软件开发
 tag: Vue

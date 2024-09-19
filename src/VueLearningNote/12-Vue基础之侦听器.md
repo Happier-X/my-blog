@@ -7,7 +7,6 @@ category: 软件开发
 tag: Vue
 excerpt: false
 ---
-
 ## 基本用法
 
 侦听器可以在响应式状态发生变化时自动执行侦听器中的方法
@@ -41,14 +40,14 @@ excerpt: false
                 })
                 const x = ref(1)
                 const y = ref(2)
-                // 监听 name 的变化（ref）
+                // 监听 name 的变化
                 watch(name, (newVal, oldVal) => {
                     console.log(newVal, oldVal)
                     if (newVal === '李四') {
                         alert('李四')
                     }
                 })
-                // 监听 time 的变化（reactive）
+                // 监听 time 的变化
                 // 因为 time 是一个对象，对象是通过引用来传递的，而不是值传递
                 // 当修改对象的属性时，实际上是修改了对象的引用，所以打印出来的结果是修改后的值
                 watch(time, (newVal, oldVal) => {
@@ -84,4 +83,3 @@ excerpt: false
 ```
 
 ## 深层侦听器
-

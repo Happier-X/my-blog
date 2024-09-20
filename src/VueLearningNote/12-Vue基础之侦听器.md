@@ -264,3 +264,6 @@ watchEffect(callback, {
     </script>
 </body>
 ```
+
+还可以创建一个同步触发的侦听器，将 `flush` 选项设置为 `sync` 或 使用 `watchSyncEffect()`，它会在 Vue 进行任何更新之前触发回调
+

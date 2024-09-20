@@ -22,6 +22,8 @@ excerpt: false
         <button @click="name = '李四'">改变name</button>
         <h3>{{ time }}</h3>
         <button @click="time.year = 2025">改变time</button>
+        <h3>{{ list }}</h3>
+        <button @click="list.push(5)">改变list</button>
         <h3>{{ fullTime }}</h3>
         <h3>{{ x }} + {{ y }} = {{ x + y }}</h3>
         <button @click="x = 10">改变x</button>
@@ -35,6 +37,7 @@ excerpt: false
                     year: 2024,
                     month: 9,
                 })
+                const list = reactive([1, 2, 3, 4])
                 const fullTime = computed(() => {
                     return `${time.year}-${time.month}`
                 })
@@ -51,6 +54,12 @@ excerpt: false
                 // 因为 time 是一个对象，对象是通过引用来传递的，而不是值传递
                 // 当修改对象的属性时，实际上是修改了对象的引用，所以打印出来的结果是修改后的值
                 watch(time, (newVal, oldVal) => {
+                    console.log(newVal, oldVal) // 这里的 newVal 和 oldVal 都是修改后的值
+                })
+                // 监听 list 的变化
+                // 因为 list 是一个数组，数组是通过引用来传递的，而不是值传递
+                // 当修改数组时，实际上是修改了数组的引用，所以打印出来的结果是修改后的值
+                watch(list, (newVal, oldVal) => {
                     console.log(newVal, oldVal) // 这里的 newVal 和 oldVal 都是修改后的值
                 })
                 // 监听 fullTime 的变化（计算属性）
@@ -72,6 +81,7 @@ excerpt: false
                 return {
                     name,
                     time,
+                    list,
                     fullTime,
                     x,
                     y

@@ -101,7 +101,7 @@ excerpt: false
 `deep` 还可以接收一个数字，表示最大遍历深度，即 Vue 应该遍历对象嵌套属性的层数
 
 ```vue
-watch(参数1, 参数2, {
+watch(source, callback, {
     deep: true
 })
 ```
@@ -113,7 +113,7 @@ watch(参数1, 参数2, {
 给第三个参数传入 `immediate: true` 可以实现即时回调的侦听器，在创建侦听器时会自动执行侦听器中的方法
 
 ```vue
-watch(参数1, 参数2, {
+watch(source, callback, {
     immediate: true
 })
 ```
@@ -125,7 +125,7 @@ watch(参数1, 参数2, {
 给第三个参数传入 `once: true` 可以实现一次性侦听器，回调函数只会在侦听的数据第一次变化时执行一次，之后不再执行
 
 ```vue
-watch(参数1, 参数2, {
+watch(source, callback, {
     once: true
 })
 ```
@@ -196,3 +196,71 @@ watch(参数1, 参数2, {
 
 ## 副作用清理
 
+TODO：副作用清理
+
+## 回调的触发时机
+
+当改变侦听的响应式状态时，它可能会同时触发 Vue 组件更新和侦听器的回调
+
+默认情况下，侦听器回调会在父组件更新（如有）之后、所属组件的 DOM 更新之前被调用，这意味着在回调中访问所属组件的 DOM 时，它将处于更新前的状态
+
+如果想在侦听器回调中访问被 Vue 更新后的所属组件的 DOM，可以将 `flush` 选项设置为 `post`
+
+```vue
+watch(source, callback, { 
+    flush: 'post' 
+})
+```
+
+```vue
+watchEffect(callback, { 
+    flush: 'post' 
+})
+```
+
+也可以使用 `watchPostEffect()`
+
+```html
+<body>
+    <div id="app">
+        <h3 id="e1">{{ count1 }}</h3>
+        <button @click="count1++">改变count1</button>
+        <h3 id="e2">{{ count2 }}</h3>
+        <button @click="count2++">改变count2</button>
+        <h3 id="e3">{{ count3 }}</h3>
+        <button @click="count3++">改变count3</button>
+    </div>
+    <script type="module">
+        import { createApp, ref, watchEffect, watchPostEffect } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const count1 = ref(0)
+                const count2 = ref(0)
+                const count3 = ref(0)
+                watchEffect(() => {
+                    console.log(count1.value) // 初次打印 0
+                    const element1 = document.querySelector('#e1')
+                    console.log(element1) // 初次打印 null
+                })
+                watchEffect(() => {
+                    console.log(count2.value) // 初次打印 0
+                    const element2 = document.querySelector('#e2')
+                    console.log(element2) // 初次打印 <h3 id="e2">0</h3>
+                }, {
+                    flush: 'post'
+                })
+                watchPostEffect(() => {
+                    console.log(count3.value) // 初次打印 0
+                    const element3 = document.querySelector('#e3')
+                    console.log(element3) // 初次打印 <h3 id="e3">0</h3>
+                })
+                return {
+                    count1,
+                    count2,
+                    count3
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+```

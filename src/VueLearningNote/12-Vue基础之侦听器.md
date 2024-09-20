@@ -267,3 +267,62 @@ watchEffect(callback, {
 
 还可以创建一个同步触发的侦听器，将 `flush` 选项设置为 `sync` 或 使用 `watchSyncEffect()`，它会在 Vue 进行任何更新之前触发回调
 
+## 停止侦听器
+
+在 `setup()` 中用同步语句创建的侦听器，会自动绑定到宿主组件实例上，并且会在宿主组件卸载时自动停止
+
+如果用异步回调创建一个侦听器，那么它不会绑定到当前组件上，你必须手动停止它，以防内存泄漏
+
+```html
+<body>
+    <div id="app">
+        <h3>{{ count1 }}</h3>
+        <button @click="count1++">改变count1</button>
+        <h3>{{ count2 }}</h3>
+        <button @click="count2++">改变count2</button>
+    </div>
+    <script type="module">
+        import { createApp, ref, watchEffect } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const count1 = ref(0)
+                const count2 = ref(0)
+                // 它会自动停止
+                watchEffect(() => {
+                    console.log(count1.value)
+                })
+                // 它不会自动停止
+                setTimeout(() => {
+                    watchEffect(() => {
+                        console.log(count2.value)
+                    })
+                }, 100)
+                return {
+                    count1,
+                    count2,
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+```
+
+要手动停止一个侦听器，可以调用侦听器返回的停止函数
+
+```vue
+const unWatch = watchEffect(() => {})
+// 当不再需要侦听器时
+unWatch()
+```
+
+如果我们需要等待一些异步数据，可以使用条件式的侦听器，当条件为真时开始侦听
+
+```vue
+// 异步数据
+const data = ref(null)
+watchEffect(() => {
+    if (data.value) {
+        // 这将在 data 价值后启动侦听器
+    }
+})
+```

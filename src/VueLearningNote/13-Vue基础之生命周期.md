@@ -1,5 +1,5 @@
 ---
-title: Vue 基础生命周期
+title: Vue 基础之生命周期
 cover: https://t.alcy.cc/fj?t=1726824600000
 order: 13
 date: 2024-09-20 17:30

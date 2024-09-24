@@ -57,6 +57,7 @@ const fullName = computed(() => {
     </script>
 </body>
 ```
+:::
 
 我们定义了两个响应式数据 `firstName` 和 `lastName`，然后通过 `computed` 函数创建了一个计算属性 `fullName`，它的值是 `firstName` 和 `lastName` 的组合。当 `firstName` 或 `lastName` 发生变化时，`fullName` 会自动更新
 

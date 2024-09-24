@@ -16,6 +16,36 @@ excerpt: false
 - 用 ref 创建的响应式数据需要通过 `.value` 来访问和修改，在模板中不需要
 - reactive 创建的响应式对象可以直接访问和修改
 
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h1>{{ title }}</h1>
+  <p>{{ message.text1 }}</p>
+  <p>{{ message.text2 }}</p>
+</template>
+
+<script setup>
+import { ref, reactive } from 'vue'
+// ref 用于创建一个响应式数据
+const title = ref('Hello Vue')
+// 用 ref 创建的响应式数据需要通过 .value 来访问和修改
+title.value = 'Hello Vue!'
+// reactive 用于创建一个响应式对象
+const message = reactive({
+  text1: 'Hello text1',
+  text2: 'Hello text2'
+})
+// reactive 创建的响应式对象可以直接访问和修改
+message.text1 = 'Hello text1!'
+message.text2 = 'Hello text2!'
+</script>
+```
+
+@tab HTML
+
 ```html
 <body>
     <div id="app">
@@ -48,6 +78,8 @@ excerpt: false
     </script>
 </body>
 ```
+
+:::
 
 ## DOM 更新时机
 

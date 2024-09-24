@@ -1,5 +1,5 @@
 ---
-title: Vue 基础之计算属性
+title: Vue 计算属性
 cover: https://t.alcy.cc/fj?t=1726642800
 order: 11
 date: 2024-09-18 15:00
@@ -12,6 +12,26 @@ excerpt: false
 计算属性是基于其他数据计算得出的属性，它的值会根据依赖的数据自动更新
 
 `computed` 方法接受一个 getter 函数，返回一个计算属性 ref
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <div>{{ fullName }}</div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+const firstName = ref('Foo')
+const lastName = ref('Bar')
+const fullName = computed(() => {
+  return firstName.value + ' ' + lastName.value
+})
+</script>
+```
+@tab HTML
 
 ```html
 <body>
@@ -47,6 +67,41 @@ excerpt: false
 ## 可写计算属性
 
 计算属性默认只有 getter，但也可以提供一个 setter
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <div>{{ firstName }}</div>
+  <br>
+  <div>{{ lastName }}</div>
+  <br>
+  <div>{{ fullName }}</div>
+  <br>
+  <button @click="fullName = 'Tom Sun'">修改 fullName</button>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+const firstName = ref('Foo')
+const lastName = ref('Bar')
+const fullName = computed({
+  // getter
+  get() {
+    return firstName.value + ' ' + lastName.value
+  },
+  // setter
+  set(newValue) {
+    const names = newValue.split(' ')
+    firstName.value = names[0]
+    lastName.value = names[1]
+  }
+})
+</script>
+```
+@tab HTML
 
 ```html
 <body>
@@ -87,6 +142,7 @@ excerpt: false
     </script>
 </body>
 ```
+:::
 
 当我们点击按钮修改 `fullName` 时，会触发 `fullName` 的 setter，从而修改 `firstName` 和 `lastName` 的值
 

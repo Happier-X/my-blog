@@ -1,5 +1,5 @@
 ---
-title: Vue 基础之侦听器
+title: Vue 侦听器
 cover: https://t.alcy.cc/fj?t=1726644600
 order: 12
 date: 2024-09-18 15:30
@@ -14,6 +14,76 @@ excerpt: false
 `watch` 的第一个参数是侦听的属性名，第二个参数是侦听器方法，第三个参数是配置项
 
 第一个参数可以是不同形式的数据源：一个响应式属性名、一个计算属性、一个 getter 函数或多个数据源组成的数组
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h3>{{ name }}</h3>
+  <button @click="name = '李四'">改变name</button>
+  <h3>{{ time }}</h3>
+  <button @click="time.year = 2025">改变time</button>
+  <h3>{{ list }}</h3>
+  <button @click="list.push(5)">改变list</button>
+  <h3>{{ fullTime }}</h3>
+  <h3>{{ x }} + {{ y }} = {{ x + y }}</h3>
+  <button @click="x = 10">改变x</button>
+</template>
+
+<script setup>
+import { ref, computed, watch, reactive } from 'vue'
+const name = ref('张三')
+const time = reactive({
+  year: 2024,
+  month: 9,
+})
+const list = reactive([1, 2, 3, 4])
+const fullTime = computed(() => {
+  return `${time.year}-${time.month}`
+})
+const x = ref(1)
+const y = ref(2)
+// 监听 name 的变化
+watch(name, (newVal, oldVal) => {
+  console.log(newVal, oldVal)
+  if (newVal === '李四') {
+    alert('李四')
+  }
+})
+// 监听 time 的变化
+// 因为 time 是一个对象，对象是通过引用来传递的，而不是值传递
+// 当修改对象的属性时，实际上是修改了对象的引用，所以打印出来的结果是修改后的值
+watch(time, (newVal, oldVal) => {
+  console.log(newVal, oldVal) // 这里的 newVal 和 oldVal 都是修改后的值
+})
+// 监听 list 的变化
+// 因为 list 是一个数组，数组是通过引用来传递的，而不是值传递
+// 当修改数组时，实际上是修改了数组的引用，所以打印出来的结果是修改后的值
+watch(list, (newVal, oldVal) => {
+  console.log(newVal, oldVal) // 这里的 newVal 和 oldVal 都是修改后的值
+})
+// 监听 fullTime 的变化（计算属性）
+watch(fullTime, (newVal, oldVal) => {
+  console.log(newVal, oldVal)
+})
+// 监听 getter 函数
+watch(() => x.value + y.value, (newVal, oldVal) => {
+  console.log(newVal, oldVal)
+})
+// 监听多个数据源组成的数组
+watch([x, y], (newVal, oldVal) => {
+  console.log(newVal, oldVal)
+})
+// 监听对象中的某个属性，需要使用 getter 函数，不能直接监听响应式对象的属性
+watch(() => time.year, (newVal, oldVal) => {
+  console.log(newVal, oldVal)
+})
+</script>
+```
+
+@tab HTML
 
 ```html
 <body>
@@ -91,7 +161,7 @@ excerpt: false
     </script>
 </body>
 ```
-
+:::
 ## 深层侦听器
 
 给第三个参数传入 `deep: true` 可以实现深层侦听器，当响应式对象中的某个属性发生变化时，会自动执行侦听器中的方法
@@ -135,6 +205,28 @@ watch(source, callback, {
 
 `watchEffect()` 会立即执行传入的函数，同时追踪其依赖的响应式状态，并在状态变更时重新运行该函数
 
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h3>{{ name }}</h3>
+  <button @click="name = '李四'">改变name</button>
+</template>
+
+<script setup>
+import { ref, watchEffect } from 'vue'
+const name = ref('张三')
+// 监听 name 的变化
+watchEffect(() => {
+  console.log(name.value)
+})
+</script>
+```
+
+@tab HTML
+
 ```html
 <body>
     <div id="app">
@@ -158,10 +250,36 @@ watch(source, callback, {
     </script>
 </body>
 ```
-
+:::
 回调会立即执行，不需要指定 `immediate: true`，在执行期间，它会自动追踪 `name.value` 作为依赖（和计算属性类似），每当 `name.value` 变化时，回调会再次执行，我们不再需要明确传递 `name` 作为数据源
 
 注意：`watchEffect` 仅会在其同步执行期间，才追踪依赖。在使用异步回调时，只有在第一个 `await` 正常工作前访问到的属性才会被追踪
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h3>{{ count }}</h3>
+  <button @click="count++">改变count</button>
+  <h3>{{ message }}</h3>
+  <button @click="message = `hello ${count}`">改变message</button>
+</template>
+
+<script setup>
+import { ref, watchEffect } from 'vue'
+const count = ref(0)
+const message = ref('hello world')
+watchEffect(async () => {
+  console.log(count.value) // 在 await 之前访问，它会被追踪
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  console.log(message.value) // 在 await 之后访问，它不会被追踪
+})
+</script>
+```
+
+@tab HTML
 
 ```html
 <body>
@@ -192,6 +310,8 @@ watch(source, callback, {
 </body>
 ```
 
+:::
+
 这里我们在 `watchEffect` 中使用了异步回调，在第一个 `await` 之前访问了 `count.value`，因此它会被追踪。而在第一个 `await` 之后访问的 `message.value`，则不会被追踪
 
 ## 副作用清理
@@ -219,6 +339,46 @@ watchEffect(callback, {
 ```
 
 也可以使用 `watchPostEffect()`
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h3 id="e1">{{ count1 }}</h3>
+  <button @click="count1++">改变count1</button>
+  <h3 id="e2">{{ count2 }}</h3>
+  <button @click="count2++">改变count2</button>
+  <h3 id="e3">{{ count3 }}</h3>
+  <button @click="count3++">改变count3</button>
+</template>
+
+<script setup>
+import { ref, watchEffect, watchPostEffect } from 'vue'
+const count1 = ref(0)
+const count2 = ref(0)
+const count3 = ref(0)
+watchEffect(() => {
+  console.log(count1.value) // 初次打印 0
+  const element1 = document.querySelector('#e1')
+  console.log(element1) // 初次打印 null
+})
+watchEffect(() => {
+  console.log(count2.value) // 初次打印 0
+  const element2 = document.querySelector('#e2')
+  console.log(element2) // 初次打印 <h3 id="e2">0</h3>
+}, {
+  flush: 'post'
+})
+watchPostEffect(() => {
+  console.log(count3.value) // 初次打印 0
+  const element3 = document.querySelector('#e3')
+  console.log(element3) // 初次打印 <h3 id="e3">0</h3>
+})
+</script>
+```
+@tab HTML
 
 ```html
 <body>
@@ -264,7 +424,7 @@ watchEffect(callback, {
     </script>
 </body>
 ```
-
+:::
 还可以创建一个同步触发的侦听器，将 `flush` 选项设置为 `sync` 或 使用 `watchSyncEffect()`，它会在 Vue 进行任何更新之前触发回调
 
 ## 停止侦听器
@@ -272,6 +432,37 @@ watchEffect(callback, {
 在 `setup()` 中用同步语句创建的侦听器，会自动绑定到宿主组件实例上，并且会在宿主组件卸载时自动停止
 
 如果用异步回调创建一个侦听器，那么它不会绑定到当前组件上，你必须手动停止它，以防内存泄漏
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h3>{{ count1 }}</h3>
+  <button @click="count1++">改变count1</button>
+  <h3>{{ count2 }}</h3>
+  <button @click="count2++">改变count2</button>
+</template>
+
+<script setup>
+import { ref, watchEffect } from 'vue'
+const count1 = ref(0)
+const count2 = ref(0)
+// 它会自动停止
+watchEffect(() => {
+  console.log(count1.value)
+})
+// 它不会自动停止
+setTimeout(() => {
+  watchEffect(() => {
+    console.log(count2.value)
+  })
+}, 100)
+</script>
+```
+
+@tab HTML
 
 ```html
 <body>
@@ -306,7 +497,7 @@ watchEffect(callback, {
     </script>
 </body>
 ```
-
+:::
 要手动停止一个侦听器，可以调用侦听器返回的停止函数
 
 ```vue

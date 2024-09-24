@@ -1,5 +1,5 @@
 ---
-title: Vue 基础之事件处理
+title: Vue 事件处理
 cover: https://t.alcy.cc/fj?t=1726032600000
 order: 4
 date: 2024-09-11 13:30
@@ -19,6 +19,29 @@ handler（事件处理器）的值可以是：
 - 内联事件处理器：事件被触发时执行的内联 JavaScript 语句
 
 ## 方法事件处理器
+
+::: tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h1>{{ count }}</h1>
+  <button v-on:click="add">按钮</button>
+  <!-- 简写 -->
+  <button @click="add">按钮</button>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+const count = ref(0)
+const add = () => {
+  count.value++
+}
+</script>
+```
+
+@tab HTML
 
 ```html
 <body>
@@ -46,9 +69,33 @@ handler（事件处理器）的值可以是：
 </body>
 ```
 
+:::
+
 ### 获取事件对象
 
 方法事件处理器会自动接收原生 DOM 事件并触发执行，我们可以在方法中用 `event` 参数接收
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h1>{{ count }}</h1>
+  <button @click="add">按钮</button>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+const count = ref(0)
+// 接收事件对象
+const add = (event) => {
+  count.value++
+  console.log('事件对象', event)
+}
+</script>
+```
+@tab HTML
 
 ```html
 <body>
@@ -76,7 +123,28 @@ handler（事件处理器）的值可以是：
 </body>
 ```
 
+:::
+
 ## 内联事件处理器
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h1>{{ count }}</h1>
+  <button v-on:click="count++">按钮</button>
+  <!-- 简写 -->
+  <button @click="count++">按钮</button>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+const count = ref(0)
+</script>
+```
+@tab HTML
 
 ```html
 <body>
@@ -100,9 +168,33 @@ handler（事件处理器）的值可以是：
 </body>
 ```
 
+:::
+
 ### 在内联处理器中调用方法（用于向方法传入自定义参数）
 
 在内联处理器中调用方法可以向方法传入自定义参数
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h1>{{ count }}</h1>
+  <button @click="add(2)">按钮</button>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+const count = ref(0)
+// 传入自定义参数
+const add = (number) => {
+  count.value += number
+}
+</script>
+```
+
+@tab HTML
 
 ```html
 <body>
@@ -129,9 +221,37 @@ handler（事件处理器）的值可以是：
 </body>
 ```
 
+:::
+
 ### 获取事件对象
 
 在内联处理器中调用方法时，我们可以传入一个特殊的 `$event` 变量或使用内联箭头函数来获取事件对象
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h1>{{ count }}</h1>
+  <!-- 使用 $event 变量 -->
+  <button @click="add(2, $event)">按钮</button>
+  <!-- 使用内联箭头函数 -->
+  <button @click="(event) => add(2, event)">按钮</button>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+const count = ref(0)
+// 传入自定义参数
+const add = (number, event) => {
+  count.value += number
+  console.log('事件对象', event)
+}
+</script>
+```
+
+@tab HTML
 
 ```html
 <body>
@@ -161,6 +281,7 @@ handler（事件处理器）的值可以是：
     </script>
 </body>
 ```
+:::
 
 ## 修饰符
 
@@ -189,6 +310,27 @@ handler（事件处理器）的值可以是：
 
 Vue 中未提供的可以使用按键原始的 key 值去绑定，但注意要转为 `kebab-case` 形式
 
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h1>{{ count }}</h1>
+  <!-- 松开 enter 时触发 -->
+  <input @keyup.enter="add" />
+</template>
+
+<script setup>
+import { ref } from 'vue'
+const count = ref(0)
+const add = () => {
+  count.value++
+}
+</script>
+```
+@tab HTML
+
 ```html
 <body>
     <div id="app">
@@ -213,6 +355,7 @@ Vue 中未提供的可以使用按键原始的 key 值去绑定，但注意要�
     </script>
 </body>
 ```
+:::
 
 #### 系统修饰符
 
@@ -220,6 +363,27 @@ Vue 中未提供的可以使用按键原始的 key 值去绑定，但注意要�
 - `.alt` alt 键
 - `.shift` shift 键
 - `.meta` Windows 键（在 Mac 系统上为 Command 键）
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h1>{{ count }}</h1>
+  <!-- 按下 ctrl + a 时触发 -->
+  <button @click.ctrl.a="add">按钮</button>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+const count = ref(0)
+const add = () => {
+  count.value++
+}
+</script>
+```
+@tab HTML
 
 ```html
 <body>
@@ -246,9 +410,42 @@ Vue 中未提供的可以使用按键原始的 key 值去绑定，但注意要�
 </body>
 ```
 
+:::
+
 #### `.exact` 修饰符
 
 `.exact` 修饰符允许精确控制触发事件所需的系统修饰符的组合
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h1>{{ count }}</h1>
+  <!-- 按下 ctrl 时触发 -->
+  <button @click.ctrl="add1">按钮</button>
+  <!-- 仅当按下 ctrl 且未按任何其他键时触发 -->
+  <button @click.ctrl.exact="add2">按钮</button>
+  <!-- 仅当未按下任何修饰键时触发 -->
+  <button @click.exact="add3">按钮</button>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+const count = ref(0)
+const add1 = () => {
+  count.value++
+}
+const add2 = () => {
+  count.value += 2
+}
+const add3 = () => {
+  count.value += 3
+}
+</script>
+```
+@tab HTML
 
 ```html
 <body>
@@ -286,12 +483,33 @@ Vue 中未提供的可以使用按键原始的 key 值去绑定，但注意要�
     </script>
 </body>
 ```
+:::
 
 ### 鼠标修饰符
 
 - `.left` 左键点击
 - `.right` 右键点击
 - `.middle` 中键点击
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h1>{{ count }}</h1>
+  <button @click.right="add">按钮</button>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+const count = ref(0)
+const add = () => {
+  count.value++
+}
+</script>
+```
+@tab HTML
 
 ```html
 <body>
@@ -316,3 +534,4 @@ Vue 中未提供的可以使用按键原始的 key 值去绑定，但注意要�
     </script>
 </body>
 ```
+:::

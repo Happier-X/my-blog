@@ -89,6 +89,38 @@ message.text2 = 'Hello text2!'
 
 可以传递一个回调函数作为参数，或者 await 其返回的 Promise
 
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h1>{{ count }}</h1>
+  <button @click="add1">按钮1</button>
+  <button @click="add2">按钮2</button>
+</template>
+
+<script setup>
+import { ref, nextTick } from 'vue'
+const count = ref(0)
+const add1 = () => {
+  count.value++
+  // 传递一个回调函数
+  nextTick(() => {
+    console.log('DOM 更新后执行某些操作')
+  })
+}
+const add2 = async () => {
+  count.value++
+  // await 其返回的 Promise
+  await nextTick()
+  console.log('此时 DOM 已经更新了')
+}
+</script>
+```
+
+@tab HTML
+
 ```html
 <body>
     <div id="app">
@@ -124,3 +156,5 @@ message.text2 = 'Hello text2!'
     </script>
 </body>
 ```
+
+:::

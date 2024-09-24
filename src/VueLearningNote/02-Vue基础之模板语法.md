@@ -19,6 +19,19 @@ Mustache 语法（双大括号）是最基本的语法，用于在模板中插�
 
 :::tabs
 
+@tab 单文件组件
+
+```vue
+<template>
+  {{ message }}
+</template>
+
+<script setup>
+import { ref } from 'vue'
+const message = ref('Hello Vue!')
+</script>
+```
+
 @tab HTML
 
 ```html
@@ -36,12 +49,6 @@ Mustache 语法（双大括号）是最基本的语法，用于在模板中插�
         }).mount('#app')
     </script>
 </body>
-```
-
-@tab 单文件组件
-
-```vue
-test
 ```
 
 :::

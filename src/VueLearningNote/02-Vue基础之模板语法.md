@@ -17,6 +17,10 @@ Mustache 语法（双大括号）是最基本的语法，用于在模板中插�
 
 双大括号中的内容会被 Vue 解析为 JavaScript 表达式，并替换为相应的值
 
+:::tabs
+
+@tab HTML
+
 ```html
 <body>
     <div id="app">{{message}}</div>
@@ -33,6 +37,14 @@ Mustache 语法（双大括号）是最基本的语法，用于在模板中插�
     </script>
 </body>
 ```
+
+@tab 单文件组件
+
+```vue
+test
+```
+
+:::
 
 ## 指令
 

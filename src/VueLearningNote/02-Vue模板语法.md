@@ -1,5 +1,5 @@
 ---
-title: Vue 基础之模板语法
+title: Vue 模板语法
 cover: https://t.alcy.cc/fj?t=1725971400
 order: 2
 date: 2024-09-10 20:30

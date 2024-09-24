@@ -1,5 +1,5 @@
 ---
-title: Vue 基础之创建应用
+title: Vue 创建应用
 cover: https://t.alcy.cc/fj?t=1724250600
 order: 1
 date: 2024-08-21 22:30
@@ -7,7 +7,6 @@ category: 软件开发
 tag: Vue
 excerpt: false
 ---
-
 > Vue 是一个用于构建用户界面的渐进式 JavaScript 框架，渐进式是指在使用 Vue 的过程中，可以根据项目的需求和复杂性，逐步选择和引入 Vue 的各个功能和特性
 
 ## 使用 create-vue 脚手架
@@ -29,6 +28,7 @@ npm create vue@latest
    <script type="module" src="/src/main.js"></script>
 </body>
 ```
+
 ```javascript
 // main.js
 import { createApp } from 'vue'

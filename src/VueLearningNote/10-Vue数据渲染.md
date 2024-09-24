@@ -49,7 +49,7 @@ const text = ref('hello world')
 
 `v-html` 指令用于将数据渲染到元素的 HTML 内容中，它会解析并渲染 HTML 标签
 
-@tabs
+:::tabs
 
 @tab 单文件组件
 

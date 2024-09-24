@@ -11,6 +11,28 @@ excerpt: false
 
 模板引用是 Vue 提供的一种方式，允许我们直接访问 DOM 元素或子组件实例，在 Vue 中，我们可以使用 `ref` 特性来为元素或组件添加一个引用，然后使用 `useTemplateRef()` 函数来获取该引用
 
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <h3 ref="messageRef">{{ message }}</h3>
+</template>
+
+<script setup>
+import { ref, useTemplateRef, onMounted } from 'vue'
+const message = ref('hello world')
+// 函数的参数是模板引用的 ref 值
+const messageRef = useTemplateRef('messageRef')
+onMounted(() => {
+  console.log(messageRef.value) // <h3>hello world</h3>
+})
+</script>
+```
+
+@tab HTML
+
 ```html
 <body>
     <div id="app">
@@ -34,12 +56,36 @@ excerpt: false
     </script>
 </body>
 ```
+:::
 
 注意：只可以在组件挂载后才能访问模板引用，如果你想在模板中的表达式上访问，在初次渲染时会是 `null`
 
 ## v-for 中的模版引用
 
 在 `v-for` 中使用模板引用时，会返回一个数组，它将在元素被挂载后包含对应整个列表的所有元素
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <ul>
+    <li v-for="item in list" ref="itemsRef">{{ item }}</li>
+  </ul>
+</template>
+
+<script setup>
+import { ref, useTemplateRef, onMounted } from 'vue'
+const list = ref(['a', 'b', 'c'])
+const itemsRef = useTemplateRef('itemsRef')
+onMounted(() => {
+  console.log(itemsRef.value) // [li, li, li]
+})
+</script>
+```
+
+@tab HTML
 
 ```html
 <body>
@@ -65,6 +111,7 @@ excerpt: false
     </script>
 </body>
 ```
+:::
 
 注意：ref 数组并不保证与源数组相同的顺序
 

@@ -12,11 +12,11 @@ excerpt: false
 
 ## props 声明
 
-在子组件中，使用 `props` 声明需要从父组件接收的数据
-
 :::tabs
 
 @tab 单文件组件
+
+在子组件中，使用 `defineProps` 声明需要从父组件接收的数据
 
 ```vue
 <!-- App.vue -->
@@ -60,6 +60,8 @@ h1 {
 ```
 
 @tab HTML
+
+在子组件中，使用 `props` 声明需要从父组件接收的数据
 
 ```html
 <body>

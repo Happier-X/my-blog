@@ -114,3 +114,9 @@ export default {
 ```
 
 :::
+
+## 命名规范
+
+声明 `props` 时，推荐使用小驼峰命名法（camelCase）
+
+向子组件传递 Props 时，推荐使用短横线分隔命名法（kebab-case）

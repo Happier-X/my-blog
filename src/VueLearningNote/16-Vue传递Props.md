@@ -45,7 +45,7 @@ const name = ref('John')
 // 接收父组件传递过来的数据
 const props = defineProps(['schoolName'])
 // 还可以使用对象的形式来接收父组件传递过来的数据
-// 这里的每个属性 key 是 prop 的名字，value 是 prop 预期的类型
+// 这里的每个属性 key 是 props 的名字，value 是 props 预期的类型
 /*
 const props = defineProps({
     schoolName: String
@@ -92,7 +92,7 @@ export default {
     // 接收父组件传递过来的数据
     props: ['schoolName'],
     // 还可以使用对象的形式来接收父组件传递过来的数据
-    // 这里的每个属性 key 是 prop 的名字，value 是 prop 预期的类型
+    // 这里的每个属性 key 是 props 的名字，value 是 props 预期的类型
     /*
     props: {
         schoolName: String
@@ -119,4 +119,26 @@ export default {
 
 声明 `props` 时，推荐使用小驼峰命名法（camelCase）
 
-向子组件传递 Props 时，推荐使用短横线分隔命名法（kebab-case）
+向子组件传递 `props` 时，推荐使用短横线分隔命名法（kebab-case）
+
+## 单向数据流
+
+父组件向子组件传递数据是单向的，我们不应该修改 `props` 的值，它是只读的
+
+## props 校验
+
+在 `props` 中，我们可以对传递过来的数据进行校验，确保数据符合要求
+
+```javascript
+// 给需要校验的 props 对象添加校验规则
+{
+    props名称:{
+        type: 类型, // 可以传入一个数组，表示接受多种类型
+        required: 是否必传, // true 或 false, 默认为 false
+        default: 默认值, // 默认值，对象、数组、函数类型的默认值必须使用函数返回
+        validator(value,props){
+            // 自定义校验规则，第二个参数是完整的 props，返回 true 表示校验通过，返回 false 表示校验失败
+        }
+    }
+}
+```

@@ -173,3 +173,11 @@ const school = ref('QFNU')
 ```
 :::
 
+## 命名格式
+
+组件的命名有两种格式：kebab-case 和 PascalCase
+
+- kebab-case：使用连字符连接单词，例如 `my-component`
+- PascalCase：使用大写字母开头，例如 `MyComponent`
+
+注意：在 HTML 中使用组件时，必须使用 kebab-case 格式，例如 `<my-component></my-component>`

@@ -16,7 +16,7 @@ excerpt: false
 
 @tab 单文件组件
 
-在子组件中，使用 `defineProps` 声明需要从父组件接收的数据
+在子组件中，使用 `defineProps()` 声明需要从父组件接收的数据
 
 ```vue
 <!-- App.vue -->

@@ -12,4 +12,10 @@ excerpt: false
 
 ## 声明自定义事件
 
+:::tabs
+
+@tab 单文件组件
+
+在子组件中，使用 `defineEmits()` 声明自定义事件
+
 在子组件中，使用 `emits` 选项声明自定义事件

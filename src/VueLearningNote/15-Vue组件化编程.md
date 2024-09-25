@@ -130,6 +130,7 @@ app.mount('#app')
 
 :::tabs
 @tab 单文件组件
+
 ```vue
 <!-- App.vue -->
 <template>
@@ -146,6 +147,7 @@ const school = ref('QFNU')
 ```
 
 @tab HTML
+
 ```html
 <body>
     <div id="app">
@@ -171,9 +173,10 @@ const school = ref('QFNU')
     </script>
 </body>
 ```
+
 :::
 
-## 命名格式
+## 命名规范
 
 组件的命名有两种格式：kebab-case 和 PascalCase
 

@@ -1,5 +1,5 @@
 ---
-title: Vue 传递 Props
+title: Vue 传递 props
 cover: https://t.alcy.cc/fj?t=1727242200000
 order: 16
 date: 2024-09-25 13:30
@@ -10,7 +10,7 @@ excerpt: false
 
 使用 `props` 可以将数据从父组件传递到子组件
 
-## Props 声明
+## props 声明
 
 在子组件中，使用 `props` 声明需要从父组件接收的数据
 

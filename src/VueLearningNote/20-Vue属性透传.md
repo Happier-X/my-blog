@@ -122,3 +122,11 @@ const attrs = useAttrs()
 console.log(attrs) // { class: "student", style: { color: "skyblue" }, age: "20" }
 </script>
 ```
+
+如果没有使用 `<script setup>` 语法糖，`attrs` 会作为 `setup` 函数的第二个参数（也就是上下文对象）的 `attrs` 属性暴露
+
+> 透传属性对象不是响应式的，不能通过侦听器来监听其变化，可以使用 `props` 或使用 `onUpdated()` 生命周期钩子
+
+##  多个根节点的属性透传
+
+如果子组件有多个根节点，那么属性将不会自动透传，需要在子组件中使用 `v-bind='$attrs'` 手动指定绑定到哪个节点上

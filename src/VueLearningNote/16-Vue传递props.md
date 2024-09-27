@@ -40,7 +40,7 @@ const school = ref('QFNU')
     <h2>{{ props.schoolName }}</h2>
 </template>
 <script setup>
-import { ref, defineProps } from 'vue'
+import { ref } from 'vue'
 const name = ref('John')
 // 接收父组件传递过来的数据
 const props = defineProps(['schoolName'])

@@ -36,17 +36,52 @@ const studentName = ref('John')
     <input type="text" v-model="name">
 </template>
 <script setup>
-import { defineModel } from 'vue'
 const name = defineModel()
 </script>
-<style scoped>
-h1 {
-    color: pink;
-}
-</style>
 ```
 @tab HTML
 
-`defineModel()` 只能用在 `<script setup>` 上
+`defineModel()` 只能用在 `<script setup>` 上，如想实现相同的效果，可以看下面底层原理部分
 
 :::
+
+## 底层原理
+
+`defineModel()` 实际上是使用了 `props` 和自定义事件实现的
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<!-- App.vue -->
+<template>
+  {{ studentName }}
+  <Student :name="studentName" @update-name="$event => studentName = $event"></Student>
+</template>
+
+<script setup>
+import Student from './components/Student.vue'
+import { ref } from 'vue'
+const studentName = ref('John')
+</script>
+```
+
+```vue
+<!-- Student.vue -->
+<template>
+    <input type="text" :value="name" @input="$emit('updateName', $event.target.value)">
+</template>
+<script setup>
+const props = defineProps(['name'])
+const emit = defineEmits(['updateName'])
+</script>
+```
+
+@tab HTML
+
+```html
+
+```
+:::
+

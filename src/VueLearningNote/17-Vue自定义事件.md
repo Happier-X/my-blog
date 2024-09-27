@@ -56,7 +56,7 @@ const changeSchool = (value) => {
     <button @click="$emit('transferSchool', 'PKU')">传参</button>
 </template>
 <script setup>
-import { ref, defineEmits } from 'vue'
+import { ref } from 'vue'
 // 声明自定义事件
 const emit = defineEmits(['transferSchool'])
 const name = ref('John')

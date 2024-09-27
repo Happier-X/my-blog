@@ -80,6 +80,8 @@ const emit = defineEmits(['updateName'])
 
 @tab HTML
 
+`defineModel()` 只能用在 `<script setup>` 上，如想实现相同的效果，请参考以下代码
+
 ```html
 <body>
     <div id="app">
@@ -162,7 +164,50 @@ const age = defineModel('age')
 
 @tab HTML
 
-可参考底层原理实现
+`defineModel()` 只能用在 `<script setup>` 上，如想实现相同的效果，请参考以下代码
+
+```html
+<body>
+    <div id="app">
+        {{ studentName }}
+        {{ studentAge}}
+        <Student :name="studentName" @update-name="$event => studentName = $event" :age="studentAge"
+            @update-age="$event => studentAge = $event"></Student>
+    </div>
+    <script type="module">
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import Student from './Student.js'
+        createApp({
+            components: {
+                Student
+            },
+            setup() {
+                const studentName = ref('John')
+                const studentAge = ref(20)
+                return {
+                    studentName,
+                    studentAge
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+```
+
+```javascript
+// Student.js
+export default {
+    props: ['name', 'age'],
+    emits: ['updateName', 'updateAge'],
+    setup() {
+        return {
+        }
+    },
+    template: `
+        <input type="text" :value="name" @input = "$emit('updateName', $event.target.value)">
+        <input type="number" :value="age" @input = "$emit('updateAge', $event.target.value)">`
+}
+```
 
 :::
 
@@ -213,7 +258,59 @@ console.log(modifiers) // { capitalize: true }
 
 @tab HTML
 
-可参考底层原理实现
+`defineModel()` 只能用在 `<script setup>` 上，如想实现相同的效果，请参考以下代码
+
+```html
+<body>
+    <div id="app">
+        {{ studentName }}
+        <Student :name="studentName" :modifiers="{ capitalize:true }" @update-name="$event => studentName = $event">
+        </Student>
+    </div>
+    <script type="module">
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import Student from './Student.js'
+        createApp({
+            components: {
+                Student
+            },
+            setup() {
+                const studentName = ref('John')
+                return {
+                    studentName
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+```
+
+```javascript
+// Student.js
+export default {
+    props: {
+        name: String,
+        modifiers: {
+            default: () => ({})
+        }
+    },
+    emits: ['updateName'],
+    setup(props, ctx) {
+        const emitValue = (e) => {
+            let value = e.target.value
+            if (props.modifiers.capitalize) {
+                value = value.charAt(0).toUpperCase() + value.slice(1)
+            }
+            ctx.emit('updateName', value)
+        }
+        return {
+            emitValue
+        }
+    },
+    template: `
+        <input type="text" :value="name" @input = "emitValue">`
+}
+```
 
 :::
 

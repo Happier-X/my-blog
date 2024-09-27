@@ -149,3 +149,86 @@ export default {
 :::
 
 ## 具名插槽
+
+如果子组件有多个插槽出口，可以通过为 `<slot>` 元素添加 `name` 属性来指定插槽的名称，从而实现具名插槽
+
+父组件可以使用一个含有 `v-slot` 指令的 `<template>` 元素来指定插槽内容，并通过 `v-slot` 指令的参数来指定插槽名称
+
+`v-slot` 指令可以简写为 `#`
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<!-- App.vue -->
+<template>
+  我是父组件
+  <Student>
+    <template v-slot:header>
+      <h1>我是插槽header内容</h1>
+    </template>
+    <template #main>
+      <h2>我是插槽main内容</h2>
+    </template>
+    <template v-slot:footer>
+      <h3>我是插槽footer内容</h3>
+    </template>
+  </Student>
+</template>
+
+<script setup>
+import Student from './components/Student.vue'
+</script>
+```
+```vue
+<!-- Student.vue -->
+<template>
+    <div>我是子组件</div>
+    <slot name="header"></slot>
+    <slot name="main"></slot>
+    <slot name="footer"></slot>
+</template>
+<script setup>
+</script>
+```
+@tab HTML
+
+```html
+<body>
+    <div id="app">
+        我是父组件
+        <Student>
+            <template v-slot:header>
+                <h1>我是插槽header内容</h1>
+            </template>
+            <template #main>
+                <h2>我是插槽main内容</h2>
+            </template>
+            <template v-slot:footer>
+                <h3>我是插槽footer内容</h3>
+            </template>
+        </Student>
+    </div>
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import Student from './Student.js'
+        createApp({
+            components: {
+                Student
+            }
+        }).mount('#app')
+    </script>
+</body>
+```
+```javascript
+// Student.js
+export default {
+    template: `
+        <div>我是子组件</div>
+        <slot name="header"></slot>
+        <slot name="main"></slot>
+        <slot name="footer"></slot>`
+}
+```
+:::

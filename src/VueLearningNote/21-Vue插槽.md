@@ -234,3 +234,126 @@ export default {
 }
 ```
 :::
+
+## 条件插槽
+
+有时需要根据插槽是否存在来渲染某些内容，可以使用 `$slots` 属性与 `v-if` 来实现
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<!-- App.vue -->
+<template>
+  我是父组件
+  <Student>
+    <template v-slot:header>
+      <h1>我是插槽header内容</h1>
+    </template>
+    <template #main>
+      <h2>我是插槽main内容</h2>
+    </template>
+    <template v-slot:footer>
+      <h3>我是插槽footer内容</h3>
+    </template>
+  </Student>
+</template>
+
+<script setup>
+import Student from './components/Student.vue'
+</script>
+```
+
+```vue
+<!-- Student.vue -->
+<template>
+    <div>我是子组件</div>
+    <div v-if="$slots.header" class="header">
+        <slot name="header"></slot>
+    </div>
+    <div v-if="$slots.main" class="main">
+        <slot name="main"></slot>
+    </div>
+    <div v-if="$slots.footer" class="footer">
+        <slot name="footer"></slot>
+    </div>
+</template>
+<script setup>
+</script>
+<style scoped>
+.header {
+    background-color: pink;
+}
+
+.main {
+    background-color: skyblue;
+}
+
+.footer {
+    background-color: yellow;
+}
+</style>
+```
+@tab HTML
+
+```html
+<head>
+    <style>
+        .header {
+            background-color: pink;
+        }
+
+        .main {
+            background-color: skyblue;
+        }
+
+        .footer {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        我是父组件
+        <Student>
+            <template v-slot:header>
+                <h1>我是插槽header内容</h1>
+            </template>
+            <template #main>
+                <h2>我是插槽main内容</h2>
+            </template>
+            <template v-slot:footer>
+                <h3>我是插槽footer内容</h3>
+            </template>
+        </Student>
+    </div>
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import Student from './Student.js'
+        createApp({
+            components: {
+                Student
+            }
+        }).mount('#app')
+    </script>
+</body>
+```
+```javascript
+// Student.js
+export default {
+    template: `
+        <div>我是子组件</div>
+        <div v-if="$slots.header" class="header">
+            <slot name="header"></slot>
+        </div>
+        <div v-if="$slots.main" class="main">
+            <slot name="main"></slot>
+        </div>
+        <div v-if="$slots.footer" class="footer">
+            <slot name="footer"></slot>
+        </div>`
+}
+```
+:::

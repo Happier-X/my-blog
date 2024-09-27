@@ -91,3 +91,69 @@ onMounted(()=>{
 ## 更改地图大小
 
 通过 `map.value.resize()` 可以更改地图的大小
+
+## 地图数据
+
+世界地图数据：(world-geo-json-zh)[https://github.com/Surbowl/world-geo-json-zh]
+
+中国地图数据：(DataV.GeoAtlas)[https://datav.aliyun.com/portal/school/atlas/area_selector]
+
+### 关于世界地图中国居中版本
+
+可以使用如下算法：
+
+```javascript
+import worldJson from './world.zh.json'
+// 对世界地图的json文件中的经纬度坐标进行处理
+const process = item => {
+    if (item > -30) {
+        item = item - 180
+    } else {
+        item = item + 180
+    }
+    return item
+}
+// 格陵兰处理
+const processGreenland = item => {
+    return item + 180
+}
+
+worldJson.features.map((district, index) => {
+    if (district.properties.name === '格陵兰') {
+        if (district.geometry.type === 'Polygon') {
+            district.geometry.coordinates.map(border => {
+                border.map(coord => {
+                    coord[0] = processGreenland(coord[0])
+                })
+            })
+        } else {
+            district.geometry.coordinates.map(border => {
+                border.map(coordinates => {
+                    coordinates.map(coord => {
+                        coord[0] = processGreenland(coord[0])
+                    })
+                })
+            })
+        }
+    } else {
+        if (district.geometry.type == 'Polygon') {
+            district.geometry.coordinates.map(border => {
+                border.map(coord => {
+                    coord[0] = process(coord[0])
+                })
+            })
+        } else {
+            district.geometry.coordinates.map(border => {
+                border.map(coordinates => {
+                    coordinates.map(coord => {
+                        coord[0] = process(coord[0])
+                    })
+                })
+            })
+        }
+    }
+})
+export default worldJson
+```
+
+注意：该算法目前存在问题：南极洲部分区域显示异常，可以将南极洲部分区域删除

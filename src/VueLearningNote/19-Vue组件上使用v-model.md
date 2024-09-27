@@ -81,7 +81,89 @@ const emit = defineEmits(['updateName'])
 @tab HTML
 
 ```html
-
+<body>
+    <div id="app">
+        {{ studentName }}
+        <Student :name="studentName" @update-name="$event => studentName = $event"></Student>
+    </div>
+    <script type="module">
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import Student from './Student.js'
+        createApp({
+            components: {
+                Student
+            },
+            setup() {
+                const studentName = ref('John')
+                return {
+                    studentName
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
 ```
+
+```javascript
+// Student.js
+export default {
+    props: ['name'],
+    emits: ['updateName'],
+    setup() {
+        return {
+        }
+    },
+    template: `
+        <input type="text" :value="name" @input = "$emit('updateName', $event.target.value)">`
+}
+```
+
 :::
 
+因为 `defineModel()` 声明了一个 `prop`，我们可以给它传递选项，来声明底层 `prop` 的选项
+
+## 多个 v-model 绑定
+
+通过给 `v-model` 添加参数，可以绑定多个 `v-model`
+
+在子组件中使用 `defineModel(参数名, 选项)`，在父组件中的子组件上使用 `v-model:参数名` 绑定
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<!-- App.vue -->
+<template>
+  {{ studentName }}
+  {{ studentAge }}
+  <Student v-model:name="studentName" v-model:age="studentAge"></Student>
+</template>
+
+<script setup>
+import Student from './components/Student.vue'
+import { ref } from 'vue'
+const studentName = ref('John')
+const studentAge = ref(20)
+</script>
+```
+
+```vue
+<!-- Student.vue -->
+<template>
+    <input type="text" v-model="name">
+    <input type="number" v-model="age">
+</template>
+<script setup>
+const name = defineModel('name')
+const age = defineModel('age')
+</script>
+```
+
+@tab HTML
+
+可参考底层原理实现
+
+:::
+
+## 处理 v-model 修饰符

@@ -65,11 +65,6 @@ const handleClick = () => {
     emit('transferSchool')
 }
 </script>
-<style scoped>
-h1 {
-    color: pink;
-}
-</style>
 ```
 
 @tab HTML

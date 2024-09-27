@@ -44,11 +44,6 @@ const changeTab = () => {
 import { ref } from 'vue'
 const name = ref('Student')
 </script>
-<style scoped>
-h1 {
-    color: pink;
-}
-</style>
 ```
 
 ```vue
@@ -60,11 +55,6 @@ h1 {
 import { ref } from 'vue'
 const name = ref('Teacher')
 </script>
-<style scoped>
-h1 {
-    color: pink;
-}
-</style>
 ```
 
 @tab HTML

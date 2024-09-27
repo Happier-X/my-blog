@@ -52,11 +52,6 @@ const props = defineProps({
 })
 */
 </script>
-<style scoped>
-h1 {
-    color: pink;
-}
-</style>
 ```
 
 @tab HTML

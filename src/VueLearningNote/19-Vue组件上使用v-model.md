@@ -167,3 +167,53 @@ const age = defineModel('age')
 :::
 
 ## 处理 v-model 修饰符
+
+通过解构 `defineModel()`，可以处理 `v-model` 的修饰符
+
+为了处理修饰符，我们需要在 `defineModel()` 选项中传入一个 `get` 或 `set` 函数，它将接收 `v-model` 绑定的值，并返回处理后的值
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<!-- App.vue -->
+<template>
+  {{ studentName }}
+  <!-- 一个自定义修饰符 -->
+  <Student v-model.capitalize="studentName"></Student>
+</template>
+
+<script setup>
+import Student from './components/Student.vue'
+import { ref } from 'vue'
+const studentName = ref('John')
+</script>
+```
+
+```vue
+<!-- Student.vue -->
+<template>
+    <input type="text" v-model="name">
+</template>
+<script setup>
+// 通过解构赋值获取 v-model 的值和修饰符
+const [name, modifiers] = defineModel({
+    set(value) {
+        if (modifiers.capitalize) {
+            // 如果有 capitalize 修饰符，则将首字母大写
+            return value.charAt(0).toUpperCase() + value.slice(1)
+        }
+        return value
+    }
+})
+console.log(modifiers) // { capitalize: true }
+</script>
+```
+
+@tab HTML
+
+可参考底层原理实现
+
+:::
+

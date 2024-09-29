@@ -39,6 +39,7 @@ const school = ref('QFNU')
     <h1>{{ name }}</h1>
     <h2>{{ props.schoolName }}</h2>
 </template>
+
 <script setup>
 import { ref } from 'vue'
 const name = ref('John')

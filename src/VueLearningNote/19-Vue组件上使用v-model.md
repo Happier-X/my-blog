@@ -35,6 +35,7 @@ const studentName = ref('John')
 <template>
     <input type="text" v-model="name">
 </template>
+
 <script setup>
 const name = defineModel()
 </script>
@@ -156,6 +157,7 @@ const studentAge = ref(20)
     <input type="text" v-model="name">
     <input type="number" v-model="age">
 </template>
+
 <script setup>
 const name = defineModel('name')
 const age = defineModel('age')
@@ -241,6 +243,7 @@ const studentName = ref('John')
 <template>
     <input type="text" v-model="name">
 </template>
+
 <script setup>
 // 通过解构赋值获取 v-model 的值和修饰符
 const [name, modifiers] = defineModel({

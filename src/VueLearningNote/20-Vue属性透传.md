@@ -43,6 +43,7 @@ const handleClick = () => {
 <template>
     <div ref="divRef" @click="handleClick">我是子组件{{ props.name }}</div>
 </template>
+
 <script setup>
 import { onMounted, useTemplateRef } from 'vue'
 const divRef = useTemplateRef('divRef')
@@ -196,6 +197,7 @@ import Student from './components/Student.vue'
 <template>
     <div>我是子组件{{ props.name }}{{ $attrs }}</div>
 </template>
+
 <script setup>
 import { useAttrs } from 'vue'
 defineOptions({

@@ -55,6 +55,7 @@ const changeSchool = (value) => {
     <!-- 使用 $emit 触发，并传递参数 -->
     <button @click="$emit('transferSchool', 'PKU')">传参</button>
 </template>
+
 <script setup>
 import { ref } from 'vue'
 // 声明自定义事件

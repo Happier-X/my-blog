@@ -46,6 +46,7 @@ import Student from './components/Student.vue'
     <div>我是子组件</div>
     <slot></slot>
 </template>
+
 <script setup>
 </script>
 ```
@@ -116,8 +117,6 @@ import Student from './components/Student.vue'
         <h1>默认内容</h1>
     </slot>
 </template>
-<script setup>
-</script>
 ```
 
 @tab HTML
@@ -195,8 +194,6 @@ import Student from './components/Student.vue'
     <slot name="main"></slot>
     <slot name="footer"></slot>
 </template>
-<script setup>
-</script>
 ```
 @tab HTML
 
@@ -283,8 +280,7 @@ import Student from './components/Student.vue'
         <slot name="footer"></slot>
     </div>
 </template>
-<script setup>
-</script>
+
 <style scoped>
 .header {
     background-color: pink;
@@ -412,6 +408,7 @@ import Student from './components/Student.vue'
     <div>我是子组件</div>
     <slot :msg="msg"></slot>
 </template>
+
 <script setup>
 import { ref } from 'vue'
 const msg = ref('子组件传递的数据')
@@ -510,6 +507,7 @@ import Student from './components/Student.vue'
     <slot name="main" :msg="mainMsg"></slot>
     <slot name="footer" :msg="footerMsg"></slot>
 </template>
+
 <script setup>
 import { ref } from 'vue'
 const headerMsg = ref('子组件向header传递的数据')

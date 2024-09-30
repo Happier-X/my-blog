@@ -161,3 +161,12 @@ export default {
 ```
 
 :::
+
+## 使用 Symbol 作为注入名
+
+为了防止不同组件之间发生命名冲突，可以使用 Symbol 作为注入名
+
+```javascript
+// 推荐在单独的文件中导出这些注入名
+export const myInjectionKey = Symbol()
+```

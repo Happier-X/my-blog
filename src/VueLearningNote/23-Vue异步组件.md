@@ -64,7 +64,7 @@ const Student = defineAsyncComponent(() => {
                         }, 2000)
                     })
                     // ES 模块动态导入也会返回一个 Promise
-                    // return import('./components/Student.vue')
+                    // return import('./Student.js')
                 })
             }
         }).mount('#app')

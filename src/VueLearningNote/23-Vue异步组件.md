@@ -80,3 +80,21 @@ export default {
 ```
 :::
 
+## 加载与错误状态
+
+异步组件在加载和错误状态时，可以显示不同的内容
+
+```javascript
+const AsyncComp = defineAsyncComponent({
+    // 加载函数
+    loader: () => import('./MyComponent.vue'),
+    // 加载异步组件时显示的组件
+    loadingComponent: LoadingComponent,
+    // 展示加载组件之前的延迟时间，默认为 200ms
+    delay: 200,
+    // 加载失败时显示的组件
+    errorComponent: ErrorComponent,
+    // 如果提供了一个超时时间（单位为毫秒），并且加载组件超过了设定时间，将显示错误组件
+    timeout: 3000
+})
+

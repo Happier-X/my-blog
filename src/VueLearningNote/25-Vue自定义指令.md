@@ -120,3 +120,12 @@ app.mount('#app')
 + `vnode`：代表绑定元素的底层 VNode
 + `prevVnode`：代表之前的渲染中指令绑定元素的底层 VNode。仅在 `beforeUpdate` 和 `updated` 钩子中可用
 
+## 简化形式
+
+在大多数情况下仅仅需要在 `mounted` 和 `updated` 钩子上实现，这时可以直接用一个函数来定义指令：
+
+```javascript
+app.directive('color', (el,binding) => {
+    el.style.color = binding.value
+})
+```

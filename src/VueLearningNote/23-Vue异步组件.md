@@ -85,7 +85,7 @@ export default {
 异步组件在加载和错误状态时，可以显示不同的内容
 
 ```javascript
-const AsyncComp = defineAsyncComponent({
+defineAsyncComponent({
     // 加载函数
     loader: () => import('./MyComponent.vue'),
     // 加载异步组件时显示的组件

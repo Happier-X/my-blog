@@ -100,7 +100,7 @@ export function useMouse() {
 ```
 :::
 
-组合式函数也可以接收参数，当接收一个 `ref` 或 `getter` 时，推荐使用 `toValue()` 处理一下
+组合式函数也可以接收参数，当接收一个响应式状态时，推荐使用 `toValue()` 处理一下
 
 ```javascript
 import { ref, watchEffect, toValue } from 'vue'

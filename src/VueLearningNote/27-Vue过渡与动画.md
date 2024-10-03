@@ -239,3 +239,288 @@ Vue 为了知道过渡的完成，必须设置相应的事件监听器。它可�
 
 可以使用深层级的 CSS 选择器在深层级的元素上触发过渡效果
 
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <button @click="show = !show">切换</button>
+  <!-- 在嵌套的过渡元素中，我们期望等待所有内部元素的过渡完成，所有需要指定过渡的持续时间 -->
+  <!-- 通过传入 duration 来显式指定过渡的持续时间 -->
+  <!-- <Transition name="nested" :duration="500"> -->
+  <!-- 分别指定进入和离开所需的时间 -->
+  <Transition name="nested" :duration="{ enter: 500, leave: 800 }">
+    <div v-if="show" class="outer">
+      <div class="inner">
+        Hello
+      </div>
+    </div>
+  </Transition>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+const show = ref(true)
+</script>
+
+<style scoped>
+.outer,
+.inner {
+  background: #eee;
+  padding: 30px;
+  min-height: 100px;
+}
+
+.inner {
+  background: #ccc;
+}
+
+/* 应用于嵌套元素的规则 */
+.nested-enter-active .inner,
+.nested-leave-active .inner {
+  transition: all 0.3s ease-in-out;
+}
+
+/* 延迟嵌套元素的进入以获得交错效果 */
+.nested-enter-active .inner {
+  transition-delay: 0.25s;
+}
+
+.nested-enter-from .inner,
+.nested-leave-to .inner {
+  transform: translateX(30px);
+  opacity: 0;
+}
+</style>
+```
+@tab HTML
+```html
+<head>
+    <style>
+        .outer,
+        .inner {
+            background: #eee;
+            padding: 30px;
+            min-height: 100px;
+        }
+
+        .inner {
+            background: #ccc;
+        }
+
+        /* 应用于嵌套元素的规则 */
+        .nested-enter-active .inner,
+        .nested-leave-active .inner {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* 延迟嵌套元素的进入以获得交错效果 */
+        .nested-enter-active .inner {
+            transition-delay: 0.25s;
+        }
+
+        .nested-enter-from .inner,
+        .nested-leave-to .inner {
+            transform: translateX(30px);
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="show = !show">切换</button>
+        <!-- 在嵌套的过渡元素中，我们期望等待所有内部元素的过渡完成，所有需要指定过渡的持续时间 -->
+        <!-- 通过传入 duration 来显式指定过渡的持续时间 -->
+        <!-- <Transition name="nested" :duration="500"> -->
+        <!-- 分别指定进入和离开所需的时间 -->
+        <Transition name="nested" :duration="{ enter: 500, leave: 800 }">
+            <div v-if="show" class="outer">
+                <div class="inner">
+                    Hello
+                </div>
+            </div>
+        </Transition>
+    </div>
+    <script type="module">
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const show = ref(true)
+                return {
+                    show
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+```
+:::
+
+### JavaScript 钩子
+
+Vue 的 `<Transition>` 组件提供了 JavaScript 钩子，允许在进入/离开过渡期间应用自定义 JavaScript 行为
+
+有如下几个钩子：
+
+- `before-enter`：在元素被插入到 DOM 之前调用，用这个钩子来设置元素的 `enter-from` 状态
+- `enter`：在元素被插入到 DOM 之后的下一帧调用。用这个钩子来开始进入动画
+- `after-enter`：在过渡动画完成之后调用
+- `enter-cancelled`：在进入过渡完成之前被取消时调用
+- `before-leave`：在 `leave` 钩子之前调用
+- `leave`：在离开过渡开始时调用。用这个钩子来开始离开动画
+- `after-leave`：在离开过渡完成且元素已经从 DOM 中移除时调用
+- `leave-cancelled`：仅在 `v-show` 过渡中可用
+
+这些钩子可以与 CSS 过渡或动画结合使用，也可以单独使用，在仅使用 JavaScript 钩子时，最好添加一个 `:css="false"` 属性
+
+它们的参数如下：
+
+- `el`：正在执行过渡的元素
+- `done`：在 `enter` 和 `leave` 钩子中，是一个可调用函数，表示过渡结束
+
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<template>
+  <button @click="show = !show">Toggle</button>
+  <Transition
+    @before-enter="onBeforeEnter"
+    @enter="onEnter"
+    @leave="onLeave"
+    :css="false"
+  >
+    <div class="gsap-box" v-if="show"></div>
+  </Transition>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import gsap from 'gsap'
+
+const show = ref(true)
+
+function onBeforeEnter(el) {
+  gsap.set(el, {
+    scaleX: 0.25,
+    scaleY: 0.25,
+    opacity: 1
+  })
+}
+  
+function onEnter(el, done) {
+  gsap.to(el, {
+    duration: 1,
+    scaleX: 1,
+    scaleY: 1,
+    opacity: 1,
+    ease: 'elastic.inOut(2.5, 1)',
+    onComplete: done
+  })
+}
+
+function onLeave(el, done) {
+	gsap.to(el, {
+    duration: 0.7,
+    scaleX: 1,
+    scaleY: 1,
+    x: 300,
+    ease: 'elastic.inOut(2.5, 1)'
+  })
+  gsap.to(el, {
+    duration: 0.2,
+    delay: 0.5,
+    opacity: 0,
+    onComplete: done
+  })
+}
+</script>
+
+<style scoped>
+.gsap-box {
+  background: #42b883;
+  margin-top: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+</style>
+
+```
+@tab HTML
+```html
+<head>
+    <style>
+        .gsap-box {
+            background: #42b883;
+            margin-top: 20px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="show = !show">Toggle</button>
+        <Transition @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave" :css="false">
+            <div class="gsap-box" v-if="show"></div>
+        </Transition>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script type="module">
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const show = ref(true)
+                function onBeforeEnter(el) {
+                    gsap.set(el, {
+                        scaleX: 0.25,
+                        scaleY: 0.25,
+                        opacity: 1
+                    })
+                }
+
+                function onEnter(el, done) {
+                    gsap.to(el, {
+                        duration: 1,
+                        scaleX: 1,
+                        scaleY: 1,
+                        opacity: 1,
+                        ease: 'elastic.inOut(2.5, 1)',
+                        onComplete: done
+                    })
+                }
+
+                function onLeave(el, done) {
+                    gsap.to(el, {
+                        duration: 0.7,
+                        scaleX: 1,
+                        scaleY: 1,
+                        x: 300,
+                        ease: 'elastic.inOut(2.5, 1)'
+                    })
+                    gsap.to(el, {
+                        duration: 0.2,
+                        delay: 0.5,
+                        opacity: 0,
+                        onComplete: done
+                    })
+                }
+                return {
+                    show,
+                    onBeforeEnter,
+                    onEnter,
+                    onLeave
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+```
+:::
+

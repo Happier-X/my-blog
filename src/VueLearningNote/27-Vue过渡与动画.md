@@ -528,3 +528,132 @@ function onLeave(el, done) {
 
 要创建一个可被复用的过渡，我们需要为 `<Transition>` 组件创建一个包装组件，并向内传入插槽内容
 
+:::tabs
+
+@tab 单文件组件
+
+```vue
+<!-- MyTransition.vue -->
+<template>
+    <!-- 包装内置的 Transition 组件 -->
+    <Transition name="my-transition">
+        <!-- 向内传递插槽内容 -->
+        <slot></slot>
+    </Transition>
+</template>
+
+<style>
+/* 这里避免使用 scoped */
+.my-transition-enter-active,
+.my-transition-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.my-transition-enter-from,
+.my-transition-leave-to {
+    opacity: 0;
+}
+</style>
+```
+
+```vue
+<!-- App.vue -->
+<template>
+  <button @click="show = !show">切换</button>
+  <MyTransition>
+    <div v-if="show">Hello</div>
+  </MyTransition>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import MyTransition from './components/MyTransition.vue'
+const show = ref(true)
+</script>
+```
+
+@tab HTML
+
+```javascript
+// MyTransition.js 
+export default {
+    template: `
+        <!-- 包装内置的 Transition 组件 -->
+        <Transition name="my-transition">
+            <!-- 向内传递插槽内容 -->
+            <slot></slot>
+        </Transition>`
+}
+```
+
+```html
+<head>
+    <style>
+        .my-transition-enter-active,
+        .my-transition-leave-active {
+            transition: opacity 0.5s ease;
+        }
+
+        .my-transition-enter-from,
+        .my-transition-leave-to {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="show = !show">切换</button>
+        <my-transition>
+            <div v-if="show">Hello</div>
+        </my-transition>
+    </div>
+    <script type="module">
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import MyTransition from './MyTransition.js'
+        createApp({
+            components: {
+                MyTransition
+            },
+            setup() {
+                const show = ref(true)
+                return {
+                    show
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+```
+:::
+
+### 出现时过渡
+
+如果想在某个节点初次渲染时应用一个过渡效果，可以使用 `appear` 属性
+
+```template
+<Transition appear>
+  ...
+</Transition>
+```
+
+### 元素间过渡
+
+除了 `v-if` 和 `v-show` 切换一个元素，我们也可以通过 `v-if` / `v-else` / `v-else-if` 来在元素之间进行切换，只要确保任一时刻只有一个元素被渲染即可
+
+### 过渡模式
+
+有时我么可能想要先执行离开动画，然后在其完成之后再执行元素的进入动画，这可以通过设置 `mode` 为 `out-in` 来实现
+
+### 组件间过渡
+
+`<Transition>` 也可以作用于动态组件之间的切换
+
+### 动态过渡
+
+`<Transition>` 的 props（如 `name`） 可以是动态的，允许我们根据组件的状态应用不同的过渡
+
+### 使用 key 过渡
+
+有时为了触发过渡，我们需要给元素添加一个唯一的 `key`，当 `key` 改变时，Vue 会认为这是一个新的元素，从而触发过渡
+

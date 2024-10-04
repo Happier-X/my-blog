@@ -1,5 +1,5 @@
 ---
-title: Vue 过渡与动画
+title: Vue Transition 组件
 cover: https://t.alcy.cc/fj?t=1727922600
 order: 27
 date: 2024-10-03 10:30
@@ -7,8 +7,6 @@ category: 软件开发
 tag: Vue
 excerpt: false
 ---
-
-## Transition 组件
 
 `<Transition>` 是一个内置组件，它可以将进入和离开动画应用到通过默认插槽传递给它的元素或组件上
 
@@ -20,9 +18,9 @@ excerpt: false
 
 `<Transition>` 仅支持单个元素或组件作为其插槽内容。如果内容是一个组件，这个组件必须仅有一个根元素
 
-### 基于 CSS 的过渡
+## 基于 CSS 的过渡
 
-#### CSS 过渡类名
+### CSS 过渡类名
 
 1. `v-enter-from`：进入动画的开始状态。在元素插入之前添加，在元素插入完成之后的下一帧移除
 2. `v-enter-active`：进入动画的生效状态。在元素被插入之前添加，在过渡或动画完成之后移除。这个类可以被用来定义进入动画的持续时间、延迟和速度曲线函数
@@ -98,7 +96,7 @@ const show = ref(true)
 ```
 :::
 
-#### 为过渡效果命名
+### 为过渡效果命名
 
 可以通过 `name` 属性来为过渡效果命名
 
@@ -116,7 +114,7 @@ const show = ref(true)
 - `customName-leave-active`
 - `customName-leave-to`
 
-#### CSS 的动画
+### CSS 的动画
 
 CSS 动画用法同 CSS 过渡，区别在于 `v-enter-from` 不是在元素插入后立即移除，而是在一个 `animationend` 事件触发时被移除。对于大多数的 CSS 动画，我们可以简单地使用 `v-enter-active` 和 `v-leave-active` 这两个 class 来声明
 
@@ -211,7 +209,7 @@ const show = ref(true)
 ```
 :::
 
-#### 自定义过渡类名
+### 自定义过渡类名
 
 可以向 `<Transition>` 组件传递如下几个属性：
 - `enter-from-class`
@@ -229,13 +227,13 @@ const show = ref(true)
 </Transition>
 ```
 
-#### 同时使用过渡和动画
+### 同时使用过渡和动画
 
 Vue 为了知道过渡的完成，必须设置相应的事件监听器。它可以是 CSS `transitionend` 或 `animationend`，这取决于所使用的 CSS 规则。如果你使用其中任何一种，Vue 能自动检测到正确的类型
 
 但是如果同时使用了过渡和动画，需要使用 Vue 提供的 `<Transition>` 组件的 `type` 属性，通过传入 `animation` 或 `transition` 来告知 Vue 关心那种类型
 
-#### 深层级过渡与显式过渡时长
+### 深层级过渡与显式过渡时长
 
 可以使用深层级的 CSS 选择器在深层级的元素上触发过渡效果
 
@@ -358,7 +356,7 @@ const show = ref(true)
 ```
 :::
 
-### JavaScript 钩子
+## JavaScript 钩子
 
 Vue 的 `<Transition>` 组件提供了 JavaScript 钩子，允许在进入/离开过渡期间应用自定义 JavaScript 行为
 
@@ -524,7 +522,7 @@ function onLeave(el, done) {
 ```
 :::
 
-### 可复用过渡效果
+## 可复用过渡效果
 
 要创建一个可被复用的过渡，我们需要为 `<Transition>` 组件创建一个包装组件，并向内传入插槽内容
 
@@ -627,7 +625,7 @@ export default {
 ```
 :::
 
-### 出现时过渡
+## 出现时过渡
 
 如果想在某个节点初次渲染时应用一个过渡效果，可以使用 `appear` 属性
 
@@ -637,23 +635,23 @@ export default {
 </Transition>
 ```
 
-### 元素间过渡
+## 元素间过渡
 
 除了 `v-if` 和 `v-show` 切换一个元素，我们也可以通过 `v-if` / `v-else` / `v-else-if` 来在元素之间进行切换，只要确保任一时刻只有一个元素被渲染即可
 
-### 过渡模式
+## 过渡模式
 
 有时我么可能想要先执行离开动画，然后在其完成之后再执行元素的进入动画，这可以通过设置 `mode` 为 `out-in` 来实现
 
-### 组件间过渡
+## 组件间过渡
 
 `<Transition>` 也可以作用于动态组件之间的切换
 
-### 动态过渡
+## 动态过渡
 
 `<Transition>` 的 props（如 `name`） 可以是动态的，允许我们根据组件的状态应用不同的过渡
 
-### 使用 key 过渡
+## 使用 key 过渡
 
 有时为了触发过渡，我们需要给元素添加一个唯一的 `key`，当 `key` 改变时，Vue 会认为这是一个新的元素，从而触发过渡
 

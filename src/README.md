@@ -3,7 +3,7 @@ home: true
 layout: BlogHome
 icon: house
 title: 首页
-heroText: Happier的博客
+heroText: Happier's Blog
 heroFullScreen: true
-tagline: 分享我的学习和生活，希望你能有所收获
+tagline: 悟已往之不谏，知来者之可追
 ---

@@ -41,8 +41,8 @@ background: rgba(161,175,201,0.15)
 ::: tabs
 @tab txt
 ```txt
-昵称: 茕茕の博客
-描述: 分享我的学习和生活，希望你能有所收获
+昵称: Happier's Blog
+描述: 悟已往之不谏，知来者之可追
 头像: https://zhf-picture.oss-cn-qingdao.aliyuncs.com/picture/logo.jpg
 地址: https://blog.azhf8.top/
 ```
@@ -50,8 +50,8 @@ background: rgba(161,175,201,0.15)
 
 ```json
 {
-  "name": "茕茕の博客",
-  "description": "分享我的学习和生活，希望你能有所收获",
+  "name": "Happier's Blog",
+  "description": "悟已往之不谏，知来者之可追",
   "avatar": "https://zhf-picture.oss-cn-qingdao.aliyuncs.com/picture/logo.jpg",
   "link": "https://blog.azhf8.top/",
 }

@@ -31,4 +31,4 @@ timeline: false
 - 微信：Pisces12013
 - 邮箱：[zhf5256@qq.com](mailto:zhf5256@qq.com)
 - 博客：[Happier's Blog](https://blog.azhf8.top/)
-- GitHub：[https://github.com/zhf521](https://github.com/zhf521)
+- GitHub：[https://github.com/HappierPuppy](https://github.com/HappierPuppy)

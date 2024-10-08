@@ -9,7 +9,7 @@ export default hopeTheme({
   hostname: "https://blog.azhf8.top/",
   // 文章显示的默认作者
   author: {
-    name: "茕茕",
+    name: "Happier",
     url: "/AboutMe/",
   },
   // 图标
@@ -25,7 +25,7 @@ export default hopeTheme({
   // 侧边栏
   sidebar,
   // 页脚相关
-  copyright: "Copyright © 2024-present 茕茕",
+  copyright: "Copyright © 2024-present Happier",
   displayFooter: true,
   // 博客相关
   blog: {
@@ -42,8 +42,8 @@ export default hopeTheme({
       // Evernote: "https://example.com",
       // Facebook: "https://example.com",
       // Flipboard: "https://example.com",
-      Gitee: "https://gitee.com/zhf521",
-      GitHub: "https://github.com/zhf521",
+      // Gitee: "https://gitee.com/zhf521",
+      GitHub: "https://github.com/HappierPuppy",
       // Gitlab: "https://example.com",
       // Gmail: "mailto:info@example.com",
       // Instagram: "https://example.com",

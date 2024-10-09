@@ -1,5 +1,5 @@
 ---
-title: Vue 测试
+title: Vue 全局 API
 cover: https://t.alcy.cc/fj?t=1728381600000
 order: 31
 date: 2024-10-08 18:00

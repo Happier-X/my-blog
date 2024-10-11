@@ -11,4 +11,5 @@ export default sidebar({
   "/3x3x3BLD": "structure",
   "/GoLearningNote/": "structure",
   "/VueLearningNote/": "structure",
+  "/VueRouterLearningNote/": "structure",
 });

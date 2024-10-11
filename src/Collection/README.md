@@ -80,3 +80,11 @@ link: /VueLearningNote/
 logo: https://zhf-picture.oss-cn-qingdao.aliyuncs.com/Collection/Vue学习记录.svg
 background: rgba(161,175,201,0.15)
 ```
+
+```component VPCard
+title: Vue Router 学习笔记
+desc: Vue Router 学习过程中的笔记
+link: /VueRouterLearningNote/
+logo: https://zhf-picture.oss-cn-qingdao.aliyuncs.com/Collection/VueRouter学习记录.svg
+background: rgba(161,175,201,0.15)
+```

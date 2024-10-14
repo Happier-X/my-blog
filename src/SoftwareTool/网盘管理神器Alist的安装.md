@@ -26,7 +26,7 @@ Github 地址：[Alist](https://github.com/alist-org/alist)
 
 在输出的 INFO 中可以看到密码：
 
-```bash
+```sh
 INFO[2023-12-02 02:21:36] Successfully created the admin user and the initial password is: 此处为密码
 ```
 
@@ -68,19 +68,19 @@ ws.run "alist.exe server",vbhide
 
 在 termux 中输入如下命令：
 
-```bash
+```sh
 apt update && apt install alist
 ```
 
 启动 Alist：
 
-```bash
+```sh
 alist server
 ```
 
 在输出的 INFO 中可以看到密码：
 
-```bash
+```sh
 INFO[2023-12-02 02:21:36] Successfully created the admin user and the initial password is: 此处为密码
 ```
 
@@ -94,31 +94,31 @@ INFO[2023-12-02 02:21:36] Successfully created the admin user and the initial pa
 
 下载 vim：
 
-```bash
+```sh
 pkg install vim
 ```
 
 建立文件夹：
 
-```bash
+```sh
 mkdir .shortcuts
 ```
 
 进入文件夹：
 
-```bash
+```sh
 cd .shortcuts
 ```
 
 编辑脚本：
 
-```bash
+```sh
 vim start_alist.sh
 ```
 
 进入脚本编辑界面，按 `i` 进入编辑模式，输入以下内容：
 
-```bash
+```sh
 alist server
 ```
 
@@ -130,6 +130,6 @@ alist server
 
 在 termux 中输入以下命令即可：
 
-```bash
+```sh
 pkg upgrade alist
 ```

@@ -13,7 +13,7 @@ excerpt: false
 
 `create-vue` 是一个用于快速创建 Vue 项目的脚手架工具，它可以帮助我们快速搭建一个 Vue 项目，并提供一些常用的配置和工具
 
-```bash
+```sh
 npm create vue@latest
 ```
 

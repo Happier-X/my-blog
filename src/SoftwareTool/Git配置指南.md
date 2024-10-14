@@ -9,13 +9,13 @@ excerpt: false
 
 ## 查看配置信息
 
-```bash
+```sh
 git config --list
 ```
 
 ## 配置用户信息
 
-```bash
+```sh
 git config --global user.name "Your Name"
 git config --global user.email "email@example.com"
 ```
@@ -24,40 +24,40 @@ git config --global user.email "email@example.com"
 
 ### 设置全局代理
 
-```bash
+```sh
 git config --global http.proxy http://127.0.0.1:7890
 ```
 
-```bash
+```sh
 git config --global https.proxy https://127.0.0.1:7890
 ```
 
 ### 取消设置全局代理
 
-```bash
+```sh
 git config --global --unset http.proxy
 ```
 
-```bash
+```sh
 git config --global --unset https.proxy
 ```
 
 ### 设置对 GitHub 代理
 
-```bash
+```sh
 git config --global http.https://github.com.proxy http://127.0.0.1:7890
 ```
 
-```bash
+```sh
 git config --global https.https://github.com.proxy https://127.0.0.1:7890
 ```
 
 ### 取消设置对 GitHub 代理
 
-```bash
+```sh
 git config --global --unset http.https://github.com.proxy
 ```
 
-```bash
+```sh
 git config --global --unset https.https://github.com.proxy
 ```

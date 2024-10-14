@@ -21,7 +21,7 @@ excerpt: false
 
 将下载好的安卓 SDK 解压，打开 `platform-tools` 目录，在该目录下以管理员身份运行命令行窗口，输入以下命令：
 
-```bash
+```
 adb pair IP:端口 2
 ```
 
@@ -31,7 +31,7 @@ adb pair IP:端口 2
 
 在命令行窗口中输入以下命令：
 
-```bash
+```sh
 adb connect IP:端口 1
 ```
 

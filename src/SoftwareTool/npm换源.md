@@ -9,18 +9,18 @@ excerpt: false
 
 ## 查看当前镜像源
 
-```bash
+```sh
 npm get registry
 ```
 
 ## 更换淘宝镜像源
 
-```bash
+```sh
 npm config set registry https://registry.npmmirror.com/
 ```
 
 ## 切换回官方镜像源
 
-```bash
+```sh
 npm config set registry https://registry.npmjs.org/
 ```

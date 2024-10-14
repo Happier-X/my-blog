@@ -5,6 +5,6 @@ timeline: false
 sidebar: false
 ---
 
-分享旅行过程中的美好记忆
+旅行过程中的美好回忆。
 
 <Catalog base='/TravelRecord/' level='1' />

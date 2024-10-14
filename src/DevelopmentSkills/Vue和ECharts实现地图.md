@@ -94,9 +94,9 @@ onMounted(()=>{
 
 ## 地图数据
 
-世界地图数据：(world-geo-json-zh)[https://github.com/Surbowl/world-geo-json-zh]
+世界地图数据：[world-geo-json-zh](https://github.com/Surbowl/world-geo-json-zh)
 
-中国地图数据：(DataV.GeoAtlas)[https://datav.aliyun.com/portal/school/atlas/area_selector]
+中国地图数据：[DataV.GeoAtlas](https://datav.aliyun.com/portal/school/atlas/area_selector)
 
 ### 关于世界地图中国居中版本
 

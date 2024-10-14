@@ -42,36 +42,37 @@ fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 
 ## 使用
 
-### 切换 Node 版本
+切换 Node 版本
 
 ```sh
 fnm use <version>
 ```
 
-### 查看已安装的 Node 版本
+查看已安装的 Node 版本
 
 ```sh
 fnm list
 ```
 
-### 安装 Node 版本
+安装 Node 版本
 
 ```sh
 fnm install <version>
 ```
 
-### 卸载 Node 版本
+卸载 Node 版本
 
 ```sh
 fnm uninstall <version>
 ```
 
-### 设置默认 Node 版本
+设置默认 Node 版本
+
 ```sh
 fnm default <version>
 ```
 
-### 打印当前 Node 版本
+打印当前 Node 版本
 
 ```sh
 fnm current

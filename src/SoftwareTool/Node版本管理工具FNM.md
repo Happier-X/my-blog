@@ -40,8 +40,6 @@ notepad $PROFILE
 fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 ```
 
-保存并关闭文件
-
 ## 使用
 
 ### 切换 Node 版本
@@ -88,5 +86,3 @@ fnm current
 ```sh
 eval "$(fnm env --use-on-cd)"
 ```
-
-这样就可以解决了。

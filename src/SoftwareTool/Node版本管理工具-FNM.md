@@ -6,6 +6,7 @@ category: 软件工具
 tag: 
     - Node
     - FNM
+    - Husky
 excerpt: false
 ---
 
@@ -19,7 +20,7 @@ FNM 是一个用于 Node 版本管理和切换的工具，它使用 Rust 编写�
 
 打开命令行工具，输入以下命令：
 
-```shell
+```sh
 winget install Schniz.fnm --location D:\Software\FNM
 ```
 
@@ -29,13 +30,13 @@ winget install Schniz.fnm --location D:\Software\FNM
 
 打开 PowerShell（其它 Shell 参考[官方文档](https://github.com/Schniz/fnm)）输入以下命令：
 
-```shell
+```sh
 notepad $PROFILE
 ```
 
 在打开的文件中添加以下内容：
 
-```shell
+```sh
 fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 ```
 
@@ -45,35 +46,47 @@ fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 
 ### 切换 Node 版本
 
-```shell
+```sh
 fnm use <version>
 ```
 
 ### 查看已安装的 Node 版本
 
-```shell
+```sh
 fnm list
 ```
 
 ### 安装 Node 版本
 
-```shell
+```sh
 fnm install <version>
 ```
 
 ### 卸载 Node 版本
 
-```shell
+```sh
 fnm uninstall <version>
 ```
 
 ### 设置默认 Node 版本
-```shell
+```sh
 fnm default <version>
 ```
 
 ### 打印当前 Node 版本
 
-```shell
+```sh
 fnm current
 ```
+
+## 与 Husky 配合使用时的注意事项
+
+因为我们使用了 `fnm` 来管理 Node 版本，所以由于 PATH 环境变量问题，你可能会遇到 `command not found` 报错。
+
+我们可以在系统 `C:/Users/用户名/.config/husky/init.sh` 文件中添加以下内容：
+
+```sh
+eval "$(fnm env --use-on-cd)"
+```
+
+这样就可以解决了。

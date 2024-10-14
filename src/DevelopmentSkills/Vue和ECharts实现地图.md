@@ -11,7 +11,7 @@ excerpt: false
 
 ## 在 Vue 中安装并引入 ECharts
 
-```shell
+```sh
 npm install echarts --save
 ```
 

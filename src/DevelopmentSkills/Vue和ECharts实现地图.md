@@ -94,7 +94,6 @@ onMounted(()=>{
 ## 地图数据
 
 + 世界地图数据：[world-geo-json-zh](https://github.com/Surbowl/world-geo-json-zh)
-
 + 中国地图数据：[DataV.GeoAtlas](https://datav.aliyun.com/portal/school/atlas/area_selector)
 
 ### 关于世界地图中国居中版本
@@ -159,7 +158,7 @@ export default worldJson
 
 ### 关于国家按大洲划分版本
 
-思路是根据“ISO 3166-1”二位代码进行判断
+思路是根据“ISO 3166-1”二位代码进行判断。
 
 代码实现：
 

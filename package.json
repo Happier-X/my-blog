@@ -26,5 +26,10 @@
     "vuepress-plugin-search-pro": "^2.0.0-rc.50",
     "vuepress-theme-hope": "2.0.0-rc.50",
     "zhlint": "^0.8.2"
+  },
+  "lint-staged": {
+    "*.{md,json}":{
+      "scripts":"zhlint"
+    }
   }
 }

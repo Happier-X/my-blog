@@ -28,8 +28,8 @@
     "zhlint": "^0.8.2"
   },
   "lint-staged": {
-    "*.{md,json}":{
-      "scripts":"zhlint"
-    }
+    "*.md":[
+      "zhlint --fix"
+    ]
   }
 }

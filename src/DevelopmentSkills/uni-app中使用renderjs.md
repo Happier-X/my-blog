@@ -10,7 +10,7 @@ excerpt: false
 
 官方解释：`renderjs` 是一个运行在视图层的 js，它只支持 app-vue 和 web
 
-`renderjs` 的主要作用有2个：
+`renderjs` 的主要作用有 2 个：
 
 1. 大幅降低逻辑层和视图层的通讯损耗，提供高性能视图交互能力
 2. 在视图层操作 dom，运行 for web 的 js 库
@@ -19,7 +19,7 @@ excerpt: false
 
 将 `script` 标签的 `lang` 设置为 `renderjs`
 
-设置 `module` 用于通信（相当于起了个名字）
+设置 `module` 用于通信 (相当于起了个名字)
 
 ```v
 <script module="render" lang="renderjs">
@@ -116,7 +116,7 @@ excerpt: false
 
 ### 逻辑层向 renderjs 传递数据
 
-在模板中某个元素上（最多一层父元素）添加要传递的属性，并监听其变化
+在模板中某个元素上 (最多一层父元素) 添加要传递的属性，并监听其变化
 
 ```vue
 <template>
@@ -169,7 +169,7 @@ excerpt: false
 逻辑层在调用 renderjs 的方法不生效或者是逻辑层向 renderjs 传递数据的时候不生效，原因可能是
 
 1. 使用 renderjs 时模板中只能有一层最外层
-2. 有时在使用组件库的时候，如组件库中的 button ，让其直接触发调用 renderjs 的方法的时候（`renderjs模块名称.renderjs模块内的方法`）可能会失效，解决方法是在逻辑层的方法中调用，如下
+2. 有时在使用组件库的时候，如组件库中的 button，让其直接触发调用 renderjs 的方法的时候 (`renderjs模块名称.renderjs模块内的方法`) 可能会失效，解决方法是在逻辑层的方法中调用，如下
 
 ## 在逻辑层的方法中调用 renderjs 中的方法
 

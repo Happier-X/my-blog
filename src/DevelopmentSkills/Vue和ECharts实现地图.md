@@ -94,7 +94,7 @@ onMounted(()=>{
 ## 地图数据
 
 + 世界地图数据：[world-geo-json-zh](https://github.com/Surbowl/world-geo-json-zh)
-  + [Json文件预览](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/DevelopmentSkills/world.zh.json)
+  + [Json 文件预览](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/DevelopmentSkills/world.zh.json)
   + [内地和港澳台单独绘制版本预览](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/DevelopmentSkills/world.zh-1.json)
 + 中国地图数据：[DataV.GeoAtlas](https://datav.aliyun.com/portal/school/atlas/area_selector)
 
@@ -160,7 +160,7 @@ export default worldJson
 
 ### 关于国家按大洲划分版本
 
-思路是根据“ISO 3166-1”二位代码进行判断。
+思路是根据 “ISO 3166-1” 二位代码进行判断。
 
 代码实现：
 
@@ -255,4 +255,4 @@ export const Oceania = specialProcess(createCollection(ISOCode.Oceania))
 export const Antarctica = createCollection(ISOCode.Antarctica)
 ```
 
-注意：未处理“ISO 3166-1”二位代码为 -99 的情况，需按需自行处理。
+注意：未处理 “ISO 3166-1” 二位代码为 -99 的情况，需按需自行处理。

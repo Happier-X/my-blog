@@ -211,7 +211,7 @@ console.log(attrs) // { class: "student", style: { color: "skyblue" }, age: "20"
 
 @tab HTML
 
-在子组件中 `attrs` 会作为 `setup` 函数的第二个参数（也就是上下文对象）的 `attrs` 属性暴露
+在子组件中 `attrs` 会作为 `setup` 函数的第二个参数 (也就是上下文对象) 的 `attrs` 属性暴露
 
 在子组件模板中可以通过 `$attrs` 来访问透传的属性
 

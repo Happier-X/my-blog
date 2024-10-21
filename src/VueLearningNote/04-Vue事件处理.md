@@ -9,11 +9,11 @@ excerpt: false
 ---
 ## 事件监听
 
-使用 `v-on` 指令（简写为 `@`）来监听 DOM 事件
+使用 `v-on` 指令 (简写为 `@`) 来监听 DOM 事件
 
 用法：`v-on:事件="handler"` 或 `@事件="handler"`
 
-handler（事件处理器）的值可以是：
+handler (事件处理器) 的值可以是：
 
 - 方法事件处理器：一个指向组件上定义的方法的属性名或路径
 - 内联事件处理器：事件被触发时执行的内联 JavaScript 语句
@@ -170,7 +170,7 @@ const count = ref(0)
 
 :::
 
-### 在内联处理器中调用方法（用于向方法传入自定义参数）
+### 在内联处理器中调用方法 (用于向方法传入自定义参数)
 
 在内联处理器中调用方法可以向方法传入自定义参数
 
@@ -300,7 +300,7 @@ const add = (number, event) => {
 
 - `.enter` 回车键
 - `.tab` 制表键
-- `.delete` 删除键（捕获“删除”和“退格”键）
+- `.delete` 删除键 (捕获 “删除” 和 “退格” 键)
 - `.esc` 撤销键
 - `.space` 空格键
 - `.up` 上箭头键
@@ -362,7 +362,7 @@ const add = () => {
 - `.ctrl` ctrl 键
 - `.alt` alt 键
 - `.shift` shift 键
-- `.meta` Windows 键（在 Mac 系统上为 Command 键）
+- `.meta` Windows 键 (在 Mac 系统上为 Command 键)
 
 :::tabs
 

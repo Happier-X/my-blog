@@ -17,7 +17,7 @@ Nest CLI 是官方提供的脚手架工具，用于帮助我们创建、开发�
 npm install -g @nestjs/cli
 ```
 
-更新（有新版本时可以执行以下命令）：
+更新 (有新版本时可以执行以下命令)：
 
 ```sh
 npm update -g @nestjs/cli

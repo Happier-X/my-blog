@@ -28,7 +28,7 @@ winget install Schniz.fnm --location D:\Software\FNM
 
 ## Shell 配置
 
-打开 PowerShell（其它 Shell 参考[官方文档](https://github.com/Schniz/fnm)）输入以下命令：
+打开 PowerShell (其它 Shell 参考[官方文档](https://github.com/Schniz/fnm)) 输入以下命令：
 
 ```sh
 notepad $PROFILE

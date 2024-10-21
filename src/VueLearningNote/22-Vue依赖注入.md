@@ -12,7 +12,7 @@ excerpt: false
 
 在 Vue 中，我们可以使用 `provide` 和 `inject` 来实现依赖注入，一个父组件相对于其后代组件，会作为依赖提供者，而后代组件则作为依赖注入者
 
-## provide（提供）
+## provide (提供)
 
 `provide()` 函数可以为后代组件提供数据
 
@@ -55,7 +55,7 @@ app.mount('#app')
 
 :::
 
-## inject（注入）
+## inject (注入)
 
 `inject()` 函数可以为组件注入数据
 

@@ -99,7 +99,7 @@ app.mount('#app')
 
 ## 指令钩子
 
-一个指令定义对象可以提供如下几个钩子函数（均为可选）：
+一个指令定义对象可以提供如下几个钩子函数 (均为可选)：
 + `created(el, binding, vnode)`：在绑定元素的 attribute 或事件监听器应用之前调用
 + `beforeMount(el, binding, vnode)`：在元素被插入到 DOM 前调用
 + `mounted(el, binding, vnode)`：在绑定元素的父组件及它自己的所有子节点都挂载完毕之后调用

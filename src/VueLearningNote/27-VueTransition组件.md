@@ -649,7 +649,7 @@ export default {
 
 ## 动态过渡
 
-`<Transition>` 的 props（如 `name`） 可以是动态的，允许我们根据组件的状态应用不同的过渡
+`<Transition>` 的 props (如 `name`) 可以是动态的，允许我们根据组件的状态应用不同的过渡
 
 ## 使用 key 过渡
 

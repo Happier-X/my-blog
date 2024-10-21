@@ -106,7 +106,7 @@ const id = ref('id1')
 
 ## 动态绑定多个值
 
-通过不带参数的 `v-bind` ，可以将包含多个值的 JavaScript 对象绑定到单个元素上
+通过不带参数的 `v-bind`，可以将包含多个值的 JavaScript 对象绑定到单个元素上
 
 :::tabs
 

@@ -13,7 +13,7 @@ Vue 专门为 `class` 和 `style` 的 `v-bind` 用法提供了特殊的功能增
 
 ### 绑定对象
 
-我们可以传给 `v-bind:class`（简写为 `:class`）一个对象，以动态地切换 `class`
+我们可以传给 `v-bind:class` (简写为 `:class`) 一个对象，以动态地切换 `class`
 
 :::tabs
 
@@ -127,7 +127,7 @@ const classObj2 = computed(() => ({
 :::
 ### 绑定数组
 
-我们可以把一个数组传给 `v-bind:class`（简写为 `:class`），以应用一个 `class` 列表
+我们可以把一个数组传给 `v-bind:class` (简写为 `:class`)，以应用一个 `class` 列表
 
 ::: tabs
 @tab 单文件组件
@@ -221,7 +221,7 @@ const class4 = ref('class4')
 
 ### 绑定对象
 
-我们可以传给 `v-bind:style`（简写为 `:style`）一个对象
+我们可以传给 `v-bind:style` (简写为 `:style`) 一个对象
 
 :::tabs
 
@@ -288,7 +288,7 @@ const styleObj1 = computed(() => ({
 
 ### 绑定数组
 
-可以把一个样式对象数组传给 `v-bind:style`（简写为 `:style`），以应用多个样式对象
+可以把一个样式对象数组传给 `v-bind:style` (简写为 `:style`)，以应用多个样式对象
 
 :::tabs
 

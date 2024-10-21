@@ -360,7 +360,7 @@ export default {
 
 ## 动态插槽名
 
-动态指令参数可以用于插槽名，例如 `v-slot:[dynamicSlotName]`，其中 `dynamicSlotName` 是一个变量，其简写形式为`#[dynamicSlotName]`
+动态指令参数可以用于插槽名，例如 `v-slot:[dynamicSlotName]`，其中 `dynamicSlotName` 是一个变量，其简写形式为 `#[dynamicSlotName]`
 
 ## 作用域插槽
 

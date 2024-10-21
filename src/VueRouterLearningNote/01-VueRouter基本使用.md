@@ -10,7 +10,7 @@ tag:
 excerpt: false
 ---
 
-Vue Router 是 Vue 的官方路由，它可以帮助我们更轻松地构建单页面应用程序（SPA）
+Vue Router 是 Vue 的官方路由，它可以帮助我们更轻松地构建单页面应用程序 (SPA)
 
 Vue Router 基于 Vue 的组件系统构建，你可以通过配置路由来告诉 Vue Router 为每个 URL 路径显示哪些组件
 

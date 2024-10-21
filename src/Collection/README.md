@@ -6,7 +6,7 @@ article: false
 timeline: false
 ---
 
-```component VPCard
+<!-- ```component VPCard
 title: 软件工具
 desc: 软件工具推荐及使用技巧
 link: /SoftwareTool/
@@ -83,4 +83,8 @@ title: 碎碎念
 desc: 记录一些想法和感悟
 link: /Thoughts/
 background: rgba(161,175,201,0.15)
-```
+``` -->
+
+<!-- TODO:优化分类页面 -->
+
+开发中

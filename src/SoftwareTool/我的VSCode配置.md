@@ -125,7 +125,7 @@ excerpt: false
 
 功能：支持 Vim 模式。
 
-相关文章：[Vim](./Vim.md)
+相关文章：[Vim](./Vim.md)。
 
 ### vscode-icons
 
@@ -151,11 +151,15 @@ excerpt: false
 
 功能：JavaScript 和 TypeScript 代码检查工具。
 
+相关文章：[前端代码规范](../DevelopmentSkills/前端代码规范.md)。
+
 ### Prettier - Code formatter
 
 下载地址：[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)。
 
 功能：代码格式化工具，支持多种编程语言。
+
+相关文章：[前端代码规范](../DevelopmentSkills/前端代码规范.md)。
 
 ### Image preview
 
@@ -174,6 +178,8 @@ excerpt: false
 下载地址：[Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)。
 
 功能：CSS 代码检查工具。
+
+相关文章：[前端代码规范](../DevelopmentSkills/前端代码规范.md)。
 
 ### Vue - Official
 

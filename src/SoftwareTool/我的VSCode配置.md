@@ -125,6 +125,8 @@ excerpt: false
 
 功能：支持 Vim 模式。
 
+相关文章：[Vim](./Vim.md)
+
 ### vscode-icons
 
 下载地址：[vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)。

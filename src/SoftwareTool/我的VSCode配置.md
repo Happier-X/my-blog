@@ -19,10 +19,6 @@ excerpt: false
 
 在设置中找到 `Editor: Font Size` 并设置为 `20`。这样，编辑器的字体大小会调整为 20 像素。
 
-### 为每个方括号类型添加自己的独立颜色池
-
-在设置中找到 `Editor › Bracket Pair Colorization: Independent Color Pool Per Bracket Type` 并将它勾选。这样，每个方括号类型都会有自己的独立颜色池。
-
 ### 禁用通过拖放来移动选中内容
 
 在设置中找到 `Editor: Drag And Drop` 并将它取消勾选。因为我经常会不小心拖动选中内容，导致代码混乱。
@@ -33,7 +29,7 @@ excerpt: false
 
 ### 突出显示活动的缩进参考线
 
-在设置中找到 `Editor › Guides: Highlight Active Indentation` 并设置为 `always`。这样，编辑器会在活动的缩进参考线周围显示一条高亮线。
+在设置中找到 `Editor › Guides: Highlight Active Indentation` 并设置为 `always`。这样，编辑器总会在活动的缩进参考线周围显示一条高亮线。
 
 ### 启用 HTML 标签关联编辑
 

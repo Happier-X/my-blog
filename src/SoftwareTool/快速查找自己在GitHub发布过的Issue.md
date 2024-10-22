@@ -12,7 +12,7 @@ excerpt: false
 1. 打开 [GitHub](https://github.com/)。
 2. 在搜索框中输入 `is:issue involves:my-username(此处是你的 GitHub 用户名)`，查询即可。
 
-例如，我想查找我发布的 Issue，可以输入：
+例如，我想查找我发布的 Issue，可以输入如下查询语句。
 
 ```txt
 is:issue involves:HappierPuppy

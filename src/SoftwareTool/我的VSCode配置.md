@@ -29,7 +29,7 @@ excerpt: false
 
 ### 突出显示活动的缩进参考线
 
-在设置中找到 `Editor › Guides: Highlight Active Indentation` 并设置为 `always`。这样，编辑器总会在活动的缩进参考线周围显示一条高亮线。
+在设置中找到 `Editor › Guides: Highlight Active Indentation` 并设置为 `always`。这样，编辑器会在活动的缩进参考线周围显示一条高亮线。
 
 ### 启用 HTML 标签关联编辑
 
@@ -74,3 +74,107 @@ excerpt: false
 ### 设置 JavaScript 语义检查
 
 在设置中找到 `JS/TS › Implicit Project Config: Check JS` 并将它勾选。这样，编辑器会在 JavaScript 和 TypeScript 文件中启用语义检查。
+
+## 插件推荐
+
+### 翻译 (英汉词典)
+
+下载地址：[翻译 (英汉词典)](https://marketplace.visualstudio.com/items?itemName=CodeInChinese.EnglishChineseDictionary)。
+
+功能：翻译英文单词，支持开启鼠标悬停翻译功能。
+
+### Chinese (Simplified) (简体中文) Language Pack for Visual Studio Code
+
+下载地址：[Chinese (Simplified) (简体中文) Language Pack for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-zh-hans)。
+
+功能：VSCode 简体中文语言包。
+
+### Code Spell Checker
+
+下载地址：[Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)。
+
+功能：检查代码中的单词拼写错误。
+
+### CodeGeeX: AI Code AutoComplete, Chat, Auto Comment
+
+下载地址：[CodeGeeX：AI Code AutoComplete，Chat，Auto Comment](https://marketplace.visualstudio.com/items?itemName=aminer.codegeex)。
+
+功能：AI 代码自动补全、聊天、自动注释。
+
+### Error Lens
+
+下载地址：[Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)。
+
+功能：在编辑器中高亮显示错误和警告。
+
+### One Dark Pro
+
+下载地址：[One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme)。
+
+功能：One Dark Pro 主题，我最喜欢的 VSCode 主题。
+
+### Todo Tree
+
+下载地址：[Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree)。
+
+功能：在编辑器中显示所有 TODO、FIXME 和其他标记。
+
+### Vim
+
+下载地址：[Vim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim)。
+
+功能：支持 Vim 模式。
+
+### vscode-icons
+
+下载地址：[vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)。
+
+功能：在编辑器中显示图标，使文件和文件夹更易于识别。
+
+### Office Viewer(Markdown Editor)
+
+下载地址：[Office Viewer(Markdown Editor)](https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-office)。
+
+功能：在编辑器中所见即所得的书写 Markdown 文件，同时支持导出为 PDF、HTML 等格式。
+
+### CodeSnap
+
+下载地址：[CodeSnap](https://marketplace.visualstudio.com/items?itemName=adpyke.codesnap)。
+
+功能：代码截图工具，可以快速截图并保存到剪贴板或本地文件。
+
+### ESLint
+
+下载地址：[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)。
+
+功能：JavaScript 和 TypeScript 代码检查工具。
+
+### Prettier - Code formatter
+
+下载地址：[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)。
+
+功能：代码格式化工具，支持多种编程语言。
+
+### Image preview
+
+下载地址：[Image preview](https://marketplace.visualstudio.com/items?itemName=kisstkondoros.vscode-gutter-preview)。
+
+功能：在编辑器中预览代码中引入的图片。
+
+### Live Server
+
+下载地址：[Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)。
+
+功能：在本地启动一个服务器，实时预览 HTML 文件。
+
+### Stylelint
+
+下载地址：[Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)。
+
+功能：CSS 代码检查工具。
+
+### Vue - Official
+
+下载地址：[Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar)。
+
+功能：Vue.js 开发工具，支持语法高亮、代码补全、错误检查等功能。

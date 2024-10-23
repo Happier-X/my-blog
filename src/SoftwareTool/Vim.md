@@ -12,7 +12,7 @@ excerpt: false
 
 ## 在 VSCode 中使用 Vim
 
-安装 `vim` 插件即可在 VSCode 中使用 Vim
+安装 `vim` 扩展即可在 VSCode 中使用 Vim
 
 ## Vim 基础操作
 

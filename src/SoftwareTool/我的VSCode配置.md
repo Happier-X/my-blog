@@ -7,7 +7,7 @@ tag: VSCode
 excerpt: false 
 ---
 
-> 分享一下我的 VSCode 配置和推荐的插件。
+> 分享一下我的 VSCode 配置和推荐的扩展。
 
 ## 设置相关
 
@@ -75,7 +75,7 @@ excerpt: false
 
 在设置中找到 `JS/TS › Implicit Project Config: Check JS` 并将它勾选。这样，编辑器会在 JavaScript 和 TypeScript 文件中启用语义检查。
 
-## 插件推荐
+## 扩展推荐
 
 ### 翻译 (英汉词典)
 

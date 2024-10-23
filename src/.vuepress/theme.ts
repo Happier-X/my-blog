@@ -47,7 +47,7 @@ export default hopeTheme({
   },
   encrypt: {
     config: {
-      "/SoftwareTool/如何科学上网.html": ["404404"],
+      "/SoftwareTool/科学上网.html": ["404404"],
     }
   }
 }, { custom: true });

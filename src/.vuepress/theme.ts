@@ -49,5 +49,6 @@ export default hopeTheme({
     config: {
       "/SoftwareTool/科学上网.html": ["404404"],
     }
-  }
+  },
+  contributors: false,
 }, { custom: true });

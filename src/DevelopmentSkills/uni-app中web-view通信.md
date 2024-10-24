@@ -66,7 +66,7 @@ web-view 页面这里使用 Vue 框架开发，在 `index.html` 中引入 `uni.w
   </body>
 ```
 
-在web-view页面中定义 `getMessageFromApp` 事件，用于接收主应用传递的数据。
+在 web-view 页面中定义 `getMessageFromApp` 事件，用于接收主应用传递的数据。
 
 ```vue
 <!-- web-view 页面中 -->

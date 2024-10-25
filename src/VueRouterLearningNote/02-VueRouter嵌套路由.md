@@ -1,6 +1,6 @@
 ---
 title: Vue Router 嵌套路由
-cover: https://t.alcy.cc/fj?t=1729832400000
+cover: https://t.alcy.cc/fj?t=1729834200000
 order: 2
 date: 2024-10-25 13:30
 category: 软件开发

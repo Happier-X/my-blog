@@ -128,7 +128,7 @@ export default {
 
 `<KeepAlive>` 组件可以通过 `include` 和 `exclude` 属性来指定哪些组件需要被缓存，这两个属性的值都可以是一个以英文逗号分隔的字符串、正则表达式或包含这两种类型的一个数组
 
-```template
+```vue
 <!-- 以英文逗号分隔的字符串 -->
 <KeepAlive include="teacher,student"></KeepAlive>
 
@@ -145,7 +145,7 @@ export default {
 
 `<KeepAlive>` 组件可以通过 `max` 属性来限制缓存组件的最大数量，当缓存组件数量超过 `max` 时，最早缓存的组件将被销毁
 
-```template
+```vue
 <KeepAlive :max="10"></KeepAlive>
 ```
 

@@ -100,7 +100,7 @@ const show = ref(true)
 
 可以通过 `name` 属性来为过渡效果命名
 
-```template
+```vue
 <Transition name="customName">
     ...
 </Transition>
@@ -221,7 +221,7 @@ const show = ref(true)
 
 它们将覆盖默认的过渡类名，这个功能可以用于集成一些动画库
 
-```template
+```vue
 <Transition name="customName" enter-from-class="类名">
     ...
 </Transition>
@@ -629,7 +629,7 @@ export default {
 
 如果想在某个节点初次渲染时应用一个过渡效果，可以使用 `appear` 属性
 
-```template
+```vue
 <Transition appear>
   ...
 </Transition>

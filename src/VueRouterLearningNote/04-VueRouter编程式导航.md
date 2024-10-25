@@ -10,7 +10,7 @@ tag:
 excerpt: false
 ---
 
-除了使用 `<router-link>` 创建 a 标签来定义导航链接，我们还可以借助 router 的实例方法，通过编写代码来实现。
+除了使用 `<RouterLink>` 创建 a 标签来定义导航链接，我们还可以借助 router 的实例方法，通过编写代码来实现。
 
 ## 导航到不同的位置
 
@@ -28,7 +28,7 @@ router.push({ name: 'user' })
 
 `router.replace` 方法与 `router.push` 很相似，唯一的不同就是，它不会向 history 添加新记录，而是替换掉当前的记录。
 
-在声明式导航中使用 `<router-link :to="" replace>` 实现。
+在声明式导航中使用 `<RouterLink :to="" replace>` 实现。
 
 ```JavaScript
 // 传字符串

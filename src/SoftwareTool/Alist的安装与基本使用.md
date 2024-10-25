@@ -28,7 +28,7 @@ INFO[2023-12-02 02:21:36] Successfully created the admin user and the initial pa
 ### 设置开机自启
 在 `alist.exe` 文件的目录里新建一个 `alist.vbs` 文件，文件内容如下。
 
-```vbscript
+```sh
 Set ws = CreateObject("Wscript.Shell")
 ws.run "alist.exe server",vbhide
 ```

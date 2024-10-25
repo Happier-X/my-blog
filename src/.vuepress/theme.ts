@@ -44,6 +44,10 @@ export default hopeTheme({
     markdownTab: {
       tabs: true,
     },
+    mdEnhance: {
+      mark: true,
+      mermaid: true,
+    }
   },
   encrypt: {
     config: {

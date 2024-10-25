@@ -28,6 +28,8 @@ router.push({ name: 'user' })
 
 `router.replace` 方法与 `router.push` 很相似，唯一的不同就是，它不会向 history 添加新记录，而是替换掉当前的记录。
 
+在声明式导航中使用 `<router-link :to="" replace>` 实现。
+
 ```JavaScript
 // 传字符串
 router.replace('home')

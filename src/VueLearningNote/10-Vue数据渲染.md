@@ -26,7 +26,7 @@ const text = ref('hello world')
 </script>
 ```
 @tab HTML
-```html
+```vue-html
 <body>
     <div id="app">
         <div v-text="text"></div>
@@ -64,7 +64,7 @@ const html = ref('<h1>hello world</h1>')
 </script>
 ```
 @tab HTML
-```html
+```vue-html
 <body>
     <div id="app">
         <div v-html="html"></div>

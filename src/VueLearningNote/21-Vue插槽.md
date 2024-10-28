@@ -53,7 +53,7 @@ import Student from './components/Student.vue'
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         我是父组件
@@ -121,7 +121,7 @@ import Student from './components/Student.vue'
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         我是父组件
@@ -197,7 +197,7 @@ import Student from './components/Student.vue'
 ```
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         我是父组件
@@ -297,7 +297,7 @@ import Student from './components/Student.vue'
 ```
 @tab HTML
 
-```html
+```vue-html
 <head>
     <style>
         .header {
@@ -416,7 +416,7 @@ const msg = ref('子组件传递的数据')
 ```
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         我是父组件
@@ -517,7 +517,7 @@ const footerMsg = ref('子组件向footer传递的数据')
 ```
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         我是父组件

@@ -61,7 +61,7 @@ const name = ref('Teacher')
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <component :is="tab[index]"></component>

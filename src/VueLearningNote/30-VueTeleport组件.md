@@ -50,7 +50,7 @@ const toggleModal = () => {
 </style>
 ```
 @tab HTML
-```html
+```vue-html
 <head>
     <style>
         .modal {

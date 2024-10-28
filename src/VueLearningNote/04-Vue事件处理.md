@@ -43,7 +43,7 @@ const add = () => {
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <h1>{{count}}</h1>
@@ -97,7 +97,7 @@ const add = (event) => {
 ```
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <h1>{{count}}</h1>
@@ -146,7 +146,7 @@ const count = ref(0)
 ```
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <h1>{{count}}</h1>
@@ -196,7 +196,7 @@ const add = (number) => {
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <h1>{{count}}</h1>
@@ -253,7 +253,7 @@ const add = (number, event) => {
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <h1>{{count}}</h1>
@@ -331,7 +331,7 @@ const add = () => {
 ```
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <h1>{{count}}</h1>
@@ -385,7 +385,7 @@ const add = () => {
 ```
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <h1>{{count}}</h1>
@@ -447,7 +447,7 @@ const add3 = () => {
 ```
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <h1>{{count}}</h1>
@@ -511,7 +511,7 @@ const add = () => {
 ```
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <h1>{{count}}</h1>

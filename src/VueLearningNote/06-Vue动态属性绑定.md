@@ -35,7 +35,7 @@ const shorthandDynamicId = ref('shorthandId1')
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <p v-bind:id="dynamicId">你好</p>
@@ -83,7 +83,7 @@ const id = ref('id1')
 ```
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <p :id>你好</p>
@@ -128,7 +128,7 @@ const object = ref({
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <p v-bind="object">你好</p>

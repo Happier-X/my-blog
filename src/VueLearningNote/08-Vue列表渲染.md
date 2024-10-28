@@ -39,7 +39,7 @@ const array = ref([1, 2, 3, 4, 5])
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <ul>
@@ -93,7 +93,7 @@ const object = ref({
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <ul>
@@ -137,7 +137,7 @@ const object = ref({
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <ul>
@@ -192,7 +192,7 @@ const items = ref([{
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <ul>
@@ -254,7 +254,7 @@ const todo = ref([{
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <ul>
@@ -311,7 +311,7 @@ const todo = ref([{
 ```
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <ul>
@@ -383,7 +383,7 @@ const array = ref([
 ```
 
 @tab HTML
-```html
+```vue-html
 <body>
     <div id="app">
         <ul>
@@ -462,7 +462,7 @@ const filteredArray = computed(() => {
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <ul>

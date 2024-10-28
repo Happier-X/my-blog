@@ -66,7 +66,7 @@ const classObj2 = computed(() => ({
 </style>
 ```
 @tab HTML
-```html
+```vue-html
 <head>
     <style>
         .class1 {
@@ -169,7 +169,7 @@ const class4 = ref('class4')
 </style>
 ```
 @tab HTML
-```html
+```vue-html
 <head>
     <style>
         .class1 {
@@ -251,7 +251,7 @@ const styleObj1 = computed(() => ({
 ```
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <!-- 给 :style 传递一个对象 -->
@@ -314,7 +314,7 @@ const styleObj1 = computed(() => ({
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <!-- 给 :style 传递一个数组 -->
@@ -360,7 +360,7 @@ const styleObj1 = computed(() => ({
 ```
 @tab HTML
 
-```html
+```vue-html
 <div id="app">
     <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">盒子</div>
 </div>

@@ -46,7 +46,7 @@ message.text2 = 'Hello text2!'
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <h1>{{ title }}</h1>
@@ -121,7 +121,7 @@ const add2 = async () => {
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <h1>{{count}}</h1>

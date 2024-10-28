@@ -53,7 +53,7 @@ export function useMouse() {
 }
 ```
 @tab HTML
-```html
+```vue-html
 <body>
     <div id="app">
         <p>Mouse position is at: {{ x }}, {{ y }}</p>

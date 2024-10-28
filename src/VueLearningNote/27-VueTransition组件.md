@@ -59,7 +59,7 @@ const show = ref(true)
 </style>
 ```
 @tab HTML
-```html
+```vue-html
 <head>
     <style>
         .v-enter-active,
@@ -160,7 +160,7 @@ const show = ref(true)
 </style>
 ```
 @tab HTML
-```html
+```vue-html
 <head>
     <style>
         .bounce-enter-active {
@@ -293,7 +293,7 @@ const show = ref(true)
 </style>
 ```
 @tab HTML
-```html
+```vue-html
 <head>
     <style>
         .outer,
@@ -449,7 +449,7 @@ function onLeave(el, done) {
 
 ```
 @tab HTML
-```html
+```vue-html
 <head>
     <style>
         .gsap-box {
@@ -584,7 +584,7 @@ export default {
 }
 ```
 
-```html
+```vue-html
 <head>
     <style>
         .my-transition-enter-active,

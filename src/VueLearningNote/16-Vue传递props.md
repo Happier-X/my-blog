@@ -59,7 +59,7 @@ const props = defineProps({
 
 在子组件中，使用 `props` 声明需要从父组件接收的数据
 
-```html
+```vue-html
 <body>
     <div id="app">
         {{ school }}

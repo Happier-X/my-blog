@@ -33,7 +33,7 @@ const fullName = computed(() => {
 ```
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <div>{{ fullName }}</div>
@@ -104,7 +104,7 @@ const fullName = computed({
 ```
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         <div>{{ firstName }}</div>

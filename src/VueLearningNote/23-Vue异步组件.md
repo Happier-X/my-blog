@@ -47,7 +47,7 @@ const Student = defineAsyncComponent(() => {
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         我是父组件

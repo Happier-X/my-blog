@@ -87,7 +87,7 @@ app.mount('#app')
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         {{ school }}
@@ -149,7 +149,7 @@ const school = ref('QFNU')
 
 @tab HTML
 
-```html
+```vue-html
 <body>
     <div id="app">
         {{ school }}

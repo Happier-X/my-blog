@@ -33,7 +33,7 @@ onMounted(() => {
 
 @tab HTML
 
-```vue-html
+```html
 <body>
     <div id="app">
         <h3 ref="messageRef">{{ message }}</h3>
@@ -87,7 +87,7 @@ onMounted(() => {
 
 @tab HTML
 
-```vue-html
+```html
 <body>
     <div id="app">
         <ul>

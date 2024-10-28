@@ -60,7 +60,7 @@ const handleClick = () => {
 
 @tab HTML
 
-```vue-html
+```html
 <head>
     <style>
         .student {
@@ -215,7 +215,7 @@ console.log(attrs) // { class: "student", style: { color: "skyblue" }, age: "20"
 
 在子组件模板中可以通过 `$attrs` 来访问透传的属性
 
-```vue-html
+```html
 <head>
     <style>
         .student {

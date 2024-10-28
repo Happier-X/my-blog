@@ -34,7 +34,7 @@ const message = ref('Hello Vue!')
 
 @tab HTML
 
-```vue-html
+```html
 <body>
     <div id="app">{{message}}</div>
     <script type="module">

@@ -37,7 +37,7 @@ const vFocus = {
 
 @tab HTML
 
-```vue-html
+```html
 <body>
     <div id="app">
         <input v-focus>
@@ -79,7 +79,7 @@ app.mount('#app')
 ```
 
 @tab HTML
-```vue-html
+```html
 <body>
     <div id="app">
         <input v-focus>

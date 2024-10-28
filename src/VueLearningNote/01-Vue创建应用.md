@@ -97,7 +97,7 @@ const message = ref('Hello World')
 
 ### 使用全局构建
 
-```vue-html
+```html
 <head>
     <!-- 引入 Vue -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -129,7 +129,7 @@ const message = ref('Hello World')
 
 可以使用解构赋值语法来简写：
 
-```vue-html
+```html
 <head>
     <!-- 引入 Vue -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -163,7 +163,7 @@ const message = ref('Hello World')
 
 ### 使用 ES 模块构建
 
-```vue-html
+```html
 <body>
     <!-- 指定一个 id 为 app 的 div 容器 -->
     <!-- {{ }} 是插值表达式，可以将 Vue 实例中定义的数据在视图中渲染 -->

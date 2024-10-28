@@ -40,7 +40,7 @@ app.mount('#app')
 ```
 @tab HTML
 
-```vue-html
+```html
 <body>
     <div id="app">
     </div>
@@ -110,7 +110,7 @@ const name = inject('name')
 
 @tab HTML
 
-```vue-html
+```html
 <body>
     <div id="app">
         我是父组件

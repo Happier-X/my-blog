@@ -58,7 +58,7 @@ const remove = () => {
 </style>
 ```
 @tab HTML
-```vue-html
+```html
 <head>
     <style>
         .list-enter-active,
@@ -158,7 +158,7 @@ const remove = () => {
 </style>
 ```
 @tab HTML
-```vue-html
+```html
 <head>
     <style>
         .list-move,
@@ -247,7 +247,7 @@ const enter = (el, done) => {
 </script>
 ```
 @tab HTML
-```vue-html
+```html
 <body>
     <div id="app">
         <transition-group name="list" tag="ul" :css="false" appear @before-enter="beforeEnter" @enter="enter">

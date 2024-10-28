@@ -36,7 +36,7 @@ const add = () => {
 
 @tab HTML
 
-```vue-html
+```html
 <body>
     <div id="app">
         <div v-if="count === 1">count为1时显示</div>
@@ -92,7 +92,7 @@ const add = () => {
 
 @tab HTML
 
-```vue-html
+```html
 <body>
     <div id="app">
         <template v-if="count === 0">
@@ -147,7 +147,7 @@ const add = () => {
 
 @tab HTML
 
-```vue-html
+```html
 <body>
     <div id="app">
         <div v-show="count === 1">count为1时显示</div>

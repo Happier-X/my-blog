@@ -83,7 +83,7 @@ const emit = defineEmits(['updateName'])
 
 `defineModel()` 只能用在 `<script setup>` 上，如想实现相同的效果，请参考以下代码
 
-```vue-html
+```html
 <body>
     <div id="app">
         {{ studentName }}
@@ -168,7 +168,7 @@ const age = defineModel('age')
 
 `defineModel()` 只能用在 `<script setup>` 上，如想实现相同的效果，请参考以下代码
 
-```vue-html
+```html
 <body>
     <div id="app">
         {{ studentName }}
@@ -263,7 +263,7 @@ console.log(modifiers) // { capitalize: true }
 
 `defineModel()` 只能用在 `<script setup>` 上，如想实现相同的效果，请参考以下代码
 
-```vue-html
+```html
 <body>
     <div id="app">
         {{ studentName }}

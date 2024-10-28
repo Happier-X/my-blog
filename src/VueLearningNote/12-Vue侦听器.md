@@ -85,7 +85,7 @@ watch(() => time.year, (newVal, oldVal) => {
 
 @tab HTML
 
-```vue-html
+```html
 <body>
     <div id="app">
         <h3>{{ name }}</h3>
@@ -227,7 +227,7 @@ watchEffect(() => {
 
 @tab HTML
 
-```vue-html
+```html
 <body>
     <div id="app">
         <h3>{{ name }}</h3>
@@ -281,7 +281,7 @@ watchEffect(async () => {
 
 @tab HTML
 
-```vue-html
+```html
 <body>
     <div id="app">
         <h3>{{ count }}</h3>
@@ -380,7 +380,7 @@ watchPostEffect(() => {
 ```
 @tab HTML
 
-```vue-html
+```html
 <body>
     <div id="app">
         <h3 id="e1">{{ count1 }}</h3>
@@ -464,7 +464,7 @@ setTimeout(() => {
 
 @tab HTML
 
-```vue-html
+```html
 <body>
     <div id="app">
         <h3>{{ count1 }}</h3>

@@ -59,7 +59,7 @@ const name = ref('Teacher')
 </script>
 ```
 @tab HTML
-```vue-html
+```html
 <body>
     <div id="app">
         <keep-alive>

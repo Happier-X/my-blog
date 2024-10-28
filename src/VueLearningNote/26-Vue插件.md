@@ -47,7 +47,7 @@ app.use(myPlugin, {
 app.mount('#app')
 ```
 @tab HTML
-```vue-html
+```html
 <body>
     <div id="app">
     </div>
@@ -126,7 +126,7 @@ export default {
 }
 ```
 
-```vue-html
+```html
 <body>
     <div id="app">
         <p>{{ $translate('greetings.hello') }}</p>

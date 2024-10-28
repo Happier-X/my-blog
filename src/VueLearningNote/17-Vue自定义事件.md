@@ -76,7 +76,7 @@ const handleClick = () => {
 
 在子组件中，使用 `$emit()` (在模板中) 或上下文对象的 `emit()` 触发自定义事件，也可以传递参数
 
-```vue-html
+```html
 <body>
     <div id="app">
         {{ school }}

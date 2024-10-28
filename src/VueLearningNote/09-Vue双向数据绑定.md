@@ -62,7 +62,7 @@ const data = ref({
 </script>
 ```
 @tab HTML
-```vue-html
+```html
 <body>
     <div id="app">
         <h4>文本框：{{ data.text }}</h4>

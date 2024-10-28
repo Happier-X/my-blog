@@ -47,6 +47,12 @@ export default hopeTheme({
     mdEnhance: {
       mark: true,
       mermaid: true,
+    },
+    shiki: {
+      themes: {
+        light: 'one-light',
+        dark: 'one-dark-pro',
+      }
     }
   },
   encrypt: {

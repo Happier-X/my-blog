@@ -24,7 +24,7 @@ RouterLink 组件向活动链路添加了两个 CSS 类，`router-link-active` �
 >
 ```
 
-也可以通过将 linkActiveClass 和 linkExactActiveClass 选项传递给 createRouter() 来全局更改默认类名。
+也可以通过将 `linkActiveClass` 和 `linkExactActiveClass` 选项传递给 `createRouter()` 来全局更改默认类名。
 
 ```JavaScript
 const router = createRouter({

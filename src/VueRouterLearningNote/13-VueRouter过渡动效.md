@@ -22,7 +22,7 @@ excerpt: false
 </router-view>
 ```
 
-## 结合元信息和动态 name 使用
+## 结合元信息使用
 
 如果想让每个路由的组件有不同的过渡，可以将元信息和动态的 name 结合在一起，放在 `<transition>` 上。
 

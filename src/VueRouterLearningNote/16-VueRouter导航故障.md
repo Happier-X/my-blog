@@ -24,7 +24,9 @@ if (navigationResult) {
 }
 ```
 
-`Navigation Failure` 是带有一些额外属性的 Error 实例，这些属性为我们提供了足够的信息，让我们知道哪些导航被阻止了以及为什么被阻止了。要检查导航结果的性质，可以使用 `isNavigationFailure` 函数：
+`Navigation Failure` 是带有一些额外属性的 Error 实例，这些属性可以用来区分不同的导航故障。
+
+要检查导航结果的性质，可以使用 `isNavigationFailure` 函数。
 
 ```JavaScript
 import { NavigationFailureType, isNavigationFailure } from 'vue-router'

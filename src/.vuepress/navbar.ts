@@ -20,7 +20,56 @@ export default navbar([
   {
     text: "合集",
     icon: "box",
-    link: "/Collection/",
+    children: [
+      {
+        text: "软件开发",
+        children: [
+          "/DevelopmentSkills/",
+          "/GoLearningNote/",
+          "/NestLearningNote/",
+          "/VueLearningNote/",
+          "/VueRouterLearningNote/",
+          "/PiniaLearningNote/",
+        ],
+      },
+      {
+        text: "软件工具",
+        children: [
+          "/SoftwareTool/",
+        ]
+      },
+      {
+        text: "魔方",
+        children: [
+          "/3x3x3/",
+          "/3x3x3BLD/"
+        ]
+      },
+      {
+        text: "摄影",
+        children: [
+          "/PhotographyLearningNote/"
+        ]
+      },
+      {
+        text: "旅行",
+        children: [
+          "/TravelRecord/"
+        ]
+      },
+      {
+        text: "嵌入式开发",
+        children: [
+          "/STM32LearningNote/"
+        ]
+      },
+      {
+        text: "碎碎念",
+        children: [
+          "/ThoughtsAfterReading/"
+        ]
+      }
+    ]
   },
   {
     text: "时间线",

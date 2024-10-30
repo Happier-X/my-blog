@@ -57,7 +57,7 @@ const increment = counterStore.increment
 </script>
 ```
 
-如果直接解构 `Store` 中的状态和计算属性，会丢失响应性，所以需要使用 `storeToRefs()` 函数。
+如果直接解构 `Store` 中的状态和计算属性，会丢失响应式，所以需要使用 `storeToRefs()` 函数。
 
 ```vue
 <script setup>

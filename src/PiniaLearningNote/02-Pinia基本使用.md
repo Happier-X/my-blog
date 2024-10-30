@@ -1,5 +1,5 @@
 ---
-title: Pinia Store
+title: Pinia 基本使用
 cover: https://t.alcy.cc/fj?t=1730257200000
 order: 2
 date: 2024-10-30 11:00
@@ -23,11 +23,11 @@ import { useRoute, useRouter } from 'vue-router'
 // 可以任意命名 defineStore() 的返回值，但最好使用 use 前缀，使用 Store 结尾
 // 第一个参数是 Store 的 id，它要求是唯一的，第二个参数是 Setup 函数
 export const useCounterStore = defineStore('counter', () => {
-    // 定义状态（state）
+    // 定义状态（State）
     const count = ref(0)
-    // 定义计算属性（getters）
+    // 定义计算属性（Getters）
     const doubleCount = computed(() => count.value * 2)
-    // 定义方法（actions）
+    // 定义方法（Actions）
     const increment = () => {
         count.value++
     }

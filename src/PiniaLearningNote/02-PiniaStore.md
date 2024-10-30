@@ -12,7 +12,7 @@ excerpt: false
 
 ## 定义 Store
 
-`Store` 是用 `defineStore()` 定义的，它的第一个参数要求是一个独一无二的字符串，作为 `Store` 的 `id`，第二个参数是 `Setup 函数` 或 `Option 对象` (这里以 `Setup函数` 为例)，用于配置 `Store`。
+`Store` 是用 `defineStore()` 定义的，它的第一个参数要求是一个独一无二的字符串，作为 `Store` 的 `id`，第二个参数是 `Setup 函数` 或 `Option 对象` (这里以 `Setup 函数` 为例)，用于配置 `Store`。
 
 ```JavaScript
 // src/stores/counter.js
@@ -20,8 +20,8 @@ import { defineStore } from 'pinia'
 import { ref, computed, inject } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-// 可以任意命名 `defineStore()` 的返回值，但最好使用 `use` 前缀，使用 `Store` 结尾
-// 第一个参数是 `Store` 的 `id`，它要求是唯一的，第二个参数是 `Setup 函数`
+// 可以任意命名 defineStore() 的返回值，但最好使用 use 前缀，使用 Store 结尾
+// 第一个参数是 Store 的 id，它要求是唯一的，第二个参数是 Setup 函数
 export const useCounterStore = defineStore('counter', () => {
     // 定义状态（state）
     const count = ref(0)

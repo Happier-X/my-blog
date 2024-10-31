@@ -39,7 +39,7 @@ export default hopeTheme({
       serverURL: "https://blog-comment.azhf8.top",
     },
     components: {
-      components: ["Badge", "VPCard"],
+      components: ["VPCard"],
     },
     searchPro: true,
     markdownTab: {
@@ -48,6 +48,7 @@ export default hopeTheme({
     mdEnhance: {
       mark: true,
       mermaid: true,
+      component: true,
     },
     shiki: {
       themes: {

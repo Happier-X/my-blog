@@ -4,22 +4,22 @@ export default navbar([
   "/",
   {
     text: "文章",
-    icon: "book",
+    icon: "Article",
     link: "/article/",
   },
   {
     text: "分类",
-    icon: "folder",
+    icon: "Category",
     link: "/category/",
   },
   {
     text: "标签",
-    icon: "tag",
+    icon: "Tag",
     link: "/tag/"
   },
   {
     text: "合集",
-    icon: "box",
+    icon: "Collection",
     children: [
       {
         text: "软件开发",
@@ -73,17 +73,17 @@ export default navbar([
   },
   {
     text: "时间线",
-    icon: "clock",
+    icon: "TimeLine",
     link: "/timeline/",
   },
   {
     text: "关于我",
-    icon: "user",
+    icon: "AboutMe",
     link: "/AboutMe/",
   },
   {
     text: "友链",
-    icon: "link",
+    icon: "FriendLink",
     link: "/FriendLink/",
   },
 ]);

@@ -1,5 +1,6 @@
 ---
 title: STM32 学习笔记
+icon: STM32LearningNote
 article: false
 timeline: false
 sidebar: false

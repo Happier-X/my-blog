@@ -1,5 +1,6 @@
 ---
 title: Nest 学习笔记
+icon: NestLearningNote
 article: false
 timeline: false
 sidebar: false

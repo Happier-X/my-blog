@@ -1,5 +1,6 @@
 ---
 title: Vue Router 学习笔记
+icon: VueRouterLearningNote
 article: false
 timeline: false
 sidebar: false

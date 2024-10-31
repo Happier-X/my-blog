@@ -1,5 +1,6 @@
 ---
 title: 三阶魔方盲拧
+icon: CubeBLD
 article: false
 timeline: false
 sidebar: false

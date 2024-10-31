@@ -1,5 +1,6 @@
 ---
 title: 旅行记录
+icon: TravelRecord
 article: false
 timeline: false
 sidebar: false

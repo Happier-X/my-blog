@@ -1,5 +1,6 @@
 ---
 title: Vue 学习笔记
+icon: VueLearningNote
 article: false
 timeline: false
 sidebar: false

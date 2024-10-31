@@ -1,5 +1,6 @@
 ---
 title: 读后感
+icon: ThoughtsAfterReading
 article: false
 timeline: false
 sidebar: false

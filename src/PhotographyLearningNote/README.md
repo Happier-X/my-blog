@@ -1,5 +1,6 @@
 ---
 title: 摄影学习笔记
+icon: PhotographyLearningNote
 article: false
 timeline: false
 sidebar: false

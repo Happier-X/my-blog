@@ -1,5 +1,6 @@
 ---
 title: Pinia 学习笔记
+icon: PiniaLearningNote
 article: false
 timeline: false
 sidebar: false

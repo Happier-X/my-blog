@@ -1,5 +1,6 @@
 ---
 title: 三阶魔方速拧
+icon: Cube
 article: false
 timeline: false
 sidebar: false

@@ -1,5 +1,6 @@
 ---
 title: 开发技巧
+icon: DevelopmentSkills
 article: false
 timeline: false
 sidebar: false

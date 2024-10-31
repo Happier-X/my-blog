@@ -1,5 +1,6 @@
 ---
 title: Go 学习笔记
+icon: GoLearningNote
 article: false
 timeline: false
 sidebar: false

@@ -1,5 +1,6 @@
 ---
 title: 软件工具
+icon: SoftwareTool
 article: false
 timeline: false
 sidebar: false

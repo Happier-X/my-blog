@@ -1,7 +1,7 @@
 ---
 home: true
 layout: BlogHome
-icon: house
+icon: Home
 title: 首页
 heroText: Happier's Blog
 heroFullScreen: true

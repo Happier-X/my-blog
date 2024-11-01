@@ -94,8 +94,8 @@ onMounted(()=>{
 ## 地图数据
 
 + 世界地图数据：[world-geo-json-zh](https://github.com/Surbowl/world-geo-json-zh)
-  + [Json 文件预览](https://happier-blog-picture.oss-cn-qingdao.aliyuncs.com/DevelopmentSkills/world.zh.json)
-  + [内地和港澳台单独绘制版本预览](https://happier-blog-picture.oss-cn-qingdao.aliyuncs.com/DevelopmentSkills/world-l.zh.json)
+  + [Json 文件预览](https://happier-blog.oss-cn-qingdao.aliyuncs.com/DevelopmentSkills/world.zh.json)
+  + [内地和港澳台单独绘制版本预览](https://happier-blog.oss-cn-qingdao.aliyuncs.com/DevelopmentSkills/world-l.zh.json)
 + 中国地图数据：[DataV.GeoAtlas](https://datav.aliyun.com/portal/school/atlas/area_selector)
 
 ### 关于世界地图中国居中版本

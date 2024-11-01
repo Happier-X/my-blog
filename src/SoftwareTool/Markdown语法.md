@@ -1,5 +1,4 @@
 ---
-title: Markdown 语法
 cover: https://t.alcy.cc/fj?t=1724158800
 date: 2024-08-20 21:00
 category: 软件工具
@@ -7,6 +6,8 @@ tag:
   - Markdown
 excerpt: false
 ---
+
+# Markdown 语法
 
 ## 标题
 
@@ -185,15 +186,6 @@ ___
 ------
 
 _____
-
-## 待办事项
-```Markdown
-- [ ] 计划 A
-- [x] 计划 B
-```
-- [ ] 计划 A
-
-- [x] 计划 B
 
 ## 空格
 

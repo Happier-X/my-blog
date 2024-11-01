@@ -241,3 +241,51 @@ const id2 = useId() // 'my-app:1'
 ```JavaScript
 app.config.throwUnhandledErrorInProduction = true
 ```
+
+## 通用 API
+
+### version
+
+提供当前应用所使用的 Vue 版本号。
+
+```JavaScript
+import { version } from 'vue'
+
+console.log(version)
+```
+
+### nextTick
+
+在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，可以获取更新后的 DOM。
+
+```JavaScript
+import { nextTick } from 'vue'
+
+nextTick(() => {
+  // DOM 已更新
+})
+```
+
+### defineComponent
+
+定义一个组件。
+
+```JavaScript
+import { defineComponent } from 'vue'
+
+const MyComponent = defineComponent({
+  // 组件选项
+})
+```
+
+### defineAsyncComponent
+
+定义一个异步组件。
+
+```JavaScript
+import { defineAsyncComponent } from 'vue'
+
+const AsyncComponent = defineAsyncComponent(() => {
+  return import('./AsyncComponent.vue')
+})
+```

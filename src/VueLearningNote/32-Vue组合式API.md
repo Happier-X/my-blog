@@ -568,3 +568,47 @@ scope.stop() // 停止作用域，并触发销毁回调
 `onDeactivated()`：在 `KeepAlive` 组件停用时执行。
 
 `onServerPrefetch()`：在服务器端渲染期间执行，用于在渲染之前执行异步操作。
+
+## 依赖注入
+
+`provide()`：在当前组件中提供数据，供后代组件使用。
+
+`inject()`：在后代组件中注入数据，使用 `provide()` 提供的数据。
+
+`hasInjectionContext()`：检查当前组件是否具有注入的上下文。
+
+## 辅助 API
+
+### useAttrs()
+
+返回组件的 `attrs` 对象。
+
+### useSlots()
+
+返回组件的 `slots` 对象。
+
+### useModel()
+
+这是驱动 `defineModel()` 的底层辅助函数。如果使用 `<script setup>`，应当优先使用 `defineModel()`。
+
+### useTemplateRef()
+
+返回一个模板引用。
+
+### useId()
+
+用于为无障碍属性或表单元素生成每个应用内唯一的 ID。
+
+```vue
+<template>
+  <form>
+    <label :for="id">Name:</label>
+    <input :id="id" type="text" />
+  </form>
+</template>
+<script setup>
+import { useId } from 'vue'
+
+const id = useId()
+</script>
+```

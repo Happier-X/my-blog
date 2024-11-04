@@ -8,4 +8,4 @@ sidebar: false
 
 旅行过程中的美好回忆。
 
-<Catalog base='/TravelRecord/' level='1' />
+<Catalog base='/TravelRecord/' level=1 />

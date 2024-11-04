@@ -7,4 +7,4 @@ sidebar: false
 ---
 Vue 学习过程中的笔记
 
-<Catalog base='/VueLearningNote/' level='1' />
+<Catalog base='/VueLearningNote/' level=1 />

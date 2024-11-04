@@ -8,4 +8,4 @@ sidebar: false
 
 分享我常用的软件工具以及一些软件工具的使用技巧。
 
-<Catalog base='/SoftwareTool/' level='1' />
+<Catalog base='/SoftwareTool/' level=1 />

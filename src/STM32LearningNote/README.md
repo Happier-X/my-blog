@@ -8,4 +8,4 @@ sidebar: false
 
 分享我学习 STM32 过程中的笔记
 
-<Catalog base='/STM32LearningNote/' level='1' />
+<Catalog base='/STM32LearningNote/' level=1 />

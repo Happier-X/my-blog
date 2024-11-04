@@ -8,4 +8,4 @@ sidebar: false
 
 分享我学习 Nest 过程中的笔记。
 
-<Catalog base='/NestLearningNote/' level='1' />
+<Catalog base='/NestLearningNote/' level=1 />

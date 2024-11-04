@@ -7,4 +7,4 @@ sidebar: false
 ---
 Vue Router 学习过程中的笔记
 
-<Catalog base='/VueRouterLearningNote/' level='1' />
+<Catalog base='/VueRouterLearningNote/' level=1 />

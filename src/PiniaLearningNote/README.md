@@ -7,4 +7,4 @@ sidebar: false
 ---
 Pinia 学习过程中的笔记
 
-<Catalog base='/PiniaLearningNote/' level='1' />
+<Catalog base='/PiniaLearningNote/' level=1 />

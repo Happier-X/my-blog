@@ -542,3 +542,29 @@ scope.run(() => {
 })
 scope.stop() // 停止作用域，并触发销毁回调
 ```
+
+## 生命周期钩子
+
+`onBeforeMount()`：在组件挂载到 DOM 之前执行。
+
+`onMounted()`：在组件挂载到 DOM 并完成首次渲染后执行，此时可以访问 DOM 元素，通常在此发送网络请求。
+
+`onBeforeUpdate()`：在组件更新之前执行。
+
+`onUpdated()`：在组件更新并重新渲染后执行。
+
+`onBeforeUnmount()`：在组件从 DOM 中销毁之前执行。
+
+`onUnmounted()`：在组件从 DOM 中移除并销毁之后执行。
+
+`onErrorCaptured()`：在组件捕获到错误时执行。
+
+`onRenderTracked()`：在组件渲染过程中追踪到响应式依赖时执行。
+
+`onRenderTriggered()`：在组件渲染过程中触发响应式依赖时执行。
+
+`onActivated()`：在 `KeepAlive` 组件激活时执行。
+
+`onDeactivated()`：在 `KeepAlive` 组件停用时执行。
+
+`onServerPrefetch()`：在服务器端渲染期间执行，用于在渲染之前执行异步操作。

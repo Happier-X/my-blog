@@ -126,3 +126,111 @@ export default {
 
 ## 核心 API
 
+### ref()
+
+`ref()` 函数用于将普通 JavaScript 值转换为一个响应式对象。
+
+```JavaScript
+import { ref } from 'vue'
+
+const count = ref(0)
+console.log(count.value) // 0
+count.value++
+console.log(count.value) // 1
+```
+
+### computed()
+
+`computed()` 函数用于创建一个计算属性。
+
+```JavaScript
+import { ref, computed } from 'vue'
+
+const count = ref(0)
+const doubleCount = computed(() => count.value * 2)
+console.log(doubleCount.value) // 0
+```
+
+### reactive()
+
+`reactive()` 函数用于将普通对象转换为响应式对象。
+
+```JavaScript
+import { reactive } from 'vue'
+
+const state = reactive({
+  count: 0
+})
+console.log(state.count) // 0
+state.count++
+console.log(state.count) // 1
+```
+
+### readonly()
+
+`readonly()` 函数用于创建一个只读的响应式代理对象。
+
+```JavaScript
+import { ref, reactive, readonly } from 'vue'
+
+const state = reactive({
+  count: 0
+})
+const readonlyState = readonly(state)
+readonlyState.count++ // error
+const count = ref(0)
+const readonlyCount = readonly(count)
+readonlyCount.value++ // error
+```
+
+### watchEffect()
+
+`watchEffect()` 函数用于创建一个副作用函数，该函数会在其依赖项发生变化时自动重新运行。
+
+```JavaScript
+import { ref, watchEffect } from "vue"
+
+const count = ref(0)
+watchEffect(() => {
+  console.log("Current count:", count.value)
+})
+count.value++ // 触发副作用函数，输出 "Current count: 1"
+```
+
+### watchPostEffect()
+
+`watchEffect()` 使用 `flush: 'post'` 选项时的别名。
+
+### watchSyncEffect()
+
+`watchEffect()` 使用 `flush: 'sync'` 选项时的别名。
+
+### watch()
+
+`watch()` 函数用于创建一个侦听器，该侦听器会在其依赖项发生变化时自动重新运行。
+
+```JavaScript
+import { ref, watch } from "vue"
+
+const count = ref(0)
+watch(count, (newValue, oldValue) => {
+  console.log(`count changed from ${oldValue} to ${newValue}`)
+})
+count.value++ // 触发侦听器，输出 "count changed from 0 to 1"
+```
+
+### onWatcherCleanup()
+
+`onWatcherCleanup()` 函数用于在侦听器被清理时执行回调函数。
+
+```JavaScript
+import { watch, onWatcherCleanup } from 'vue'
+
+watch(id, (newId) => {
+  const { response, cancel } = doAsyncWork(newId)
+  // 如果 `id` 变化，则调用 `cancel`，
+  // 如果之前的请求未完成，则取消该请求
+  onWatcherCleanup(cancel)
+})
+```
+

@@ -89,3 +89,40 @@ export default {
   }
 }
 ```
+
+### 与渲染函数一起使用
+
+`setup()` 也可以返回一个渲染函数，此时在渲染函数中可以直接使用在同一作用域下声明的响应式状态。
+
+```JavaScript
+import { h, ref } from 'vue'
+
+export default {
+  setup() {
+    const count = ref(0)
+    return () => h('div', count.value)
+  }
+}
+```
+
+返回一个渲染函数将会阻止我们返回其他东西。如果我们想通过模板引用将这个组件的方法暴露给父组件，我们可以使用 `expose` 函数。
+
+```JavaScript
+import { h, ref } from 'vue'
+
+export default {
+  setup(props, { expose }) {
+    const count = ref(0)
+    const increment = () => ++count.value
+
+    expose({
+      increment
+    })
+
+    return () => h('div', count.value)
+  }
+}
+```
+
+## 核心 API
+

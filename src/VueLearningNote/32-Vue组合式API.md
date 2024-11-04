@@ -168,7 +168,7 @@ console.log(state.count) // 1
 
 ### readonly()
 
-`readonly()` 函数用于创建一个只读的响应式代理对象。
+`readonly()` 函数接受一个对象 (不论是响应式还是普通的) 或是一个 `ref`，返回一个原值的只读代理。
 
 ```JavaScript
 import { ref, reactive, readonly } from 'vue'
@@ -234,3 +234,311 @@ watch(id, (newId) => {
 })
 ```
 
+## 工具函数
+
+### isRef()
+
+`isRef()` 函数用于判断一个值是否为 `ref` 创建的响应式引用对象。
+
+```JavaScript
+import { ref, isRef } from 'vue'
+
+const count = ref(0)
+console.log(isRef(count)) // true
+```
+
+### unref()
+
+如果参数是 `ref`，则返回内部值，否则返回参数本身。
+
+```JavaScript
+import { ref, unref } from 'vue'
+
+const count = ref(0)
+console.log(unref(count)) // 0
+const count1 = 1
+console.log(unref(count1)) // 1
+```
+
+### toRef()
+
+`toRef()` 函数用于将响应式对象的属性转换为 `ref`。
+
+也可以将值、`refs` 或 `getters` 规范化为 `refs`。
+
+```JavaScript
+import { reactive, toRef } from 'vue'
+
+const state = reactive({
+  count: 0
+})
+const countRef = toRef(state, 'count')
+console.log(countRef.value) // 0
+countRef.value++
+console.log(state.count) // 1
+```
+
+```JavaScript
+// 按原样返回现有的 ref
+toRef(existingRef)
+// 创建一个只读的 ref，当访问 .value 时会调用此 getter 函数
+toRef(() => props.foo)
+
+// 从非函数的值中创建普通的 ref
+// 等同于 ref(1)
+toRef(1)
+```
+
+### toValue()
+
+`toValue()` 函数用于将值、`refs` 或 `getters` 规范化为值。
+
+```JavaScript
+toValue(1) // 1
+toValue(ref(1)) // 1
+toValue(() => 1) // 1
+toValue(reactive({ foo: 1 }).foo) // 1
+```
+
+### toRefs()
+
+`toRefs()` 函数用于将一个响应式对象转换为一个普通对象，这个普通对象的每个属性都是指向源对象相应属性的 `ref`。
+
+```JavaScript
+import { reactive, toRefs } from 'vue'
+
+const state = reactive({
+  count: 0,
+  name: 'John'
+})
+const { count, name } = toRefs(state)
+console.log(count.value) // 0
+console.log(name.value) // 'John'
+```
+
+### isProxy()
+
+检查一个对象是否是由 `reactive()`、`readonly()`、`shallowReactive()` 或 `shallowReadonly()` 创建的代理。
+
+```JavaScript
+import { isProxy } from 'vue'
+
+const state = reactive({ count: 0 })
+console.log(isProxy(state)) // true
+```
+
+### isReactive()
+
+检查一个对象是否是由 `reactive()` 或 `shallowReactive()` 创建的代理。
+
+```JavaScript
+import { reactive, isReactive } from 'vue'
+
+const state = reactive({ count: 0 })
+console.log(isReactive(state)) // true
+```
+
+### isReadonly()
+
+检查一个对象是否是由 `readonly()` 或 `shallowReadonly()` 创建的只读代理。
+
+```JavaScript
+import { readonly, isReadonly } from 'vue'
+
+const state = readonly({ count: 0 })
+console.log(isReadonly(state)) // true
+```
+
+## 进阶 API
+
+### shallowRef()
+
+`ref()` 的浅层作用形式。
+
+```JavaScript
+import { shallowRef } from 'vue'
+
+const state = shallowRef({ count: 1 })
+// 不会触发更改
+state.value.count = 2
+// 会触发更改
+state.value = { count: 2 }
+```
+
+### triggerRef()
+
+强制触发依赖于一个浅层 `ref` 的副作用，这通常在对浅引用的内部值进行深度变更后使用。
+
+```JavaScript
+import { shallowRef, triggerRef } from 'vue'
+
+const shallow = shallowRef({
+  greet: 'Hello, world'
+})
+
+// 触发该副作用第一次应该会打印 "Hello, world"
+watchEffect(() => {
+  console.log(shallow.value.greet)
+})
+
+// 这次变更不应触发副作用，因为这个 ref 是浅层的
+shallow.value.greet = 'Hello, universe'
+
+// 打印 "Hello, universe"
+triggerRef(shallow)
+```
+
+### customRef()
+
+创建一个自定义的 `ref`，显式声明对其依赖追踪和更新触发的控制方式。
+
+```JavaScript
+import { customRef } from 'vue'
+
+export function useDebouncedRef(value, delay = 200) {
+  let timeout
+  return customRef((track, trigger) => {
+    return {
+      get() {
+        track() // 追踪依赖
+        return value
+      },
+      set(newValue) {
+        clearTimeout(timeout)
+        timeout = setTimeout(() => {
+          value = newValue
+          trigger() // 触发更新
+        }, delay)
+      }
+    }
+  })
+}
+```
+
+```vue
+<template>
+  <input v-model="text" />
+</template>
+
+<script setup>
+import { useDebouncedRef } from './debouncedRef'
+const text = useDebouncedRef('hello')
+</script>
+```
+
+### shallowReactive()
+
+`reactive()` 的浅层作用形式。
+
+```JavaScript
+import { shallowReactive, isReactive } from 'vue'
+
+const state = shallowReactive({
+  foo: 1,
+  nested: {
+    bar: 2
+  }
+})
+// 更改状态自身的属性是响应式的
+state.foo++
+// ...但下层嵌套对象不会被转为响应式
+isReactive(state.nested) // false
+// 不是响应式的
+state.nested.bar++
+```
+
+### shallowReadonly()
+
+`readonly()` 的浅层作用形式。
+
+```JavaScript
+import { shallowReadonly, isReadonly } from 'vue'
+
+const state = shallowReadonly({
+  foo: 1,
+  nested: {
+    bar: 2
+  }
+})
+// 更改状态自身的属性会失败
+state.foo++
+// ...但可以更改下层嵌套对象
+isReadonly(state.nested) // false
+// 这是可以通过的
+state.nested.bar++
+```
+
+### toRaw()
+
+根据一个 Vue 创建的代理返回其原始对象。
+
+```JavaScript
+import { reactive, toRaw } from 'vue'
+
+const foo = {}
+const reactiveFoo = reactive(foo)
+console.log(toRaw(reactiveFoo) === foo) // true
+```
+
+### markRaw()
+
+将一个对象标记为不可被转为代理。返回该对象本身。
+
+```JavaScript
+import { markRaw, isReactive} from 'vue'
+
+const foo = markRaw({})
+console.log(isReactive(reactive(foo))) // false
+// 也适用于嵌套在其他响应性对象
+const bar = reactive({ foo })
+console.log(isReactive(bar.foo)) // false
+```
+
+### effectScope()
+
+创建一个 `effect` 作用域，可以捕获其中所创建的响应式副作用 (即计算属性和侦听器)，这样捕获到的副作用可以一起处理。
+
+```JavaScript
+import { effectScope, computed, watch, watchEffect } from 'vue'
+const scope = effectScope()
+scope.run(() => {
+  const doubled = computed(() => counter.value * 2)
+  watch(doubled, () => console.log(doubled.value))
+  watchEffect(() => console.log('Count: ', doubled.value))
+})
+// 处理掉当前作用域内的所有 effect
+scope.stop()
+```
+
+### getCurrentScope()
+
+返回当前活跃的 `effectScope` 实例，若当前没有活跃的 `effectScope` 则返回 `null`。
+
+```JavaScript
+import { effectScope, getCurrentScope } from 'vue'
+
+const scope = effectScope()
+console.log(getCurrentScope() === scope) // true
+scope.run(() => {
+  console.log(getCurrentScope() === scope) // true
+})
+scope.stop()
+console.log(getCurrentScope()) // null
+```
+
+### onScopeDispose()
+
+在当前活跃的 `effect` 作用域上注册一个处理回调函数。当相关的 `effect` 作用域停止时会调用这个回调函数。
+
+```JavaScript
+import { effectScope, onScopeDispose } from "vue"
+
+const scope = effectScope()
+onScopeDispose(() => {
+  console.log("作用域已销毁")
+})
+scope.run(() => {
+  // 执行作用域函数
+})
+scope.stop() // 停止作用域，并触发销毁回调
+```

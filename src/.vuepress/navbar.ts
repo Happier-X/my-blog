@@ -30,6 +30,7 @@ export default navbar([
           "/VueLearningNote/",
           "/VueRouterLearningNote/",
           "/PiniaLearningNote/",
+          "/TypeScriptLearningNote/"
         ],
       },
       {

@@ -14,4 +14,5 @@ export default sidebar({
   "/VueRouterLearningNote/": "structure",
   "/ThoughtsAfterReading/": "structure",
   "/PiniaLearningNote/": "structure",
+  "/TypeScriptLearningNote/": "structure",
 });

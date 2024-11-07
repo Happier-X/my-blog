@@ -11,9 +11,9 @@ excerpt: false
 
 ## 什么是 any 类型
 
-any 类型表示没有任何限制，该类型的变量可以赋予任意类型的值。
+`any` 类型表示没有任何限制，该类型的变量可以赋予任意类型的值。
 
-使用 any 类型，相当于不进行类型检查。
+使用 `any` 类型，相当于不进行类型检查。
 
 ```TypeScript
 let x: any
@@ -24,9 +24,9 @@ x = true // 正确
 
 ## 类型推断问题
 
-对于开发者没有指定类型、TypeScript 必须自己推断类型的那些变量，如果无法推断出类型，TypeScript 就会认为该变量的类型是 any。
+对于开发者没有指定类型、TypeScript 必须自己推断类型的那些变量，如果无法推断出类型，TypeScript 就会认为该变量的类型是 `any`。
 
-TypeScript 提供了一个编译选项 `noImplicitAny`，打开该选项，只要推断出 any 类型就会报错。
+TypeScript 提供了一个编译选项 `noImplicitAny`，打开该选项，只要推断出 `any` 类型就会报错。
 
 ```sh
 tsc --noImplicitAny xxx.ts
@@ -43,11 +43,11 @@ tsc --noImplicitAny xxx.ts
 }
 ```
 
-注意：使用 let 和 var 命令声明变量，但不赋值也不指定类型，是不会报错的。
+注意：使用 `let` 和 `var` 命令声明变量，但不赋值也不指定类型，是不会报错的。
 
 ## 污染问题
 
-TypeScript 的 any 类型会污染其他类型，因为 any 类型的变量可以赋值给其他类型的变量。
+TypeScript 的 `any` 类型会污染其他类型，因为 `any` 类型的变量可以赋值给其他类型的变量。
 
 ```TypeScript
 let x: any = "hello"

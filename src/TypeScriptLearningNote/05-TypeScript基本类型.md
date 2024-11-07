@@ -53,16 +53,6 @@ const y: bigint = 0xffffn
 const x: symbol = Symbol()
 ```
 
-## object 类型
-
-`object` 类型包含了所有对象、数组和函数。
-
-```TypeScript
-const x: object = { foo: 123 }
-const y: object = [1, 2, 3]
-const z: object = (n: number) => n + 1
-```
-
 ## undefined 类型
 
 `undefined` 类型只包含一个值 `undefined`，表示未定义 (即还未给出定义，以后可能会有定义)。

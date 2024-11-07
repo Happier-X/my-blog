@@ -38,6 +38,6 @@ const s4: string = new String("hello") // 报错
 const n1: number = 1
 const n2: Number = 1
 
-Math.abs(n1); // 1
-Math.abs(n2); // 报错
+Math.abs(n1) // 1
+Math.abs(n2) // 报错
 ```

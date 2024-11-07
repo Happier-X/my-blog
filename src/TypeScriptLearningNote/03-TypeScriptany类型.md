@@ -13,6 +13,8 @@ excerpt: false
 
 any 类型表示没有任何限制，该类型的变量可以赋予任意类型的值。
 
+使用 any 类型，相当于不进行类型检查。
+
 ```TypeScript
 let x: any
 x = 1 // 正确

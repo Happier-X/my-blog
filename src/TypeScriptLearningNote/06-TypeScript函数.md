@@ -169,3 +169,60 @@ function f(): void {
 
 ## 函数重载
 
+有些函数可以接受不同类型或不同个数的参数，并且根据参数的不同，会有不同的函数行为。这种根据参数类型不同，执行不同逻辑的行为，称为函数重载。
+
+TypeScript 对于 “函数重载” 的类型声明方法是，逐一定义每一种情况的类型。
+
+```TypeScript
+function reverse(str: string): string
+function reverse(arr: any[]): any[]
+function reverse(stringOrArray: string | any[]): string | any[] {
+  if (typeof stringOrArray === "string")
+    return stringOrArray.split("").reverse().join("")
+  else return stringOrArray.slice().reverse()
+}
+```
+
+由于重载是一种比较复杂的类型声明方法，为了降低复杂性，一般来说，如果可以的话，应该优先使用联合类型替代函数重载。
+
+```TypeScript
+// 写法一
+function len(s: string): number
+function len(arr: any[]): number
+function len(x: any): number {
+  return x.length
+}
+
+// 写法二
+function len(x: any[] | string): number {
+  return x.length
+}
+```
+
+## 构造函数
+
+构造函数的类型写法，就是在参数列表前面加上 `new`。
+
+```TypeScript
+class Animal {
+  numLegs: number = 4
+}
+
+type AnimalConstructor = new () => Animal
+
+function create(c: AnimalConstructor): Animal {
+  return new c()
+}
+
+const a = create(Animal)
+```
+
+类型 `AnimalConstructor` 就是一个构造函数，而函数 `create()` 需要传入一个构造函数。在 JavaScript 中，类 (`class`) 本质上是构造函数，所以 `Animal` 这个类可以传入 `create()`。
+
+构造函数还有另一种类型写法，就是采用对象形式。
+
+```TypeScript
+type F = {
+  new (s: string): object
+}
+```

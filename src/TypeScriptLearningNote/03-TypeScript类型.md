@@ -507,3 +507,68 @@ getSum(arr as number[])
 ```TypeScript
 const arr: number[][] = [[1, 2], [3, 4]]
 ```
+
+## 元组类型
+
+### 元组类型的定义
+
+元组表示成员类型可以自由设置的数组，即数组的各个成员的类型可以不同。
+
+元组必须明确声明每个成员的类型。
+
+```TypeScript
+const s: [string, string, boolean] = ["a", "b", true]
+```
+
+使用元组时，必须明确给出类型声明，否则 TypeScript 会把一个值自动推断为数组。
+
+```TypeScript
+let a = [1, true] // 会推断为 (number | boolean)[]
+```
+
+元组成员的类型可以添加问号后缀 (`?`)，表示该成员是可选的，问号只能用于元组的尾部成员。
+
+```TypeScript
+let a: [number, number?] = [1]
+```
+
+使用扩展运算符 (`...`)，可以表示不限成员数量的元组，扩展运算符用在元组的任意位置都可以，但是它后面只能是数组或元组。
+
+```TypeScript
+let a: [number, ...number[]] = [1, 2, 3]
+let b: [...number[], number] = [1, 2, 3]
+```
+
+### 只读元组
+
+第一种是使用 `readonly` 关键字，表示元组是只读的，不能修改。
+
+```TypeScript
+const arr: readonly [number, string] = [0, "1"]
+```
+
+第二种是使用 `Readonly`，表示元组是只读的，不能修改。
+
+```TypeScript
+const arr: Readonly<[number, string]> = [0, "1"]
+```
+
+第三种是使用 `const` 断言。
+
+```TypeScript
+const arr = [0, "1"] as const
+```
+
+由于只读元组是元组的父类型，所以它不能代替元组。
+
+```TypeScript
+function distanceFromOrigin([x, y]: [number, number]) {
+    return Math.sqrt(x ** 2 + y ** 2)
+}
+
+let point = [3, 4] as const
+
+distanceFromOrigin(point) // 报错
+// 可以使用类型断言，将只读元组转换为普通元组
+distanceFromOrigin(point as [number, number])
+```

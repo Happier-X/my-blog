@@ -572,3 +572,11 @@ distanceFromOrigin(point) // 报错
 // 可以使用类型断言，将只读元组转换为普通元组
 distanceFromOrigin(point as [number, number])
 ```
+
+### 成员数量的推断
+
+如果没有可选成员和扩展运算符，TypeScript 会推断出元组的成员数量（即元组长度）。
+
+如果包含了可选成员，TypeScript 会推断出可能的成员数量。
+
+如果使用了扩展运算符，TypeScript 就无法推断出成员数量。

@@ -408,3 +408,102 @@ obj = {
   bar: "world",
 }
 ```
+
+## 数组类型
+
+### 数组类型的定义
+
+数组类型有两种定义方式。
+
+第一种是使用 `[]` 表示数组，数组中的每个元素都必须是相同的类型。
+
+```TypeScript
+let arr: number[] = [1, 2, 3]
+let arr1: (number | string)[] = [1, "2", 3]
+```
+
+第二种是使用 `Array` 表示数组，数组中的每个元素都必须是相同的类型。
+
+```TypeScript
+let arr: Array<number> = [1, 2, 3]
+let arr1: Array<number | string> = [1, "2", 3]
+```
+
+数组类型声明了以后，成员数量是不限制的，任意数量的成员都可以，也可以是空数组。
+
+### 数组的类型推断
+
+如果声明数组时没有指定类型，TypeScript 会自动进行类型推断。
+
+如果变量的初始值是空数组，那么 TypeScript 会推断数组类型是 `any[]`。
+
+```TypeScript
+// 推断为 any[]
+const arr = []
+```
+
+后面，为这个数组赋值时，TypeScript 会自动更新类型推断。
+
+```TypeScript
+const arr = []
+arr // 推断为 any[]
+
+arr.push(123)
+arr // 推断类型为 number[]
+
+arr.push("abc")
+arr // 推断类型为 (string|number)[]
+```
+
+如果变量的初始值不是空数组，那么 TypeScript 会根据初始值推断数组类型，类型推断也不会自动更新。
+
+```TypeScript
+// 推断类型为 number[]
+const arr = [123]
+
+arr.push("abc") // 报错
+```
+
+### 只读数组
+
+第一种是使用 `readonly` 关键字，表示数组是只读的，不能修改。
+
+```TypeScript
+const arr: readonly number[] = [0, 1]
+
+arr[1] = 2 // 报错
+arr.push(3) // 报错
+```
+
+第二种是使用 `ReadonlyArray` 类型，表示数组是只读的，不能修改。
+
+```TypeScript
+const arr: ReadonlyArray<number> = [0, 1]
+```
+
+第三种是使用 `const` 断言。
+
+```TypeScript
+const arr = [0, 1] as const
+```
+
+由于只读数组是数组的父类型，所以它不能代替数组。
+
+```TypeScript
+function getSum(s: number[]) {
+
+}
+
+const arr: readonly number[] = [1, 2, 3]
+getSum(arr) // 报错
+// 可以使用类型断言，将只读数组转换为普通数组
+getSum(arr as number[])
+```
+
+### 多维数组
+
+使用 `T[][]` 的形式，表示二维数组，`T` 是最底层数组成员的类型。
+
+```TypeScript
+const arr: number[][] = [[1, 2], [3, 4]]
+```

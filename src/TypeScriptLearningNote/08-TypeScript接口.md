@@ -129,6 +129,8 @@ interface Box {
 }
 ```
 
+两个 `Box` 接口会合并成一个接口，拥有 `height`、`width` 和 `length` 三个属性。
+
 ## 接口与 type 的异同
 
 相同点：

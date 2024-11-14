@@ -56,6 +56,38 @@ person.age = 21 // 报错
 
 如果属性值是一个对象，`readonly` 修饰符并不禁止修改该对象的属性，只是禁止完全替换掉该对象。
 
+## 属性名的索引类型
+
+如果对象的属性非常多，一个个声明类型就很麻烦，而且有些时候，无法事前知道对象会有多少属性。这时 TypeScript 允许采用属性名表达式的写法来描述类型，称为“属性名的索引类型”。
+
+索引类型里面，最常见的就是属性名的字符串索引。
+
+```TypeScript
+type MyObj = {
+  [property: string]: string
+}
+// property 表示属性名，可以随便起，它的类型是 string
+// 不管这个对象有多少属性，只要属性名为 string，属性值为 string，就符合 MyObj 类型
+
+const obj: MyObj = {
+  foo: "a",
+  bar: "b",
+  baz: "c",
+}
+```
+
+属性名的类型还可以是 `number` 或 `symbol`。
+
+```TypeScript
+type T1 = {
+  [property: number]: string
+}
+
+type T2 = {
+  [property: symbol]: string
+}
+```
+
 ## 解构赋值
 
 TypeScript 支持解构赋值，并且可以指定解构出来的变量的类型。

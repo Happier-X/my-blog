@@ -1,5 +1,4 @@
 ---
-title: Alist 的安装与基本使用
 cover: https://t.alcy.cc/fj?t=1708394400000
 date: 2024-02-20 10:00
 category: 软件工具
@@ -7,6 +6,7 @@ tag:
   - Alist
 excerpt: false
 ---
+# Alist 的安装与基本使用
 ## Windows 平台
 ### 下载安装包并安装
 去 [Alist](https://github.com/alist-org/alist) 仓库 releases 里下载最新版 Windows 安装包，下载完成后解压到任意目录。

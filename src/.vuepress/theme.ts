@@ -3,6 +3,7 @@ import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
 
 export default hopeTheme({
+  hotReload: true,
   fullscreen: true,
   hostname: "https://blog.azhf8.top/",
   author: {
@@ -49,6 +50,7 @@ export default hopeTheme({
       mark: true,
       mermaid: true,
       component: true,
+      demo: true,
     },
     shiki: {
       themes: {

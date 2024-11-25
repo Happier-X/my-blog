@@ -37,7 +37,7 @@ export default hopeTheme({
     },
     comment: {
       provider: "Waline",
-      serverURL: "https://blog-comment.azhf8.top",
+      serverURL: "https://blog-comment.happierx.top",
     },
     components: {
       components: ["VPCard"],

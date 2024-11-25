@@ -35,5 +35,5 @@ timeline: false
 - QQ：3407085928
 - 微信：Pisces12013
 - 邮箱：[zhf5256@qq.com](mailto:zhf5256@qq.com)
-- 博客：[Happier's Blog](https://blog.azhf8.top/)
-- GitHub：[https://github.com/HappierPuppy](https://github.com/HappierPuppy)
+- 博客：[Happier's Blog](https://blog.happierx.top/)
+- GitHub：[https://github.com/Happier-X](https://github.com/Happier-X)

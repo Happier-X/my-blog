@@ -5,7 +5,7 @@ import sidebar from "./sidebar.js";
 export default hopeTheme({
   hotReload: true,
   fullscreen: true,
-  hostname: "https://blog.azhf8.top/",
+  hostname: "https://blog.happierx.top/",
   author: {
     name: "Happier",
     url: "/AboutMe/",
@@ -25,7 +25,7 @@ export default hopeTheme({
     medias: {
       BiliBili: "https://space.bilibili.com/401106272",
       Email: "mailto:zhf5256@qq.com",
-      GitHub: "https://github.com/HappierPuppy",
+      GitHub: "https://github.com/Happier-X",
     },
   },
   metaLocales: {

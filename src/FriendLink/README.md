@@ -44,7 +44,7 @@ background: rgba(161,175,201,0.15)
 昵称: Happier's Blog
 描述: 悟已往之不谏，知来者之可追
 头像: https://zhf-picture.oss-cn-qingdao.aliyuncs.com/picture/logo.jpg
-地址: https://blog.azhf8.top/
+地址: https://blog.happierx.top/
 ```
 @tab json
 
@@ -53,7 +53,7 @@ background: rgba(161,175,201,0.15)
   "name": "Happier's Blog",
   "description": "悟已往之不谏，知来者之可追",
   "avatar": "https://zhf-picture.oss-cn-qingdao.aliyuncs.com/picture/logo.jpg",
-  "link": "https://blog.azhf8.top/",
+  "link": "https://blog.happierx.top/",
 }
 ```
 :::

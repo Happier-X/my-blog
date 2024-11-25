@@ -13,7 +13,7 @@ export default hopeTheme({
   iconAssets: "//at.alicdn.com/t/c/font_4729614_9tmbobwu33m.css",
   iconPrefix: "iconfont icon-",
   logo: "https://zhf-picture.oss-cn-qingdao.aliyuncs.com/picture/logo.jpg",
-  repo: "zhf521/MyBlog",
+  repoDisplay: true,
   docsDir: "src",
   navbar,
   sidebar,

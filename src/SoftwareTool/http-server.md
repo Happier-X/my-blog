@@ -1,5 +1,4 @@
 ---
-title: 命令行静态 HTTP 服务器 http-server
 cover: https://t.alcy.cc/fj?t=1729760400000
 date: 2024-10-24 17:00
 category: 软件工具
@@ -8,9 +7,13 @@ tag:
 excerpt: false
 ---
 
+# http-server
+
+http-server 是一个简单、零配置的命令行 HTTP 服务器，用于快速启动一个静态服务器。
+
 ## 安装
 
-确保已经安装了 Node.js 和 npm。
+确保已经安装了 `Node` 和 `npm`。
 
 ```sh
 npm install -g http-server
@@ -18,7 +21,7 @@ npm install -g http-server
 
 ## 使用
 
-在项目目录下运行以下命令：
+在项目目录下运行以下命令。
 
 ```sh
 http-server

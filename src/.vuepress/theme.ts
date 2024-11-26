@@ -14,6 +14,7 @@ export default hopeTheme({
   iconPrefix: "iconfont icon-",
   logo: "https://zhf-picture.oss-cn-qingdao.aliyuncs.com/picture/logo.jpg",
   repoDisplay: true,
+  repo: "https://github.com/Happier-X/my-blog",
   docsDir: "src",
   navbar,
   sidebar,

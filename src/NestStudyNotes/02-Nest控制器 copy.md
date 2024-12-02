@@ -1,11 +1,13 @@
 ---
-title: 控制器
-order: 3
-date: 2024-02-23
+cover: https://t.alcy.cc/fj?t=1733119200000
+order: 2
+date: 2024-12-02 14:00
 category: 软件开发
 tag: Nest
 excerpt: false
 ---
+
+# Nest 控制器
 
 ## 什么是控制器
 

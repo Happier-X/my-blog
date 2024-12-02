@@ -1,10 +1,10 @@
 ---
 title: Vue Router 学习笔记
-icon: VueRouterLearningNote
+icon: VueRouterStudyNotes
 article: false
 timeline: false
 sidebar: false
 ---
 Vue Router 学习过程中的笔记
 
-<Catalog base='/VueRouterLearningNote/' level=1 />
+<Catalog base='/VueRouterStudyNotes/' level=1 />

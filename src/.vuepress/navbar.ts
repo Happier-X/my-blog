@@ -25,12 +25,12 @@ export default navbar([
         text: "软件开发",
         children: [
           "/DevelopmentSkills/",
-          "/GoLearningNote/",
-          "/NestLearningNote/",
-          "/VueLearningNote/",
-          "/VueRouterLearningNote/",
-          "/PiniaLearningNote/",
-          "/TypeScriptLearningNote/"
+          "/GoStudyNotes/",
+          "/NestStudyNotes/",
+          "/VueStudyNotes/",
+          "/VueRouterStudyNotes/",
+          "/PiniaStudyNotes/",
+          "/TypeScriptStudyNotes/"
         ],
       },
       {
@@ -49,7 +49,7 @@ export default navbar([
       {
         text: "摄影",
         children: [
-          "/PhotographyLearningNote/"
+          "/PhotographyStudyNotes/"
         ]
       },
       {
@@ -61,7 +61,7 @@ export default navbar([
       {
         text: "嵌入式开发",
         children: [
-          "/STM32LearningNote/"
+          "/STM32StudyNotes/"
         ]
       },
       {

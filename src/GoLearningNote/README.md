@@ -1,6 +1,6 @@
 ---
 title: Go 学习笔记
-icon: GoLearningNote
+icon: GoStudyNotes
 article: false
 timeline: false
 sidebar: false
@@ -8,5 +8,5 @@ sidebar: false
 
 分享我学习 Go 过程中的笔记。
 
-<Catalog base='/GoLearningNote/' level=1 />
+<Catalog base='/GoStudyNotes/' level=1 />
 

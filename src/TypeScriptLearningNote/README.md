@@ -1,6 +1,6 @@
 ---
 title: TypeScript 学习笔记
-icon: TypeScriptLearningNote
+icon: TypeScriptStudyNotes
 article: false
 timeline: false
 sidebar: false
@@ -8,4 +8,4 @@ sidebar: false
 
 TypeScript 学习过程中的笔记。
 
-<Catalog base='/TypeScriptLearningNote/' level=1 />
+<Catalog base='/TypeScriptStudyNotes/' level=1 />

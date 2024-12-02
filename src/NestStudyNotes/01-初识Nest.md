@@ -11,11 +11,11 @@ excerpt: false
 
 ## Nest 基本概念
 
-Nest 采用模块化设计，将功能拆分到不同的模块 (Module) 中，至少有一个根模块 (Root Module)，模块以树状结构组织。
+Nest 采用模块化设计，将功能拆分到不同的模块 (Modules) 中，至少有一个根模块 (Root Module)，模块以树状结构组织。
 
 ![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/NestStudyNotes/%E5%88%9D%E8%AF%86Nest01.jpg)
 
-一个有路由的模块会包含控制器 (Controller) 和服务 (Service)。控制器与服务通过模块进行关联，将服务注入 (Inject) 到控制器中使用，这样控制器用来处理 HTTP 请求，服务用来处理业务逻辑。
+一个有路由的模块会包含控制器 (Controllers) 和服务 (Services)。控制器与服务通过模块进行关联，将服务注入 (Inject) 到控制器中使用，这样控制器用来处理 HTTP 请求，服务用来处理业务逻辑。
 
 ![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/NestStudyNotes/%E5%88%9D%E8%AF%86Nest02.jpg)
 
@@ -171,4 +171,4 @@ export class AppService {
 }
 ```
 
-定义了一个名为 `AppService` 的类，这里使用的是 `@Injectable` 装饰器，原因是服务属于抽象的概念，Nest 中许多抽象概念可以使用 `@Injectable` 装饰器进行标记，它们统称为提供者 (Provider)。
+定义了一个名为 `AppService` 的类，这里使用的是 `@Injectable` 装饰器，原因是服务属于抽象的概念，Nest 中许多抽象概念可以使用 `@Injectable` 装饰器进行标记，它们统称为提供者 (Providers)。

@@ -16,18 +16,18 @@ excerpt: false
 使用如下命令可以快速创建一个控制器。
 
 ```sh
-nest g controller <CONTROLLER_NAME>
+nest generate controller <CONTROLLERS_NAME>
 ```
 
-> `<CONTROLLER_NAME>` 可以是文件路径，例如 `user/auth`。
+> `<CONTROLLERS_NAME>` 可以是文件路径，例如 `user/auth`。
 
 这里我们创建一个 `todo` 控制器。
 
 ```sh
-nest g controller todo
+nest generate controller todo
 ```
 
-此时会在`src`下生成一个 `todo` 文件夹，里面包含一个 `todo.controller.ts` 文件和一个`todo.controller.spec.ts`。
+此时会在 `src` 下生成一个 `todo` 文件夹，里面包含一个 `todo.controller.ts` 文件和一个 `todo.controller.spec.ts`。
 
 同时，在 `app.module.ts` 文件中自动引入了 `TodoController`。
 

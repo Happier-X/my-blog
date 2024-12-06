@@ -38,9 +38,9 @@ import { AppService } from './app.service'
 import { TodoController } from './todo/todo.controller'
 
 @Module({
-  imports: [],
-  controllers: [AppController, TodoController],
-  providers: [AppService],
+    imports: [],
+    controllers: [AppController, TodoController],
+    providers: [AppService]
 })
 export class AppModule {}
 ```
@@ -55,3 +55,35 @@ import { Controller } from '@nestjs/common'
 @Controller('todo')
 export class todoController {}
 ```
+
+这里 `@Controller()` 里面的参数 `todo` 就是路由前缀，所有该控制器下的路由都会加上这个前缀。
+
+> 注意：通过 Nest CLI 建立的控制器路由前缀默认使用该控制器的名称，而我们通常会习惯把名称取单数，而前缀改为复数。
+
+所以，我们修改一下路由前缀。
+
+```TypeScript
+import { Controller } from '@nestjs/common'
+
+@Controller('todos')
+export class TodoController {}
+```
+
+## Http 方法
+
+通过在`class`方法上添加装饰器，可以定义路由的 HTTP 方法，Nest 会根据装饰器自动将请求映射到对应的方法上。
+
+```TypeScript
+import { Controller, Get } from '@nestjs/common'
+
+@Controller('todos')
+export class todoController {
+    @Get()
+    getAll() {
+        return []
+    }
+}
+```
+
+这里我们定义了一个 `GET /todos` 的路由，并且返回一个空数组。通过 `http://localhost:3000/todos` 可以访问到这个路由。
+

@@ -145,7 +145,9 @@ export class TodoController {
 
 通过 `http://localhost:3000/todos/exammmmmples` 和 `http://localhost:3000/todos/exam_ples` 都可以访问到这个路由。
 
-## 路由参数
+## 获取请求参数
+
+### 路由参数
 
 要获得路由参数，我们先在 `Http Method` 装饰器上进行定义，字符串格式为 `:参数名`，然后在该方法中添加带有 `@Param()` 装饰器的参数。
 
@@ -188,7 +190,7 @@ export class TodoController {
 
 通过 `http://localhost:3000/todos/1` 可以访问到这个路由，将返回 `{"id":1,"title":"Title 1","description":"Description 1"}`。
 
-## 查询参数
+### 查询参数
 
 要获得查询参数，我们只需要在方法中添加带有 `@Query()` 装饰器的参数即可。
 
@@ -227,26 +229,9 @@ export class TodoController {
 
 通过 `http://localhost:3000/todos?id=1&name=2` 可以访问到这个路由，将返回 `{"id":"1","name":"2"}`。
 
-## 状态码
 
-默认情况下，响应的状态码始终为 `200`，除了 `POST` 请求的状态码为 `201`。Nest 提供了 `@HttpCode()` 装饰器来设置状态码，同时还提供了状态码的 `enum`。
 
-```TypeScript
-import { Controller, HttpCode, HttpStatus, Patch } from '@nestjs/common'
-
-@Controller('todos')
-export class TodoController {
-    @Patch()
-    @HttpCode(HttpStatus.NO_CONTENT)
-    get() {
-        return []
-    }
-}
-```
-
-通过发送 `PATCH` 请求到 `http://localhost:3000/todos`，可以访问到这个路由，状态码将返回 `204 No Content`。
-
-## 请求体
+### 请求体
 
 要获得请求体，我们只需要在方法中添加带有 `@Body()` 装饰器的参数即可。
 
@@ -289,7 +274,7 @@ export class TodoController {
 
 通过发送 `POST` 请求到 `http://localhost:3000/todos`，发送请求体 `{ "title": "Title 1", "description": "Description 1" }`，可以访问到这个路由，将返回 `{"id":1,"title":"Title 1","description":"Description 1"}`。
 
-## 使用 DTO
+#### 使用 DTO
 
 DTO (数据传输对象) 通常用于过滤、格式化数据，它只负责传输数据，不包含业务逻辑。
 
@@ -323,7 +308,7 @@ export class TodoController {
 }
 ```
 
-## 请求头
+### 请求头
 
 要获取请求头，我们只需要在方法中添加带有 `@Headers()` 装饰器的参数即可。
 
@@ -357,6 +342,21 @@ export class TodoController {
 
 通过发送 `POST` 请求到 `http://localhost:3000/todos`，并设置请求头 `name: 'John'`，可以访问到这个路由，将返回 `John`。
 
+## 参数装饰器
+
+Nest 提供了多种参数装饰器，用于从参数中获取不同的信息。
+
+- `@Request()`：获取请求对象，简写为 `@Req()`。
+- `@Response()`：获取响应对象，简写为 `@Res()`。
+- `@Next()`：获取下一个中间件的引用。
+- `@Session()`：获取会话对象。
+- `@Param()`：获取路由参数。
+- `@Query()`：获取查询参数。
+- `@Body()`：获取请求体。
+- `@Headers()`：获取请求头。
+- `@Ip()`：获取客户端 IP 地址。
+- `@HostParam()`：获取主机参数。
+
 ## 响应头
 
 使用 `@Header()` 装饰器可以设置响应头。
@@ -378,20 +378,26 @@ export class TodoController {
 
 通过发送 `GET` 请求到 `http://localhost:3000/todos`，可以访问到这个路由，将返回 `{"message":"This is the todo list"}`，并且响应头中会包含 `name: todo`。
 
-## 参数装饰器
+## 状态码
 
-Nest 提供了多种参数装饰器，用于从参数中获取不同的信息。
+默认情况下，响应的状态码始终为 `200`，除了 `POST` 请求的状态码为 `201`。Nest 提供了 `@HttpCode()` 装饰器来设置状态码，同时还提供了状态码的 `enum`。
 
-- `@Request()`：获取请求对象，简写为 `@Req()`。
-- `@Response()`：获取响应对象，简写为 `@Res()`。
-- `@Next()`：获取下一个中间件的引用。
-- `@Session()`：获取会话对象。
-- `@Param()`：获取路由参数。
-- `@Query()`：获取查询参数。
-- `@Body()`：获取请求体。
-- `@Headers()`：获取请求头。
-- `@Ip()`：获取客户端 IP 地址。
-- `@HostParam()`：获取主机参数。
+```TypeScript
+import { Controller, HttpCode, HttpStatus, Patch } from '@nestjs/common'
+
+@Controller('todos')
+export class TodoController {
+    @Patch()
+    @HttpCode(HttpStatus.NO_CONTENT)
+    get() {
+        return []
+    }
+}
+```
+
+通过发送 `PATCH` 请求到 `http://localhost:3000/todos`，可以访问到这个路由，状态码将返回 `204 No Content`。
+
+
 
 ## 处理响应的方式
 
@@ -460,7 +466,7 @@ export class TodoController {
 
 ### 限制
 
-Nest会检测处理程序是否使用了`@Res()`、`@Response()`或`@Next()`装饰器，如果是，则会启用特定于库的处理方式，而标准方式则会被禁用。也就是说，`return` 的方式将不再起作用。
+Nest 会检测处理程序是否使用了 `@Res()`、`@Response()` 或 `@Next()` 装饰器，如果是，则会启用特定于库的处理方式，而标准方式则会被禁用。也就是说，`return` 的方式将不再起作用。
 
 ```TypeScript
 import { Controller, Get, Res } from '@nestjs/common'

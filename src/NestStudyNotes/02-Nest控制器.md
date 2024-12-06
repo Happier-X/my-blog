@@ -29,6 +29,15 @@ nest generate controller todo
 
 此时会在 `src` 下生成一个 `todo` 文件夹，里面包含一个 `todo.controller.ts` 文件和一个 `todo.controller.spec.ts`。
 
+`todo.controller.ts` 文件的内容如下。
+
+```TypeScript
+import { Controller } from '@nestjs/common'
+
+@Controller('todo')
+export class TodoController {}
+```
+
 同时，在 `app.module.ts` 文件中自动引入了 `TodoController`。
 
 ```TypeScript

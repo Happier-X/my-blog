@@ -53,7 +53,7 @@ export class AppModule {}
 import { Controller } from '@nestjs/common'
 
 @Controller('todo')
-export class todoController {}
+export class TodoController {}
 ```
 
 这里 `@Controller()` 里面的参数 `todo` 就是路由前缀，所有该控制器下的路由都会加上这个前缀。
@@ -77,7 +77,7 @@ export class TodoController {}
 import { Controller, Get } from '@nestjs/common'
 
 @Controller('todos')
-export class todoController {
+export class TodoController {
     @Get()
     getAll() {
         return []
@@ -88,14 +88,14 @@ export class todoController {
 这里我们定义了一个 `GET /todos` 的路由，并且返回一个空数组。通过 `http://localhost:3000/todos` 可以访问到这个路由。
 
 Nest 为所有标准 HTTP 方法提供了装饰器：
-- `@Get()`：GET 请求
-- `@Post()`：POST 请求
-- `@Put()`：PUT 请求
-- `@Delete()`：DELETE 请求
-- `@Patch()`：PATCH 请求
-- `@Options()`：OPTIONS 请求
-- `@Head()`：HEAD 请求
-- `@All()`：所有请求
+- `@Get()`：GET 请求。
+- `@Post()`：POST 请求。
+- `@Put()`：PUT 请求。
+- `@Delete()`：DELETE 请求。
+- `@Patch()`：PATCH 请求。
+- `@Options()`：OPTIONS 请求。
+- `@Head()`：HEAD 请求。
+- `@All()`：所有请求。
 
 ## 子路由
 
@@ -105,7 +105,7 @@ Nest 为所有标准 HTTP 方法提供了装饰器：
 import { Controller, Get } from '@nestjs/common'
 
 @Controller('todos')
-export class todoController {
+export class TodoController {
     @Get('/examples')
     getExample() {
         return [
@@ -129,7 +129,7 @@ export class todoController {
 import { Controller, Get } from '@nestjs/common'
 
 @Controller('todos')
-export class todoController {
+export class TodoController {
     @Get('/exam*ples')
     getExample() {
         return [
@@ -153,7 +153,7 @@ export class todoController {
 import { Controller, Get, Param } from '@nestjs/common'
 
 @Controller('todos')
-export class todoController {
+export class TodoController {
     @Get(':id')
     getById(@Param() params) {
         const { id } = params
@@ -174,7 +174,7 @@ export class todoController {
 import { Controller, Get, Param } from '@nestjs/common'
 
 @Controller('todos')
-export class todoController {
+export class TodoController {
     @Get(':id')
     getById(@Param('id') id) {
         return {
@@ -196,7 +196,7 @@ export class todoController {
 import { Controller, Get, Query } from '@nestjs/common'
 
 @Controller('todos')
-export class todoController {
+export class TodoController {
     @Get()
     getList(@Query() query) {
         return {
@@ -214,7 +214,7 @@ export class todoController {
 import { Controller, Get, Query } from '@nestjs/common'
 
 @Controller('todos')
-export class todoController {
+export class TodoController {
     @Get()
     getList(@Query('id') id, @Query('name') name) {
         return {
@@ -235,7 +235,7 @@ export class todoController {
 import { Controller, HttpCode, HttpStatus, Patch } from '@nestjs/common'
 
 @Controller('todos')
-export class todoController {
+export class TodoController {
     @Patch()
     @HttpCode(HttpStatus.NO_CONTENT)
     get() {
@@ -246,3 +246,246 @@ export class todoController {
 
 通过发送 `PATCH` 请求到 `http://localhost:3000/todos`，可以访问到这个路由，状态码将返回 `204 No Content`。
 
+## 请求体
+
+要获得请求体，我们只需要在方法中添加带有 `@Body()` 装饰器的参数即可。
+
+```TypeScript
+import { Body, Controller, Post } from '@nestjs/common'
+
+@Controller('todos')
+export class TodoController {
+    @Post()
+    create(@Body() data) {
+        const id = 1
+        return {
+            id,
+            ...data
+        }
+    }
+}
+```
+
+通过发送 `POST` 请求到 `http://localhost:3000/todos`，发送请求体 `{ "title": "Title 1", "description": "Description 1" }`，可以访问到这个路由，将返回 `{"id":1,"title":"Title 1","description":"Description 1"}`。
+
+也可以通过 `@Body('参数名')` 来获取指定参数。
+
+```TypeScript
+import { Body, Controller, Post } from '@nestjs/common'
+
+@Controller('todos')
+export class TodoController {
+    @Post()
+    create(@Body('title') title, @Body('description') description) {
+        const id = 1
+        return {
+            id,
+            title,
+            description
+        }
+    }
+}
+```
+
+通过发送 `POST` 请求到 `http://localhost:3000/todos`，发送请求体 `{ "title": "Title 1", "description": "Description 1" }`，可以访问到这个路由，将返回 `{"id":1,"title":"Title 1","description":"Description 1"}`。
+
+## 使用 DTO
+
+DTO (数据传输对象) 通常用于过滤、格式化数据，它只负责传输数据，不包含业务逻辑。
+
+我们可以使用 TypeScript 的接口来定义 DTO，也可以使用 JavaScript 的类来定义 DTO，由于 TypeScript 的接口在编译后会被删除，所以使用类定义 DTO 是更好的选择。
+
+我们在控制器的目录下创建一个 `dto` 文件夹，并在其中创建一个 `create-<CONTROLLER_NAME>.dto.ts` 文件。这里我们创建一个 `create-todo.dto.ts` 文件。
+
+```TypeScript
+export class CreateTodoDto {
+    title: string
+    description?: string
+}
+```
+
+创建完成后在控制器中使用，将带有 `@Body()` 装饰器的参数类型指定为 DTO 类型。
+
+```TypeScript
+import { Body, Controller, Post } from '@nestjs/common'
+import { CreateTodoDto } from './dto/create-todo.dto'
+
+@Controller('todos')
+export class TodoController {
+    @Post()
+    create(@Body() dto: CreateTodoDto) {
+        const id = 1
+        return {
+            id,
+            ...dto
+        }
+    }
+}
+```
+
+## 请求头
+
+要获取请求头，我们只需要在方法中添加带有 `@Headers()` 装饰器的参数即可。
+
+```TypeScript
+import { Controller, Headers, Post } from '@nestjs/common'
+
+@Controller('todos')
+export class TodoController {
+    @Post()
+    head(@Headers() header) {
+        return header.name
+    }
+}
+```
+
+通过发送 `POST` 请求到 `http://localhost:3000/todos`，并设置请求头 `name: 'John'`，可以访问到这个路由，将返回 `John`。
+
+也可以通过 `@Headers('参数名')` 来获取指定参数。
+
+```TypeScript
+import { Controller, Headers, Post } from '@nestjs/common'
+
+@Controller('todos')
+export class TodoController {
+    @Post()
+    head(@Headers('name') name) {
+        return name
+    }
+}
+```
+
+通过发送 `POST` 请求到 `http://localhost:3000/todos`，并设置请求头 `name: 'John'`，可以访问到这个路由，将返回 `John`。
+
+## 响应头
+
+使用 `@Header()` 装饰器可以设置响应头。
+
+```TypeScript
+import { Controller, Get, Header } from '@nestjs/common'
+
+@Controller('todos')
+export class TodoController {
+    @Get()
+    @Header('name', 'todo')
+    getTodos() {
+        return {
+            message: 'This is the todo list'
+        }
+    }
+}
+```
+
+通过发送 `GET` 请求到 `http://localhost:3000/todos`，可以访问到这个路由，将返回 `{"message":"This is the todo list"}`，并且响应头中会包含 `name: todo`。
+
+## 参数装饰器
+
+Nest 提供了多种参数装饰器，用于从参数中获取不同的信息。
+
+- `@Request()`：获取请求对象，简写为 `@Req()`。
+- `@Response()`：获取响应对象，简写为 `@Res()`。
+- `@Next()`：获取下一个中间件的引用。
+- `@Session()`：获取会话对象。
+- `@Param()`：获取路由参数。
+- `@Query()`：获取查询参数。
+- `@Body()`：获取请求体。
+- `@Headers()`：获取请求头。
+- `@Ip()`：获取客户端 IP 地址。
+- `@HostParam()`：获取主机参数。
+
+## 处理响应的方式
+
+Nest 提供了两种方式来处理响应。
+
+### 标准方式
+
+通过 `return` 关键字返回。
+
+标准方式支持异步。
+
+```TypeScript
+import { Controller, Get } from '@nestjs/common'
+
+@Controller('todos')
+export class TodoController {
+    @Get()
+    async getTodos() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve({
+                    todos: 'this is the todos'
+                })
+            }, 10000)
+        })
+    }
+}
+```
+
+标准方式也支持返回 RxJS `observable` 流。
+
+```TypeScript
+import { Controller, Get } from '@nestjs/common'
+import { Observable } from 'rxjs'
+import { of } from 'rxjs'
+
+@Controller('todos')
+export class TodoController {
+    @Get()
+    getTodos(): Observable<any> {
+        return of({
+            todos: 'this is the todos'
+        })
+    }
+}
+```
+
+### 特定于库的方式
+
+这个方式不通过 `return` 关键字返回，而是通过使用 `@Res()` 装饰器注入来获取响应对象，然后调用响应对象的方法来处理响应。
+
+```TypeScript
+import { Controller, Get, Res } from '@nestjs/common'
+import { Response } from 'express'
+
+@Controller('todos')
+export class TodoController {
+    @Get()
+    getTodos(@Res() res: Response) {
+        res.status(200).json({
+            todos: 'this is the todos'
+        })
+    }
+}
+```
+
+### 限制
+
+Nest会检测处理程序是否使用了`@Res()`、`@Response()`或`@Next()`装饰器，如果是，则会启用特定于库的处理方式，而标准方式则会被禁用。也就是说，`return` 的方式将不再起作用。
+
+```TypeScript
+import { Controller, Get, Res } from '@nestjs/common'
+import { Response } from 'express'
+
+@Controller('todos')
+export class TodoController {
+    @Get()
+    getAll(@Res() res: Response) {
+        return []
+    }
+}
+```
+
+可以通过在装饰器中添加 `{ passthrough: true }` 选项来突破此限制。
+
+```TypeScript
+import { Controller, Get, Res } from '@nestjs/common'
+import { Response } from 'express'
+
+@Controller('todos')
+export class TodoController {
+    @Get()
+    getAll(@Res({ passthrough: true }) res: Response) {
+        return []
+    }
+}
+```

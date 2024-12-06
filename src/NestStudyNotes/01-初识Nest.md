@@ -6,7 +6,6 @@ category: 软件开发
 tag: Nest
 excerpt: false
 ---
-
 # 初识 Nest
 
 ## Nest 基本概念
@@ -20,6 +19,7 @@ Nest 采用模块化设计，将功能拆分到不同的模块 (Modules) 中，�
 ![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/NestStudyNotes/%E5%88%9D%E8%AF%86Nest02.jpg)
 
 下面是一个实际的流程：
+
 1. 用户向 Nest App 发送 HTTP 请求。
 2. 控制器接收到请求。
 3. 控制器调用服务中的方法处理业务逻辑。
@@ -87,18 +87,18 @@ npm run start:dev
 └─ README.md
 ```
 
-- `dist`：编译后的文件
-- `node_modules`：依赖包
-- `src`：源码
-- `test`：测试代码
-- `.eslintrc.js`：ESLint 配置文件
-- `.gitignore`：Git 忽略文件
-- `.prettierrc`：Prettier 配置文件
-- `nest-cli.json`：Nest CLI 配置文件
-- `package.json`：项目依赖包
-- `package-lock.json`：项目依赖包锁文件
-- `tsconfig.json`：TypeScript 配置文件
-- `tsconfig.build.json`：TypeScript 编译配置文件
+- `dist`：编译后的文件。
+- `node_modules`：依赖包。
+- `src`：源码。
+- `test`：测试代码。
+- `.eslintrc.js`：ESLint 配置文件。
+- `.gitignore`：Git 忽略文件。
+- `.prettierrc`：Prettier 配置文件。
+- `nest-cli.json`：Nest CLI 配置文件。
+- `package.json`：项目依赖包。
+- `package-lock.json`：项目依赖包锁文件。
+- `tsconfig.json`：TypeScript 配置文件。
+- `tsconfig.build.json`：TypeScript 编译配置文件。
 
 ## 代码分析
 

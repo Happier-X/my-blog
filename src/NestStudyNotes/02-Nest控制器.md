@@ -69,9 +69,9 @@ import { Controller } from '@nestjs/common'
 export class TodoController {}
 ```
 
-## Http 方法
+## Http Method 装饰器
 
-通过在`class`方法上添加装饰器，可以定义路由的 HTTP 方法，Nest 会根据装饰器自动将请求映射到对应的方法上。
+通过在 `class` 方法上添加 `Http Method` 装饰器，可以定义路由的 HTTP 方法，Nest 会根据装饰器自动将请求映射到对应的方法上。
 
 ```TypeScript
 import { Controller, Get } from '@nestjs/common'
@@ -86,4 +86,163 @@ export class todoController {
 ```
 
 这里我们定义了一个 `GET /todos` 的路由，并且返回一个空数组。通过 `http://localhost:3000/todos` 可以访问到这个路由。
+
+Nest 为所有标准 HTTP 方法提供了装饰器：
+- `@Get()`：GET 请求
+- `@Post()`：POST 请求
+- `@Put()`：PUT 请求
+- `@Delete()`：DELETE 请求
+- `@Patch()`：PATCH 请求
+- `@Options()`：OPTIONS 请求
+- `@Head()`：HEAD 请求
+- `@All()`：所有请求
+
+## 子路由
+
+如果我们想定义一个 `GET /todos/examples` 的路由，我们不可能每次有新子路由时都新增一个控制器，这时我们可以在 `Http Method` 装饰器中添加路径参数。
+
+```TypeScript
+import { Controller, Get } from '@nestjs/common'
+
+@Controller('todos')
+export class todoController {
+    @Get('/examples')
+    getExample() {
+        return [
+            {
+                id: 1,
+                title: 'Example 1',
+                description: 'This is an example todo'
+            }
+        ]
+    }
+}
+```
+
+通过 `http://localhost:3000/todos/examples` 可以访问到这个路由。
+
+## 路由通配符
+
+在设计路由时，可能需要一些容错，比如我们的 `GET /todos/examples` 路由，如果用户不管是输入了 `GET /todos/exammmmmples` 还是 `GET /todos/exam_ples`，我们都可以返回 `GET /todos/examples` 的结果，这时我们就可以使用路由通配符 `*`。
+
+```TypeScript
+import { Controller, Get } from '@nestjs/common'
+
+@Controller('todos')
+export class todoController {
+    @Get('/exam*ples')
+    getExample() {
+        return [
+            {
+                id: 1,
+                title: 'Example 1',
+                description: 'This is an example todo'
+            }
+        ]
+    }
+}
+```
+
+通过 `http://localhost:3000/todos/exammmmmples` 和 `http://localhost:3000/todos/exam_ples` 都可以访问到这个路由。
+
+## 路由参数
+
+要获得路由参数，我们先在 `Http Method` 装饰器上进行定义，字符串格式为 `:参数名`，然后在该方法中添加带有 `@Param()` 装饰器的参数。
+
+```TypeScript
+import { Controller, Get, Param } from '@nestjs/common'
+
+@Controller('todos')
+export class todoController {
+    @Get(':id')
+    getById(@Param() params) {
+        const { id } = params
+        return {
+            id,
+            title: `Title ${id}`,
+            description: `Description ${id}`
+        }
+    }
+}
+```
+
+通过 `http://localhost:3000/todos/1` 可以访问到这个路由，将返回 `{"id":1,"title":"Title 1","description":"Description 1"}`。
+
+也可以通过 `@Param('参数名')` 来获取参数。
+
+```TypeScript
+import { Controller, Get, Param } from '@nestjs/common'
+
+@Controller('todos')
+export class todoController {
+    @Get(':id')
+    getById(@Param('id') id) {
+        return {
+            id,
+            title: `Title ${id}`,
+            description: `Description ${id}`
+        }
+    }
+}
+```
+
+通过 `http://localhost:3000/todos/1` 可以访问到这个路由，将返回 `{"id":1,"title":"Title 1","description":"Description 1"}`。
+
+## 查询参数
+
+要获得查询参数，我们只需要在方法中添加带有 `@Query()` 装饰器的参数即可。
+
+```TypeScript
+import { Controller, Get, Query } from '@nestjs/common'
+
+@Controller('todos')
+export class todoController {
+    @Get()
+    getList(@Query() query) {
+        return {
+            query
+        }
+    }
+}
+```
+
+通过 `http://localhost:3000/todos?id=1&name=2` 可以访问到这个路由，将返回 `{"query":{"id":"1","name":"2"}}`。
+
+也可以通过 `@Query('参数名')` 来获取指定参数。
+
+```TypeScript
+import { Controller, Get, Query } from '@nestjs/common'
+
+@Controller('todos')
+export class todoController {
+    @Get()
+    getList(@Query('id') id, @Query('name') name) {
+        return {
+            id,
+            name
+        }
+    }
+}
+```
+
+通过 `http://localhost:3000/todos?id=1&name=2` 可以访问到这个路由，将返回 `{"id":"1","name":"2"}`。
+
+## 状态码
+
+默认情况下，响应的状态码始终为 `200`，除了 `POST` 请求的状态码为 `201`。Nest 提供了 `@HttpCode()` 装饰器来设置状态码，同时还提供了状态码的 `enum`。
+
+```TypeScript
+import { Controller, HttpCode, HttpStatus, Patch } from '@nestjs/common'
+
+@Controller('todos')
+export class todoController {
+    @Patch()
+    @HttpCode(HttpStatus.NO_CONTENT)
+    get() {
+        return []
+    }
+}
+```
+
+通过发送 `PATCH` 请求到 `http://localhost:3000/todos`，可以访问到这个路由，状态码将返回 `204 No Content`。
 

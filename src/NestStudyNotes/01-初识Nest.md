@@ -137,7 +137,7 @@ import { TodoController } from './todo/todo.controller'
 export class AppModule {}
 ```
 
-定义了一个名为 `AppModule` 的类，通过 `@Module` 装饰器，将 `AppModule` 定义为一个模块，同时在这里定义了该模块的控制器和服务。
+定义了一个名为 `AppModule` 的类，通过 `@Module()` 装饰器，将 `AppModule` 定义为一个模块，同时在这里定义了该模块的控制器和服务。
 
 `app.controller.ts` 是注册在 `AppModule` 中的控制器。它不是必须的。
 
@@ -156,7 +156,7 @@ export class AppController {
 }
 ```
 
-定义了一个名为 `AppController` 的类，通过 `@Controller` 装饰器，将 `AppController` 定义为一个控制器。这里的方法使用了 `@Get` 装饰器，表示该方法处理 HTTP GET 请求。在 `constructor` 中使用依赖注入的方式，将 `AppService` 注入到 `AppController` 中，这样 `AppController` 可以调用 `AppService` 中的方法。
+定义了一个名为 `AppController` 的类，通过 `@Controller()` 装饰器，将 `AppController` 定义为一个控制器。这里的方法使用了 `@Get()` 装饰器，表示该方法处理 HTTP GET 请求。在 `constructor` 中使用依赖注入的方式，将 `AppService` 注入到 `AppController` 中，这样 `AppController` 可以调用 `AppService` 中的方法。
 
 `app.service.ts` 是注册在 `AppModule` 中的服务。它不是必须的。
 
@@ -171,4 +171,4 @@ export class AppService {
 }
 ```
 
-定义了一个名为 `AppService` 的类，这里使用的是 `@Injectable` 装饰器，原因是服务属于抽象的概念，Nest 中许多抽象概念可以使用 `@Injectable` 装饰器进行标记，它们统称为提供者 (Providers)。
+定义了一个名为 `AppService` 的类，这里使用的是 `@Injectable()` 装饰器，原因是服务属于抽象的概念，Nest 中许多抽象概念可以使用 `@Injectable()` 装饰器进行标记，它们统称为提供者 (Providers)。

@@ -263,3 +263,17 @@ export class TodoModule {}
 这里我们给 `TodoModule` 添加了 `@Global()` 装饰器，这样我们就可以在 `CopyTodoModule` 中使用 `TodoService` 了，而不需要导入 `TodoModule`。
 
 > 注意：非必要情况下，不建议使用全局模块。
+
+## 常用模块
+
+模块可以不包含任何控制器 (Controllers) 与提供者 (Providers)，只把导入的模块再导出，这样的好处是可以把多个常用的模块集中在一起，方便在其他模块中使用。
+
+```TypeScript
+import { Module } from '@nestjs/common'
+
+@Module({
+    imports: [AModule, BModule],
+    exports: [AModule, BModule]
+})
+export class CommonModule {}
+```

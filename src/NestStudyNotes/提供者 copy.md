@@ -1,0 +1,268 @@
+---
+title: 提供者
+order: 4
+date: 2024-02-24
+category: 软件开发
+tag: Nest
+excerpt: false
+---
+
+## 什么是提供者
+
+Nest 中的提供者 (Providers) 是用于管理应用程序的依赖项和服务。提供者可以是任何类，并且可以被注入到其他类中，以便在需要时使用。我们可以理解为：为控制器提供服务的就可以被称作提供者 (Providers)。
+
+## 定义、注册和使用提供者
+
+在 Nest 中，有多种方式来定义提供者。提供者可以在模块的 `providers` 数组中进行注册。这样，Nest 就会自动将该提供者注入到需要它的类中。
+
+### 标准提供者
+
+标准提供者是使用 `@Injectable()` 装饰器来定义的。
+
+```typescript
+// src/app.service.ts
+
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class AppService {
+    getHello(): string {
+        return 'Hello World!';
+    }
+}
+```
+
+在模块的 `providers` 数组中注册提供者：
+
+```typescript
+// src/app.module.ts
+// 简写方式
+
+import { Module } from '@nestjs/common';
+import { AppService } from './app.service';
+
+@Module({
+    providers: [AppService],
+})
+export class AppModule {}
+```
+
+```typescript
+// src/app.module.ts
+// 完整方式
+
+import { Module } from '@nestjs/common';
+import { AppService } from './app.service';
+
+@Module({
+    providers: [
+        {
+            provide: AppService,
+            useClass: AppService,
+        },
+    ],
+})
+export class AppModule {}
+```
+
+在需要使用的类中，在构造函数中注入提供者：
+
+```typescript
+// src/app.controller.ts
+
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
+
+@Controller('app')
+export class AppController {
+    constructor(private readonly appService: AppService) {}
+
+    @Get()
+    getHello(): string {
+        return this.appService.getHello();
+    }
+}
+```
+
+### 自定义提供者
+
+### 值提供者 (useValue)
+
+`useValue` 语法对于注入常量值、将外部库放入 Nest 容器或使用模拟对象替换实际实现非常有用。
+
+在模块中，使用 `useValue` 语法来提供值：
+
+```typescript
+// src/app.module.ts
+
+import { Module } from '@nestjs/common';
+import { UserService } from './user.service';
+
+@Module({
+    providers: [
+        {
+            provide: UserService,
+            useValue: 'Hello user!',
+        },
+    ],
+})
+export class AppModule {}
+```
+
+在需要使用的类中，在构造函数中注入提供者：
+
+```typescript
+// src/app.controller.ts
+
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
+import { Inject } from '@nestjs/common';
+
+@Controller('app')
+export class AppController {
+    constructor(
+        private readonly appService: AppService,
+        private readonly userService: UserService
+    ) {}
+
+    @Get()
+    getHello(): string {
+        return this.appService.getHello() + ' ' + this.userService;
+    }
+}
+```
+
+### 非类提供者
+
+我们已经使用了类名作为我们的提供者标记 (providers 数组中列出的提供者中的 Provide 属性的值)，有时我们希望灵活使用字符串作为提供者标记 (token)。
+
+在模块中注册提供者时，使用字符串标记提供者：
+
+```typescript
+// src/app.module.ts
+
+import { Module } from '@nestjs/common';
+
+@Module({
+    providers: [
+        {
+            provide: 'TOKEN_KEY',
+            useValue: 'This is a token',
+        },
+    ],
+})
+export class AppModule {}
+```
+
+在需要使用的地方，使用 `@Inject()` 装饰器注入标记为 `'TOKEN_KEY'` 的提供者：
+
+```typescript
+// src/app.controller.ts
+
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
+import { Inject } from '@nestjs/common';
+
+@Controller('app')
+export class AppController {
+    constructor(
+        private readonly appService: AppService,
+        @Inject('TOKEN_KEY') private readonly token: string
+    ) {}
+
+    @Get()
+    getHello(): string {
+        return this.appService.getHello() + ' ' + this.token;
+    }
+}
+```
+
+### 类提供者 (useClass)
+
+在某些情况下，我们可能需要动态地决定使用哪个类来提供服务。我们可以使用 `useClass` 选项来指定一个类，该类将被实例化并用作提供者。
+
+```typescript
+// src/app.module.ts
+
+import { Module } from '@nestjs/common';
+
+@Module({
+    providers: [
+        {
+            provide: ConfigService,
+            useClass:
+                environment === 'development'
+                    ? DevelopmentConfigService
+                    : ProductionConfigService,
+        },
+    ],
+})
+export class AppModule {}
+```
+
+我们使用 `environment` 变量来决定使用哪个配置服务类。
+
+在需要使用的类中，在构造函数中注入提供者即可。
+
+### 工厂提供者 (useFactory)
+
+有时候，我们需要动态地创建提供者。我们可以使用工厂函数实现。
+
+1. 工厂函数可以接受 (可选) 参数。
+2. `inject` 属性接受一个提供者数组，在实例化过程中，Nest 将解析该数组并将其作为参数传递给工厂函数。这两个列表应该是相关的：Nest 将从 `inject` 列表中以相同的顺序将实例作为参数传递给工厂函数。
+
+在模块中，使用 `useFactory` 选项来指定一个工厂函数，该函数将返回一个提供者实例。
+
+```typescript
+// src/app.module.ts
+
+import { Module } from '@nestjs/common';
+
+class AClass {
+    make() {
+        return 'A make method';
+    }
+}
+
+@Module({
+    providers: [
+        AClass,
+        {
+            provide: 'B',
+            inject: [AClass],
+            useFactory: (a: AClass) => {
+                return a.make();
+            },
+        },
+    ],
+})
+export class AppModule {}
+```
+
+在需要使用的类中，使用 `@Inject()` 装饰器注入提供者即可。
+
+### 别名提供者 (useExisting)
+
+`useExisting` 语法允许您为现有的提供程序创建别名。这将创建两种访问同一提供者的方法。如果你想要重用一个已经存在的提供者
+
+在模块中，使用 `useExisting` 来指定别名。
+
+```typescript
+// src/app.module.ts
+
+import { Module } from '@nestjs/common';
+import { UserService } from './user.service';
+
+@Module({
+    providers: [
+        AClass,
+        {
+            provide: 'B',
+            useExisting: UserService,
+        },
+    ],
+})
+export class AppModule {}
+```
+
+在需要使用的类中，使用 `@Inject()` 装饰器注入提供者即可。

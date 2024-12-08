@@ -147,3 +147,96 @@ export class TodoController {
 ```
 
 此时我们就创建了一个功能模块，它包含一个控制器和一个服务。访问 `http://localhost:3000/todos` 可以看到返回的数据。
+
+## 共享模块
+
+在 Nest 中，默认情况下，模块是单例的，也就是说可以在多个模块间共享同一个实例。
+
+这里我们把 `TodoService` 从 `TodoModule` 中导出。
+
+```TypeScript
+import { Module } from '@nestjs/common'
+import { TodoController } from './todo.controller'
+import { TodoService } from './todo.service'
+
+@Module({
+    controllers: [TodoController],
+    providers: [TodoService],
+    exports: [TodoService]
+})
+export class TodoModule {}
+```
+
+然后我们建立一个新的模块和控制器。
+
+```sh
+nest generate module features/copy-todo
+```
+
+```sh
+nest generate controller features/copy-todo
+```
+
+然后我们调整一下 `todo.service.ts` 文件中的内容，增加了一个 `createTodo` 方法。
+
+```TypeScript
+import { Injectable } from '@nestjs/common'
+
+@Injectable()
+export class TodoService {
+    private todos = [
+        {
+            id: 1,
+            title: 'First Todo',
+            description: 'This is the first todo'
+        }
+    ]
+
+    getTodos() {
+        return this.todos
+    }
+
+    createTodo(item) {
+        this.todos.push(item)
+    }
+}
+```
+
+然后在 `CopyTodoModule` 中导入 `TodoModule`。
+
+```TypeScript
+import { Module } from '@nestjs/common'
+import { CopyTodoController } from './copy-todo.controller'
+import { TodoModule } from '../todo/todo.module'
+
+@Module({
+    controllers: [CopyTodoController],
+    imports: [TodoModule]
+})
+export class CopyTodoModule {}
+```
+
+然后在 `CopyTodoController` 中注入 `TodoService`，并调用 `createTodo` 方法。
+
+```TypeScript
+import { Body, Controller, Post } from '@nestjs/common'
+import { TodoService } from '../todo/todo.service'
+
+@Controller('copy-todos')
+export class CopyTodoController {
+    constructor(private readonly todoService: TodoService) {}
+
+    @Post()
+    create(@Body() body) {
+        this.todoService.createTodo(body)
+        return body
+    }
+}
+```
+
+此时我们向 `http://localhost:3000/copy-todos` 发送一个 POST 请求，可以看到返回的数据，并且我们再访问 `http://localhost:3000/todos`，可以看到 `todos` 数组中多了一个元素。
+
+这里我们可以得出一个结论，像服务（Services）这样的提供者（Providers）会在模块（Modules）中建立一个实例，当其他模块需要使用这个实例时，就可以通过导出的方式与其他模块（Modules）共享。
+
+![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/NestStudyNotes/Nest%E6%A8%A1%E5%9D%9701.jpg)
+

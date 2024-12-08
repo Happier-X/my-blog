@@ -10,7 +10,7 @@ export default hopeTheme({
     name: "Happier",
     url: "/AboutMe/",
   },
-  iconAssets: "//at.alicdn.com/t/c/font_4729614_9tmbobwu33m.css",
+  iconAssets: "//at.alicdn.com/t/c/font_4729614_536oi7jvp38.css",
   iconPrefix: "iconfont icon-",
   logo: "https://happier-blog.oss-cn-qingdao.aliyuncs.com/assets/logo.jpg",
   repoDisplay: true,

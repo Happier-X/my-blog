@@ -87,7 +87,7 @@ import { TodoController } from './todo.controller'
 export class TodoModule {}
 ```
 
-这里我们把服务（Services）也添加到 `TodoModule` 中。
+这里我们把服务 (Services) 也添加到 `TodoModule` 中。
 
 ```sh
 nest generate service features/todo
@@ -109,7 +109,7 @@ import { TodoService } from './todo.service'
 export class TodoModule {}
 ```
 
-此时我们修改 `todo.service.ts`中的内容。
+此时我们修改 `todo.service.ts` 中的内容。
 
 ```TypeScript
 import { Injectable } from '@nestjs/common'
@@ -130,7 +130,7 @@ export class TodoService {
 }
 ```
 
-再修改 `todo.controller.ts`中的内容，将 `TodoService` 注入到 `TodoController` 中。
+再修改 `todo.controller.ts` 中的内容，将 `TodoService` 注入到 `TodoController` 中。
 
 ```TypeScript
 import { Controller, Get } from '@nestjs/common'
@@ -236,7 +236,30 @@ export class CopyTodoController {
 
 此时我们向 `http://localhost:3000/copy-todos` 发送一个 POST 请求，可以看到返回的数据，并且我们再访问 `http://localhost:3000/todos`，可以看到 `todos` 数组中多了一个元素。
 
-这里我们可以得出一个结论，像服务（Services）这样的提供者（Providers）会在模块（Modules）中建立一个实例，当其他模块需要使用这个实例时，就可以通过导出的方式与其他模块（Modules）共享。
+这里我们可以得出一个结论，像服务 (Services) 这样的提供者 (Providers) 会在模块 (Modules) 中建立一个实例，当其他模块 (Modules) 需要使用这个实例时，就可以通过导出的方式与其他模块 (Modules) 共享。
 
 ![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/NestStudyNotes/Nest%E6%A8%A1%E5%9D%9701.jpg)
 
+## 全局模块
+
+当有模块需要与多数模块共享时，需要在各模块中导入它，这样会显得很麻烦。此时我们可以将模块标记为全局模块，这样其他模块不需要导入它就可以使用了。
+
+要将模块标记为全局模块，只需给模块添加 `@Global()` 装饰器即可。
+
+```TypeScript
+import { Global, Module } from '@nestjs/common'
+import { TodoController } from './todo.controller'
+import { TodoService } from './todo.service'
+
+@Global()
+@Module({
+    controllers: [TodoController],
+    providers: [TodoService],
+    exports: [TodoService]
+})
+export class TodoModule {}
+```
+
+这里我们给 `TodoModule` 添加了 `@Global()` 装饰器，这样我们就可以在 `CopyTodoModule` 中使用 `TodoService` 了，而不需要导入 `TodoModule`。
+
+> 注意：非必要情况下，不建议使用全局模块。

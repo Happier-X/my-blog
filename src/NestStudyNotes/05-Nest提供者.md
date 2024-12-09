@@ -92,3 +92,85 @@ export class AppController {
 
 ## 自定义提供者
 
+### 值提供者
+
+值提供者主要用来注入一些常量、将外部库注入到 Nest 或使用模拟对象替换实际实现。
+
+值提供者使用 `useValue` 属性进行定义。这里以 `app.module.ts` 为例。
+
+```Typescript
+import { Module } from '@nestjs/common'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+
+@Module({
+    imports: [],
+    controllers: [AppController],
+    providers: [
+        {
+            provide: AppService,
+            useValue: {
+                name: 'Happier'
+            }
+        }
+    ]
+})
+export class AppModule {}
+```
+
+使用时，在构造函数中注入即可。这里以 `app.controller.ts` 为例。
+
+```Typescript
+import { Controller, Get } from '@nestjs/common'
+import { AppService } from './app.service'
+
+@Controller()
+export class AppController {
+    constructor(private readonly appService: AppService) {}
+
+    @Get()
+    getHello() {
+        return this.appService
+    }
+}
+```
+
+### 非类提供者
+
+提供者的不一定是类。有时我们希望使用字符串作为提供者标记 (token)。
+
+这里以 `app.module.ts` 为例。
+
+```Typescript
+import { Module } from '@nestjs/common'
+import { AppController } from './app.controller'
+
+@Module({
+    imports: [],
+    controllers: [AppController],
+    providers: [
+        {
+            provide: 'token_key',
+            useValue: 'Happier'
+        }
+    ]
+})
+export class AppModule {}
+```
+
+使用时，在构造函数中用 `@Inject()` 装饰器注入即可。这里以 `app.controller.ts` 为例。
+
+```Typescript
+import { Controller, Get, Inject } from '@nestjs/common'
+
+@Controller()
+export class AppController {
+    constructor(@Inject('token_key') private readonly token) {}
+
+    @Get()
+    getToken(): string {
+        return this.token
+    }
+}
+```
+

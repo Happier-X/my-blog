@@ -11,8 +11,8 @@ excerpt: false
 
 ## 控制反转
 
-控制反转（Inversion of Control，IoC）是一种设计原则，用于降低代码之间的耦合度。
+控制反转 (Inversion of Control，IoC) 是一种设计原则，用于降低代码之间的耦合度。
 
 ## 依赖注入
 
-依赖注入（Dependency Injection，DI）是实现控制反转的一种方式。
+依赖注入 (Dependency Injection，DI) 是实现控制反转的一种方式。

@@ -333,3 +333,67 @@ export class AppController {
 
 ## 导出自定义提供者
 
+我们先创建一个 `HandsomeModule`。
+
+```sh
+nest generate module handsome
+```
+
+然后我们将自定义提供者用变量保存起来，再将其放到 `providers` 和 `exports` 中。
+
+```Typescript
+import { Module } from '@nestjs/common'
+
+const HANDSOME_HAPPIER = {
+    provide: 'HANDSOME_MAN',
+    useValue: {
+        name: 'Happier'
+    }
+}
+
+@Module({
+    providers: [HANDSOME_HAPPIER],
+    exports: [HANDSOME_HAPPIER]
+})
+export class HandsomeModule {}
+```
+
+在`AppModule`中导入，这里以 `app.module.ts` 为例。
+
+```Typescript
+import { Module } from '@nestjs/common'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+import { HandsomeModule } from './handsome/handsome.module'
+
+@Module({
+    imports: [HandsomeModule],
+    controllers: [AppController],
+    providers: [AppService]
+})
+export class AppModule {}
+```
+
+然后在 `app.controller.ts` 中注入即可。
+
+```Typescript
+import { Controller, Get, Inject } from '@nestjs/common'
+import { AppService } from './app.service'
+
+@Controller()
+export class AppController {
+    constructor(
+        private readonly appService: AppService,
+        @Inject('HANDSOME_MAN') private readonly name: string
+    ) {
+        console.log(name) // { name: 'Happier' }
+    }
+
+    @Get()
+    getHello() {
+        return this.appService
+    }
+}
+```
+
+## 异步提供者

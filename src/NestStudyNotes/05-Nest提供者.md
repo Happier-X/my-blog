@@ -358,7 +358,7 @@ const HANDSOME_HAPPIER = {
 export class HandsomeModule {}
 ```
 
-在`AppModule`中导入，这里以 `app.module.ts` 为例。
+在 `AppModule` 中导入，这里以 `app.module.ts` 为例。
 
 ```Typescript
 import { Module } from '@nestjs/common'

@@ -397,3 +397,71 @@ export class AppController {
 ```
 
 ## 异步提供者
+
+异步提供者允许我们在提供者中执行异步操作。这里我们改造一下上面的 `handsome.module.ts`。
+
+```Typescript
+import { Module } from '@nestjs/common'
+
+const HANDSOME_HAPPIER = {
+    provide: 'HANDSOME_MAN',
+    useFactory: async () => {
+        const getHappier = new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({ name: 'Happier' })
+            }, 2000)
+        })
+        const result = await getHappier
+        return result
+    }
+}
+
+@Module({
+    providers: [HANDSOME_HAPPIER],
+    exports: [HANDSOME_HAPPIER]
+})
+export class HandsomeModule {}
+```
+
+此时，终端会在 2 秒后输出 `{ name: 'Happier' }`。
+
+## 可选提供者
+
+可选提供者允许我们在提供者不存在时，返回一个默认值。这里以 `app.module.ts` 为例。
+
+```Typescript
+import { Module } from '@nestjs/common'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+
+@Module({
+    imports: [],
+    controllers: [AppController],
+    providers: [AppService]
+})
+export class AppModule {}
+```
+
+然后在注入的地方，用 `@Optional()` 装饰器即可。这里以 `app.controller.ts` 为例。
+
+```Typescript
+import { Controller, Get, Inject, Optional } from '@nestjs/common'
+import { AppService } from './app.service'
+
+@Controller()
+export class AppController {
+    constructor(
+        private readonly appService: AppService,
+        @Optional()
+        @Inject('HANDSOME_MAN')
+        private readonly name = { name: 'Happier' }
+    ) {
+        console.log(this.name) // { name: 'Happier' }
+    }
+
+    @Get()
+    getHello() {
+        return this.appService
+    }
+}
+```

@@ -442,7 +442,7 @@ import { AppService } from './app.service'
 export class AppModule {}
 ```
 
-然后在注入的地方，用 `@Optional()` 装饰器即可。这里以 `app.controller.ts` 为例。
+然后在注入的地方，用 `@Optional()` 装饰器即可。这里以 `app.controller.ts` 为例，我们将 `HandsomeModule` 移除导入。
 
 ```Typescript
 import { Controller, Get, Inject, Optional } from '@nestjs/common'

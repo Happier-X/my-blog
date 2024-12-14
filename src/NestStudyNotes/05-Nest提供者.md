@@ -386,7 +386,7 @@ export class AppController {
         private readonly appService: AppService,
         @Inject('HANDSOME_MAN') private readonly name: string
     ) {
-        console.log(name) // { name: 'Happier' }
+        console.log(this.name) // { name: 'Happier' }
     }
 
     @Get()

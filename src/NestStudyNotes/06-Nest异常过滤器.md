@@ -232,3 +232,57 @@ export class AppController {
 }
 ```
 
+## 自定义异常过滤器
+
+Nest 允许我们创建自定义异常过滤器，以处理应用程序中抛出的异常。异常过滤器必须要使用`@Catch()`装饰器来捕捉错误，可以指定捕捉特定的异常，也可以捕捉全部的异常，若要捕捉全部的异常，则可以不传参数给`@Catch()`装饰器。此外，异常过滤器这个类要实现`ExceptionFilter`,它会限制一定要设计`catch()`方法。
+
+这里我们使用如下命令来创建一个自定义异常过滤器。
+
+```sh
+nest generate filter filters/http-exception
+```
+
+我们可以在 `src/filters` 下看到一个 `http-exception.filter.ts` 文件，其内容如下。
+
+```TypeScript
+import { ArgumentsHost, Catch, ExceptionFilter } from '@nestjs/common';
+
+@Catch()
+export class HttpExceptionFilter<T> implements ExceptionFilter {
+  catch(exception: T, host: ArgumentsHost) {}
+}
+```
+
+我们修改一下 `http-exception.filter.ts` 文件。
+
+```TypeScript
+import {
+    ArgumentsHost,
+    Catch,
+    ExceptionFilter,
+    HttpException
+} from '@nestjs/common'
+
+@Catch(HttpException)
+export class HttpExceptionFilter implements ExceptionFilter {
+    catch(exception: HttpException, host: ArgumentsHost) {
+        const ctx = host.switchToHttp()
+        const response = ctx.getResponse()
+        const status = exception.getStatus()
+        const message = exception.message
+        const timestamp = new Date().toISOString()
+        const responseObject = {
+            code: status,
+            message: message,
+            timestamp: timestamp
+        }
+        response.status(status).json(responseObject)
+    }
+}
+```
+
+此时，访问 `http://localhost:3000`，可以看到返回了如下信息。
+
+```json
+
+```

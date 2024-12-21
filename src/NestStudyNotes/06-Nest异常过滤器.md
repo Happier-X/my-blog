@@ -13,6 +13,7 @@ excerpt: false
 
 Nest 提供了异常过滤器，它会捕捉抛出的异常，并将返回一个友好的响应。
 
+![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/NestStudyNotes/Nest%E5%BC%82%E5%B8%B8%E8%BF%87%E6%BB%A4%E5%99%A801.jpg)
 
 这里我们修改一下 `app.controller.ts`，在 `getHello` 方法中抛出一个异常。
 

@@ -234,7 +234,7 @@ export class AppController {
 
 ## 自定义异常过滤器
 
-Nest 允许我们创建自定义异常过滤器，以处理应用程序中抛出的异常。异常过滤器必须要使用`@Catch()`装饰器来捕捉错误，可以指定捕捉特定的异常，也可以捕捉全部的异常，若要捕捉全部的异常，则可以不传参数给`@Catch()`装饰器。此外，异常过滤器这个类要实现`ExceptionFilter`,它会限制一定要设计`catch()`方法。
+Nest 允许我们创建自定义异常过滤器，以处理应用程序中抛出的异常。异常过滤器必须要使用 `@Catch()` 装饰器来捕捉错误，可以指定捕捉特定的异常，也可以捕捉全部的异常，若要捕捉全部的异常，则可以不传参数给 `@Catch()` 装饰器。此外，异常过滤器这个类要实现 `ExceptionFilter`，它会限制一定要设计 `catch()` 方法。
 
 这里我们使用如下命令来创建一个自定义异常过滤器。
 
@@ -281,8 +281,146 @@ export class HttpExceptionFilter implements ExceptionFilter {
 }
 ```
 
-此时，访问 `http://localhost:3000`，可以看到返回了如下信息。
+这个自定义异常过滤器，会捕捉所有 `HttpException` 类型的异常，并返回一个如下格式的自定义的响应对象。
 
 ```json
+{
+    "code": 400,
+    "message": "出错了！",
+    "timestamp": "2021-08-25T09:43:25.748Z"
+}
+```
 
+## 参数宿主
+
+参数宿主 `ArgumentsHost` 是一个用来获取当前请求相关参数的类。因为 Nest 可以运行在多种环境中，比如 HTTP、微服务、WebSocket 等，所以参数宿主 `ArgumentsHost` 是一个抽象类，它提供了多种方法来获取不同环境下的参数。
+
+可以通过 `getType()` 可以获得当前应用类型，以 HTTP 为例，其返回值如下。
+
+```TypeScript
+host.getType() // http
+```
+
+可以通过 `getArgs()` 可以获得封装参数，以 HTTP 为例，其返回值如下。
+
+```TypeScript
+host.getArgs() // [Request, Response, NextFunction]
+const [request, response, next] = host.getArgs()
+const request = host.getArgByIndex(0) // 也可以通过索引获得参数
+```
+
+当我们在不同环境中复用时，可以采用以下方式来获取参数。
+
+```TypeScript
+const rpcCtx = host.switchToRpc() // 微服务
+const httpCtx = host.switchToHttp() // HTTP
+const wsCtx = host.switchToWs() // WebSocket
+```
+
+## 使用异常过滤器
+
+## 局部使用
+
+局部使用异常过滤器，只需要在控制器方法或者控制器上使用 `@UseFilters()` 装饰器即可。
+
+这里以 `AppController` 为例，在控制器方法中使用，它只会针对该方法生效，我们修改一下 `app.controller.ts` 文件。
+
+```TypeScript
+import {
+    BadRequestException,
+    Controller,
+    Get,
+    UseFilters
+} from '@nestjs/common'
+import { AppService } from './app.service'
+import { HttpExceptionFilter } from './filters/http-exception/http-exception.filter'
+
+@Controller()
+export class AppController {
+    constructor(private readonly appService: AppService) {}
+
+    @Get()
+    @UseFilters(HttpExceptionFilter)
+    getHello() {
+        throw new BadRequestException('出错了')
+        return this.appService.getHello()
+    }
+}
+```
+
+我们也可以在控制器上使用，只需要将 `@UseFilters()` 装饰器放在控制器上即可。这里以 `AppController` 为例，在控制器上使用，它会对整个控制器生效，我们修改一下 `app.controller.ts` 文件。
+
+```TypeScript
+import {
+    BadRequestException,
+    Controller,
+    Get,
+    UseFilters
+} from '@nestjs/common'
+import { AppService } from './app.service'
+import { HttpExceptionFilter } from './filters/http-exception/http-exception.filter'
+
+@Controller()
+@UseFilters(HttpExceptionFilter)
+export class AppController {
+    constructor(private readonly appService: AppService) {}
+
+    @Get()
+    getHello() {
+        throw new BadRequestException('出错了')
+        return this.appService.getHello()
+    }
+}
+```
+
+此时我们访问 `http://localhost:3000`，会得到如下响应。
+
+```json
+{
+    "code": 400,
+    "message": "出错了",
+    "timestamp": "2024-12-21T06:20:30.720Z"
+}
+```
+
+> `@UseFilters()` 可以传入类或实例，尽量使用类的方式，而不是实例。这样做可以减少内存使用，因为 Nest 可以在整个模块中轻松重用相同类的实例。
+
+## 全局使用
+
+全局使用异常过滤器，只需要在 `main.ts` 中使用 `useGlobalFilters()` 方法即可。
+
+```TypeScript
+import { NestFactory } from '@nestjs/core'
+import { AppModule } from './app.module'
+import { HttpExceptionFilter } from './filters/http-exception/http-exception.filter'
+
+async function bootstrap() {
+    const app = await NestFactory.create(AppModule)
+    app.useGlobalFilters(new HttpExceptionFilter())
+    await app.listen(3000)
+}
+bootstrap()
+```
+
+也可以使用依赖注入的方式，在 `AppModule` 中进行配置。
+
+```TypeScript
+import { Module } from '@nestjs/common'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+import { APP_FILTER } from '@nestjs/core'
+import { HttpExceptionFilter } from './filters/http-exception/http-exception.filter'
+
+@Module({
+    imports: [],
+    controllers: [AppController],
+    providers: [
+        AppService,
+        {
+            provide: APP_FILTER,
+            useClass: HttpExceptionFilter
+        }
+    ]
+})
+export class AppModule {}
 ```

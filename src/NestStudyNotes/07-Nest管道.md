@@ -164,3 +164,65 @@ export class AppController {
 
 ## 自定义管道
 
+我们可以通过继承 `PipeTransform` 接口来创建自定义管道，并实现 `transform` 方法。
+
+使用如下命令可以快速创建一个管道。
+
+```sh
+nest generate pipe <PIPES_NAME>
+```
+
+> <PIPES_NAME> 可以是文件路径，例如 pipes/parse-int。
+
+这里我们创建一个 `ParseIntPipe` 在 `pipes` 文件夹下。
+
+```sh
+nest generate pipe pipes/parse-int
+```
+
+此时会在 `src` 目录下生成一个 `pipes` 文件夹，并在其中生成一个 `parse-int` 文件夹，文件夹中有一个 `parse-int.pipe.ts` 文件和一个 `parse-int.pipe.spec.ts` 文件。
+
+`parse-int.pipe.ts` 的内容如下。
+
+```TypeScript
+import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common'
+
+@Injectable()
+export class ParseIntPipe implements PipeTransform {
+    transform(value: any, metadata: ArgumentMetadata) {
+        return value
+    }
+}
+```
+
+这里的 `transform(value:any,metadata:ArgumentMetadata)` 方法就是用来处理传入参数的，我们可以在其中对参数进行校验、转换等操作，`value` 为传入的参数，`metadata` 为参数的元数据。
+
+> `PipeTransform` 后面可以跟泛型，例如 `PipeTransform<T,R>`，表示传入的参数类型为 `T`，返回的参数类型为 `R`。
+
+这里我们调整一下 `parse-int.pipe.ts` 的内容，判断传入的参数是否为整数，如果不是则抛出异常。
+
+```TypeScript
+import {
+    ArgumentMetadata,
+    Injectable,
+    NotAcceptableException,
+    PipeTransform
+} from '@nestjs/common'
+
+@Injectable()
+export class ParseIntPipe implements PipeTransform<string, number> {
+    transform(value: any, metadata: ArgumentMetadata) {
+        const integer = parseInt(value)
+        if (isNaN(integer)) {
+            throw new NotAcceptableException('不是一个整数')
+        }
+        return integer
+    }
+}
+```
+
+然后我们在 `app.controller.ts` 中使用自定义管道。
+
+```TypeScript
+
+```

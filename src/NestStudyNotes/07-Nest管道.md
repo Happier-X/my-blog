@@ -594,3 +594,50 @@ export class TodoController {
 number
 ```
 
+### 检测数组格式的 DTO
+
+如果传入的参数是数组格式，则需要使用 `ParseArrayPipe` 管道。这里以 `todo.controller.ts` 为例。
+
+```TypeScript
+import { Body, Controller, ParseArrayPipe, Post } from '@nestjs/common'
+import { CreateTodoDto } from './dto/create-todo.dto'
+
+@Controller('todos')
+export class TodoController {
+    @Post()
+    create(
+        @Body(new ParseArrayPipe({ items: CreateTodoDto }))
+        dtos: CreateTodoDto[]
+    ) {
+        return dtos
+    }
+}
+```
+
+此时使用 `POST` 请求 `http://localhost:3000/todos`，传入一下内容。
+
+```Json
+[
+    {
+        "title": "1234567890123456789"
+    }
+]
+```
+
+会返回如下内容。
+
+```Json
+[
+    {
+        "title": "1234567890123456789"
+    }
+]
+```
+
+### 解析查询参数
+
+`ParseArrayPipe` 可以解析查询参数，假设我们想解析查询参数为 `ids=1,2,3`，这里以 `todo.controller.ts` 为例。
+
+```TypeScript
+
+```

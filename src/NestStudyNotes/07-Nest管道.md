@@ -16,15 +16,16 @@ excerpt: false
 ![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/NestStudyNotes/Nest%E7%AE%A1%E9%81%9301.jpg)
 
 Nest 内置了以下几种管道：
-+ ValidationPipe
-+ ParseIntPipe
-+ ParseFloatPipe
-+ ParseBoolPipe
-+ ParseArrayPipe
-+ ParseUUIDPipe
-+ ParseEnumPipe
-+ DefaultValuePipe
-+ ParseFilePipe
+
+- ValidationPipe
+- ParseIntPipe
+- ParseFloatPipe
+- ParseBoolPipe
+- ParseArrayPipe
+- ParseUUIDPipe
+- ParseEnumPipe
+- DefaultValuePipe
+- ParseFilePipe
 
 ## 使用管道
 
@@ -247,5 +248,349 @@ export class AppController {
     "error": "Not Acceptable",
     "statusCode": 406
 }
+```
+
+## 类验证器
+
+### 基本使用
+
+在 Nest 中，类验证器 (Class Validator) 是一种基于装饰器的验证机制，它允许你在类属性上使用装饰器来指定验证规则。这些装饰器来自 `class-validator` 库，这是一个流行的 `Node.js` 库，用于对象和值的验证。类验证器与 Nest 的管道 (Pipes) 功能结合使用时，可以提供强大的数据验证能力。
+
+首先我们需要安装 `class-validator` 和 `class-transformer` 库。
+
+```sh
+npm install class-validator class-transformer
+```
+
+我们可以用它们来验证 DTO。
+
+这里先创建一个 `TodoModule` 和 `TodoController`。
+
+```sh
+nest generate module features/todo
+nest generate controller features/todo
+```
+
+然后在 `features/todo/dto` 文件夹下创建一个 `create-todo.dto.ts` 文件，并添加如下内容。
+
+```TypeScript
+export class CreateTodoDto {
+    public readonly title: string
+    public readonly description?: string
+}
+```
+
+我们定义如下规则，`title` 不能为空，类型必须是字符串，最大长度为 20，`description` 可以为空，类型必须是字符串。
+
+这里为属性添加装饰器即可添加验证规则。
+
+```TypeScript
+import { MaxLength, IsString, IsNotEmpty, IsOptional } from 'class-validator'
+
+export class CreateTodoDto {
+    @MaxLength(20)
+    @IsString()
+    @IsNotEmpty()
+    public readonly title: string
+
+    @IsString()
+    @IsOptional()
+    public readonly description?: string
+}
+```
+
+接下来只需要使用 `@UsePipes()` 装饰器即可在控制器中使用。这里以 `todo.controller.ts` 为例。
+
+```TypeScript
+import {
+    Body,
+    Controller,
+    Post,
+    UsePipes,
+    ValidationPipe
+} from '@nestjs/common'
+import { CreateTodoDto } from './dto/create-todo.dto'
+
+@Controller('todos')
+export class TodoController {
+    @Post()
+    @UsePipes(ValidationPipe)
+    create(@Body() dto: CreateTodoDto) {
+        return {
+            id: 1,
+            ...dto
+        }
+    }
+}
+```
+
+也可以在控制器上使用 `@UsePipes()` 装饰器，这样所有方法都会使用这个管道。
+
+```TypeScript
+import {
+    Body,
+    Controller,
+    Post,
+    UsePipes,
+    ValidationPipe
+} from '@nestjs/common'
+import { CreateTodoDto } from './dto/create-todo.dto'
+
+@Controller('todos')
+@UsePipes(ValidationPipe)
+export class TodoController {
+    @Post()
+    create(@Body() dto: CreateTodoDto) {
+        return {
+            id: 1,
+            ...dto
+        }
+    }
+}
+```
+
+此时使用 `POST` 请求 `http://localhost:3000/todos`，如果传入的 `title` 长度大于 20，将会返回如下异常。
+
+```Json
+{
+    "message": "title must be shorter than or equal to 20 characters",
+    "error": "Bad Request",
+    "statusCode": 400
+}
+```
+
+### 关闭错误消息
+
+如果不想返回错误消息，可以在 `ValidationPipe` 中添加 `disableErrorMessages: true` 选项。
+
+```TypeScript
+import {
+    Body,
+    Controller,
+    Post,
+    UsePipes,
+    ValidationPipe
+} from '@nestjs/common'
+import { CreateTodoDto } from './dto/create-todo.dto'
+
+@Controller('todos')
+export class TodoController {
+    @Post()
+    @UsePipes(new ValidationPipe({ disableErrorMessages: true }))
+    create(@Body() dto: CreateTodoDto) {
+        return {
+            id: 1,
+            ...dto
+        }
+    }
+}
+```
+
+此时使用 `POST` 请求 `http://localhost:3000/todos`，如果传入的 `title` 长度大于 20，将会返回如下异常。
+
+```Json
+{
+    "message": "Bad Request",
+    "statusCode": 400
+}
+```
+
+### 自定义异常
+
+使用 `exceptionFactory` 选项可以自定义异常。
+
+```TypeScript
+import {
+    Body,
+    Controller,
+    HttpStatus,
+    NotAcceptableException,
+    Post,
+    UsePipes,
+    ValidationPipe
+} from '@nestjs/common'
+import { ValidationError } from 'class-validator'
+import { CreateTodoDto } from './dto/create-todo.dto'
+
+@Controller('todos')
+export class TodoController {
+    @Post()
+    @UsePipes(
+        new ValidationPipe({
+            exceptionFactory: (errors: ValidationError[]) => {
+                return new NotAcceptableException({
+                    code: HttpStatus.NOT_ACCEPTABLE,
+                    message: '格式错误',
+                    errors
+                })
+            }
+        })
+    )
+    create(@Body() dto: CreateTodoDto) {
+        return {
+            id: 1,
+            ...dto
+        }
+    }
+}
+```
+
+此时使用 `POST` 请求 `http://localhost:3000/todos`，如果传入的 `title` 长度大于 20，将会返回如下异常。
+
+```Json
+{
+    "code": 406,
+    "message": "格式错误",
+    "errors": [
+        {
+            "target": {
+                "title": "12345678901234567890123"
+            },
+            "value": "12345678901234567890123",
+            "property": "title",
+            "children": [],
+            "constraints": {
+                "maxLength": "title must be shorter than or equal to 20 characters"
+            }
+        }
+    ]
+}
+```
+
+### 自定义过滤属性
+
+通过给 `ValidationPipe` 设置 `whitelist: true` 选项，可以过滤掉 DTO 中没有任何装饰器的属性。这里以 `todo.controller.ts` 为例。
+
+```TypeScript
+import {
+    Body,
+    Controller,
+    Post,
+    UsePipes,
+    ValidationPipe
+} from '@nestjs/common'
+import { CreateTodoDto } from './dto/create-todo.dto'
+
+@Controller('todos')
+export class TodoController {
+    @Post()
+    @UsePipes(new ValidationPipe({ whitelist: true }))
+    create(@Body() dto: CreateTodoDto) {
+        return {
+            id: 1,
+            ...dto
+        }
+    }
+}
+```
+
+此时使用 `POST` 请求 `http://localhost:3000/todos`，如果传入的 `title` 和 `text`，将会返回如下内容。
+
+```Json
+{
+    "id": 1,
+    "title": "1234567890123456789"
+}
+```
+
+如果我们想传入无效参数时抛出异常，可以设置同时设置 `whitelist: true` 和 `forbidNonWhitelisted: true` 选项。这里以 `todo.controller.ts` 为例。
+
+```TypeScript
+import {
+    Body,
+    Controller,
+    Post,
+    UsePipes,
+    ValidationPipe
+} from '@nestjs/common'
+import { CreateTodoDto } from './dto/create-todo.dto'
+
+@Controller('todos')
+export class TodoController {
+    @Post()
+    @UsePipes(
+        new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true })
+    )
+    create(@Body() dto: CreateTodoDto) {
+        return {
+            id: 1,
+            ...dto
+        }
+    }
+}
+```
+
+此时使用 `POST` 请求 `http://localhost:3000/todos`，如果传入的 `title` 和 `text` 属性，将会返回如下异常。
+
+```Json
+{
+    "message": [
+        "property text should not exist"
+    ],
+    "error": "Bad Request",
+    "statusCode": 400
+}
+```
+
+### 自动转换
+
+通过给 `ValidationPipe` 设置 `transform: true` 选项，可以自动将传入的参数转换为 DTO 中定义的类型。这里以 `todo.controller.ts` 为例。
+
+```TypeScript
+import {
+    Body,
+    Controller,
+    Post,
+    UsePipes,
+    ValidationPipe
+} from '@nestjs/common'
+import { CreateTodoDto } from './dto/create-todo.dto'
+
+@Controller('todos')
+export class TodoController {
+    @Post()
+    @UsePipes(new ValidationPipe({ transform: true }))
+    create(@Body() dto: CreateTodoDto) {
+        console.log(dto)
+        return {
+            id: 1,
+            ...dto
+        }
+    }
+}
+```
+
+此时使用 `POST` 请求 `http://localhost:3000/todos`，传入 `title` 为 `1234567890123456789`，控制台会打印如下内容。
+
+```sh
+CreateTodoDto { title: '1234567890123456789' }
+```
+
+`transform` 可以将路由参数自动装换。这里以 `todo.controller.ts` 为例。
+
+```TypeScript
+import {
+    Controller,
+    Get,
+    Param,
+    UsePipes,
+    ValidationPipe
+} from '@nestjs/common'
+
+@Controller('todos')
+export class TodoController {
+    @Get(':id')
+    @UsePipes(new ValidationPipe({ transform: true }))
+    get(@Param('id') id: number) {
+        console.log(typeof id)
+        return ''
+    }
+}
+```
+
+此时使用 `GET` 请求 `http://localhost:3000/todos/1`，控制台会打印如下内容。这里将路由参数 `id` 转换为 `number` 类型，它原来是一个字符串。
+
+```sh
+number
 ```
 

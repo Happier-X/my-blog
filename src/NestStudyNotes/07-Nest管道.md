@@ -224,5 +224,28 @@ export class ParseIntPipe implements PipeTransform<string, number> {
 然后我们在 `app.controller.ts` 中使用自定义管道。
 
 ```TypeScript
+import { Controller, Get, Param } from '@nestjs/common'
+import { AppService } from './app.service'
+import { ParseIntPipe } from './pipes/parse-int/parse-int.pipe'
 
+@Controller()
+export class AppController {
+    constructor(private readonly appService: AppService) {}
+
+    @Get(':id')
+    getUser(@Param('id', ParseIntPipe) id: number) {
+        return this.appService.getUser(id)
+    }
+}
 ```
+
+此时，访问 `http://localhost:3000/a` 将会返回如下异常。
+
+```Json
+{
+    "message": "不是一个数字",
+    "error": "Not Acceptable",
+    "statusCode": 406
+}
+```
+

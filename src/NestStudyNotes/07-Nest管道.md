@@ -639,5 +639,26 @@ export class TodoController {
 `ParseArrayPipe` 可以解析查询参数，假设我们想解析查询参数为 `ids=1,2,3`，这里以 `todo.controller.ts` 为例。
 
 ```TypeScript
+import { Controller, Get, ParseArrayPipe, Query } from '@nestjs/common'
 
+@Controller('todos')
+export class AppController {
+    @Get()
+    get(
+        @Query('ids', new ParseArrayPipe({ items: Number, separator: ',' }))
+        ids: number[]
+    ) {
+        return ids
+    }
+}
+```
+
+此时使用 `GET` 请求 `http://localhost:3000/todos?ids=1,2,3`，会返回如下内容。
+
+```Json
+[
+    1,
+    2,
+    3
+]
 ```

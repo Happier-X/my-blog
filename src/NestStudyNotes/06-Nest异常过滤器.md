@@ -66,7 +66,7 @@ export class AppController {
 }
 ```
 
-此时，访问 `http://localhost:3000`，可以看到返回了如下信息。
+当我们访问 `http://localhost:3000` 时，可以看到返回了如下信息。
 
 ```json
 {
@@ -99,7 +99,7 @@ export class AppController {
 }
 ```
 
-此时，访问 `http://localhost:3000`，可以看到返回了如下信息。
+当我们访问 `http://localhost:3000` 时，可以看到返回了如下信息。
 
 ```json
 {
@@ -153,7 +153,7 @@ export class AppController {
 }
 ```
 
-此时，访问 `http://localhost:3000`，可以看到返回了如下信息。
+当我们访问 `http://localhost:3000` 时，可以看到返回了如下信息。
 
 ```json
 {
@@ -181,7 +181,7 @@ export class AppController {
 }
 ```
 
-此时，访问 `http://localhost:3000`，可以看到返回了如下信息。
+当我们访问 `http://localhost:3000` 时，可以看到返回了如下信息。
 
 ```json
 {
@@ -224,7 +224,7 @@ export class AppController {
 }
 ```
 
-此时，访问 `http://localhost:3000`，可以看到返回了如下信息。
+当我们访问 `http://localhost:3000` 时，可以看到返回了如下信息。
 
 ```json
 {

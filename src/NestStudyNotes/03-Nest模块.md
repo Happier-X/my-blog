@@ -234,7 +234,7 @@ export class CopyTodoController {
 }
 ```
 
-此时我们向 `http://localhost:3000/copy-todos` 发送一个 POST 请求，可以看到返回的数据，并且我们再访问 `http://localhost:3000/todos`，可以看到 `todos` 数组中多了一个元素。
+当我们向 `http://localhost:3000/copy-todos` 发送一个 POST 请求时，可以看到返回的数据，并且我们再访问 `http://localhost:3000/todos`，可以看到 `todos` 数组中多了一个元素。
 
 这里我们可以得出一个结论，像服务 (Services) 这样的提供者 (Providers) 会在模块 (Modules) 中建立一个实例，当其他模块 (Modules) 需要使用这个实例时，就可以通过导出的方式与其他模块 (Modules) 共享。
 

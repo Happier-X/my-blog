@@ -66,7 +66,7 @@ export class AppService {
 }
 ```
 
-此时我们访问 `http://localhost:3000/1` 将会返回 `{ id: 1, name: 'Happier' }`，访问 `http://localhost:3000/a` 将会抛出如下异常。
+当我们访问 `http://localhost:3000/1` 时，将会返回 `{ id: 1, name: 'Happier' }`，访问 `http://localhost:3000/a` 将会抛出如下异常。
 
 ```Json
 {
@@ -109,7 +109,7 @@ export class AppController {
 }
 ```
 
-此时，访问 `http://localhost:3000/a` 将会返回如下异常。
+当我们访问 `http://localhost:3000/a` 时，将会返回如下异常。
 
 ```Json
 {
@@ -153,7 +153,7 @@ export class AppController {
 }
 ```
 
-此时，访问 `http://localhost:3000/a` 将会返回如下异常。
+当我们访问 `http://localhost:3000/a` 时，将会返回如下异常。
 
 ```Json
 {
@@ -240,7 +240,7 @@ export class AppController {
 }
 ```
 
-此时，访问 `http://localhost:3000/a` 将会返回如下异常。
+当我们访问 `http://localhost:3000/a` 时，将会返回如下异常。
 
 ```Json
 {
@@ -349,7 +349,7 @@ export class TodoController {
 }
 ```
 
-此时使用 `POST` 请求 `http://localhost:3000/todos`，如果传入的 `title` 长度大于 20，将会返回如下异常。
+当我们向 `http://localhost:3000/todos` 发送 `POST` 请求时，如果传入的 `title` 长度大于 20，将会返回如下异常。
 
 ```Json
 {
@@ -386,7 +386,7 @@ export class TodoController {
 }
 ```
 
-此时使用 `POST` 请求 `http://localhost:3000/todos`，如果传入的 `title` 长度大于 20，将会返回如下异常。
+当我们向 `http://localhost:3000/todos` 发送 `POST` 请求时，如果传入的 `title` 长度大于 20，将会返回如下异常。
 
 ```Json
 {
@@ -435,7 +435,7 @@ export class TodoController {
 }
 ```
 
-此时使用 `POST` 请求 `http://localhost:3000/todos`，如果传入的 `title` 长度大于 20，将会返回如下异常。
+当我们向 `http://localhost:3000/todos` 发送 `POST` 请求时，如果传入的 `title` 长度大于 20，将会返回如下异常。
 
 ```Json
 {
@@ -484,7 +484,7 @@ export class TodoController {
 }
 ```
 
-此时使用 `POST` 请求 `http://localhost:3000/todos`，如果传入的 `title` 和 `text`，将会返回如下内容。
+当我们向 `http://localhost:3000/todos` 发送 `POST` 请求时，如果传入的 `title` 和 `text`，将会返回如下内容。
 
 ```Json
 {
@@ -520,7 +520,7 @@ export class TodoController {
 }
 ```
 
-此时使用 `POST` 请求 `http://localhost:3000/todos`，如果传入的 `title` 和 `text` 属性，将会返回如下异常。
+当我们向 `http://localhost:3000/todos` 发送 `POST` 请求时，如果传入的 `title` 和 `text` 属性，将会返回如下异常。
 
 ```Json
 {
@@ -560,7 +560,7 @@ export class TodoController {
 }
 ```
 
-此时使用 `POST` 请求 `http://localhost:3000/todos`，传入 `title` 为 `1234567890123456789`，控制台会打印如下内容。
+当我们向 `http://localhost:3000/todos` 发送 `POST` 请求时，传入 `title` 为 `1234567890123456789`，控制台会打印如下内容。
 
 ```sh
 CreateTodoDto { title: '1234567890123456789' }
@@ -588,7 +588,7 @@ export class TodoController {
 }
 ```
 
-此时使用 `GET` 请求 `http://localhost:3000/todos/1`，控制台会打印如下内容。这里将路由参数 `id` 转换为 `number` 类型，它原来是一个字符串。
+当我们访问 `http://localhost:3000/todos/1` 时，控制台会打印如下内容。这里将路由参数 `id` 转换为 `number` 类型，它原来是一个字符串。
 
 ```sh
 number
@@ -614,7 +614,7 @@ export class TodoController {
 }
 ```
 
-此时使用 `POST` 请求 `http://localhost:3000/todos`，传入一下内容。
+当我们向 `http://localhost:3000/todos` 发送 `POST` 请求时，传入一下内容。
 
 ```Json
 [
@@ -653,7 +653,7 @@ export class AppController {
 }
 ```
 
-此时使用 `GET` 请求 `http://localhost:3000/todos?ids=1,2,3`，会返回如下内容。
+当我们访问 `http://localhost:3000/todos?ids=1,2,3` 时，会返回如下内容。
 
 ```Json
 [

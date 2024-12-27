@@ -816,3 +816,45 @@ export class UpdateTodoDto {
     public readonly information: string
 }
 ```
+
+## 全局作用域管道
+
+我们可以将管道应用到全局作用域，这样所有的控制器都会使用这个管道。
+
+可以在 `main.ts` 中使用 `useGlobalPipes` 方法来应用全局管道。
+
+```TypeScript
+import { NestFactory } from '@nestjs/core'
+import { AppModule } from './app.module'
+import { ValidationPipe } from '@nestjs/common'
+
+async function bootstrap() {
+    const app = await NestFactory.create(AppModule)
+    app.useGlobalPipes(new ValidationPipe())
+    await app.listen(process.env.PORT ?? 3000)
+}
+bootstrap()
+```
+
+也可以通过依赖注入的方式在 `AppModule` 中进行配置。
+
+```TypeScript
+import { Module, ValidationPipe } from '@nestjs/common'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+import { TodoModule } from './features/todo/todo.module'
+import { APP_PIPE } from '@nestjs/core'
+
+@Module({
+    imports: [TodoModule],
+    controllers: [AppController],
+    providers: [
+        AppService,
+        {
+            provide: APP_PIPE,
+            useClass: ValidationPipe
+        }
+    ]
+})
+export class AppModule {}
+```

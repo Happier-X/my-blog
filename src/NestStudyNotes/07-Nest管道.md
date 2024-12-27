@@ -676,7 +676,7 @@ import { CreateTodoDto } from './create-todo.dto'
 export class UpdateTodoDto extends PartialType(CreateTodoDto) {}
 ```
 
-它将 `CreateTodoDto` 的所有字段都继承过来，但是将它们全部转换为非必须的。等同于如下内容。
+它将 `CreateTodoDto` 的所有字段都继承过来，但是将它们全部转换为非必须的，等同于如下内容。
 
 ```TypeScript
 import { MaxLength, IsString, IsNotEmpty, IsOptional } from 'class-validator'

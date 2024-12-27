@@ -1,5 +1,4 @@
 ---
-title: uni-app 安卓真机无线调试
 cover: https://t.alcy.cc/fj?t=1727602200000
 date: 2024-09-29 17:30
 category: 软件开发
@@ -7,9 +6,11 @@ tag: uni-app
 excerpt: false
 ---
 
+# uni-app 安卓真机无线调试
+
 ## 下载安卓 SDK
 
-[安卓 SDK 下载地址](https://developer.android.com/tools/releases/platform-tools?hl=zh-cn)
+[安卓 SDK 下载地址。](https://developer.android.com/tools/releases/platform-tools?hl=zh-cn)
 
 ## 开启无线调试
 

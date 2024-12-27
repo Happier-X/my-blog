@@ -662,3 +662,157 @@ export class AppController {
     3
 ]
 ```
+
+## DTO 使用技巧
+
+### 局部复用
+
+局部复用的意思是将既有的 DTO 的所有字段都继承过来，但是将它们全部转换为非必须的。需要使用 `PartialType` 来实现。这里我们创建一个 `update-todo.dto.ts`。
+
+```TypeScript
+import { PartialType } from '@nestjs/mapped-types'
+import { CreateTodoDto } from './create-todo.dto'
+
+export class UpdateTodoDto extends PartialType(CreateTodoDto) {}
+```
+
+它将 `CreateTodoDto` 的所有字段都继承过来，但是将它们全部转换为非必须的。等同于如下内容。
+
+```TypeScript
+import { MaxLength, IsString, IsNotEmpty, IsOptional } from 'class-validator'
+
+export class UpdateTodoDto {
+    @MaxLength(20)
+    @IsString()
+    @IsNotEmpty()
+    @IsOptional()
+    public readonly title?: string
+
+    @IsString()
+    @IsOptional()
+    public readonly description?: string
+}
+```
+
+### 选择性复用
+
+选择性复用的意思是用既有的 DTO 去选择哪些是需要的。需要使用 `PickType` 来实现。这里我们修改一下 `update-todo.dto.ts`。
+
+```TypeScript
+import { PickType } from '@nestjs/mapped-types'
+import { CreateTodoDto } from './create-todo.dto'
+
+export class UpdateTodoDto extends PickType(CreateTodoDto, ['title']) {}
+```
+
+它将 `CreateTodoDto` 的 `title` 字段继承过来，等同于如下内容。
+
+```TypeScript
+import { MaxLength, IsString, IsNotEmpty } from 'class-validator'
+
+export class UpdateTodoDto {
+    @MaxLength(20)
+    @IsString()
+    @IsNotEmpty()
+    public readonly title: string
+}
+```
+
+### 排除复用
+
+排除复用的意思是用既有的 DTO 去排除哪些是不需要的。需要使用 `OmitType` 来实现。这里我们修改一下 `update-todo.dto.ts`。
+
+```TypeScript
+import { OmitType } from '@nestjs/mapped-types'
+import { CreateTodoDto } from './create-todo.dto'
+
+export class UpdateTodoDto extends OmitType(CreateTodoDto, ['title']) {}
+```
+
+它将 `CreateTodoDto` 的 `title` 字段排除，等同于如下内容。
+
+```TypeScript
+import { IsString, IsOptional } from 'class-validator'
+
+export class UpdateTodoDto {
+    @IsString()
+    @IsOptional()
+    public readonly description?: string
+}
+```
+
+### 合并复用
+
+合并复用的意思是用既有的 DTO 去合并成新的 DTO。需要使用 `IntersectionType` 来实现。这里我们修改一下 `update-todo.dto.ts`。
+
+```TypeScript
+import { IntersectionType } from '@nestjs/mapped-types'
+import { IsNotEmpty, IsString } from 'class-validator'
+import { CreateTodoDto } from './create-todo.dto'
+
+export class MockDto {
+    @IsString()
+    @IsNotEmpty()
+    public readonly information: string
+}
+
+export class UpdateTodoDto extends IntersectionType(CreateTodoDto, MockDto) {}
+```
+
+它将 `CreateTodoDto` 和 `MockDto` 组合成新的 DTO，等同于如下内容。
+
+```TypeScript
+import { IsString, IsNotEmpty, IsOptional, MaxLength } from 'class-validator'
+
+export class UpdateTodoDto {
+    @MaxLength(20)
+    @IsString()
+    @IsNotEmpty()
+    public readonly title: string
+
+    @IsString()
+    @IsOptional()
+    public readonly description?: string
+
+    @IsString()
+    @IsNotEmpty()
+    public readonly information: string
+}
+```
+
+### 组合使用
+
+上面的四种复用方式可以组合使用。这里我们修改一下 `update-todo.dto.ts`。
+
+```TypeScript
+import { IntersectionType, OmitType } from '@nestjs/mapped-types'
+import { IsNotEmpty, IsString } from 'class-validator'
+import { CreateTodoDto } from './create-todo.dto'
+
+export class MockDto {
+    @IsString()
+    @IsNotEmpty()
+    public readonly information: string
+}
+
+export class UpdateTodoDto extends IntersectionType(
+    OmitType(CreateTodoDto, ['title']),
+    MockDto
+) {}
+```
+
+它将 `CreateTodoDto` 的 `title` 字段排除，然后与 `MockDto` 合并成新的 DTO，等同于如下内容。
+
+```TypeScript
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator'
+
+export class UpdateTodoDto {
+    @IsString()
+    @IsOptional()
+    public readonly description?: string
+
+    @IsString()
+    @IsNotEmpty()
+    public readonly information: string
+}
+```

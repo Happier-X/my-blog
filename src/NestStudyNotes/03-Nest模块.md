@@ -27,7 +27,7 @@ nest generate module <MODULE_NAME>
 nest generate module features/todo
 ```
 
-此时会在 `src/features` 下生成一个 `todo` 文件夹，里面包含一个 `todo.module.ts` 文件。
+此时会在 `src/features/todo` 下生成一个 `todo.module.ts` 文件。
 
 其内容如下。
 

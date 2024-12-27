@@ -27,7 +27,7 @@ nest generate controller <CONTROLLERS_NAME>
 nest generate controller todo
 ```
 
-此时会在 `src` 下生成一个 `todo` 文件夹，里面包含一个 `todo.controller.ts` 文件和一个 `todo.controller.spec.ts`。
+此时会在 `src/todo` 下生成一个 `todo.controller.ts` 文件和一个 `todo.controller.spec.ts` 文件。
 
 `todo.controller.ts` 文件的内容如下。
 

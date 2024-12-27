@@ -19,3 +19,39 @@ excerpt: false
 
 ![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/NestStudyNotes/Nest%E6%8B%A6%E6%88%AA%E5%99%A801.jpg)
 
+## 创建拦截器
+
+使用如下命令可以快速创建一个拦截器。
+
+```sh
+nest generate interceptor <INTERCEPTOR_NAME>
+```
+
+> <INTERCEPTOR_NAME> 可以是文件路径，例如 `interceptors/hello-world`。
+
+这里我们创建一个 `HelloWorldInterceptor` 拦截器。
+
+```sh
+nest generate interceptor interceptors/hello-world
+```
+
+此时会在 `src/interceptors/hello-world` 下创建了一个 `hello-world.interceptor.ts` 文件和一个 `hello-world.interceptor.spec.ts` 文件。
+
+`hello-world.interceptor.ts` 文件内容如下。
+
+```TypeScript
+import {
+    CallHandler,
+    ExecutionContext,
+    Injectable,
+    NestInterceptor
+} from '@nestjs/common'
+import { Observable } from 'rxjs'
+
+@Injectable()
+export class HelloWorldInterceptor implements NestInterceptor {
+    intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+        return next.handle()
+    }
+}
+```

@@ -181,7 +181,7 @@ nest generate pipe <PIPES_NAME>
 nest generate pipe pipes/parse-int
 ```
 
-此时会在 `src` 目录下生成一个 `pipes` 文件夹，并在其中生成一个 `parse-int` 文件夹，文件夹中有一个 `parse-int.pipe.ts` 文件和一个 `parse-int.pipe.spec.ts` 文件。
+此时会在 `src/pipes/parse-int` 下生成一个 `parse-int.pipe.ts` 文件和一个 `parse-int.pipe.spec.ts` 文件。
 
 `parse-int.pipe.ts` 的内容如下。
 

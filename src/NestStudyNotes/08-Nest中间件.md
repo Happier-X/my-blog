@@ -54,7 +54,7 @@ nest generate middleware <MIDDLEWARE_NAME>
 nest generate middleware middlewares/logger
 ```
 
-此时会在 `src` 下创建一个 `middlewares` 文件夹，并在文件夹下生成一个 `logger.middleware.ts` 文件和一个 `logger.middleware.spec.ts` 文件。
+此时会在 `src/middlewares/logger` 下创建了一个 `logger.middleware.ts` 文件和一个 `logger.middleware.spec.ts` 文件。
 
 `logger.middleware.ts` 文件内容如下。
 

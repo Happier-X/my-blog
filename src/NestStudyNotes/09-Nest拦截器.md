@@ -35,7 +35,7 @@ nest generate interceptor <INTERCEPTOR_NAME>
 nest generate interceptor interceptors/hello-world
 ```
 
-此时会在 `src/interceptors/hello-world` 下创建了一个 `hello-world.interceptor.ts` 文件和一个 `hello-world.interceptor.spec.ts` 文件。
+此时会在 `src/interceptors/hello-world` 下创建一个 `hello-world.interceptor.ts` 文件和一个 `hello-world.interceptor.spec.ts` 文件。
 
 `hello-world.interceptor.ts` 文件内容如下。
 

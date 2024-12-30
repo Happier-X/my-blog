@@ -29,7 +29,7 @@ nest generate guard <GUARD_NAME>
 nest generate guard guards/auth
 ```
 
-此时会在 `src/guards/auth` 下创建了一个 `auth.guard.ts` 文件和一个 `auth.guard.spec.ts` 文件。
+此时会在 `src/guards/auth` 下创建一个 `auth.guard.ts` 文件和一个 `auth.guard.spec.ts` 文件。
 
 `auth.guard.ts` 文件内容如下。
 

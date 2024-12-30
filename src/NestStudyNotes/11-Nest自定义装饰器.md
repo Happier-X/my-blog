@@ -150,3 +150,170 @@ export class AppController {
 
 ## 元数据装饰器
 
+有时候我们需要针对不同的方法设置不同的元数据，这时候我们可以使用 `@SetMetadata` 装饰器。例如，角色权限。
+
+我们创建一个 `Roles` 装饰器。
+
+```sh
+nest generate decorator decorators/roles
+```
+
+此时会在 `src/decorators/roles` 下创建一个 `roles.decorator.ts` 文件。
+
+```TypeScript
+import { SetMetadata } from '@nestjs/common'
+
+export const Roles = (...args: string[]) => SetMetadata('roles', args)
+```
+
+以上代码的含义是：`Roles` 表示装饰器，通过 `@Roles('admin')` 将 `admin` 添加到装饰器中，`SetMetadata` 指定 `roles` 为 `key`，并将 `['admin']` 设为 `value`，最后设置为元数据。
+
+我们创建一个 `RoleGuard` 来实现角色权限。
+
+```sh
+nest generate guard guards/role
+```
+
+此时会在 `src/guards/role` 下创建一个 `role.guard.ts` 文件和 `role.guard.spec.ts` 文件。
+
+要获得元数据，我们需要通过依赖注入的方式使用 `Reflector`，并使用 `get()` 来获得指定的元数据，修改 `role.guard.ts` 文件。
+
+```TypeScript
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
+import { Reflector } from '@nestjs/core'
+import { Observable } from 'rxjs'
+
+@Injectable()
+export class RoleGuard implements CanActivate {
+    constructor(private readonly reflector: Reflector) {}
+    canActivate(
+        context: ExecutionContext
+    ): boolean | Promise<boolean> | Observable<boolean> {
+        const roles = this.reflector.get<string[]>(
+            'roles',
+            context.getHandler()
+        )
+        const request = context.switchToHttp().getRequest()
+        const user = request.user
+        if (roles.find((role) => user.roles.includes(role))) {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+```
+
+调整 `AddUserMiddleware` 文件，添加 `roles` 属性。
+
+```TypeScript
+import { Injectable, NestMiddleware } from '@nestjs/common'
+
+@Injectable()
+export class AddUserMiddleware implements NestMiddleware {
+    use(req: any, res: any, next: () => void) {
+        req.user = { name: 'Happier', roles: ['user'] }
+        next()
+    }
+}
+```
+
+然后在 `app.controller.ts` 文件中使用 `@Roles()` 装饰器。
+
+```TypeScript
+import { Controller, Get, UseGuards } from '@nestjs/common'
+import { User } from './decorators/user/user.decorator'
+import { Roles } from './decorators/roles/roles.decorator'
+import { RoleGuard } from './guards/role/role.guard'
+
+@Controller()
+export class AppController {
+    constructor() {}
+
+    @Get()
+    @Roles('admin')
+    @UseGuards(RoleGuard)
+    getHello(@User('name') name: string): string {
+        return name
+    }
+}
+```
+
+当我们访问 `http://localhost:3000/` 时，可以看到返回了如下内容。
+
+```json
+{
+  "message": "Forbidden resource",
+  "error": "Forbidden",
+  "statusCode": 403
+}
+```
+
+我们再次修改 `AddUserMiddleware` 文件，添加 `roles` 属性。
+
+```TypeScript
+import { Injectable, NestMiddleware } from '@nestjs/common'
+
+@Injectable()
+export class AddUserMiddleware implements NestMiddleware {
+    use(req: any, res: any, next: () => void) {
+        req.user = { name: 'Happier', roles: ['user', 'admin'] }
+        next()
+    }
+}
+```
+
+当我们访问 `http://localhost:3000/` 时，可以看到返回了 `Happier`。
+
+## 装饰器聚合
+
+Nest 允许我们使用装饰器聚合，将多个装饰器聚合在一起。
+
+创建一个 `Auth` 装饰器。
+
+```sh
+nest generate decorator decorators/auth
+```
+
+此时会在 `src/decorators/auth` 下创建一个 `auth.decorator.ts` 文件。
+
+`Auth` 装饰器需要包含 `UseGuards`、`Roles` 装饰器。
+
+创建一个 `AuthGuard`。
+
+```sh
+nest generate guard guards/auth
+```
+
+修改一下 `auth.decorator.ts` 文件。
+
+```TypeScript
+import { applyDecorators, UseGuards } from '@nestjs/common'
+import { AuthGuard } from 'src/guards/auth/auth.guard'
+import { RoleGuard } from 'src/guards/role/role.guard'
+import { Roles } from '../roles/roles.decorator'
+
+export const Auth = (...roles: string[]) =>
+    applyDecorators(Roles(...roles), UseGuards(AuthGuard, RoleGuard))
+```
+
+在 `app.controller.ts` 文件中使用 `Auth` 装饰器。
+
+```TypeScript
+import { Controller, Get } from '@nestjs/common'
+import { Auth } from './decorators/auth/auth.decorator'
+import { User } from './decorators/user/user.decorator'
+
+@Controller()
+export class AppController {
+    constructor() {}
+
+    @Get()
+    @Auth('admin')
+    getHello(@User('name') name: string): string {
+        return name
+    }
+}
+```
+
+当我们访问 `http://localhost:3000/` 时，可以看到返回了 `Happier`。

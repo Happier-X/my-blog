@@ -53,3 +53,92 @@ export class AuthGuard implements CanActivate {
 
 ## 使用守卫
 
+修改 `auth.guard.ts` 文件，以异步的方式返回 `false`。
+
+```TypeScript
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
+import { delay, Observable, of } from 'rxjs'
+
+@Injectable()
+export class AuthGuard implements CanActivate {
+    canActivate(
+        context: ExecutionContext
+    ): boolean | Promise<boolean> | Observable<boolean> {
+        return of(false).pipe(delay(2000))
+    }
+}
+```
+
+创建 `TodoModule` 和 `TodoController`。
+
+```sh
+nest generate module features/todo
+nest generate controller features/todo
+```
+
+可以使用 `@UseGuards()` 装饰器来使用守卫。它可以装饰在控制器类上，也可以装饰在控制器方法上。这里以 `todo.controller.ts` 为例。
+
+```TypeScript
+import { Controller, Get, UseGuards } from '@nestjs/common'
+import { AuthGuard } from 'src/guards/auth/auth.guard'
+
+@Controller('todos')
+@UseGuards(AuthGuard)
+export class TodoController {
+    @Get()
+    getAll() {
+        return []
+    }
+}
+```
+
+当我们访问 `http://localhost:3000/todos` 时，发现返回了 `403 Forbidden` 状态码，表示没有权限访问该资源。
+
+```json
+{
+  "message": "Forbidden resource",
+  "error": "Forbidden",
+  "statusCode": 403
+}
+```
+
+## 全局守卫
+
+在 `main.ts` 中，我们可以通过 `app.useGlobalGuards()` 方法来全局使用守卫。
+
+```TypeScript
+import { NestFactory } from '@nestjs/core'
+import { AppModule } from './app.module'
+import { AuthGuard } from './guards/auth/auth.guard'
+
+async function bootstrap() {
+    const app = await NestFactory.create(AppModule)
+    app.useGlobalGuards(new AuthGuard())
+    await app.listen(process.env.PORT ?? 3000)
+}
+bootstrap()
+```
+
+也可以通过依赖注入的方式在 `AppModule` 中全局使用守卫。
+
+```TypeScript
+import { Module } from '@nestjs/common'
+import { APP_GUARD } from '@nestjs/core'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+import { TodoModule } from './features/todo/todo.module'
+import { AuthGuard } from './guards/auth/auth.guard'
+
+@Module({
+    imports: [TodoModule],
+    controllers: [AppController],
+    providers: [
+        AppService,
+        {
+            provide: APP_GUARD,
+            useClass: AuthGuard
+        }
+    ]
+})
+export class AppModule {}
+```

@@ -5,8 +5,8 @@ timeline: false
 sidebar: false
 ---
 
-# 玩转NAS
+# 玩转 NAS
 
-NAS使用过程中的技巧分享。
+NAS 使用过程中的技巧分享。
 
 <Catalog base='/PlayNAS/' level=1 />

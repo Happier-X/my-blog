@@ -2,7 +2,7 @@
 cover: https://t.alcy.cc/fj?t=1730941200000
 order: 3
 date: 2024-11-07 09:00
-category: 软件开发
+category: 开发
 tag: TypeScript
 excerpt: false
 ---
@@ -586,4 +586,3 @@ distanceFromOrigin(point as [number, number])
 如果包含了可选成员，TypeScript 会推断出可能的成员数量。
 
 如果使用了扩展运算符，TypeScript 就无法推断出成员数量。
-

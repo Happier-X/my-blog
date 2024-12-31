@@ -3,10 +3,10 @@ title: Vue Router 重定向和别名
 cover: https://t.alcy.cc/fj?t=1729938600
 order: 6
 date: 2024-10-26 18:30
-category: 软件开发
-tag: 
-    - Vue
-    - Vue Router
+category: 开发
+tag:
+  - Vue
+  - Vue Router
 excerpt: false
 ---
 

@@ -3,7 +3,7 @@ title: Vue 属性透传
 cover: https://t.alcy.cc/fj?t=1727418600000
 order: 20
 date: 2024-09-27 14:30
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
@@ -20,15 +20,21 @@ excerpt: false
 <!-- App.vue -->
 <template>
   我是父组件
-  <Student class="student" style="color:skyblue;" name="John" age="20" @click="handleClick">
+  <Student
+    class="student"
+    style="color:skyblue;"
+    name="John"
+    age="20"
+    @click="handleClick"
+  >
   </Student>
 </template>
 
 <script setup>
-import Student from './components/Student.vue'
+import Student from "./components/Student.vue";
 const handleClick = () => {
-  console.log('父组件的点击事件')
-}
+  console.log("父组件的点击事件");
+};
 </script>
 
 <style scoped>
@@ -41,20 +47,20 @@ const handleClick = () => {
 ```vue
 <!-- Student.vue -->
 <template>
-    <div ref="divRef" @click="handleClick">我是子组件{{ props.name }}</div>
+  <div ref="divRef" @click="handleClick">我是子组件{{ props.name }}</div>
 </template>
 
 <script setup>
-import { onMounted, useTemplateRef } from 'vue'
-const divRef = useTemplateRef('divRef')
-const props = defineProps(['name'])
-const emit = defineEmits(['click'])
+import { onMounted, useTemplateRef } from "vue";
+const divRef = useTemplateRef("divRef");
+const props = defineProps(["name"]);
+const emit = defineEmits(["click"]);
 onMounted(() => {
-    console.log(divRef.value) // <div class="student" age="20" style="color: skyblue;">我是子组件John</div>
-})
+  console.log(divRef.value); // <div class="student" age="20" style="color: skyblue;">我是子组件John</div>
+});
 const handleClick = () => {
-    console.log('子组件的点击事件')
-}
+  console.log("子组件的点击事件");
+};
 </script>
 ```
 
@@ -62,60 +68,72 @@ const handleClick = () => {
 
 ```html
 <head>
-    <style>
-        .student {
-            background-color: pink;
-        }
-    </style>
+  <style>
+    .student {
+      background-color: pink;
+    }
+  </style>
 </head>
 
 <body>
-    <div id="app">
-        我是父组件
-        <Student class="student" style="color:skyblue;" name="John" age="20" @click="handleClick"></Student>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        import Student from './Student.js'
-        createApp({
-            components: {
-                Student
-            },
-            setup() {
-                const handleClick = () => {
-                    console.log('父组件的点击事件')
-                }
-                return {
-                    handleClick
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    我是父组件
+    <Student
+      class="student"
+      style="color:skyblue;"
+      name="John"
+      age="20"
+      @click="handleClick"
+    ></Student>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    import Student from "./Student.js";
+    createApp({
+      components: {
+        Student,
+      },
+      setup() {
+        const handleClick = () => {
+          console.log("父组件的点击事件");
+        };
+        return {
+          handleClick,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
 ```javascript
 // Student.js
-import { onMounted, useTemplateRef } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+import {
+  onMounted,
+  useTemplateRef,
+} from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 export default {
-    props: ['name'],
-    emits: ['click'],
-    setup(props) {
-        const divRef = useTemplateRef('divRef')
-        onMounted(() => {
-            console.log(divRef.value) // <div class="student" age="20" style="color: skyblue;">我是子组件John</div>
-        })
-        const handleClick = () => {
-            console.log('子组件的点击事件')
-        }
-        return {
-            props,
-            handleClick
-        }
-    },
-    template: `
-        <div ref="divRef" @click="handleClick">我是子组件{{ props.name }}</div>`
-}
+  props: ["name"],
+  emits: ["click"],
+  setup(props) {
+    const divRef = useTemplateRef("divRef");
+    onMounted(() => {
+      console.log(divRef.value); // <div class="student" age="20" style="color: skyblue;">我是子组件John</div>
+    });
+    const handleClick = () => {
+      console.log("子组件的点击事件");
+    };
+    return {
+      props,
+      handleClick,
+    };
+  },
+  template: `
+        <div ref="divRef" @click="handleClick">我是子组件{{ props.name }}</div>`,
+};
 ```
 
 :::
@@ -134,6 +152,7 @@ export default {
 有些情况下一个组件会在根节点上渲染另一个组件，这种情况下，父组件传递给子组件的属性会自动传递给根节点渲染的组件，这种情况下称为深层组件透传
 
 需要注意：
+
 1. 透传的属性不会包含已经声明过的 `props` 或 `emits`
 2. 透传的属性若符合声明，也可以被 `props` 或 `emits` 接收，来传入到深层组件中
 
@@ -149,8 +168,8 @@ export default {
 <!-- 在子组件中 -->
 <script setup>
 defineOptions({
-    inheritAttrs: false
-})
+  inheritAttrs: false,
+});
 </script>
 ```
 
@@ -159,9 +178,10 @@ defineOptions({
 ```javascript
 // 在子组件中
 export default {
-    inheritAttrs: false,
-}
+  inheritAttrs: false,
+};
 ```
+
 :::
 
 ## 访问透传属性
@@ -178,11 +198,16 @@ export default {
 <!-- App.vue -->
 <template>
   我是父组件
-  <Student class="student" style="color:skyblue;" name="John" age="20"></Student>
+  <Student
+    class="student"
+    style="color:skyblue;"
+    name="John"
+    age="20"
+  ></Student>
 </template>
 
 <script setup>
-import Student from './components/Student.vue'
+import Student from "./components/Student.vue";
 </script>
 
 <style scoped>
@@ -195,17 +220,17 @@ import Student from './components/Student.vue'
 ```vue
 <!-- Student.vue -->
 <template>
-    <div>我是子组件{{ props.name }}{{ $attrs }}</div>
+  <div>我是子组件{{ props.name }}{{ $attrs }}</div>
 </template>
 
 <script setup>
-import { useAttrs } from 'vue'
+import { useAttrs } from "vue";
 defineOptions({
-    inheritAttrs: false
-})
-const props = defineProps(['name'])
-const attrs = useAttrs()
-console.log(attrs) // { class: "student", style: { color: "skyblue" }, age: "20" }
+  inheritAttrs: false,
+});
+const props = defineProps(["name"]);
+const attrs = useAttrs();
+console.log(attrs); // { class: "student", style: { color: "skyblue" }, age: "20" }
 </script>
 ```
 
@@ -217,48 +242,58 @@ console.log(attrs) // { class: "student", style: { color: "skyblue" }, age: "20"
 
 ```html
 <head>
-    <style>
-        .student {
-            background-color: pink;
-        }
-    </style>
+  <style>
+    .student {
+      background-color: pink;
+    }
+  </style>
 </head>
 
 <body>
-    <div id="app">
-        我是父组件
-        <Student class="student" style="color:skyblue;" name="John" age="20"></Student>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        import Student from './Student.js'
-        createApp({
-            components: {
-                Student
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    我是父组件
+    <Student
+      class="student"
+      style="color:skyblue;"
+      name="John"
+      age="20"
+    ></Student>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    import Student from "./Student.js";
+    createApp({
+      components: {
+        Student,
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 ```javascript
 // Student.js
 export default {
-    props: ['name'],
-    inheritAttrs: false,
-    setup(props, ctx) {
-        console.log(ctx.attrs) // { class: "student", style: { color: "skyblue" }, age: "20" }
-        return {
-            props
-        }
-    },
-    template: `
-        <div>我是子组件{{ props.name }}{{ $attrs }}</div>`
-}
+  props: ["name"],
+  inheritAttrs: false,
+  setup(props, ctx) {
+    console.log(ctx.attrs); // { class: "student", style: { color: "skyblue" }, age: "20" }
+    return {
+      props,
+    };
+  },
+  template: `
+        <div>我是子组件{{ props.name }}{{ $attrs }}</div>`,
+};
 ```
+
 :::
 
 > 透传属性对象不是响应式的，不能通过侦听器来监听其变化，可以使用 `props` 或使用 `onUpdated()` 生命周期钩子
 
-##  多个根节点的属性透传
+## 多个根节点的属性透传
 
 如果子组件有多个根节点，那么属性将不会自动透传，需要在子组件中使用 `v-bind='$attrs'` 手动指定绑定到哪个节点上

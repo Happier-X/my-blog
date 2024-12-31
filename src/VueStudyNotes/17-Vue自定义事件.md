@@ -3,7 +3,7 @@ title: Vue 自定义事件
 cover: https://t.alcy.cc/fj?t=1727247600000
 order: 17
 date: 2024-09-25 15:00
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
@@ -31,40 +31,40 @@ excerpt: false
 </template>
 
 <script setup>
-import Student from './components/Student.vue'
-import { ref } from 'vue'
-const school = ref('QFNU')
+import Student from "./components/Student.vue";
+import { ref } from "vue";
+const school = ref("QFNU");
 // 可以接收子组件传递过来的参数
 const changeSchool = (value) => {
   if (value) {
-    school.value = value
+    school.value = value;
   } else {
-    school.value = 'THU'
+    school.value = "THU";
   }
-}
+};
 </script>
 ```
 
 ```vue
 <!-- Student.vue -->
 <template>
-    <h1>{{ name }}</h1>
-    <!-- 在模板中使用 $emit 触发 -->
-    <button @click="$emit('transferSchool')">转学</button>
-    <button @click="handleClick">转学</button>
-    <!-- 使用 $emit 触发，并传递参数 -->
-    <button @click="$emit('transferSchool', 'PKU')">传参</button>
+  <h1>{{ name }}</h1>
+  <!-- 在模板中使用 $emit 触发 -->
+  <button @click="$emit('transferSchool')">转学</button>
+  <button @click="handleClick">转学</button>
+  <!-- 使用 $emit 触发，并传递参数 -->
+  <button @click="$emit('transferSchool', 'PKU')">传参</button>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 // 声明自定义事件
-const emit = defineEmits(['transferSchool'])
-const name = ref('John')
+const emit = defineEmits(["transferSchool"]);
+const name = ref("John");
 const handleClick = () => {
-    // 使用 emit 触发
-    emit('transferSchool')
-}
+  // 使用 emit 触发
+  emit("transferSchool");
+};
 </script>
 ```
 
@@ -78,63 +78,66 @@ const handleClick = () => {
 
 ```html
 <body>
-    <div id="app">
-        {{ school }}
-        <!-- 监听子组件的自定义事件 -->
-        <Student @transfer-school="changeSchool"></Student>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        import Student from './Student.js'
-        createApp({
-            components: {
-                Student
-            },
-            setup() {
-                const school = ref('QFNU')
-                // 可以接收子组件传递过来的参数
-                const changeSchool = (value) => {
-                    if (value) {
-                        school.value = value
-                    } else {
-                        school.value = 'THU'
-                    }
-                }
-                return {
-                    school,
-                    changeSchool
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    {{ school }}
+    <!-- 监听子组件的自定义事件 -->
+    <Student @transfer-school="changeSchool"></Student>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    import Student from "./Student.js";
+    createApp({
+      components: {
+        Student,
+      },
+      setup() {
+        const school = ref("QFNU");
+        // 可以接收子组件传递过来的参数
+        const changeSchool = (value) => {
+          if (value) {
+            school.value = value;
+          } else {
+            school.value = "THU";
+          }
+        };
+        return {
+          school,
+          changeSchool,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
 ```js
 // Student.js
-import { ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+import { ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 export default {
-    // 声明自定义事件
-    emits: ['transferSchool'],
-    setup(props, ctx) {
-        const name = ref('John')
-        const handleClick = () => {
-            // 使用上下文对象的 emit 触发
-            ctx.emit('transferSchool')
-        }
-        return {
-            name,
-            handleClick
-        }
-    },
-    template: `
+  // 声明自定义事件
+  emits: ["transferSchool"],
+  setup(props, ctx) {
+    const name = ref("John");
+    const handleClick = () => {
+      // 使用上下文对象的 emit 触发
+      ctx.emit("transferSchool");
+    };
+    return {
+      name,
+      handleClick,
+    };
+  },
+  template: `
         <h1>{{ name }}</h1>
         <!-- 在模板中使用 $emit 触发 -->
         <button @click="$emit('transferSchool')">转学</button>
         <button @click="handleClick">转学</button>
         <!-- 使用 $emit 触发，并传递参数 -->
-        <button @click="$emit('transferSchool', 'PKU')">传参</button>`
-}
+        <button @click="$emit('transferSchool', 'PKU')">传参</button>`,
+};
 ```
 
 :::

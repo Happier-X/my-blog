@@ -3,10 +3,10 @@ title: Vue Router 嵌套路由
 cover: https://t.alcy.cc/fj?t=1729834200000
 order: 2
 date: 2024-10-25 13:30
-category: 软件开发
-tag: 
-    - Vue
-    - Vue Router
+category: 开发
+tag:
+  - Vue
+  - Vue Router
 excerpt: false
 ---
 
@@ -66,41 +66,41 @@ export default router
 ```vue
 <!-- src/views/AboutView.vue -->
 <template>
-    我是 About 页面
-    <br>
-    <RouterView></RouterView>
+  我是 About 页面
+  <br />
+  <RouterView></RouterView>
 </template>
 ```
 
 ```vue
 <!-- src/views/DefaultView.vue -->
 <template>
-    我是默认页面
-    <br>
-    <RouterLink to="/about/news">跳转到 News 页面</RouterLink>
-    <span>|</span>
-    <RouterLink to="/about/message">跳转到 Message 页面</RouterLink>
+  我是默认页面
+  <br />
+  <RouterLink to="/about/news">跳转到 News 页面</RouterLink>
+  <span>|</span>
+  <RouterLink to="/about/message">跳转到 Message 页面</RouterLink>
 </template>
 ```
 
 ```vue
 <!-- src/views/NewsView.vue -->
 <template>
-    我是 News 页面
-    <br>
-    <RouterLink to="/about">跳转到默认页面</RouterLink>
-    <span>|</span>
-    <RouterLink to="/about/message">跳转到 Message 页面</RouterLink>
+  我是 News 页面
+  <br />
+  <RouterLink to="/about">跳转到默认页面</RouterLink>
+  <span>|</span>
+  <RouterLink to="/about/message">跳转到 Message 页面</RouterLink>
 </template>
 ```
 
 ```vue
 <!-- src/views/MessageView.vue -->
 <template>
-    我是 Message 页面
-    <br>
-    <RouterLink to="/about">跳转到默认页面</RouterLink>
-    <span>|</span>
-    <RouterLink to="/about/news">跳转到 News 页面</RouterLink>
+  我是 Message 页面
+  <br />
+  <RouterLink to="/about">跳转到默认页面</RouterLink>
+  <span>|</span>
+  <RouterLink to="/about/news">跳转到 News 页面</RouterLink>
 </template>
 ```

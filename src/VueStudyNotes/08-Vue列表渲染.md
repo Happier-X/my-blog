@@ -3,10 +3,11 @@ title: Vue 列表渲染
 cover: https://t.alcy.cc/fj?t=1726239600
 order: 8
 date: 2024-09-13 23:00
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
+
 ## 基本用法
 
 使用 `v-for` 指令可以将一个数组渲染成一个列表
@@ -32,8 +33,8 @@ excerpt: false
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const array = ref([1, 2, 3, 4, 5])
+import { ref } from "vue";
+const array = ref([1, 2, 3, 4, 5]);
 </script>
 ```
 
@@ -41,27 +42,31 @@ const array = ref([1, 2, 3, 4, 5])
 
 ```html
 <body>
-    <div id="app">
-        <ul>
-            <li v-for="(item,index) in array">{{ item }}-{{ index }}</li>
-        </ul>
-        <ul>
-            <li v-for="(item,index) of array">{{ item }}-{{ index }}</li>
-        </ul>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const array = ref([1, 2, 3, 4, 5])
-                return {
-                    array
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <ul>
+      <li v-for="(item,index) in array">{{ item }}-{{ index }}</li>
+    </ul>
+    <ul>
+      <li v-for="(item,index) of array">{{ item }}-{{ index }}</li>
+    </ul>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const array = ref([1, 2, 3, 4, 5]);
+        return {
+          array,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 
 ## 遍历对象
@@ -77,17 +82,19 @@ const array = ref([1, 2, 3, 4, 5])
 ```vue
 <template>
   <ul>
-    <li v-for="(item, key, index) in object">{{ item }}-{{ key }}-{{ index }}</li>
+    <li v-for="(item, key, index) in object">
+      {{ item }}-{{ key }}-{{ index }}
+    </li>
   </ul>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 const object = ref({
-  name: '张三',
+  name: "张三",
   age: 18,
-  hobby: '篮球'
-})
+  hobby: "篮球",
+});
 </script>
 ```
 
@@ -95,28 +102,34 @@ const object = ref({
 
 ```html
 <body>
-    <div id="app">
-        <ul>
-            <li v-for="(item,key,index) in object">{{ item }}-{{ key }}-{{ index }}</li>
-        </ul>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const object = ref({
-                    name: '张三',
-                    age: 18,
-                    hobby: '篮球'
-                })
-                return {
-                    object
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <ul>
+      <li v-for="(item,key,index) in object">
+        {{ item }}-{{ key }}-{{ index }}
+      </li>
+    </ul>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const object = ref({
+          name: "张三",
+          age: 18,
+          hobby: "篮球",
+        });
+        return {
+          object,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 
 ## 遍历整数值
@@ -139,20 +152,22 @@ const object = ref({
 
 ```html
 <body>
-    <div id="app">
-        <ul>
-            <li v-for="item in 10">{{ item }}</li>
-        </ul>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                return {
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <ul>
+      <li v-for="item in 10">{{ item }}</li>
+    </ul>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        return {};
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
@@ -179,14 +194,17 @@ const object = ref({
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const items = ref([{
-  msg: 'hello',
-  phone: '123456789'
-}, {
-  msg: '你好',
-  phone: '987654321'
-}])
+import { ref } from "vue";
+const items = ref([
+  {
+    msg: "hello",
+    phone: "123456789",
+  },
+  {
+    msg: "你好",
+    phone: "987654321",
+  },
+]);
 </script>
 ```
 
@@ -194,33 +212,40 @@ const items = ref([{
 
 ```html
 <body>
-    <div id="app">
-        <ul>
-            <template v-for="item in items">
-                <li>{{ item.msg }}</li>
-                <li>{{ item.phone }}</li>
-            </template>
-        </ul>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const items = ref([{
-                    msg: 'hello',
-                    phone: '123456789'
-                }, {
-                    msg: '你好',
-                    phone: '987654321'
-                }])
-                return {
-                    items
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <ul>
+      <template v-for="item in items">
+        <li>{{ item.msg }}</li>
+        <li>{{ item.phone }}</li>
+      </template>
+    </ul>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const items = ref([
+          {
+            msg: "hello",
+            phone: "123456789",
+          },
+          {
+            msg: "你好",
+            phone: "987654321",
+          },
+        ]);
+        return {
+          items,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 
 ## v-for 与 v-if
@@ -241,14 +266,17 @@ const items = ref([{
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const todo = ref([{
-  name: '吃饭',
-  done: true
-}, {
-  name: '睡觉',
-  done: false
-}])
+import { ref } from "vue";
+const todo = ref([
+  {
+    name: "吃饭",
+    done: true,
+  },
+  {
+    name: "睡觉",
+    done: false,
+  },
+]);
 </script>
 ```
 
@@ -256,28 +284,36 @@ const todo = ref([{
 
 ```html
 <body>
-    <div id="app">
-        <ul>
-            <li v-for="todoItem in todo" v-if="!todoItem.done">{{ todoItem.name }}</li>
-        </ul>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const todo = ref([{
-                    name: '吃饭',
-                    done: true
-                }, {
-                    name: '睡觉',
-                    done: false
-                }])
-                return {
-                    todo
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <ul>
+      <li v-for="todoItem in todo" v-if="!todoItem.done">
+        {{ todoItem.name }}
+      </li>
+    </ul>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const todo = ref([
+          {
+            name: "吃饭",
+            done: true,
+          },
+          {
+            name: "睡觉",
+            done: false,
+          },
+        ]);
+        return {
+          todo,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
@@ -299,46 +335,57 @@ const todo = ref([{
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const todo = ref([{
-  name: '吃饭',
-  done: true
-}, {
-  name: '睡觉',
-  done: false
-}])
+import { ref } from "vue";
+const todo = ref([
+  {
+    name: "吃饭",
+    done: true,
+  },
+  {
+    name: "睡觉",
+    done: false,
+  },
+]);
 </script>
 ```
+
 @tab HTML
 
 ```html
 <body>
-    <div id="app">
-        <ul>
-            <template v-for="todoItem in todo">
-                <li v-if="!todoItem.done">{{ todoItem.name }}</li>
-            </template>
-        </ul>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const todo = ref([{
-                    name: '吃饭',
-                    done: true
-                }, {
-                    name: '睡觉',
-                    done: false
-                }])
-                return {
-                    todo
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <ul>
+      <template v-for="todoItem in todo">
+        <li v-if="!todoItem.done">{{ todoItem.name }}</li>
+      </template>
+    </ul>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const todo = ref([
+          {
+            name: "吃饭",
+            done: true,
+          },
+          {
+            name: "睡觉",
+            done: false,
+          },
+        ]);
+        return {
+          todo,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 
 ## 通过 key 管理状态
@@ -361,65 +408,71 @@ const todo = ref([{
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 const array = ref([
   {
-    name: '张三',
+    name: "张三",
     age: 18,
-    id: 1
+    id: 1,
   },
   {
-    name: '李四',
+    name: "李四",
     age: 19,
-    id: 2
+    id: 2,
   },
   {
-    name: '王五',
+    name: "王五",
     age: 20,
-    id: 3
-  }
-])
+    id: 3,
+  },
+]);
 </script>
 ```
 
 @tab HTML
+
 ```html
 <body>
-    <div id="app">
-        <ul>
-            <li v-for="(item,index) in array" :key="id">{{ item.name }}</li>
-        </ul>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const array = ref([
-                    {
-                        name: '张三',
-                        age: 18,
-                        id: 1
-                    },
-                    {
-                        name: '李四',
-                        age: 19,
-                        id: 2
-                    },
-                    {
-                        name: '王五',
-                        age: 20,
-                        id: 3
-                    }
-                ])
-                return {
-                    array
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <ul>
+      <li v-for="(item,index) in array" :key="id">{{ item.name }}</li>
+    </ul>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const array = ref([
+          {
+            name: "张三",
+            age: 18,
+            id: 1,
+          },
+          {
+            name: "李四",
+            age: 19,
+            id: 2,
+          },
+          {
+            name: "王五",
+            age: 20,
+            id: 3,
+          },
+        ]);
+        return {
+          array,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
+
 ## 显示过滤/排序结果
 
 有时，我们想要显示一个数组经过过滤或排序后的版本，而不实际改变或重置原始数据。在这种情况下，可以创建一个计算属性，来返回过滤或排序后的数组
@@ -436,27 +489,27 @@ const array = ref([
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed } from "vue";
 const array = ref([
   {
-    name: '张三',
+    name: "张三",
     age: 18,
-    id: 1
+    id: 1,
   },
   {
-    name: '李四',
+    name: "李四",
     age: 19,
-    id: 2
+    id: 2,
   },
   {
-    name: '王五',
+    name: "王五",
     age: 20,
-    id: 3
-  }
-])
+    id: 3,
+  },
+]);
 const filteredArray = computed(() => {
-  return array.value.filter(item => item.age > 18)
-})
+  return array.value.filter((item) => item.age > 18);
+});
 </script>
 ```
 
@@ -464,44 +517,49 @@ const filteredArray = computed(() => {
 
 ```html
 <body>
-    <div id="app">
-        <ul>
-            <li v-for="item in filteredArray" :key="item.id">{{ item.name }}</li>
-        </ul>
-    </div>
-    <script type="module">
-        import { createApp, ref, computed } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const array = ref([
-                    {
-                        name: '张三',
-                        age: 18,
-                        id: 1
-                    },
-                    {
-                        name: '李四',
-                        age: 19,
-                        id: 2
-                    },
-                    {
-                        name: '王五',
-                        age: 20,
-                        id: 3
-                    }
-                ])
-                const filteredArray = computed(() => {
-                    return array.value.filter(item => item.age > 18)
-                })
-                return {
-                    array,
-                    filteredArray
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <ul>
+      <li v-for="item in filteredArray" :key="item.id">{{ item.name }}</li>
+    </ul>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+      computed,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const array = ref([
+          {
+            name: "张三",
+            age: 18,
+            id: 1,
+          },
+          {
+            name: "李四",
+            age: 19,
+            id: 2,
+          },
+          {
+            name: "王五",
+            age: 20,
+            id: 3,
+          },
+        ]);
+        const filteredArray = computed(() => {
+          return array.value.filter((item) => item.age > 18);
+        });
+        return {
+          array,
+          filteredArray,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 
 ## 在组件上使用

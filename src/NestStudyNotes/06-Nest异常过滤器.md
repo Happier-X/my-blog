@@ -2,7 +2,7 @@
 cover: https://t.alcy.cc/fj?t=1734433200
 order: 6
 date: 2024-12-17 19:00
-category: 软件开发
+category: 开发
 tag: Nest
 excerpt: false
 ---
@@ -37,8 +37,8 @@ export class AppController {
 
 ```json
 {
-    "statusCode": 500,
-    "message": "Internal server error"
+  "statusCode": 500,
+  "message": "Internal server error"
 }
 ```
 
@@ -70,8 +70,8 @@ export class AppController {
 
 ```json
 {
-    "statusCode": 400,
-    "message": "出错了！"
+  "statusCode": 400,
+  "message": "出错了！"
 }
 ```
 
@@ -103,8 +103,8 @@ export class AppController {
 
 ```json
 {
-    "code": 400,
-    "msg": "出错了！"
+  "code": 400,
+  "msg": "出错了！"
 }
 ```
 
@@ -112,28 +112,28 @@ export class AppController {
 
 Nest 提供了一组内置的 HTTP 异常类，它们都是 `HttpException` 的子类，代表了常见的 HTTP 错误。
 
-| 异常类 | 错误码 | 错误信息 |
-| --- | --- | --- |
-|BadRequestException | 400 | Bad Request（错误的请求）|
-|UnauthorizedException| 401 | Unauthorized （未授权）|
-|NotFoundException| 404 | Not Found （未找到）|
-|ForbiddenException| 403 | Forbidden （禁止访问）|
-|NotAcceptableException| 406 | Not Acceptable （无法接受）|
-|RequestTimeoutException| 408 | Request Timeout （请求超时）|
-|ConflictException| 409 | Conflict （冲突）|
-|GoneException| 410 | Gone （已删除）|
-|HttpVersionNotSupportedException| 505 | Http Version Not Supported （不支持的 HTTP 版本）|
-|PayloadTooLargeException| 413 | Payload Too Large （请求实体过大）|
-|UnsupportedMediaTypeException| 415 | Unsupported Media Type （不支持的媒体类型）|
-|UnprocessableEntityException| 422 | Unprocessable Entity （无法处理的实体）|
-|InternalServerErrorException| 500 | Internal Server Error （内部服务器错误）|
-|NotImplementedException| 501 | Not Implemented （未实现）|
-|ImATeapotException| 418 | I'm a teapot （我是茶壶）|
-|MethodNotAllowedException| 405 | Method Not Allowed （方法不允许）|
-|BadGatewayException| 502 | Bad Gateway （错误的网关）|
-|ServiceUnavailableException| 503 | Service Unavailable （服务不可用）|
-|GatewayTimeoutException| 504 | Gateway Timeout （网关超时）|
-|PreconditionFailedException| 412 | Precondition Failed （先决条件失败）|
+| 异常类                           | 错误码 | 错误信息                                          |
+| -------------------------------- | ------ | ------------------------------------------------- |
+| BadRequestException              | 400    | Bad Request（错误的请求）                         |
+| UnauthorizedException            | 401    | Unauthorized （未授权）                           |
+| NotFoundException                | 404    | Not Found （未找到）                              |
+| ForbiddenException               | 403    | Forbidden （禁止访问）                            |
+| NotAcceptableException           | 406    | Not Acceptable （无法接受）                       |
+| RequestTimeoutException          | 408    | Request Timeout （请求超时）                      |
+| ConflictException                | 409    | Conflict （冲突）                                 |
+| GoneException                    | 410    | Gone （已删除）                                   |
+| HttpVersionNotSupportedException | 505    | Http Version Not Supported （不支持的 HTTP 版本） |
+| PayloadTooLargeException         | 413    | Payload Too Large （请求实体过大）                |
+| UnsupportedMediaTypeException    | 415    | Unsupported Media Type （不支持的媒体类型）       |
+| UnprocessableEntityException     | 422    | Unprocessable Entity （无法处理的实体）           |
+| InternalServerErrorException     | 500    | Internal Server Error （内部服务器错误）          |
+| NotImplementedException          | 501    | Not Implemented （未实现）                        |
+| ImATeapotException               | 418    | I'm a teapot （我是茶壶）                         |
+| MethodNotAllowedException        | 405    | Method Not Allowed （方法不允许）                 |
+| BadGatewayException              | 502    | Bad Gateway （错误的网关）                        |
+| ServiceUnavailableException      | 503    | Service Unavailable （服务不可用）                |
+| GatewayTimeoutException          | 504    | Gateway Timeout （网关超时）                      |
+| PreconditionFailedException      | 412    | Precondition Failed （先决条件失败）              |
 
 这里我们以 `BadRequestException` 为例，修改 `app.controller.ts`。
 
@@ -157,9 +157,9 @@ export class AppController {
 
 ```json
 {
-    "message": "出错了！",
-    "error": "Bad Request",
-    "statusCode": 400
+  "message": "出错了！",
+  "error": "Bad Request",
+  "statusCode": 400
 }
 ```
 
@@ -185,7 +185,7 @@ export class AppController {
 
 ```json
 {
-    "msg": "出错了！"
+  "msg": "出错了！"
 }
 ```
 
@@ -228,8 +228,8 @@ export class AppController {
 
 ```json
 {
-    "statusCode": 500,
-    "message": "未知错误"
+  "statusCode": 500,
+  "message": "未知错误"
 }
 ```
 
@@ -286,9 +286,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
 ```json
 {
-    "code": 400,
-    "message": "出错了！",
-    "timestamp": "2021-08-25T09:43:25.748Z"
+  "code": 400,
+  "message": "出错了！",
+  "timestamp": "2021-08-25T09:43:25.748Z"
 }
 ```
 
@@ -378,9 +378,9 @@ export class AppController {
 
 ```json
 {
-    "code": 400,
-    "message": "出错了",
-    "timestamp": "2024-12-21T06:20:30.720Z"
+  "code": 400,
+  "message": "出错了",
+  "timestamp": "2024-12-21T06:20:30.720Z"
 }
 ```
 

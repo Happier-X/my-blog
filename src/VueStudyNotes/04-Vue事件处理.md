@@ -3,10 +3,11 @@ title: Vue 事件处理
 cover: https://t.alcy.cc/fj?t=1726032600000
 order: 4
 date: 2024-09-11 13:30
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
+
 ## 事件监听
 
 使用 `v-on` 指令 (简写为 `@`) 来监听 DOM 事件
@@ -33,11 +34,11 @@ handler (事件处理器) 的值可以是：
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const count = ref(0)
+import { ref } from "vue";
+const count = ref(0);
 const add = () => {
-  count.value++
-}
+  count.value++;
+};
 </script>
 ```
 
@@ -45,27 +46,30 @@ const add = () => {
 
 ```html
 <body>
-    <div id="app">
-        <h1>{{count}}</h1>
-        <button v-on:click="add">按钮</button>
-        <!-- 简写 -->
-        <button @click="add">按钮</button>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count = ref(0)
-                const add = () => {
-                    count.value++
-                }
-                return {
-                    count,
-                    add
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h1>{{count}}</h1>
+    <button v-on:click="add">按钮</button>
+    <!-- 简写 -->
+    <button @click="add">按钮</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count = ref(0);
+        const add = () => {
+          count.value++;
+        };
+        return {
+          count,
+          add,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
@@ -86,40 +90,44 @@ const add = () => {
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const count = ref(0)
+import { ref } from "vue";
+const count = ref(0);
 // 接收事件对象
 const add = (event) => {
-  count.value++
-  console.log('事件对象', event)
-}
+  count.value++;
+  console.log("事件对象", event);
+};
 </script>
 ```
+
 @tab HTML
 
 ```html
 <body>
-    <div id="app">
-        <h1>{{count}}</h1>
-        <button @click="add">按钮</button>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count = ref(0)
-                // 接收事件对象
-                const add = (event) => {
-                    count.value++
-                    console.log('事件对象', event)
-                }
-                return {
-                    count,
-                    add
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h1>{{count}}</h1>
+    <button @click="add">按钮</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count = ref(0);
+        // 接收事件对象
+        const add = (event) => {
+          count.value++;
+          console.log("事件对象", event);
+        };
+        return {
+          count,
+          add,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
@@ -140,31 +148,35 @@ const add = (event) => {
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const count = ref(0)
+import { ref } from "vue";
+const count = ref(0);
 </script>
 ```
+
 @tab HTML
 
 ```html
 <body>
-    <div id="app">
-        <h1>{{count}}</h1>
-        <button v-on:click="count++">按钮</button>
-        <!-- 简写 -->
-        <button @click="count++">按钮</button>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count = ref(0)
-                return {
-                    count
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h1>{{count}}</h1>
+    <button v-on:click="count++">按钮</button>
+    <!-- 简写 -->
+    <button @click="count++">按钮</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count = ref(0);
+        return {
+          count,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
@@ -185,12 +197,12 @@ const count = ref(0)
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const count = ref(0)
+import { ref } from "vue";
+const count = ref(0);
 // 传入自定义参数
 const add = (number) => {
-  count.value += number
-}
+  count.value += number;
+};
 </script>
 ```
 
@@ -198,26 +210,29 @@ const add = (number) => {
 
 ```html
 <body>
-    <div id="app">
-        <h1>{{count}}</h1>
-        <button @click="add(2)">按钮</button>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count = ref(0)
-                // 传入自定义参数
-                const add = (number) => {
-                    count.value += number
-                }
-                return {
-                    count,
-                    add
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h1>{{count}}</h1>
+    <button @click="add(2)">按钮</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count = ref(0);
+        // 传入自定义参数
+        const add = (number) => {
+          count.value += number;
+        };
+        return {
+          count,
+          add,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
@@ -241,13 +256,13 @@ const add = (number) => {
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const count = ref(0)
+import { ref } from "vue";
+const count = ref(0);
 // 传入自定义参数
 const add = (number, event) => {
-  count.value += number
-  console.log('事件对象', event)
-}
+  count.value += number;
+  console.log("事件对象", event);
+};
 </script>
 ```
 
@@ -255,32 +270,36 @@ const add = (number, event) => {
 
 ```html
 <body>
-    <div id="app">
-        <h1>{{count}}</h1>
-        <!-- 使用 $event 变量 -->
-        <button @click="add(2,$event)">按钮</button>
-        <!-- 使用内联箭头函数 -->
-        <button @click="(event) => add(2,event)">按钮</button>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count = ref(0)
-                // 传入自定义参数
-                const add = (number, event) => {
-                    count.value += number
-                    console.log('事件对象', event)
-                }
-                return {
-                    count,
-                    add
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h1>{{count}}</h1>
+    <!-- 使用 $event 变量 -->
+    <button @click="add(2,$event)">按钮</button>
+    <!-- 使用内联箭头函数 -->
+    <button @click="(event) => add(2,event)">按钮</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count = ref(0);
+        // 传入自定义参数
+        const add = (number, event) => {
+          count.value += number;
+          console.log("事件对象", event);
+        };
+        return {
+          count,
+          add,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 
 ## 修饰符
@@ -322,39 +341,44 @@ Vue 中未提供的可以使用按键原始的 key 值去绑定，但注意要�
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const count = ref(0)
+import { ref } from "vue";
+const count = ref(0);
 const add = () => {
-  count.value++
-}
+  count.value++;
+};
 </script>
 ```
+
 @tab HTML
 
 ```html
 <body>
-    <div id="app">
-        <h1>{{count}}</h1>
-        <!-- 松开 enter 时触发 -->
-        <input @keyup.enter="add" />
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count = ref(0)
-                const add = () => {
-                    count.value++
-                }
-                return {
-                    count,
-                    add,
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h1>{{count}}</h1>
+    <!-- 松开 enter 时触发 -->
+    <input @keyup.enter="add" />
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count = ref(0);
+        const add = () => {
+          count.value++;
+        };
+        return {
+          count,
+          add,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 
 #### 系统修饰符
@@ -376,37 +400,41 @@ const add = () => {
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const count = ref(0)
+import { ref } from "vue";
+const count = ref(0);
 const add = () => {
-  count.value++
-}
+  count.value++;
+};
 </script>
 ```
+
 @tab HTML
 
 ```html
 <body>
-    <div id="app">
-        <h1>{{count}}</h1>
-        <!-- 按下 ctrl + a 时触发 -->
-        <button @click.ctrl.a="add">按钮</button>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count = ref(0)
-                const add = () => {
-                    count.value++
-                }
-                return {
-                    count,
-                    add,
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h1>{{count}}</h1>
+    <!-- 按下 ctrl + a 时触发 -->
+    <button @click.ctrl.a="add">按钮</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count = ref(0);
+        const add = () => {
+          count.value++;
+        };
+        return {
+          count,
+          add,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
@@ -432,57 +460,62 @@ const add = () => {
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const count = ref(0)
+import { ref } from "vue";
+const count = ref(0);
 const add1 = () => {
-  count.value++
-}
+  count.value++;
+};
 const add2 = () => {
-  count.value += 2
-}
+  count.value += 2;
+};
 const add3 = () => {
-  count.value += 3
-}
+  count.value += 3;
+};
 </script>
 ```
+
 @tab HTML
 
 ```html
 <body>
-    <div id="app">
-        <h1>{{count}}</h1>
-        <!-- 按下 ctrl 时触发 -->
-        <button @click.ctrl="add1">按钮</button>
-        <!-- 仅当按下 ctrl 且未按任何其他键时触发 -->
-        <button @click.ctrl.exact="add2">按钮</button>
-        <!-- 仅当未按下任何修饰键时触发 -->
-        <button @click.exact="add3">按钮</button>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count = ref(0)
-                const add1 = () => {
-                    count.value++
-                }
-                const add2 = () => {
-                    count.value += 2
-                }
-                const add3 = () => {
-                    count.value += 3
-                }
-                return {
-                    count,
-                    add1,
-                    add2,
-                    add3
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h1>{{count}}</h1>
+    <!-- 按下 ctrl 时触发 -->
+    <button @click.ctrl="add1">按钮</button>
+    <!-- 仅当按下 ctrl 且未按任何其他键时触发 -->
+    <button @click.ctrl.exact="add2">按钮</button>
+    <!-- 仅当未按下任何修饰键时触发 -->
+    <button @click.exact="add3">按钮</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count = ref(0);
+        const add1 = () => {
+          count.value++;
+        };
+        const add2 = () => {
+          count.value += 2;
+        };
+        const add3 = () => {
+          count.value += 3;
+        };
+        return {
+          count,
+          add1,
+          add2,
+          add3,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 
 ### 鼠标修饰符
@@ -502,36 +535,41 @@ const add3 = () => {
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const count = ref(0)
+import { ref } from "vue";
+const count = ref(0);
 const add = () => {
-  count.value++
-}
+  count.value++;
+};
 </script>
 ```
+
 @tab HTML
 
 ```html
 <body>
-    <div id="app">
-        <h1>{{count}}</h1>
-        <button @click.right="add">按钮</button>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count = ref(0)
-                const add = () => {
-                    count.value++
-                }
-                return {
-                    count,
-                    add,
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h1>{{count}}</h1>
+    <button @click.right="add">按钮</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count = ref(0);
+        const add = () => {
+          count.value++;
+        };
+        return {
+          count,
+          add,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::

@@ -3,10 +3,10 @@ title: Vue Router 导航故障
 cover: https://t.alcy.cc/fj?t=1730187000000
 order: 16
 date: 2024-10-29 15:30
-category: 软件开发
-tag: 
-    - Vue
-    - Vue Router
+category: 开发
+tag:
+  - Vue
+  - Vue Router
 excerpt: false
 ---
 
@@ -57,9 +57,10 @@ router.afterEach((to, from, failure) => {
 ## 鉴别导航故障
 
 有不同的情况会导致导航的中止，所有这些情况都会导致不同的 `Navigation Failure`。它们可以用 `isNavigationFailure` 和 `NavigationFailureType` 来区分。总共有三种不同的类型：
-+ `aborted`：在导航守卫中返回 `false` 中断了本次导航。
-+ `cancelled`：在当前导航完成之前又有了一个新的导航。比如，在等待导航守卫的过程中又调用了 `router.push`。
-+ `duplicated`：导航被阻止，因为我们已经在目标位置了。
+
+- `aborted`：在导航守卫中返回 `false` 中断了本次导航。
+- `cancelled`：在当前导航完成之前又有了一个新的导航。比如，在等待导航守卫的过程中又调用了 `router.push`。
+- `duplicated`：导航被阻止，因为我们已经在目标位置了。
 
 ## 导航故障的属性
 

@@ -3,7 +3,7 @@ title: Vue KeepAlive 组件
 cover: https://t.alcy.cc/fj?t=1728034200
 order: 29
 date: 2024-10-04 17:30
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
@@ -14,6 +14,7 @@ excerpt: false
 
 :::tabs
 @tab 单文件组件
+
 ```vue
 <!-- App.vue -->
 <template>
@@ -24,74 +25,82 @@ excerpt: false
 </template>
 
 <script setup>
-import Student from './components/Student.vue'
-import Teacher from './components/Teacher.vue'
-import { ref } from 'vue'
-const tab = [Student, Teacher]
-const index = ref(0)
+import Student from "./components/Student.vue";
+import Teacher from "./components/Teacher.vue";
+import { ref } from "vue";
+const tab = [Student, Teacher];
+const index = ref(0);
 const changeTab = () => {
-  index.value = index.value === 0 ? 1 : 0
-}
+  index.value = index.value === 0 ? 1 : 0;
+};
 </script>
 ```
+
 ```vue
 <!-- Student.vue -->
 <template>
-    <h1>{{ name }}</h1>
-    <button @click="name = 'Student-1'">改变名称</button>
+  <h1>{{ name }}</h1>
+  <button @click="name = 'Student-1'">改变名称</button>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const name = ref('Student')
+import { ref } from "vue";
+const name = ref("Student");
 </script>
 ```
+
 ```vue
 <!-- Teacher.vue -->
 <template>
-    <h1>{{ name }}</h1>
-    <button @click="name = 'Teacher-1'">改变名称</button>
+  <h1>{{ name }}</h1>
+  <button @click="name = 'Teacher-1'">改变名称</button>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const name = ref('Teacher')
+import { ref } from "vue";
+const name = ref("Teacher");
 </script>
 ```
+
 @tab HTML
+
 ```html
 <body>
-    <div id="app">
-        <keep-alive>
-            <component :is="tab[index]"></component>
-        </keep-alive>
-        <button @click="changeTab">切换</button>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        import Student from './Student.js'
-        import Teacher from './Teacher.js'
-        createApp({
-            components: {
-                Student,
-                Teacher
-            },
-            setup() {
-                const tab = [Student, Teacher]
-                const index = ref(0)
-                const changeTab = () => {
-                    index.value = index.value === 0 ? 1 : 0
-                }
-                return {
-                    tab,
-                    index,
-                    changeTab
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <keep-alive>
+      <component :is="tab[index]"></component>
+    </keep-alive>
+    <button @click="changeTab">切换</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    import Student from "./Student.js";
+    import Teacher from "./Teacher.js";
+    createApp({
+      components: {
+        Student,
+        Teacher,
+      },
+      setup() {
+        const tab = [Student, Teacher];
+        const index = ref(0);
+        const changeTab = () => {
+          index.value = index.value === 0 ? 1 : 0;
+        };
+        return {
+          tab,
+          index,
+          changeTab,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 ```javaScript
 // Student.js
 import { ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
@@ -107,6 +116,7 @@ export default {
         <button @click="name = 'Student-1'">改变名称</button>`
 }
 ```
+
 ```javaScript
 // Teacher.js
 import { ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
@@ -122,6 +132,7 @@ export default {
         <button @click="name = 'Teacher-1'">改变名称</button>`
 }
 ```
+
 :::
 
 ## 包含、排除

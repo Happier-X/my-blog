@@ -2,7 +2,7 @@
 cover: https://t.alcy.cc/fj?t=1731286800000
 order: 7
 date: 2024-11-11 09:00
-category: 软件开发
+category: 开发
 tag: TypeScript
 excerpt: false
 ---

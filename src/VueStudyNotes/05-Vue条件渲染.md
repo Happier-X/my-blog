@@ -3,10 +3,11 @@ title: Vue 条件渲染
 cover: https://t.alcy.cc/fj?t=1726043400000
 order: 5
 date: 2024-09-11 16:30
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
+
 可以通过指令 `v-if` 或 `v-show` 控制组件的渲染
 
 ## v-if
@@ -26,11 +27,11 @@ excerpt: false
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const count = ref(0)
+import { ref } from "vue";
+const count = ref(0);
 const add = () => {
-  count.value++
-}
+  count.value++;
+};
 </script>
 ```
 
@@ -38,29 +39,33 @@ const add = () => {
 
 ```html
 <body>
-    <div id="app">
-        <div v-if="count === 1">count为1时显示</div>
-        <div v-else-if="count === 2">count为2时显示</div>
-        <div v-else>count不为1或2时显示</div>
-        <button @click="add">按钮</button>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count = ref(0)
-                const add = () => {
-                    count.value++
-                }
-                return {
-                    count,
-                    add,
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <div v-if="count === 1">count为1时显示</div>
+    <div v-else-if="count === 2">count为2时显示</div>
+    <div v-else>count不为1或2时显示</div>
+    <button @click="add">按钮</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count = ref(0);
+        const add = () => {
+          count.value++;
+        };
+        return {
+          count,
+          add,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 
 ### 在 template 上使用
@@ -82,11 +87,11 @@ const add = () => {
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const count = ref(0)
+import { ref } from "vue";
+const count = ref(0);
 const add = () => {
-  count.value++
-}
+  count.value++;
+};
 </script>
 ```
 
@@ -94,29 +99,32 @@ const add = () => {
 
 ```html
 <body>
-    <div id="app">
-        <template v-if="count === 0">
-            <div>元素1</div>
-            <div>元素2</div>
-            <div>元素3</div>
-        </template>
-        <button @click="add">按钮</button>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count = ref(0)
-                const add = () => {
-                    count.value++
-                }
-                return {
-                    count,
-                    add,
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <template v-if="count === 0">
+      <div>元素1</div>
+      <div>元素2</div>
+      <div>元素3</div>
+    </template>
+    <button @click="add">按钮</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count = ref(0);
+        const add = () => {
+          count.value++;
+        };
+        return {
+          count,
+          add,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
@@ -137,11 +145,11 @@ const add = () => {
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const count = ref(0)
+import { ref } from "vue";
+const count = ref(0);
 const add = () => {
-  count.value++
-}
+  count.value++;
+};
 </script>
 ```
 
@@ -149,25 +157,28 @@ const add = () => {
 
 ```html
 <body>
-    <div id="app">
-        <div v-show="count === 1">count为1时显示</div>
-        <button @click="add">按钮</button>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count = ref(0)
-                const add = () => {
-                    count.value++
-                }
-                return {
-                    count,
-                    add,
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <div v-show="count === 1">count为1时显示</div>
+    <button @click="add">按钮</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count = ref(0);
+        const add = () => {
+          count.value++;
+        };
+        return {
+          count,
+          add,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 

@@ -3,10 +3,11 @@ title: Vue 响应式
 cover: https://t.alcy.cc/fj?t=1726029000000
 order: 3
 date: 2024-09-11 12:30
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
+
 ## 声明响应式状态
 
 响应式状态是指当其数据发生变化时，模板中依赖该数据的部分会自动更新
@@ -28,19 +29,19 @@ excerpt: false
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive } from "vue";
 // ref 用于创建一个响应式数据
-const title = ref('Hello Vue')
+const title = ref("Hello Vue");
 // 用 ref 创建的响应式数据需要通过 .value 来访问和修改
-title.value = 'Hello Vue!'
+title.value = "Hello Vue!";
 // reactive 用于创建一个响应式对象
 const message = reactive({
-  text1: 'Hello text1',
-  text2: 'Hello text2'
-})
+  text1: "Hello text1",
+  text2: "Hello text2",
+});
 // reactive 创建的响应式对象可以直接访问和修改
-message.text1 = 'Hello text1!'
-message.text2 = 'Hello text2!'
+message.text1 = "Hello text1!";
+message.text2 = "Hello text2!";
 </script>
 ```
 
@@ -48,34 +49,38 @@ message.text2 = 'Hello text2!'
 
 ```html
 <body>
-    <div id="app">
-        <h1>{{ title }}</h1>
-        <p>{{message.text1}}</p>
-        <p>{{message.text2}}</p>
-    </div>
-    <script type="module">
-        import { createApp, ref, reactive } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                // ref 用于创建一个响应式数据
-                const title = ref('Hello Vue')
-                // 用 ref 创建的响应式数据需要通过 .value 来访问和修改
-                title.value = 'Hello Vue!'
-                // reactive 用于创建一个响应式对象
-                const message = reactive({
-                    text1: 'Hello text1',
-                    text2: 'Hello text2'
-                })
-                // reactive 创建的响应式对象可以直接访问和修改
-                message.text1 = 'Hello text1!'
-                message.text2 = 'Hello text2!'
-                return {
-                    title,
-                    message
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h1>{{ title }}</h1>
+    <p>{{message.text1}}</p>
+    <p>{{message.text2}}</p>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+      reactive,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        // ref 用于创建一个响应式数据
+        const title = ref("Hello Vue");
+        // 用 ref 创建的响应式数据需要通过 .value 来访问和修改
+        title.value = "Hello Vue!";
+        // reactive 用于创建一个响应式对象
+        const message = reactive({
+          text1: "Hello text1",
+          text2: "Hello text2",
+        });
+        // reactive 创建的响应式对象可以直接访问和修改
+        message.text1 = "Hello text1!";
+        message.text2 = "Hello text2!";
+        return {
+          title,
+          message,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
@@ -101,21 +106,21 @@ message.text2 = 'Hello text2!'
 </template>
 
 <script setup>
-import { ref, nextTick } from 'vue'
-const count = ref(0)
+import { ref, nextTick } from "vue";
+const count = ref(0);
 const add1 = () => {
-  count.value++
+  count.value++;
   // 传递一个回调函数
   nextTick(() => {
-    console.log('DOM 更新后执行某些操作')
-  })
-}
+    console.log("DOM 更新后执行某些操作");
+  });
+};
 const add2 = async () => {
-  count.value++
+  count.value++;
   // await 其返回的 Promise
-  await nextTick()
-  console.log('此时 DOM 已经更新了')
-}
+  await nextTick();
+  console.log("此时 DOM 已经更新了");
+};
 </script>
 ```
 
@@ -123,37 +128,41 @@ const add2 = async () => {
 
 ```html
 <body>
-    <div id="app">
-        <h1>{{count}}</h1>
-        <button @click="add1">按钮1</button>
-        <button @click="add2">按钮2</button>
-    </div>
-    <script type="module">
-        import { createApp, ref, nextTick } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count = ref(0)
-                const add1= () => {
-                    count.value++
-                    // 传递一个回调函数
-                    nextTick(() => {
-                        console.log('DOM 更新后执行某些操作')
-                    })
-                }
-                const add2= async () => {
-                    count.value++
-                    // await 其返回的 Promise
-                    await nextTick()
-                    console.log('此时 DOM 已经更新了')
-                }
-                return {
-                    count,
-                    add1,
-                    add2
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h1>{{count}}</h1>
+    <button @click="add1">按钮1</button>
+    <button @click="add2">按钮2</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+      nextTick,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count = ref(0);
+        const add1 = () => {
+          count.value++;
+          // 传递一个回调函数
+          nextTick(() => {
+            console.log("DOM 更新后执行某些操作");
+          });
+        };
+        const add2 = async () => {
+          count.value++;
+          // await 其返回的 Promise
+          await nextTick();
+          console.log("此时 DOM 已经更新了");
+        };
+        return {
+          count,
+          add1,
+          add2,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 

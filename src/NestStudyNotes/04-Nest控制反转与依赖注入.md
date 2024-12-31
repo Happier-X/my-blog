@@ -2,7 +2,7 @@
 cover: https://t.alcy.cc/fj?t=1733634000
 order: 4
 date: 2024-12-08 13:00
-category: 软件开发
+category: 开发
 tag: Nest
 excerpt: false
 ---

@@ -3,10 +3,10 @@ title: Vue Router 滚动行为
 cover: https://t.alcy.cc/fj?t=1730183400000
 order: 14
 date: 2024-10-29 14:30
-category: 软件开发
-tag: 
-    - Vue
-    - Vue Router
+category: 开发
+tag:
+  - Vue
+  - Vue Router
 excerpt: false
 ---
 
@@ -38,7 +38,7 @@ const router = createRouter({
   // return { el: '#main', top: 100 }
   // return { el: '#main', top: 100, behavior: 'smooth' }
   // return { el: to.hash } 类似锚点
-  // return false 
+  // return false
   // return { } 等效于 false
   return new Promise((resolve) => {
     setTimeout(() => {

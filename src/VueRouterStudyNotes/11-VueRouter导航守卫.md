@@ -3,10 +3,10 @@ title: Vue Router 导航守卫
 cover: https://t.alcy.cc/fj?t=1730091600000
 order: 11
 date: 2024-10-28 13:00
-category: 软件开发
-tag: 
-    - Vue
-    - Vue Router
+category: 开发
+tag:
+  - Vue
+  - Vue Router
 excerpt: false
 ---
 
@@ -75,6 +75,7 @@ router.afterEach((to, from) => {
 const app = createApp(App)
 app.provide('global', 'hello injections')
 ```
+
 ```JavaScript
 // router.ts or main.ts
 router.beforeEach((to, from) => {
@@ -137,29 +138,29 @@ const routes = [
 
 ```vue
 <script setup>
-import { onBeforeRouteUpdate, onBeforeRouteLeave } from 'vue-router'
+import { onBeforeRouteUpdate, onBeforeRouteLeave } from "vue-router";
 
 defineOptions({
-  beforeRouteEnter: (to,from) => {
+  beforeRouteEnter: (to, from) => {
     // 在渲染该组件的对应路由被验证前调用，组件实例还没被创建
-    console.log('to', to) // 即将要进入的目标路由对象
-    console.log('from', from)  // 当前导航正要离开的路由
-  }
-})
+    console.log("to", to); // 即将要进入的目标路由对象
+    console.log("from", from); // 当前导航正要离开的路由
+  },
+});
 
 onBeforeRouteUpdate((to, from) => {
-    // 在当前路由改变，但是该组件被复用时调用
-    // 举例来说，对于一个带有动态参数的路径 `/users/:id`，在 `/users/1` 和 `/users/2` 之间跳转的时候，由于会渲染同样的 `UserDetails` 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
-    // 因为在这种情况发生的时候，组件已经挂载好了，导航守卫可以访问组件实例。
-    console.log('to', to) // 即将要进入的目标路由对象
-    console.log('from', from)  // 当前导航正要离开的路由
-})
+  // 在当前路由改变，但是该组件被复用时调用
+  // 举例来说，对于一个带有动态参数的路径 `/users/:id`，在 `/users/1` 和 `/users/2` 之间跳转的时候，由于会渲染同样的 `UserDetails` 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+  // 因为在这种情况发生的时候，组件已经挂载好了，导航守卫可以访问组件实例。
+  console.log("to", to); // 即将要进入的目标路由对象
+  console.log("from", from); // 当前导航正要离开的路由
+});
 onBeforeRouteLeave((to, from) => {
-    // 在导航离开渲染该组件的对应路由时调用
-    // 与 `onBeforeRouteUpdate` 一样，它可以访问组件实例
-    console.log('to', to) // 即将要进入的目标路由对象
-    console.log('from', from)  // 当前导航正要离开的路由
-})
+  // 在导航离开渲染该组件的对应路由时调用
+  // 与 `onBeforeRouteUpdate` 一样，它可以访问组件实例
+  console.log("to", to); // 即将要进入的目标路由对象
+  console.log("from", from); // 当前导航正要离开的路由
+});
 </script>
 ```
 

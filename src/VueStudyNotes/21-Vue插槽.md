@@ -3,7 +3,7 @@ title: Vue 插槽
 cover: https://t.alcy.cc/fj?t=1727425800000
 order: 21
 date: 2024-09-27 16:30
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
@@ -36,53 +36,53 @@ excerpt: false
 </template>
 
 <script setup>
-import Student from './components/Student.vue'
+import Student from "./components/Student.vue";
 </script>
 ```
 
 ```vue
 <!-- Student.vue -->
 <template>
-    <div>我是子组件</div>
-    <slot></slot>
+  <div>我是子组件</div>
+  <slot></slot>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 ```
 
 @tab HTML
 
 ```html
 <body>
-    <div id="app">
-        我是父组件
-        <Student>
-            <h1>你好</h1>
-            <div>哈哈哈</div>
-            啦啦啦
-        </Student>
-    </div>
-    <script type="module">
-        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        import Student from './Student.js'
-        createApp({
-            components: {
-                Student
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    我是父组件
+    <Student>
+      <h1>你好</h1>
+      <div>哈哈哈</div>
+      啦啦啦
+    </Student>
+  </div>
+  <script type="module">
+    import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    import Student from "./Student.js";
+    createApp({
+      components: {
+        Student,
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
 ```javascript
 // Student.js
 export default {
-    template: `
+  template: `
         <div>我是子组件</div>
-        <slot></slot>`
-}
+        <slot></slot>`,
+};
 ```
+
 :::
 
 ## 渲染作用域
@@ -105,17 +105,17 @@ export default {
 </template>
 
 <script setup>
-import Student from './components/Student.vue'
+import Student from "./components/Student.vue";
 </script>
 ```
 
 ```vue
 <!-- Student.vue -->
 <template>
-    <div>我是子组件</div>
-    <slot>
-        <h1>默认内容</h1>
-    </slot>
+  <div>我是子组件</div>
+  <slot>
+    <h1>默认内容</h1>
+  </slot>
 </template>
 ```
 
@@ -123,32 +123,33 @@ import Student from './components/Student.vue'
 
 ```html
 <body>
-    <div id="app">
-        我是父组件
-        <Student></Student>
-    </div>
-    <script type="module">
-        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        import Student from './Student.js'
-        createApp({
-            components: {
-                Student
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    我是父组件
+    <Student></Student>
+  </div>
+  <script type="module">
+    import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    import Student from "./Student.js";
+    createApp({
+      components: {
+        Student,
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
 ```javascript
 // Student.js
 export default {
-    template: `
+  template: `
         <div>我是子组件</div>
         <slot>
             <h1>默认内容</h1>
-        </slot>`
-}
+        </slot>`,
+};
 ```
+
 :::
 
 ## 具名插槽
@@ -183,57 +184,61 @@ export default {
 </template>
 
 <script setup>
-import Student from './components/Student.vue'
+import Student from "./components/Student.vue";
 </script>
 ```
+
 ```vue
 <!-- Student.vue -->
 <template>
-    <div>我是子组件</div>
-    <slot name="header"></slot>
-    <slot name="main"></slot>
-    <slot name="footer"></slot>
+  <div>我是子组件</div>
+  <slot name="header"></slot>
+  <slot name="main"></slot>
+  <slot name="footer"></slot>
 </template>
 ```
+
 @tab HTML
 
 ```html
 <body>
-    <div id="app">
-        我是父组件
-        <Student>
-            <template v-slot:header>
-                <h1>我是插槽header内容</h1>
-            </template>
-            <template #main>
-                <h2>我是插槽main内容</h2>
-            </template>
-            <template v-slot:footer>
-                <h3>我是插槽footer内容</h3>
-            </template>
-        </Student>
-    </div>
-    <script type="module">
-        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        import Student from './Student.js'
-        createApp({
-            components: {
-                Student
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    我是父组件
+    <Student>
+      <template v-slot:header>
+        <h1>我是插槽header内容</h1>
+      </template>
+      <template #main>
+        <h2>我是插槽main内容</h2>
+      </template>
+      <template v-slot:footer>
+        <h3>我是插槽footer内容</h3>
+      </template>
+    </Student>
+  </div>
+  <script type="module">
+    import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    import Student from "./Student.js";
+    createApp({
+      components: {
+        Student,
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 ```javascript
 // Student.js
 export default {
-    template: `
+  template: `
         <div>我是子组件</div>
         <slot name="header"></slot>
         <slot name="main"></slot>
-        <slot name="footer"></slot>`
-}
+        <slot name="footer"></slot>`,
+};
 ```
+
 :::
 
 ## 条件插槽
@@ -262,88 +267,90 @@ export default {
 </template>
 
 <script setup>
-import Student from './components/Student.vue'
+import Student from "./components/Student.vue";
 </script>
 ```
 
 ```vue
 <!-- Student.vue -->
 <template>
-    <div>我是子组件</div>
-    <div v-if="$slots.header" class="header">
-        <slot name="header"></slot>
-    </div>
-    <div v-if="$slots.main" class="main">
-        <slot name="main"></slot>
-    </div>
-    <div v-if="$slots.footer" class="footer">
-        <slot name="footer"></slot>
-    </div>
+  <div>我是子组件</div>
+  <div v-if="$slots.header" class="header">
+    <slot name="header"></slot>
+  </div>
+  <div v-if="$slots.main" class="main">
+    <slot name="main"></slot>
+  </div>
+  <div v-if="$slots.footer" class="footer">
+    <slot name="footer"></slot>
+  </div>
 </template>
 
 <style scoped>
 .header {
-    background-color: pink;
+  background-color: pink;
 }
 
 .main {
-    background-color: skyblue;
+  background-color: skyblue;
 }
 
 .footer {
-    background-color: yellow;
+  background-color: yellow;
 }
 </style>
 ```
+
 @tab HTML
 
 ```html
 <head>
-    <style>
-        .header {
-            background-color: pink;
-        }
+  <style>
+    .header {
+      background-color: pink;
+    }
 
-        .main {
-            background-color: skyblue;
-        }
+    .main {
+      background-color: skyblue;
+    }
 
-        .footer {
-            background-color: yellow;
-        }
-    </style>
+    .footer {
+      background-color: yellow;
+    }
+  </style>
 </head>
 
 <body>
-    <div id="app">
-        我是父组件
-        <Student>
-            <template v-slot:header>
-                <h1>我是插槽header内容</h1>
-            </template>
-            <template #main>
-                <h2>我是插槽main内容</h2>
-            </template>
-            <template v-slot:footer>
-                <h3>我是插槽footer内容</h3>
-            </template>
-        </Student>
-    </div>
-    <script type="module">
-        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        import Student from './Student.js'
-        createApp({
-            components: {
-                Student
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    我是父组件
+    <Student>
+      <template v-slot:header>
+        <h1>我是插槽header内容</h1>
+      </template>
+      <template #main>
+        <h2>我是插槽main内容</h2>
+      </template>
+      <template v-slot:footer>
+        <h3>我是插槽footer内容</h3>
+      </template>
+    </Student>
+  </div>
+  <script type="module">
+    import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    import Student from "./Student.js";
+    createApp({
+      components: {
+        Student,
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 ```javascript
 // Student.js
 export default {
-    template: `
+  template: `
         <div>我是子组件</div>
         <div v-if="$slots.header" class="header">
             <slot name="header"></slot>
@@ -353,9 +360,10 @@ export default {
         </div>
         <div v-if="$slots.footer" class="footer">
             <slot name="footer"></slot>
-        </div>`
-}
+        </div>`,
+};
 ```
+
 :::
 
 ## 动态插槽名
@@ -398,72 +406,73 @@ export default {
 </template>
 
 <script setup>
-import Student from './components/Student.vue'
+import Student from "./components/Student.vue";
 </script>
 ```
 
 ```vue
 <!-- Student.vue -->
 <template>
-    <div>我是子组件</div>
-    <slot :msg="msg"></slot>
+  <div>我是子组件</div>
+  <slot :msg="msg"></slot>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const msg = ref('子组件传递的数据')
+import { ref } from "vue";
+const msg = ref("子组件传递的数据");
 </script>
 ```
+
 @tab HTML
 
 ```html
 <body>
-    <div id="app">
-        我是父组件
-        <Student>
-            <template v-slot="slotProps">
-                {{ slotProps.msg }}
-            </template>
-            <!-- 可以使用解构赋值 -->
-            <!-- 
+  <div id="app">
+    我是父组件
+    <Student>
+      <template v-slot="slotProps"> {{ slotProps.msg }} </template>
+      <!-- 可以使用解构赋值 -->
+      <!-- 
           <template v-slot="{ msg }">
             {{ msg }}
           </template> 
           -->
-            <!-- 简写形式 -->
-            <!-- 
+      <!-- 简写形式 -->
+      <!-- 
           <template #default="slotProps">
             {{ slotProps.msg }}
           </template>
           -->
-        </Student>
-    </div>
-    <script type="module">
-        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        import Student from './Student.js'
-        createApp({
-            components: {
-                Student
-            }
-        }).mount('#app')
-    </script>
+    </Student>
+  </div>
+  <script type="module">
+    import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    import Student from "./Student.js";
+    createApp({
+      components: {
+        Student,
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 ```javascript
 // Student.js
-import { ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+import { ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 export default {
-    setup() {
-        const msg = ref('子组件传递的数据')
-        return {
-            msg
-        }
-    },
-    template: `
+  setup() {
+    const msg = ref("子组件传递的数据");
+    return {
+      msg,
+    };
+  },
+  template: `
         <div>我是子组件</div>
-        <slot :msg="msg"></slot>`
-}
+        <slot :msg="msg"></slot>`,
+};
 ```
+
 :::
 
 ### 在具名插槽中使用
@@ -495,79 +504,82 @@ export default {
 </template>
 
 <script setup>
-import Student from './components/Student.vue'
+import Student from "./components/Student.vue";
 </script>
 ```
 
 ```vue
 <!-- Student.vue -->
 <template>
-    <div>我是子组件</div>
-    <slot name="header" :msg="headerMsg"></slot>
-    <slot name="main" :msg="mainMsg"></slot>
-    <slot name="footer" :msg="footerMsg"></slot>
+  <div>我是子组件</div>
+  <slot name="header" :msg="headerMsg"></slot>
+  <slot name="main" :msg="mainMsg"></slot>
+  <slot name="footer" :msg="footerMsg"></slot>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const headerMsg = ref('子组件向header传递的数据')
-const mainMsg = ref('子组件向main传递的数据')
-const footerMsg = ref('子组件向footer传递的数据')
+import { ref } from "vue";
+const headerMsg = ref("子组件向header传递的数据");
+const mainMsg = ref("子组件向main传递的数据");
+const footerMsg = ref("子组件向footer传递的数据");
 </script>
 ```
+
 @tab HTML
 
 ```html
 <body>
-    <div id="app">
-        我是父组件
-        <Student>
-            <template v-slot:header="headerSlotProps">
-                <h1>我是插槽header内容</h1>
-                {{ headerSlotProps.msg }}
-            </template>
-            <!-- 简写形式 -->
-            <template #main="mainSlotProps">
-                <h2>我是插槽main内容</h2>
-                {{ mainSlotProps.msg }}
-            </template>
-            <!-- 可以使用解构赋值 -->
-            <template v-slot:footer="{ msg }">
-                <h3>我是插槽footer内容</h3>
-                {{ msg }}
-            </template>
-        </Student>
-    </div>
-    <script type="module">
-        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        import Student from './Student.js'
-        createApp({
-            components: {
-                Student
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    我是父组件
+    <Student>
+      <template v-slot:header="headerSlotProps">
+        <h1>我是插槽header内容</h1>
+        {{ headerSlotProps.msg }}
+      </template>
+      <!-- 简写形式 -->
+      <template #main="mainSlotProps">
+        <h2>我是插槽main内容</h2>
+        {{ mainSlotProps.msg }}
+      </template>
+      <!-- 可以使用解构赋值 -->
+      <template v-slot:footer="{ msg }">
+        <h3>我是插槽footer内容</h3>
+        {{ msg }}
+      </template>
+    </Student>
+  </div>
+  <script type="module">
+    import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    import Student from "./Student.js";
+    createApp({
+      components: {
+        Student,
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 ```javascript
 // Student.js
-import { ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+import { ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 export default {
-    setup() {
-        const headerMsg = ref('子组件向header传递的数据')
-        const mainMsg = ref('子组件向main传递的数据')
-        const footerMsg = ref('子组件向footer传递的数据')
-        return {
-            headerMsg,
-            mainMsg,
-            footerMsg
-        }
-    },
-    template: `
+  setup() {
+    const headerMsg = ref("子组件向header传递的数据");
+    const mainMsg = ref("子组件向main传递的数据");
+    const footerMsg = ref("子组件向footer传递的数据");
+    return {
+      headerMsg,
+      mainMsg,
+      footerMsg,
+    };
+  },
+  template: `
         <div>我是子组件</div>
         <slot name="header" :msg="headerMsg"></slot>
         <slot name="main" :msg="mainMsg"></slot>
-        <slot name="footer" :msg="footerMsg"></slot>`
-}
+        <slot name="footer" :msg="footerMsg"></slot>`,
+};
 ```
+
 :::

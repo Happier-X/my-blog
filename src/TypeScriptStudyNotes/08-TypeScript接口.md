@@ -2,7 +2,7 @@
 cover: https://t.alcy.cc/fj?t=1731483000000
 order: 8
 date: 2024-11-13 15:30
-category: 软件开发
+category: 开发
 tag: TypeScript
 excerpt: false
 ---
@@ -134,9 +134,11 @@ interface Box {
 ## 接口与 type 的异同
 
 相同点：
+
 1. 都可以定义对象类型。
 
 不同点：
+
 1. `type` 能够表示非对象类型，而接口只能表示对象类型。
 2. 接口可以继承其他类型，`type` 不支持继承。
 3. 同名接口会自动合并，同名 `type` 则会报错。

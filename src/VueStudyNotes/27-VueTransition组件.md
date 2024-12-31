@@ -3,7 +3,7 @@ title: Vue Transition 组件
 cover: https://t.alcy.cc/fj?t=1727922600
 order: 27
 date: 2024-10-03 10:30
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
@@ -11,6 +11,7 @@ excerpt: false
 `<Transition>` 是一个内置组件，它可以将进入和离开动画应用到通过默认插槽传递给它的元素或组件上
 
 进入或离开可以由以下的条件之一触发：
+
 - 由 `v-if` 所触发的切换
 - 由 `v-show` 所触发的切换
 - 由 `<component>` 切换的动态组件
@@ -42,8 +43,8 @@ excerpt: false
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const show = ref(true)
+import { ref } from "vue";
+const show = ref(true);
 </script>
 
 <style scoped>
@@ -58,42 +59,48 @@ const show = ref(true)
 }
 </style>
 ```
+
 @tab HTML
+
 ```html
 <head>
-    <style>
-        .v-enter-active,
-        .v-leave-active {
-            transition: opacity 0.5s ease;
-        }
+  <style>
+    .v-enter-active,
+    .v-leave-active {
+      transition: opacity 0.5s ease;
+    }
 
-        .v-enter-from,
-        .v-leave-to {
-            opacity: 0;
-        }
-    </style>
+    .v-enter-from,
+    .v-leave-to {
+      opacity: 0;
+    }
+  </style>
 </head>
 
 <body>
-    <div id="app">
-        <button @click="show = !show">切换</button>
-        <Transition>
-            <p v-if="show">Hello World!</p>
-        </Transition>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const show = ref(true)
-                return {
-                    show
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <button @click="show = !show">切换</button>
+    <Transition>
+      <p v-if="show">Hello World!</p>
+    </Transition>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const show = ref(true);
+        return {
+          show,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 
 ### 为过渡效果命名
@@ -107,6 +114,7 @@ const show = ref(true)
 ```
 
 此时的过渡类名如下：
+
 - `customName-enter-from`
 - `customName-enter-active`
 - `customName-enter-to`
@@ -131,8 +139,8 @@ CSS 动画用法同 CSS 过渡，区别在于 `v-enter-from` 不是在元素插�
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const show = ref(true)
+import { ref } from "vue";
+const show = ref(true);
 </script>
 
 <style scoped>
@@ -159,65 +167,72 @@ const show = ref(true)
 }
 </style>
 ```
+
 @tab HTML
+
 ```html
 <head>
-    <style>
-        .bounce-enter-active {
-            animation: bounce-in 0.5s;
-        }
+  <style>
+    .bounce-enter-active {
+      animation: bounce-in 0.5s;
+    }
 
-        .bounce-leave-active {
-            animation: bounce-in 0.5s reverse;
-        }
+    .bounce-leave-active {
+      animation: bounce-in 0.5s reverse;
+    }
 
-        @keyframes bounce-in {
-            0% {
-                transform: scale(0);
-            }
+    @keyframes bounce-in {
+      0% {
+        transform: scale(0);
+      }
 
-            50% {
-                transform: scale(1.25);
-            }
+      50% {
+        transform: scale(1.25);
+      }
 
-            100% {
-                transform: scale(1);
-            }
-        }
-    </style>
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div id="app">
-        <button @click="show = !show">切换</button>
-        <Transition name="bounce">
-            <p v-if="show">Hello World!</p>
-        </Transition>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const show = ref(true)
-                return {
-                    show
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <button @click="show = !show">切换</button>
+    <Transition name="bounce">
+      <p v-if="show">Hello World!</p>
+    </Transition>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const show = ref(true);
+        return {
+          show,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 
 ### 自定义过渡类名
 
 可以向 `<Transition>` 组件传递如下几个属性：
+
 - `enter-from-class`
 - `enter-active-class`
 - `enter-to-class`
 - `leave-from-class`
 - `leave-active-class`
-- `leave-to-class` 
+- `leave-to-class`
 
 它们将覆盖默认的过渡类名，这个功能可以用于集成一些动画库
 
@@ -250,16 +265,14 @@ Vue 为了知道过渡的完成，必须设置相应的事件监听器。它可�
   <!-- 分别指定进入和离开所需的时间 -->
   <Transition name="nested" :duration="{ enter: 500, leave: 800 }">
     <div v-if="show" class="outer">
-      <div class="inner">
-        Hello
-      </div>
+      <div class="inner">Hello</div>
     </div>
   </Transition>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const show = ref(true)
+import { ref } from "vue";
+const show = ref(true);
 </script>
 
 <style scoped>
@@ -292,68 +305,72 @@ const show = ref(true)
 }
 </style>
 ```
+
 @tab HTML
+
 ```html
 <head>
-    <style>
-        .outer,
-        .inner {
-            background: #eee;
-            padding: 30px;
-            min-height: 100px;
-        }
+  <style>
+    .outer,
+    .inner {
+      background: #eee;
+      padding: 30px;
+      min-height: 100px;
+    }
 
-        .inner {
-            background: #ccc;
-        }
+    .inner {
+      background: #ccc;
+    }
 
-        /* 应用于嵌套元素的规则 */
-        .nested-enter-active .inner,
-        .nested-leave-active .inner {
-            transition: all 0.3s ease-in-out;
-        }
+    /* 应用于嵌套元素的规则 */
+    .nested-enter-active .inner,
+    .nested-leave-active .inner {
+      transition: all 0.3s ease-in-out;
+    }
 
-        /* 延迟嵌套元素的进入以获得交错效果 */
-        .nested-enter-active .inner {
-            transition-delay: 0.25s;
-        }
+    /* 延迟嵌套元素的进入以获得交错效果 */
+    .nested-enter-active .inner {
+      transition-delay: 0.25s;
+    }
 
-        .nested-enter-from .inner,
-        .nested-leave-to .inner {
-            transform: translateX(30px);
-            opacity: 0;
-        }
-    </style>
+    .nested-enter-from .inner,
+    .nested-leave-to .inner {
+      transform: translateX(30px);
+      opacity: 0;
+    }
+  </style>
 </head>
 
 <body>
-    <div id="app">
-        <button @click="show = !show">切换</button>
-        <!-- 在嵌套的过渡元素中，我们期望等待所有内部元素的过渡完成，所有需要指定过渡的持续时间 -->
-        <!-- 通过传入 duration 来显式指定过渡的持续时间 -->
-        <!-- <Transition name="nested" :duration="500"> -->
-        <!-- 分别指定进入和离开所需的时间 -->
-        <Transition name="nested" :duration="{ enter: 500, leave: 800 }">
-            <div v-if="show" class="outer">
-                <div class="inner">
-                    Hello
-                </div>
-            </div>
-        </Transition>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const show = ref(true)
-                return {
-                    show
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <button @click="show = !show">切换</button>
+    <!-- 在嵌套的过渡元素中，我们期望等待所有内部元素的过渡完成，所有需要指定过渡的持续时间 -->
+    <!-- 通过传入 duration 来显式指定过渡的持续时间 -->
+    <!-- <Transition name="nested" :duration="500"> -->
+    <!-- 分别指定进入和离开所需的时间 -->
+    <Transition name="nested" :duration="{ enter: 500, leave: 800 }">
+      <div v-if="show" class="outer">
+        <div class="inner">Hello</div>
+      </div>
+    </Transition>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const show = ref(true);
+        return {
+          show,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 
 ## JavaScript 钩子
@@ -396,44 +413,44 @@ Vue 的 `<Transition>` 组件提供了 JavaScript 钩子，允许在进入/离�
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import gsap from 'gsap'
+import { ref } from "vue";
+import gsap from "gsap";
 
-const show = ref(true)
+const show = ref(true);
 
 function onBeforeEnter(el) {
   gsap.set(el, {
     scaleX: 0.25,
     scaleY: 0.25,
-    opacity: 1
-  })
+    opacity: 1,
+  });
 }
-  
+
 function onEnter(el, done) {
   gsap.to(el, {
     duration: 1,
     scaleX: 1,
     scaleY: 1,
     opacity: 1,
-    ease: 'elastic.inOut(2.5, 1)',
-    onComplete: done
-  })
+    ease: "elastic.inOut(2.5, 1)",
+    onComplete: done,
+  });
 }
 
 function onLeave(el, done) {
-	gsap.to(el, {
+  gsap.to(el, {
     duration: 0.7,
     scaleX: 1,
     scaleY: 1,
     x: 300,
-    ease: 'elastic.inOut(2.5, 1)'
-  })
+    ease: "elastic.inOut(2.5, 1)",
+  });
   gsap.to(el, {
     duration: 0.2,
     delay: 0.5,
     opacity: 0,
-    onComplete: done
-  })
+    onComplete: done,
+  });
 }
 </script>
 
@@ -446,80 +463,90 @@ function onLeave(el, done) {
   border-radius: 50%;
 }
 </style>
-
 ```
+
 @tab HTML
+
 ```html
 <head>
-    <style>
-        .gsap-box {
-            background: #42b883;
-            margin-top: 20px;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-        }
-    </style>
+  <style>
+    .gsap-box {
+      background: #42b883;
+      margin-top: 20px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+  </style>
 </head>
 
 <body>
-    <div id="app">
-        <button @click="show = !show">Toggle</button>
-        <Transition @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave" :css="false">
-            <div class="gsap-box" v-if="show"></div>
-        </Transition>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const show = ref(true)
-                function onBeforeEnter(el) {
-                    gsap.set(el, {
-                        scaleX: 0.25,
-                        scaleY: 0.25,
-                        opacity: 1
-                    })
-                }
+  <div id="app">
+    <button @click="show = !show">Toggle</button>
+    <Transition
+      @before-enter="onBeforeEnter"
+      @enter="onEnter"
+      @leave="onLeave"
+      :css="false"
+    >
+      <div class="gsap-box" v-if="show"></div>
+    </Transition>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const show = ref(true);
+        function onBeforeEnter(el) {
+          gsap.set(el, {
+            scaleX: 0.25,
+            scaleY: 0.25,
+            opacity: 1,
+          });
+        }
 
-                function onEnter(el, done) {
-                    gsap.to(el, {
-                        duration: 1,
-                        scaleX: 1,
-                        scaleY: 1,
-                        opacity: 1,
-                        ease: 'elastic.inOut(2.5, 1)',
-                        onComplete: done
-                    })
-                }
+        function onEnter(el, done) {
+          gsap.to(el, {
+            duration: 1,
+            scaleX: 1,
+            scaleY: 1,
+            opacity: 1,
+            ease: "elastic.inOut(2.5, 1)",
+            onComplete: done,
+          });
+        }
 
-                function onLeave(el, done) {
-                    gsap.to(el, {
-                        duration: 0.7,
-                        scaleX: 1,
-                        scaleY: 1,
-                        x: 300,
-                        ease: 'elastic.inOut(2.5, 1)'
-                    })
-                    gsap.to(el, {
-                        duration: 0.2,
-                        delay: 0.5,
-                        opacity: 0,
-                        onComplete: done
-                    })
-                }
-                return {
-                    show,
-                    onBeforeEnter,
-                    onEnter,
-                    onLeave
-                }
-            }
-        }).mount('#app')
-    </script>
+        function onLeave(el, done) {
+          gsap.to(el, {
+            duration: 0.7,
+            scaleX: 1,
+            scaleY: 1,
+            x: 300,
+            ease: "elastic.inOut(2.5, 1)",
+          });
+          gsap.to(el, {
+            duration: 0.2,
+            delay: 0.5,
+            opacity: 0,
+            onComplete: done,
+          });
+        }
+        return {
+          show,
+          onBeforeEnter,
+          onEnter,
+          onLeave,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 
 ## 可复用过渡效果
@@ -533,23 +560,23 @@ function onLeave(el, done) {
 ```vue
 <!-- MyTransition.vue -->
 <template>
-    <!-- 包装内置的 Transition 组件 -->
-    <Transition name="my-transition">
-        <!-- 向内传递插槽内容 -->
-        <slot></slot>
-    </Transition>
+  <!-- 包装内置的 Transition 组件 -->
+  <Transition name="my-transition">
+    <!-- 向内传递插槽内容 -->
+    <slot></slot>
+  </Transition>
 </template>
 
 <style>
 /* 这里避免使用 scoped */
 .my-transition-enter-active,
 .my-transition-leave-active {
-    transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
 }
 
 .my-transition-enter-from,
 .my-transition-leave-to {
-    opacity: 0;
+  opacity: 0;
 }
 </style>
 ```
@@ -564,65 +591,69 @@ function onLeave(el, done) {
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import MyTransition from './components/MyTransition.vue'
-const show = ref(true)
+import { ref } from "vue";
+import MyTransition from "./components/MyTransition.vue";
+const show = ref(true);
 </script>
 ```
 
 @tab HTML
 
 ```javascript
-// MyTransition.js 
+// MyTransition.js
 export default {
-    template: `
+  template: `
         <!-- 包装内置的 Transition 组件 -->
         <Transition name="my-transition">
             <!-- 向内传递插槽内容 -->
             <slot></slot>
-        </Transition>`
-}
+        </Transition>`,
+};
 ```
 
 ```html
 <head>
-    <style>
-        .my-transition-enter-active,
-        .my-transition-leave-active {
-            transition: opacity 0.5s ease;
-        }
+  <style>
+    .my-transition-enter-active,
+    .my-transition-leave-active {
+      transition: opacity 0.5s ease;
+    }
 
-        .my-transition-enter-from,
-        .my-transition-leave-to {
-            opacity: 0;
-        }
-    </style>
+    .my-transition-enter-from,
+    .my-transition-leave-to {
+      opacity: 0;
+    }
+  </style>
 </head>
 
 <body>
-    <div id="app">
-        <button @click="show = !show">切换</button>
-        <my-transition>
-            <div v-if="show">Hello</div>
-        </my-transition>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        import MyTransition from './MyTransition.js'
-        createApp({
-            components: {
-                MyTransition
-            },
-            setup() {
-                const show = ref(true)
-                return {
-                    show
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <button @click="show = !show">切换</button>
+    <my-transition>
+      <div v-if="show">Hello</div>
+    </my-transition>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    import MyTransition from "./MyTransition.js";
+    createApp({
+      components: {
+        MyTransition,
+      },
+      setup() {
+        const show = ref(true);
+        return {
+          show,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 
 ## 出现时过渡
@@ -654,4 +685,3 @@ export default {
 ## 使用 key 过渡
 
 有时为了触发过渡，我们需要给元素添加一个唯一的 `key`，当 `key` 改变时，Vue 会认为这是一个新的元素，从而触发过渡
-

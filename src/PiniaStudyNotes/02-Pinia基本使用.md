@@ -3,10 +3,10 @@ title: Pinia 基本使用
 cover: https://t.alcy.cc/fj?t=1730257200000
 order: 2
 date: 2024-10-30 11:00
-category: 软件开发
-tag: 
-    - Vue
-    - Pinia
+category: 开发
+tag:
+  - Vue
+  - Pinia
 excerpt: false
 ---
 
@@ -47,13 +47,13 @@ export const useCounterStore = defineStore('counter', () => {
 ```vue
 <script setup>
 // 导入定义的 Store
-import { useCounterStore } from '@/stores/counter'
+import { useCounterStore } from "@/stores/counter";
 // 获取 Store
-const counterStore = useCounterStore()
+const counterStore = useCounterStore();
 // 从 Store 中获取状态、计算属性和方法
-const count = counterStore.count
-const doubleCount = counterStore.doubleCount
-const increment = counterStore.increment
+const count = counterStore.count;
+const doubleCount = counterStore.doubleCount;
+const increment = counterStore.increment;
 </script>
 ```
 
@@ -61,13 +61,13 @@ const increment = counterStore.increment
 
 ```vue
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useCounterStore } from '@/stores/counter'
-const counterStore = useCounterStore()
+import { storeToRefs } from "pinia";
+import { useCounterStore } from "@/stores/counter";
+const counterStore = useCounterStore();
 // 使用 `storeToRefs()` 函数解构状态和计算属性
-const { count, doubleCount } = storeToRefs(counterStore)
+const { count, doubleCount } = storeToRefs(counterStore);
 // 方法可以直接解构
-const { increment } = counterStore
+const { increment } = counterStore;
 </script>
 ```
 

@@ -2,7 +2,7 @@
 cover: https://t.alcy.cc/fj?t=1730448000000
 order: 32
 date: 2024-11-01 16:00
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
@@ -21,22 +21,22 @@ excerpt: false
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref } from "vue";
 
 export default {
   setup() {
-    const count = ref(0)
+    const count = ref(0);
 
     // 返回值会暴露给模板和组件实例
     return {
-      count
-    }
+      count,
+    };
   },
 
   mounted() {
-    console.log(this.count) // 0
-  }
-}
+    console.log(this.count); // 0
+  },
+};
 </script>
 ```
 
@@ -421,8 +421,8 @@ export function useDebouncedRef(value, delay = 200) {
 </template>
 
 <script setup>
-import { useDebouncedRef } from './debouncedRef'
-const text = useDebouncedRef('hello')
+import { useDebouncedRef } from "./debouncedRef";
+const text = useDebouncedRef("hello");
 </script>
 ```
 
@@ -607,8 +607,8 @@ scope.stop() // 停止作用域，并触发销毁回调
   </form>
 </template>
 <script setup>
-import { useId } from 'vue'
+import { useId } from "vue";
 
-const id = useId()
+const id = useId();
 </script>
 ```

@@ -2,7 +2,7 @@
 cover: https://t.alcy.cc/fj?t=1731051000000
 order: 6
 date: 2024-11-08 15:30
-category: 软件开发
+category: 开发
 tag: TypeScript
 excerpt: false
 ---
@@ -84,7 +84,7 @@ function f(x: number = 10) {
 
 ```TypeScript
 function f([x, y]: [number, number]) {
-  
+
 }
 
 function sum({ a, b, c }: { a: number; b: number; c: number }) {
@@ -107,12 +107,12 @@ function sum({ a, b, c }: ABC) {
 ```TypeScript
 // 剩余参数为数组
 function joinNumbers(...nums: number[]) {
-  
+
 }
 
 // 剩余参数为元组
 function f(...args: [boolean, number]) {
-  
+
 }
 ```
 
@@ -120,7 +120,7 @@ function f(...args: [boolean, number]) {
 
 ```TypeScript
 function f(...args: [boolean, ...number[]]) {
-    
+
 }
 ```
 

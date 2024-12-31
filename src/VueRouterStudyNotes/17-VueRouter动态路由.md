@@ -3,10 +3,10 @@ title: Vue Router 动态路由
 cover: https://t.alcy.cc/fj?t=1730192400000
 order: 17
 date: 2024-10-29 17:00
-category: 软件开发
-tag: 
-    - Vue
-    - Vue Router
+category: 开发
+tag:
+  - Vue
+  - Vue Router
 excerpt: false
 ---
 

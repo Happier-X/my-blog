@@ -2,7 +2,7 @@
 cover: https://t.alcy.cc/fj?t=1733119200000
 order: 2
 date: 2024-12-02 14:00
-category: 软件开发
+category: 开发
 tag: Nest
 excerpt: false
 ---
@@ -97,6 +97,7 @@ export class TodoController {
 这里我们定义了一个 `GET /todos` 的路由，并且返回一个空数组。通过 `http://localhost:3000/todos` 可以访问到这个路由。
 
 Nest 为所有标准 HTTP 方法提供了装饰器：
+
 - `@Get()`：GET 请求。
 - `@Post()`：POST 请求。
 - `@Put()`：PUT 请求。
@@ -237,8 +238,6 @@ export class TodoController {
 ```
 
 通过 `http://localhost:3000/todos?id=1&name=2` 可以访问到这个路由，将返回 `{"id":"1","name":"2"}`。
-
-
 
 ### 请求体
 
@@ -405,8 +404,6 @@ export class TodoController {
 ```
 
 通过发送 `PATCH` 请求到 `http://localhost:3000/todos`，可以访问到这个路由，状态码将返回 `204 No Content`。
-
-
 
 ## 处理响应的方式
 

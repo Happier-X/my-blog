@@ -3,10 +3,10 @@ title: Vue Router 路由传参
 cover: https://t.alcy.cc/fj?t=1730082600000
 order: 7
 date: 2024-10-28 10:30
-category: 软件开发
-tag: 
-    - Vue
-    - Vue Router
+category: 开发
+tag:
+  - Vue
+  - Vue Router
 excerpt: false
 ---
 
@@ -16,17 +16,19 @@ excerpt: false
 
 ```vue
 <!-- 跳转并携带 query 参数，to的字符串写法 -->
-<RouterLink :to="`/home/message/detail?id=${message.id}&title=${message.title}`">{{message.title}}</RouterLink>
-				
+<RouterLink
+  :to="`/home/message/detail?id=${message.id}&title=${message.title}`"
+>{{message.title}}</RouterLink>
+
 <!-- 跳转并携带 query 参数，to的对象写法（推荐） -->
-<RouterLink 
-	:to="{
-		path:'/home/message/detail',
-		query:{
-		   id: message.id,
-	       title: message.title
-		}
-	}"
+<RouterLink
+  :to="{
+    path: '/home/message/detail',
+    query: {
+      id: message.id,
+      title: message.title,
+    },
+  }"
 >{{message.title}}</RouterLink>
 ```
 
@@ -80,17 +82,19 @@ const title = route.query.title
 
 ```vue
 <!-- 跳转并携带 params 参数，to 的字符串写法 -->
-<router-link :to="/home/message/detail/${message.id}/${message.title}">跳转</router-link>
-				
+<router-link
+  :to="/home/message/detail/${message.id}/${message.title}"
+>跳转</router-link>
+
 <!-- 跳转并携带 params 参数，to 的对象写法 -->
-<router-link 
-	:to="{
-		name:'Detail', // 注意：使用 params 传参时，必须使用 name 配置项，不能使用 path 配置项
-        params: {
-          id: message.id,
-          title: message.title,
-        }
-	}"
+<router-link
+  :to="{
+    name: 'Detail', // 注意：使用 params 传参时，必须使用 name 配置项，不能使用 path 配置项
+    params: {
+      id: message.id,
+      title: message.title,
+    },
+  }"
 >跳转</router-link>
 ```
 
@@ -120,4 +124,3 @@ const title = route.params.title
 2. query 传参使用的是 `?key=value` 的形式，而 params 传参使用的是 `/key/value` 的形式。
 3. 使用 query 传参时，不需要在路由中配置，而使用 params 传参时，必须在路由中配置。
 4. 使用 params 传参时，刷新页面会导致 params 传参丢失，而使用 query 传参时，刷新页面不会导致 query 传参丢失。
-

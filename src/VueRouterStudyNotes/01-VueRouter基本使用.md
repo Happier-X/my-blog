@@ -3,10 +3,10 @@ title: Vue Router 基本使用
 cover: https://t.alcy.cc/fj?t=1728630000000
 order: 1
 date: 2024-10-11 15:00
-category: 软件开发
-tag: 
-    - Vue
-    - Vue Router
+category: 开发
+tag:
+  - Vue
+  - Vue Router
 excerpt: false
 ---
 
@@ -28,15 +28,12 @@ npm install vue-router
 
 ```vue
 <!-- src/views/HomeView.vue -->
-<template>
-    我是 Home 页面
-</template>
+<template>我是 Home 页面</template>
 ```
+
 ```vue
 <!-- src/views/AboutView.vue -->
-<template>
-    我是 About 页面
-</template>
+<template>我是 About 页面</template>
 ```
 
 ### 创建路由配置文件
@@ -45,33 +42,33 @@ npm install vue-router
 
 ```javascript
 // src/router/index.js
-import { createWebHistory, createRouter } from "vue-router"
+import { createWebHistory, createRouter } from "vue-router";
 
-import HomeView from "../views/HomeView.vue"
-import AboutView from "../views/AboutView.vue"
+import HomeView from "../views/HomeView.vue";
+import AboutView from "../views/AboutView.vue";
 
 // 路由配置，把 URL 路径（path）映射到组件（component）
 const routes = [
-    {
-        path: "/",
-        component: HomeView,
-    },
-    {
-        path: "/about",
-        component: AboutView,
-    }
-]
+  {
+    path: "/",
+    component: HomeView,
+  },
+  {
+    path: "/about",
+    component: AboutView,
+  },
+];
 
 // 通过 createRouter 创建路由器实例
 const router = createRouter({
-    // 控制了路由和 URL 路径是如何双向映射的
-    history: createWebHistory(),
-    // 路由配置
-    routes,
-})
+  // 控制了路由和 URL 路径是如何双向映射的
+  history: createWebHistory(),
+  // 路由配置
+  routes,
+});
 
 // 导出路由器实例
-export default router
+export default router;
 ```
 
 ### 在 Vue 实例中使用路由器
@@ -80,12 +77,12 @@ export default router
 
 ```javascript
 // src/main.js
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
 // 引入 router
-import router from './router/index.js'
+import router from "./router/index.js";
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).mount("#app");
 ```
 
 ### 在模板中使用
@@ -115,12 +112,12 @@ createApp(App).use(router).mount('#app')
 
 ```vue
 <script setup>
-import { useRouter, useRoute } from "vue-router"
+import { useRouter, useRoute } from "vue-router";
 
-const router = useRouter()
-const route = useRoute()
+const router = useRouter();
+const route = useRoute();
 
-console.log(router)
-console.log(route)
+console.log(router);
+console.log(route);
 </script>
 ```

@@ -2,7 +2,7 @@
 cover: https://t.alcy.cc/fj?t=1730768400000
 order: 34
 date: 2024-11-05 09:00
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
@@ -33,7 +33,7 @@ excerpt: false
 
 ```vue
 <script setup>
-console.log('hello script setup')
+console.log("hello script setup");
 </script>
 ```
 
@@ -42,16 +42,16 @@ console.log('hello script setup')
 ```vue
 <template>
   <button @click="log">{{ msg }}</button>
-  <div>{{ capitalize('hello') }}</div>
+  <div>{{ capitalize("hello") }}</div>
 </template>
 
 <script setup>
-import { capitalize } from './helpers'
+import { capitalize } from "./helpers";
 // 变量
-const msg = 'Hello!'
+const msg = "Hello!";
 // 函数
 function log() {
-  console.log(msg)
+  console.log(msg);
 }
 </script>
 ```
@@ -66,9 +66,9 @@ function log() {
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const count = ref(0)
+const count = ref(0);
 </script>
 ```
 
@@ -82,7 +82,7 @@ const count = ref(0)
 </template>
 
 <script setup>
-import MyComponent from './MyComponent.vue'
+import MyComponent from "./MyComponent.vue";
 </script>
 ```
 
@@ -95,8 +95,8 @@ import MyComponent from './MyComponent.vue'
 </template>
 
 <script setup>
-import Foo from './Foo.vue'
-import Bar from './Bar.vue'
+import Foo from "./Foo.vue";
+import Bar from "./Bar.vue";
 </script>
 ```
 
@@ -116,7 +116,7 @@ import { FooBar as FooBarChild } from './components'
 </template>
 
 <script setup>
-import * as Form from './form-components'
+import * as Form from "./form-components";
 </script>
 ```
 
@@ -133,8 +133,8 @@ import * as Form from './form-components'
 const vMyDirective = {
   beforeMount: (el) => {
     // 在元素上做些操作
-  }
-}
+  },
+};
 </script>
 ```
 
@@ -142,7 +142,7 @@ const vMyDirective = {
 
 ```vue
 <script setup>
-import { myDirective as vMyDirective } from './MyDirective.js'
+import { myDirective as vMyDirective } from "./MyDirective.js";
 </script>
 ```
 
@@ -168,8 +168,8 @@ defineOptions({
   inheritAttrs: false,
   customOptions: {
     /* ... */
-  }
-})
+  },
+});
 </script>
 ```
 
@@ -290,15 +290,15 @@ useCssModule('classes')
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 const theme = ref({
-    color: 'red',
-})
+  color: "red",
+});
 </script>
 
 <style scoped>
 p {
-  color: v-bind('theme.color');
+  color: v-bind("theme.color");
 }
 </style>
 ```

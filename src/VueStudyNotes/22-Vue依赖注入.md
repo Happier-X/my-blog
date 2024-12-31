@@ -3,7 +3,7 @@ title: Vue 依赖注入
 cover: https://t.alcy.cc/fj?t=1727535600
 order: 22
 date: 2024-09-28 23:00
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
@@ -31,25 +31,23 @@ excerpt: false
 @tab 单文件组件
 
 ```javascript
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
 
-const app = createApp(App)
-app.provide('message', 'Hello World!')
-app.mount('#app')
+const app = createApp(App);
+app.provide("message", "Hello World!");
+app.mount("#app");
 ```
+
 @tab HTML
 
 ```html
 <body>
-    <div id="app">
-    </div>
-    <script type="module">
-        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-
-        }).provide('message', 'Hello World!').mount('#app')
-    </script>
+  <div id="app"></div>
+  <script type="module">
+    import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({}).provide("message", "Hello World!").mount("#app");
+  </script>
 </body>
 ```
 
@@ -77,34 +75,34 @@ app.mount('#app')
 </template>
 
 <script setup>
-import { provide } from 'vue';
-import School from './components/School.vue'
-provide('name', '张三')
+import { provide } from "vue";
+import School from "./components/School.vue";
+provide("name", "张三");
 </script>
 ```
 
 ```vue
 <!-- School.vue -->
 <template>
-    <div>我是子组件</div>
-    <Student></Student>
+  <div>我是子组件</div>
+  <Student></Student>
 </template>
 
 <script setup>
-import Student from './Student.vue'
+import Student from "./Student.vue";
 </script>
 ```
 
 ```vue
 <!-- Student.vue -->
 <template>
-    <div>我是孙组件</div>
-    <div>{{ name }}</div>
+  <div>我是孙组件</div>
+  <div>{{ name }}</div>
 </template>
 
 <script setup>
-import { inject } from 'vue'
-const name = inject('name')
+import { inject } from "vue";
+const name = inject("name");
 </script>
 ```
 
@@ -112,52 +110,55 @@ const name = inject('name')
 
 ```html
 <body>
-    <div id="app">
-        我是父组件
-        <School></School>
-    </div>
-    <script type="module">
-        import { createApp, provide } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        import School from './School.js'
-        createApp({
-            components: {
-                School
-            },
-            setup() {
-                provide('name', '张三')
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    我是父组件
+    <School></School>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      provide,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    import School from "./School.js";
+    createApp({
+      components: {
+        School,
+      },
+      setup() {
+        provide("name", "张三");
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
 ```javascript
 // School.js
-import Student from './Student.js'
+import Student from "./Student.js";
 export default {
-    components: {
-        Student
-    },
-    template: `
+  components: {
+    Student,
+  },
+  template: `
         <div>我是子组件</div>
-        <Student></Student>`
-}
+        <Student></Student>`,
+};
 ```
 
 ```javascript
 // Student.js
-import { inject } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+import { inject } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 export default {
-    setup() {
-        const name = inject('name')
-        return {
-            name
-        }
-    },
-    template: `
+  setup() {
+    const name = inject("name");
+    return {
+      name,
+    };
+  },
+  template: `
         <div>我是孙组件</div>
-        <div>{{ name }}</div>`
-}
+        <div>{{ name }}</div>`,
+};
 ```
 
 :::
@@ -168,5 +169,5 @@ export default {
 
 ```javascript
 // 推荐在单独的文件中导出这些注入名
-export const myInjectionKey = Symbol()
+export const myInjectionKey = Symbol();
 ```

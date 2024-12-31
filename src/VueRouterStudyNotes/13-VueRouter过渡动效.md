@@ -3,10 +3,10 @@ title: Vue Router 过渡动效
 cover: https://t.alcy.cc/fj?t=1730179800000
 order: 13
 date: 2024-10-29 13:30
-category: 软件开发
-tag: 
-    - Vue
-    - Vue Router
+category: 开发
+tag:
+  - Vue
+  - Vue Router
 excerpt: false
 ---
 
@@ -41,6 +41,7 @@ const routes = [
   },
 ]
 ```
+
 ```vue
 <router-view v-slot="{ Component, route }">
   <transition :name="route.meta.transition || 'fade'">

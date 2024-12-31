@@ -2,7 +2,7 @@
 cover: https://t.alcy.cc/fj?t=1730712600000
 order: 33
 date: 2024-11-04 17:30
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
@@ -106,7 +106,7 @@ excerpt: false
 
 ```vue
 <template>
-  <img v-bind:src="imageSrc" alt="Image">
+  <img v-bind:src="imageSrc" alt="Image" />
 </template>
 ```
 
@@ -116,7 +116,7 @@ excerpt: false
 
 ```vue
 <template>
-  <input v-model="message" placeholder="Type something">
+  <input v-model="message" placeholder="Type something" />
 </template>
 ```
 
@@ -254,8 +254,8 @@ excerpt: false
 </template>
 
 <script setup>
-import Foo from './Foo.vue'
-import Bar from './Bar.vue'
+import Foo from "./Foo.vue";
+import Bar from "./Bar.vue";
 </script>
 ```
 

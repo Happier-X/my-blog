@@ -3,7 +3,7 @@ title: Vue Teleport 组件
 cover: https://t.alcy.cc/fj?t=1728043200
 order: 30
 date: 2024-10-04 20:00
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
@@ -16,6 +16,7 @@ excerpt: false
 
 :::tabs
 @tab 单文件组件
+
 ```vue
 <template>
   <button @click="toggleModal">打开模态框</button>
@@ -29,11 +30,11 @@ excerpt: false
 </template>
 
 <script setup>
-import { ref } from "vue"
-const showModal = ref(false)
+import { ref } from "vue";
+const showModal = ref(false);
 const toggleModal = () => {
-  showModal.value = !showModal.value
-}
+  showModal.value = !showModal.value;
+};
 </script>
 
 <style scoped>
@@ -49,51 +50,57 @@ const toggleModal = () => {
 }
 </style>
 ```
+
 @tab HTML
+
 ```html
 <head>
-    <style>
-        .modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            padding: 20px;
-            background-color: white;
-            border: 1px solid #ccc;
-        }
-    </style>
+  <style>
+    .modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+    }
+  </style>
 </head>
 
 <body>
-    <div id="app">
-        <button @click="toggleModal">打开模态框</button>
-        <teleport to="body">
-            <div v-if="showModal" class="modal">
-                <h2>这是一个模态框</h2>
-                <p>模态框内容</p>
-                <button @click="toggleModal">关闭模态框</button>
-            </div>
-        </teleport>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const showModal = ref(false)
-                const toggleModal = () => {
-                    showModal.value = !showModal.value
-                }
-                return {
-                    showModal,
-                    toggleModal
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <button @click="toggleModal">打开模态框</button>
+    <teleport to="body">
+      <div v-if="showModal" class="modal">
+        <h2>这是一个模态框</h2>
+        <p>模态框内容</p>
+        <button @click="toggleModal">关闭模态框</button>
+      </div>
+    </teleport>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const showModal = ref(false);
+        const toggleModal = () => {
+          showModal.value = !showModal.value;
+        };
+        return {
+          showModal,
+          toggleModal,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 
 ## 禁用 Teleport

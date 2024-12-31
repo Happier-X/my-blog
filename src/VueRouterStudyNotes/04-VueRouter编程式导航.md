@@ -3,10 +3,10 @@ title: Vue Router 编程式导航
 cover: https://t.alcy.cc/fj?t=1729839600000
 order: 4
 date: 2024-10-25 15:00
-category: 软件开发
-tag: 
-    - Vue
-    - Vue Router
+category: 开发
+tag:
+  - Vue
+  - Vue Router
 excerpt: false
 ---
 

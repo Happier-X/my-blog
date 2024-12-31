@@ -3,10 +3,10 @@ title: Pinia 安装
 cover: https://t.alcy.cc/fj?t=1730255400000
 order: 1
 date: 2024-10-30 10:30
-category: 软件开发
-tag: 
-    - Vue
-    - Pinia
+category: 开发
+tag:
+  - Vue
+  - Pinia
 excerpt: false
 ---
 

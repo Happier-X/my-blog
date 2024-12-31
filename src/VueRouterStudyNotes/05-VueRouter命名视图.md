@@ -3,10 +3,10 @@ title: Vue Router 命名视图
 cover: https://t.alcy.cc/fj?t=1729846800000
 order: 5
 date: 2024-10-25 17:00
-category: 软件开发
-tag: 
-    - Vue
-    - Vue Router
+category: 开发
+tag:
+  - Vue
+  - Vue Router
 excerpt: false
 ---
 
@@ -59,21 +59,15 @@ export default router
 
 ```vue
 <!-- src/views/HomeView.vue -->
-<template>
-    我是 Home 页面
-</template>
+<template>我是 Home 页面</template>
 ```
 
 ```vue
 <!-- src/views/SidebarView.vue -->
-<template>
-    我是 Sidebar 页面
-</template>
+<template>我是 Sidebar 页面</template>
 ```
 
 ```vue
 <!-- src/views/FooterView.vue -->
-<template>
-    我是 Footer 页面
-</template>
+<template>我是 Footer 页面</template>
 ```

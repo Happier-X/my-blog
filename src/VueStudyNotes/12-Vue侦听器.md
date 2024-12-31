@@ -3,10 +3,11 @@ title: Vue 侦听器
 cover: https://t.alcy.cc/fj?t=1726644600
 order: 12
 date: 2024-09-18 15:30
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
+
 ## 基本用法
 
 侦听器可以在响应式状态发生变化时自动执行侦听器中的方法
@@ -33,53 +34,59 @@ excerpt: false
 </template>
 
 <script setup>
-import { ref, computed, watch, reactive } from 'vue'
-const name = ref('张三')
+import { ref, computed, watch, reactive } from "vue";
+const name = ref("张三");
 const time = reactive({
   year: 2024,
   month: 9,
-})
-const list = reactive([1, 2, 3, 4])
+});
+const list = reactive([1, 2, 3, 4]);
 const fullTime = computed(() => {
-  return `${time.year}-${time.month}`
-})
-const x = ref(1)
-const y = ref(2)
+  return `${time.year}-${time.month}`;
+});
+const x = ref(1);
+const y = ref(2);
 // 监听 name 的变化
 watch(name, (newVal, oldVal) => {
-  console.log(newVal, oldVal)
-  if (newVal === '李四') {
-    alert('李四')
+  console.log(newVal, oldVal);
+  if (newVal === "李四") {
+    alert("李四");
   }
-})
+});
 // 监听 time 的变化
 // 因为 time 是一个对象，对象是通过引用来传递的，而不是值传递
 // 当修改对象的属性时，实际上是修改了对象的引用，所以打印出来的结果是修改后的值
 watch(time, (newVal, oldVal) => {
-  console.log(newVal, oldVal) // 这里的 newVal 和 oldVal 都是修改后的值
-})
+  console.log(newVal, oldVal); // 这里的 newVal 和 oldVal 都是修改后的值
+});
 // 监听 list 的变化
 // 因为 list 是一个数组，数组是通过引用来传递的，而不是值传递
 // 当修改数组时，实际上是修改了数组的引用，所以打印出来的结果是修改后的值
 watch(list, (newVal, oldVal) => {
-  console.log(newVal, oldVal) // 这里的 newVal 和 oldVal 都是修改后的值
-})
+  console.log(newVal, oldVal); // 这里的 newVal 和 oldVal 都是修改后的值
+});
 // 监听 fullTime 的变化（计算属性）
 watch(fullTime, (newVal, oldVal) => {
-  console.log(newVal, oldVal)
-})
+  console.log(newVal, oldVal);
+});
 // 监听 getter 函数
-watch(() => x.value + y.value, (newVal, oldVal) => {
-  console.log(newVal, oldVal)
-})
+watch(
+  () => x.value + y.value,
+  (newVal, oldVal) => {
+    console.log(newVal, oldVal);
+  }
+);
 // 监听多个数据源组成的数组
 watch([x, y], (newVal, oldVal) => {
-  console.log(newVal, oldVal)
-})
+  console.log(newVal, oldVal);
+});
 // 监听对象中的某个属性，需要使用 getter 函数，不能直接监听响应式对象的属性
-watch(() => time.year, (newVal, oldVal) => {
-  console.log(newVal, oldVal)
-})
+watch(
+  () => time.year,
+  (newVal, oldVal) => {
+    console.log(newVal, oldVal);
+  }
+);
 </script>
 ```
 
@@ -87,81 +94,95 @@ watch(() => time.year, (newVal, oldVal) => {
 
 ```html
 <body>
-    <div id="app">
-        <h3>{{ name }}</h3>
-        <button @click="name = '李四'">改变name</button>
-        <h3>{{ time }}</h3>
-        <button @click="time.year = 2025">改变time</button>
-        <h3>{{ list }}</h3>
-        <button @click="list.push(5)">改变list</button>
-        <h3>{{ fullTime }}</h3>
-        <h3>{{ x }} + {{ y }} = {{ x + y }}</h3>
-        <button @click="x = 10">改变x</button>
-    </div>
-    <script type="module">
-        import { createApp, ref, reactive, watch, computed } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const name = ref('张三')
-                const time = reactive({
-                    year: 2024,
-                    month: 9,
-                })
-                const list = reactive([1, 2, 3, 4])
-                const fullTime = computed(() => {
-                    return `${time.year}-${time.month}`
-                })
-                const x = ref(1)
-                const y = ref(2)
-                // 监听 name 的变化
-                watch(name, (newVal, oldVal) => {
-                    console.log(newVal, oldVal)
-                    if (newVal === '李四') {
-                        alert('李四')
-                    }
-                })
-                // 监听 time 的变化
-                // 因为 time 是一个对象，对象是通过引用来传递的，而不是值传递
-                // 当修改对象的属性时，实际上是修改了对象的引用，所以打印出来的结果是修改后的值
-                watch(time, (newVal, oldVal) => {
-                    console.log(newVal, oldVal) // 这里的 newVal 和 oldVal 都是修改后的值
-                })
-                // 监听 list 的变化
-                // 因为 list 是一个数组，数组是通过引用来传递的，而不是值传递
-                // 当修改数组时，实际上是修改了数组的引用，所以打印出来的结果是修改后的值
-                watch(list, (newVal, oldVal) => {
-                    console.log(newVal, oldVal) // 这里的 newVal 和 oldVal 都是修改后的值
-                })
-                // 监听 fullTime 的变化（计算属性）
-                watch(fullTime, (newVal, oldVal) => {
-                    console.log(newVal, oldVal)
-                })
-                // 监听 getter 函数
-                watch(() => x.value + y.value, (newVal, oldVal) => {
-                    console.log(newVal, oldVal)
-                })
-                // 监听多个数据源组成的数组
-                watch([x, y], (newVal, oldVal) => {
-                    console.log(newVal, oldVal)
-                })
-                // 监听对象中的某个属性，需要使用 getter 函数，不能直接监听响应式对象的属性
-                watch(() => time.year, (newVal, oldVal) => {
-                    console.log(newVal, oldVal)
-                })
-                return {
-                    name,
-                    time,
-                    list,
-                    fullTime,
-                    x,
-                    y
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h3>{{ name }}</h3>
+    <button @click="name = '李四'">改变name</button>
+    <h3>{{ time }}</h3>
+    <button @click="time.year = 2025">改变time</button>
+    <h3>{{ list }}</h3>
+    <button @click="list.push(5)">改变list</button>
+    <h3>{{ fullTime }}</h3>
+    <h3>{{ x }} + {{ y }} = {{ x + y }}</h3>
+    <button @click="x = 10">改变x</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+      reactive,
+      watch,
+      computed,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const name = ref("张三");
+        const time = reactive({
+          year: 2024,
+          month: 9,
+        });
+        const list = reactive([1, 2, 3, 4]);
+        const fullTime = computed(() => {
+          return `${time.year}-${time.month}`;
+        });
+        const x = ref(1);
+        const y = ref(2);
+        // 监听 name 的变化
+        watch(name, (newVal, oldVal) => {
+          console.log(newVal, oldVal);
+          if (newVal === "李四") {
+            alert("李四");
+          }
+        });
+        // 监听 time 的变化
+        // 因为 time 是一个对象，对象是通过引用来传递的，而不是值传递
+        // 当修改对象的属性时，实际上是修改了对象的引用，所以打印出来的结果是修改后的值
+        watch(time, (newVal, oldVal) => {
+          console.log(newVal, oldVal); // 这里的 newVal 和 oldVal 都是修改后的值
+        });
+        // 监听 list 的变化
+        // 因为 list 是一个数组，数组是通过引用来传递的，而不是值传递
+        // 当修改数组时，实际上是修改了数组的引用，所以打印出来的结果是修改后的值
+        watch(list, (newVal, oldVal) => {
+          console.log(newVal, oldVal); // 这里的 newVal 和 oldVal 都是修改后的值
+        });
+        // 监听 fullTime 的变化（计算属性）
+        watch(fullTime, (newVal, oldVal) => {
+          console.log(newVal, oldVal);
+        });
+        // 监听 getter 函数
+        watch(
+          () => x.value + y.value,
+          (newVal, oldVal) => {
+            console.log(newVal, oldVal);
+          }
+        );
+        // 监听多个数据源组成的数组
+        watch([x, y], (newVal, oldVal) => {
+          console.log(newVal, oldVal);
+        });
+        // 监听对象中的某个属性，需要使用 getter 函数，不能直接监听响应式对象的属性
+        watch(
+          () => time.year,
+          (newVal, oldVal) => {
+            console.log(newVal, oldVal);
+          }
+        );
+        return {
+          name,
+          time,
+          list,
+          fullTime,
+          x,
+          y,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
+
 ## 深层侦听器
 
 给第三个参数传入 `deep: true` 可以实现深层侦听器，当响应式对象中的某个属性发生变化时，会自动执行侦听器中的方法
@@ -171,9 +192,7 @@ watch(() => time.year, (newVal, oldVal) => {
 `deep` 还可以接收一个数字，表示最大遍历深度，即 Vue 应该遍历对象嵌套属性的层数
 
 ```vue
-watch(source, callback, {
-    deep: true
-})
+watch(source, callback, { deep: true })
 ```
 
 ## 即时回调的侦听器
@@ -183,9 +202,7 @@ watch(source, callback, {
 给第三个参数传入 `immediate: true` 可以实现即时回调的侦听器，在创建侦听器时会自动执行侦听器中的方法
 
 ```vue
-watch(source, callback, {
-    immediate: true
-})
+watch(source, callback, { immediate: true })
 ```
 
 ## 一次性侦听器
@@ -195,10 +212,9 @@ watch(source, callback, {
 给第三个参数传入 `once: true` 可以实现一次性侦听器，回调函数只会在侦听的数据第一次变化时执行一次，之后不再执行
 
 ```vue
-watch(source, callback, {
-    once: true
-})
+watch(source, callback, { once: true })
 ```
+
 ## watchEffect()
 
 `watchEffect()` 用于创建一个副作用监听器，它不需要显式地传入要侦听的数据，它会在依赖的响应式状态发生变化时自动执行回调函数
@@ -216,12 +232,12 @@ watch(source, callback, {
 </template>
 
 <script setup>
-import { ref, watchEffect } from 'vue'
-const name = ref('张三')
+import { ref, watchEffect } from "vue";
+const name = ref("张三");
 // 监听 name 的变化
 watchEffect(() => {
-  console.log(name.value)
-})
+  console.log(name.value);
+});
 </script>
 ```
 
@@ -229,27 +245,32 @@ watchEffect(() => {
 
 ```html
 <body>
-    <div id="app">
-        <h3>{{ name }}</h3>
-        <button @click="name = '李四'">改变name</button>
-    </div>
-    <script type="module">
-        import { createApp, ref, watchEffect } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const name = ref('张三')
-                // 监听 name 的变化
-                watchEffect(() => {
-                    console.log(name.value)
-                })
-                return {
-                    name
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h3>{{ name }}</h3>
+    <button @click="name = '李四'">改变name</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+      watchEffect,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const name = ref("张三");
+        // 监听 name 的变化
+        watchEffect(() => {
+          console.log(name.value);
+        });
+        return {
+          name,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 回调会立即执行，不需要指定 `immediate: true`，在执行期间，它会自动追踪 `name.value` 作为依赖 (和计算属性类似)，每当 `name.value` 变化时，回调会再次执行，我们不再需要明确传递 `name` 作为数据源
 
@@ -268,14 +289,14 @@ watchEffect(() => {
 </template>
 
 <script setup>
-import { ref, watchEffect } from 'vue'
-const count = ref(0)
-const message = ref('hello world')
+import { ref, watchEffect } from "vue";
+const count = ref(0);
+const message = ref("hello world");
 watchEffect(async () => {
-  console.log(count.value) // 在 await 之前访问，它会被追踪
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  console.log(message.value) // 在 await 之后访问，它不会被追踪
-})
+  console.log(count.value); // 在 await 之前访问，它会被追踪
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  console.log(message.value); // 在 await 之后访问，它不会被追踪
+});
 </script>
 ```
 
@@ -283,30 +304,34 @@ watchEffect(async () => {
 
 ```html
 <body>
-    <div id="app">
-        <h3>{{ count }}</h3>
-        <button @click="count++">改变count</button>
-        <h3>{{ message }}</h3>
-        <button @click="message = `hello ${count}`">改变message</button>
-    </div>
-    <script type="module">
-        import { createApp, ref, watchEffect } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count = ref(0)
-                const message = ref('hello world')
-                watchEffect(async () => {
-                    console.log(count.value) // 在 await 之前访问，它会被追踪
-                    await new Promise(resolve => setTimeout(resolve, 1000))
-                    console.log(message.value) // 在 await 之后访问，它不会被追踪
-                })
-                return {
-                    count,
-                    message
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h3>{{ count }}</h3>
+    <button @click="count++">改变count</button>
+    <h3>{{ message }}</h3>
+    <button @click="message = `hello ${count}`">改变message</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+      watchEffect,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count = ref(0);
+        const message = ref("hello world");
+        watchEffect(async () => {
+          console.log(count.value); // 在 await 之前访问，它会被追踪
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          console.log(message.value); // 在 await 之后访问，它不会被追踪
+        });
+        return {
+          count,
+          message,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
@@ -327,15 +352,11 @@ TODO：副作用清理
 如果想在侦听器回调中访问被 Vue 更新后的所属组件的 DOM，可以将 `flush` 选项设置为 `post`
 
 ```vue
-watch(source, callback, { 
-    flush: 'post' 
-})
+watch(source, callback, { flush: 'post' })
 ```
 
 ```vue
-watchEffect(callback, { 
-    flush: 'post' 
-})
+watchEffect(callback, { flush: 'post' })
 ```
 
 也可以使用 `watchPostEffect()`
@@ -355,75 +376,88 @@ watchEffect(callback, {
 </template>
 
 <script setup>
-import { ref, watchEffect, watchPostEffect } from 'vue'
-const count1 = ref(0)
-const count2 = ref(0)
-const count3 = ref(0)
+import { ref, watchEffect, watchPostEffect } from "vue";
+const count1 = ref(0);
+const count2 = ref(0);
+const count3 = ref(0);
 watchEffect(() => {
-  console.log(count1.value) // 初次打印 0
-  const element1 = document.querySelector('#e1')
-  console.log(element1) // 初次打印 null
-})
-watchEffect(() => {
-  console.log(count2.value) // 初次打印 0
-  const element2 = document.querySelector('#e2')
-  console.log(element2) // 初次打印 <h3 id="e2">0</h3>
-}, {
-  flush: 'post'
-})
+  console.log(count1.value); // 初次打印 0
+  const element1 = document.querySelector("#e1");
+  console.log(element1); // 初次打印 null
+});
+watchEffect(
+  () => {
+    console.log(count2.value); // 初次打印 0
+    const element2 = document.querySelector("#e2");
+    console.log(element2); // 初次打印 <h3 id="e2">0</h3>
+  },
+  {
+    flush: "post",
+  }
+);
 watchPostEffect(() => {
-  console.log(count3.value) // 初次打印 0
-  const element3 = document.querySelector('#e3')
-  console.log(element3) // 初次打印 <h3 id="e3">0</h3>
-})
+  console.log(count3.value); // 初次打印 0
+  const element3 = document.querySelector("#e3");
+  console.log(element3); // 初次打印 <h3 id="e3">0</h3>
+});
 </script>
 ```
+
 @tab HTML
 
 ```html
 <body>
-    <div id="app">
-        <h3 id="e1">{{ count1 }}</h3>
-        <button @click="count1++">改变count1</button>
-        <h3 id="e2">{{ count2 }}</h3>
-        <button @click="count2++">改变count2</button>
-        <h3 id="e3">{{ count3 }}</h3>
-        <button @click="count3++">改变count3</button>
-    </div>
-    <script type="module">
-        import { createApp, ref, watchEffect, watchPostEffect } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count1 = ref(0)
-                const count2 = ref(0)
-                const count3 = ref(0)
-                watchEffect(() => {
-                    console.log(count1.value) // 初次打印 0
-                    const element1 = document.querySelector('#e1')
-                    console.log(element1) // 初次打印 null
-                })
-                watchEffect(() => {
-                    console.log(count2.value) // 初次打印 0
-                    const element2 = document.querySelector('#e2')
-                    console.log(element2) // 初次打印 <h3 id="e2">0</h3>
-                }, {
-                    flush: 'post'
-                })
-                watchPostEffect(() => {
-                    console.log(count3.value) // 初次打印 0
-                    const element3 = document.querySelector('#e3')
-                    console.log(element3) // 初次打印 <h3 id="e3">0</h3>
-                })
-                return {
-                    count1,
-                    count2,
-                    count3
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h3 id="e1">{{ count1 }}</h3>
+    <button @click="count1++">改变count1</button>
+    <h3 id="e2">{{ count2 }}</h3>
+    <button @click="count2++">改变count2</button>
+    <h3 id="e3">{{ count3 }}</h3>
+    <button @click="count3++">改变count3</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+      watchEffect,
+      watchPostEffect,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count1 = ref(0);
+        const count2 = ref(0);
+        const count3 = ref(0);
+        watchEffect(() => {
+          console.log(count1.value); // 初次打印 0
+          const element1 = document.querySelector("#e1");
+          console.log(element1); // 初次打印 null
+        });
+        watchEffect(
+          () => {
+            console.log(count2.value); // 初次打印 0
+            const element2 = document.querySelector("#e2");
+            console.log(element2); // 初次打印 <h3 id="e2">0</h3>
+          },
+          {
+            flush: "post",
+          }
+        );
+        watchPostEffect(() => {
+          console.log(count3.value); // 初次打印 0
+          const element3 = document.querySelector("#e3");
+          console.log(element3); // 初次打印 <h3 id="e3">0</h3>
+        });
+        return {
+          count1,
+          count2,
+          count3,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 还可以创建一个同步触发的侦听器，将 `flush` 选项设置为 `sync` 或使用 `watchSyncEffect()`，它会在 Vue 进行任何更新之前触发回调
 
@@ -446,19 +480,19 @@ watchPostEffect(() => {
 </template>
 
 <script setup>
-import { ref, watchEffect } from 'vue'
-const count1 = ref(0)
-const count2 = ref(0)
+import { ref, watchEffect } from "vue";
+const count1 = ref(0);
+const count2 = ref(0);
 // 它会自动停止
 watchEffect(() => {
-  console.log(count1.value)
-})
+  console.log(count1.value);
+});
 // 它不会自动停止
 setTimeout(() => {
   watchEffect(() => {
-    console.log(count2.value)
-  })
-}, 100)
+    console.log(count2.value);
+  });
+}, 100);
 </script>
 ```
 
@@ -466,54 +500,52 @@ setTimeout(() => {
 
 ```html
 <body>
-    <div id="app">
-        <h3>{{ count1 }}</h3>
-        <button @click="count1++">改变count1</button>
-        <h3>{{ count2 }}</h3>
-        <button @click="count2++">改变count2</button>
-    </div>
-    <script type="module">
-        import { createApp, ref, watchEffect } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        createApp({
-            setup() {
-                const count1 = ref(0)
-                const count2 = ref(0)
-                // 它会自动停止
-                watchEffect(() => {
-                    console.log(count1.value)
-                })
-                // 它不会自动停止
-                setTimeout(() => {
-                    watchEffect(() => {
-                        console.log(count2.value)
-                    })
-                }, 100)
-                return {
-                    count1,
-                    count2,
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <h3>{{ count1 }}</h3>
+    <button @click="count1++">改变count1</button>
+    <h3>{{ count2 }}</h3>
+    <button @click="count2++">改变count2</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+      watchEffect,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+      setup() {
+        const count1 = ref(0);
+        const count2 = ref(0);
+        // 它会自动停止
+        watchEffect(() => {
+          console.log(count1.value);
+        });
+        // 它不会自动停止
+        setTimeout(() => {
+          watchEffect(() => {
+            console.log(count2.value);
+          });
+        }, 100);
+        return {
+          count1,
+          count2,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
+
 :::
 要手动停止一个侦听器，可以调用侦听器返回的停止函数
 
 ```vue
-const unWatch = watchEffect(() => {})
-// 当不再需要侦听器时
-unWatch()
+const unWatch = watchEffect(() => {}) // 当不再需要侦听器时 unWatch()
 ```
 
 如果我们需要等待一些异步数据，可以使用条件式的侦听器，当条件为真时开始侦听
 
 ```vue
-// 异步数据
-const data = ref(null)
-watchEffect(() => {
-    if (data.value) {
-        // 这将在 data 价值后启动侦听器
-    }
-})
+// 异步数据 const data = ref(null) watchEffect(() => { if (data.value) { //
+这将在 data 价值后启动侦听器 } })
 ```

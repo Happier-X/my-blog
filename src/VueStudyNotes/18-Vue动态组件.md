@@ -3,7 +3,7 @@ title: Vue 动态组件
 cover: https://t.alcy.cc/fj?t=1727254800000
 order: 18
 date: 2024-09-25 17:00
-category: 软件开发
+category: 开发
 tag: Vue
 excerpt: false
 ---
@@ -24,38 +24,38 @@ excerpt: false
 </template>
 
 <script setup>
-import Student from './components/Student.vue'
-import Teacher from './components/Teacher.vue'
-import { ref } from 'vue'
-const tab = [Student, Teacher]
-const index = ref(0)
+import Student from "./components/Student.vue";
+import Teacher from "./components/Teacher.vue";
+import { ref } from "vue";
+const tab = [Student, Teacher];
+const index = ref(0);
 const changeTab = () => {
-  index.value = index.value === 0 ? 1 : 0
-}
+  index.value = index.value === 0 ? 1 : 0;
+};
 </script>
 ```
 
 ```vue
 <!-- Student.vue -->
 <template>
-    <h1>{{ name }}</h1>
+  <h1>{{ name }}</h1>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const name = ref('Student')
+import { ref } from "vue";
+const name = ref("Student");
 </script>
 ```
 
 ```vue
 <!-- Teacher.vue -->
 <template>
-    <h1>{{ name }}</h1>
+  <h1>{{ name }}</h1>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const name = ref('Teacher')
+import { ref } from "vue";
+const name = ref("Teacher");
 </script>
 ```
 
@@ -63,33 +63,36 @@ const name = ref('Teacher')
 
 ```html
 <body>
-    <div id="app">
-        <component :is="tab[index]"></component>
-        <button @click="changeTab">切换</button>
-    </div>
-    <script type="module">
-        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        import Student from './Student.js'
-        import Teacher from './Teacher.js'
-        createApp({
-            components: {
-                Student,
-                Teacher
-            },
-            setup() {
-                const tab = [Student, Teacher]
-                const index = ref(0)
-                const changeTab = () => {
-                    index.value = index.value === 0 ? 1 : 0
-                }
-                return {
-                    tab,
-                    index,
-                    changeTab
-                }
-            }
-        }).mount('#app')
-    </script>
+  <div id="app">
+    <component :is="tab[index]"></component>
+    <button @click="changeTab">切换</button>
+  </div>
+  <script type="module">
+    import {
+      createApp,
+      ref,
+    } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    import Student from "./Student.js";
+    import Teacher from "./Teacher.js";
+    createApp({
+      components: {
+        Student,
+        Teacher,
+      },
+      setup() {
+        const tab = [Student, Teacher];
+        const index = ref(0);
+        const changeTab = () => {
+          index.value = index.value === 0 ? 1 : 0;
+        };
+        return {
+          tab,
+          index,
+          changeTab,
+        };
+      },
+    }).mount("#app");
+  </script>
 </body>
 ```
 
@@ -122,6 +125,7 @@ export default {
         <h1>{{ name }}</h1>`
 }
 ```
+
 :::
 
 `is` 属性可以接受一个字符串或对象，如果是字符串，则表示组件的名称，如果是对象，则表示导入的组件对象，也可以传入一般的 HTML 元素

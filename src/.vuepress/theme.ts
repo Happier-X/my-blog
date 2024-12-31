@@ -62,7 +62,7 @@ export default hopeTheme({
   },
   encrypt: {
     config: {
-      "/SoftwareTool/科学上网.html": ["404404"],
+      "/ComputerUsageSkills/科学上网.html": ["404404"],
     }
   },
   contributors: false,

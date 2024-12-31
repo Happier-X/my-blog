@@ -1,11 +1,12 @@
 ---
-title: npm 换源
 cover: https://t.alcy.cc/fj?t=1723905000
 date: 2024-08-17 22:30
-category: 软件工具
+category: 开发
 tag: npm
 excerpt: false
 ---
+
+# npm 换源
 
 ## 查看当前镜像源
 

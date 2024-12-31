@@ -1,11 +1,12 @@
 ---
-title: CSS 绘制三角形
 cover: https://t.alcy.cc/fj?t=1714370400
 date: 2024-04-29 14:00
-category: 软件开发
+category: 开发
 tag: CSS
 excerpt: false
 ---
+
+# CSS 绘制三角形
 
 网页中常见一些三角形，使用 CSS 边框可以直接画出来，不必做成图片或者字体图标
 

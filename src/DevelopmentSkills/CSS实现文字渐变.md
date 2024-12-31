@@ -1,11 +1,12 @@
 ---
-title: CSS 实现文字渐变
 cover: https://t.alcy.cc/fj?t=1709690400
 date: 2024-03-06 10:00
-category: 软件开发
+category: 开发
 tag: CSS
 excerpt: false
 ---
+
+# CSS 实现文字渐变
 
 如果给文字直接设置渐变色会不生效：
 

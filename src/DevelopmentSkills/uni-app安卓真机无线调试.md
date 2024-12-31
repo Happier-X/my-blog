@@ -1,8 +1,9 @@
 ---
 cover: https://t.alcy.cc/fj?t=1727602200000
 date: 2024-09-29 17:30
-category: 软件开发
-tag: uni-app
+category: 开发
+tag:
+  - uni-app
 excerpt: false
 ---
 

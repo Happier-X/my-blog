@@ -1,14 +1,15 @@
 ---
-title: Vim
 cover: https://t.alcy.cc/fj?t=1724590800
 date: 2024-08-25 21:00
-category: 软件工具
-tag: 
+category: 开发
+tag:
     - Vim
     - VSCode
     - Edge
 excerpt: false
 ---
+
+# Vim
 
 ## 在 VSCode 中使用 Vim
 

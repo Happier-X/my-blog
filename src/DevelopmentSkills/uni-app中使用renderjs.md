@@ -1,11 +1,14 @@
 ---
-title: uni-app 中使用 renderjs
 cover: https://t.alcy.cc/fj?t=1726106400000
 date: 2024-09-12 10:00
-category: 软件开发
-tag: uni-app
+category: 开发
+tag:
+  - uni-app
 excerpt: false
 ---
+
+# uni-app 中使用 renderjs
+
 ## 什么是 renderjs
 
 官方解释：`renderjs` 是一个运行在视图层的 js，它只支持 app-vue 和 web

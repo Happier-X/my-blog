@@ -1,13 +1,14 @@
 ---
-title: 我的 VSCode 配置
 cover: https://t.alcy.cc/fj?t=1709949600
 date: 2024-03-09 10:00
-category: 软件工具
+category: 开发
 tag: VSCode
 excerpt: false 
 ---
 
-> 分享一下我的 VSCode 配置和推荐的扩展。
+# 我的 VSCode 配置
+
+分享一下我的 VSCode 配置和推荐的扩展。
 
 ## 设置相关
 

@@ -1,11 +1,12 @@
 ---
-title: CSS 实现导航栏固定效果
 cover: https://t.alcy.cc/fj?t=1714356000
 date: 2024-04-29 10:00
-category: 软件开发
+category: 开发
 tag: CSS
 excerpt: false
 ---
+
+# CSS 实现导航栏固定效果
 
 ## 效果描述
 

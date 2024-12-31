@@ -1,14 +1,15 @@
 ---
-title: Node 版本管理工具 FNM
 cover: https://t.alcy.cc/fj?t=1728871200000
 date: 2024-10-14 10:00
-category: 软件工具
-tag: 
+category: 开发
+tag:
     - Node
     - FNM
     - Husky
 excerpt: false
 ---
+
+# Node 版本管理工具 FNM
 
 ## 简介
 

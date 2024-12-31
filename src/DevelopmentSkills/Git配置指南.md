@@ -1,11 +1,12 @@
 ---
-title: Git 配置指南
 cover: https://t.alcy.cc/fj?t=1709596800
 date: 2024-03-05 08:00
-category: 软件工具
+category: 开发
 tag: Git
 excerpt: false
 ---
+
+# Git 配置指南
 
 ## 查看配置信息
 

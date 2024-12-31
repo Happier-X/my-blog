@@ -1,11 +1,12 @@
 ---
-title: Git 提交历史批量导出
 cover: https://t.alcy.cc/fj?t=1729231200000
 date: 2024-10-18 14:00
-category: 软件工具
+category: 开发
 tag: Git
 excerpt: false
 ---
+
+# Git 提交历史批量导出
 
 ## 批量导出
 

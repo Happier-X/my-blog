@@ -36,7 +36,7 @@ export default navbar([
       },
       {
         text: "工具使用",
-        children: ["/ComputerUsageSkills/"],
+        children: ["/ComputerUsageSkills/", "/BlogWriting/", "/PlayNAS/"],
       },
       {
         text: "魔方",

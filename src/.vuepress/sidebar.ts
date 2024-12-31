@@ -1,7 +1,6 @@
 import { sidebar } from "vuepress-theme-hope";
 
 export default sidebar({
-  "/SoftwareTool/": "structure",
   "/STM32StudyNotes/": "structure",
   "/DevelopmentSkills/": "structure",
   "/NestStudyNotes/": "structure",
@@ -15,4 +14,7 @@ export default sidebar({
   "/ThoughtsAfterReading/": "structure",
   "/PiniaStudyNotes/": "structure",
   "/TypeScriptStudyNotes/": "structure",
+  "/ComputerUsageSkills/": "structure",
+  "/BlogWriting/": "structure",
+  "/PlayNAS/": "structure",
 });

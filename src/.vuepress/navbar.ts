@@ -15,14 +15,14 @@ export default navbar([
   {
     text: "标签",
     icon: "Tag",
-    link: "/tag/"
+    link: "/tag/",
   },
   {
     text: "合集",
     icon: "Collection",
     children: [
       {
-        text: "软件开发",
+        text: "软硬件开发",
         children: [
           "/DevelopmentSkills/",
           "/GoStudyNotes/",
@@ -30,47 +30,31 @@ export default navbar([
           "/VueStudyNotes/",
           "/VueRouterStudyNotes/",
           "/PiniaStudyNotes/",
-          "/TypeScriptStudyNotes/"
+          "/TypeScriptStudyNotes/",
+          "/STM32StudyNotes/",
         ],
       },
       {
         text: "软件工具",
-        children: [
-          "/SoftwareTool/",
-        ]
+        children: ["/SoftwareTool/"],
       },
       {
         text: "魔方",
-        children: [
-          "/3x3x3/",
-          "/3x3x3BLD/"
-        ]
+        children: ["/3x3x3/", "/3x3x3BLD/"],
       },
       {
         text: "摄影",
-        children: [
-          "/PhotographyStudyNotes/"
-        ]
+        children: ["/PhotographyStudyNotes/"],
       },
       {
         text: "旅行",
-        children: [
-          "/TravelRecord/"
-        ]
-      },
-      {
-        text: "嵌入式开发",
-        children: [
-          "/STM32StudyNotes/"
-        ]
+        children: ["/TravelRecord/"],
       },
       {
         text: "碎碎念",
-        children: [
-          "/ThoughtsAfterReading/"
-        ]
-      }
-    ]
+        children: ["/ThoughtsAfterReading/"],
+      },
+    ],
   },
   {
     text: "时间线",

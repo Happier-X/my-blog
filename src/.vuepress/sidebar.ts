@@ -15,6 +15,6 @@ export default sidebar({
   "/PiniaStudyNotes/": "structure",
   "/TypeScriptStudyNotes/": "structure",
   "/ComputerUsageSkills/": "structure",
-  "/BlogWriting/": "structure",
+  "/WritingSkills/": "structure",
   "/PlayNAS/": "structure",
 });

@@ -22,7 +22,7 @@ export default navbar([
     icon: "Collection",
     children: [
       {
-        text: "软硬件开发",
+        text: "开发",
         children: [
           "/DevelopmentSkills/",
           "/GoStudyNotes/",
@@ -35,8 +35,8 @@ export default navbar([
         ],
       },
       {
-        text: "软件工具",
-        children: ["/SoftwareTool/"],
+        text: "工具使用",
+        children: ["/ComputerUsageSkills/"],
       },
       {
         text: "魔方",

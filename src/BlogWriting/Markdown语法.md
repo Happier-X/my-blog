@@ -1,7 +1,7 @@
 ---
 cover: https://t.alcy.cc/fj?t=1724158800
 date: 2024-08-20 21:00
-category: 软件工具
+category: 博客写作
 tag: 
   - Markdown
 excerpt: false

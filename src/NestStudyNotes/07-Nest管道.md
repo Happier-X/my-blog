@@ -291,6 +291,7 @@ export class CreateTodoDto {
     @MaxLength(20)
     @IsString()
     @IsNotEmpty()
+    // @IsNotEmpty({ message: '标题不能为空' }) 可以自定义错误消息
     public readonly title: string
 
     @IsString()

@@ -11,8 +11,6 @@ export default hopeTheme(
       name: "Happier",
       url: "/AboutMe/",
     },
-    iconAssets: "//at.alicdn.com/t/c/font_4729614_6gl9dhn0nkc.css",
-    iconPrefix: "iconfont icon-",
     logo: "https://happier-blog.oss-cn-qingdao.aliyuncs.com/assets/logo.jpg",
     repoDisplay: true,
     repo: "https://github.com/Happier-X/my-blog",
@@ -34,27 +32,26 @@ export default hopeTheme(
       editLink: "在 GitHub 上编辑此页",
     },
     plugins: {
+      icon: {
+        assets: "//at.alicdn.com/t/c/font_4729614_6gl9dhn0nkc.css",
+        prefix: "iconfont icon-",
+      },
       blog: {
         excerptLength: 0,
       },
-      comment: {
-        provider: "Waline",
-        serverURL: "https://blog-comment.happierx.top",
-      },
+      // comment: {
+      //   provider: "Waline",
+      //   serverURL: "https://blog-comment.happierx.top",
+      // },
       components: {
         components: ["VPCard"],
       },
-      searchPro: true,
-      markdownTab: {
-        tabs: true,
-      },
-      mdEnhance: {
-        mark: true,
-        mermaid: true,
-        component: true,
-        demo: true,
-      },
-      shiki: {
+      // searchPro: true,
+    },
+    markdown: {
+      tabs: true,
+      highlighter: {
+        type: "shiki",
         themes: {
           light: "one-light",
           dark: "one-dark-pro",

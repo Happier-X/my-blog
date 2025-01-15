@@ -39,10 +39,10 @@ export default hopeTheme(
       blog: {
         excerptLength: 0,
       },
-      // comment: {
-      //   provider: "Waline",
-      //   serverURL: "https://blog-comment.happierx.top",
-      // },
+      comment: {
+        provider: "Waline",
+        serverURL: "https://blog-comment.happierx.top",
+      },
       components: {
         components: ["VPCard"],
       },

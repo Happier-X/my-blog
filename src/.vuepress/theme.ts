@@ -1,6 +1,7 @@
 import { hopeTheme } from "vuepress-theme-hope";
 import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
+import { cut } from "nodejs-jieba";
 
 export default hopeTheme(
   {
@@ -46,7 +47,13 @@ export default hopeTheme(
       components: {
         components: ["VPCard"],
       },
-      slimsearch: true,
+      slimsearch: {
+        indexContent: true,
+        indexOptions: {
+          tokenize: (text, fieldName) =>
+            fieldName === "id" ? [text] : cut(text, true),
+        },
+      },
     },
     markdown: {
       tabs: true,

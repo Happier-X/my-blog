@@ -46,7 +46,7 @@ export default hopeTheme(
       components: {
         components: ["VPCard"],
       },
-      // searchPro: true,
+      slimsearch: true,
     },
     markdown: {
       tabs: true,

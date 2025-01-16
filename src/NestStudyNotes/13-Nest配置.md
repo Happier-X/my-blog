@@ -66,3 +66,60 @@ export class AppController {
 ```
 
 当我们访问 `http://localhost:3000` 时，会返回 `{ username: 'Happier' }`。
+
+## 使用自定义环境变量文件
+
+默认情况下，`ConfigModule` 会读取项目根目录下的 `.env` 文件。如果需要使用自定义的环境变量文件，可以在 `forRoot()` 方法中传入 `envFilePath` 参数。修改 `app.module.ts`。
+
+```TypeScript
+import { Module } from '@nestjs/common'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+import { ConfigModule } from '@nestjs/config'
+
+@Module({
+    imports: [
+        ConfigModule.forRoot({
+            envFilePath: 'development.env'
+        })
+    ],
+    controllers: [AppController],
+    providers: [AppService]
+})
+export class AppModule {}
+```
+
+在项目根目录下创建 `development.env` 文件，并添加环境变量。
+
+```
+USERNAME=Happier
+```
+
+当我们访问 `http://localhost:3000` 时，会返回 `{ username: 'Happier' }`。
+
+我们还可以传入一个数组，来指定多个环境变量文件。比如我们有多个环境，分别是 `development.env`、`development.local.env`，我们可以这样配置。数组中的文件会按顺序依次读取，前面的文件优先级更高。
+
+```TypeScript
+import { Module } from '@nestjs/common'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+import { ConfigModule } from '@nestjs/config'
+
+@Module({
+    imports: [
+        ConfigModule.forRoot({
+            envFilePath: ['development.local.env', 'development.env']
+        })
+    ],
+    controllers: [AppController],
+    providers: [AppService]
+})
+```
+
+此时我们创建一个 `development.local.env` 文件，并添加环境变量。
+
+```
+USERNAME=Local-Happier
+```
+
+当我们访问 `http://localhost:3000` 时，会返回 `{ username: 'Local-Happier' }`。

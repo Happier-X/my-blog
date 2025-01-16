@@ -3,7 +3,6 @@ title: 三阶魔方速拧
 icon: Cube
 article: false
 timeline: false
-sidebar: false
 ---
 
 三阶魔方速拧相关公式及技巧

@@ -2,7 +2,6 @@
 icon: ComputerUsageSkills
 article: false
 timeline: false
-sidebar: false
 ---
 
 # 电脑使用技巧

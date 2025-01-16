@@ -1,6 +1,5 @@
 ---
 title: 友链
-date: 2024-05-12
 sidebar: false
 article: false
 timeline: false
@@ -40,12 +39,14 @@ background: rgba(161,175,201,0.15)
 
 ::: tabs
 @tab txt
+
 ```txt
 昵称: Happier's Blog
 描述: 悟已往之不谏，知来者之可追
 头像: https://zhf-picture.oss-cn-qingdao.aliyuncs.com/picture/logo.jpg
 地址: https://blog.happierx.top/
 ```
+
 @tab json
 
 ```json
@@ -53,7 +54,8 @@ background: rgba(161,175,201,0.15)
   "name": "Happier's Blog",
   "description": "悟已往之不谏，知来者之可追",
   "avatar": "https://zhf-picture.oss-cn-qingdao.aliyuncs.com/picture/logo.jpg",
-  "link": "https://blog.happierx.top/",
+  "link": "https://blog.happierx.top/"
 }
 ```
+
 :::

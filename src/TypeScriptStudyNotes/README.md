@@ -3,7 +3,6 @@ title: TypeScript 学习笔记
 icon: TypeScriptStudyNotes
 article: false
 timeline: false
-sidebar: false
 ---
 
 TypeScript 学习过程中的笔记。

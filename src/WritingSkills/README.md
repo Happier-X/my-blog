@@ -2,7 +2,6 @@
 icon: WritingSkills
 article: false
 timeline: false
-sidebar: false
 ---
 
 # 写作技巧

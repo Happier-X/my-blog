@@ -18,6 +18,7 @@ export default hopeTheme(
     docsDir: "src",
     navbar,
     sidebar,
+    sidebarSorter: ["readme", "order", "date-desc"],
     copyright: "Copyright © 2024-present Happier",
     displayFooter: true,
     blog: {

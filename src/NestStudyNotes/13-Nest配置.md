@@ -67,7 +67,7 @@ export class AppController {
 
 当我们访问 `http://localhost:3000` 时，会返回 `{ username: 'Happier' }`。
 
-## 使用自定义环境变量文件
+### 使用自定义环境变量文件
 
 默认情况下，`ConfigModule` 会读取项目根目录下的 `.env` 文件。如果需要使用自定义的环境变量文件，可以在 `forRoot()` 方法中传入 `envFilePath` 参数。修改 `app.module.ts`。
 
@@ -123,3 +123,126 @@ USERNAME=Local-Happier
 ```
 
 当我们访问 `http://localhost:3000` 时，会返回 `{ username: 'Local-Happier' }`。
+
+### 使用工厂函数
+
+有些情况下，我们可以使用工厂函数来动态创建配置。比如，我们设置了 `development.env` 文件，但是有一些不太敏感的配置可以直接使用默认值，比如 `PORT`，我们可以在工厂函数中进行配置。
+
+在 `src` 下创建一个 `config` 文件夹，并创建一个 `configuration.factory.ts` 文件。其内容如下。
+
+```TypeScript
+export default () => ({
+    PORT: process.env.PORT || 3000
+})
+```
+
+修改 `app.module.ts`，在 `forRoot()` 方法中传入 `load` 参数，并传入工厂函数。
+
+```TypeScript
+import { Module } from '@nestjs/common'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+import { ConfigModule } from '@nestjs/config'
+import configurationFactory from './config/configuration.factory'
+
+@Module({
+    imports: [
+        ConfigModule.forRoot({
+            envFilePath: 'development.env',
+            load: [configurationFactory]
+        })
+    ],
+    controllers: [AppController],
+    providers: [AppService]
+})
+export class AppModule {}
+```
+
+修改 `app.controller.ts`，获取环境变量。
+
+```TypeScript
+import { Controller, Get } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+
+@Controller()
+export class AppController {
+    constructor(private readonly configService: ConfigService) {}
+
+    @Get()
+    getPort() {
+        const port = this.configService.get('PORT')
+        return { port }
+    }
+}
+```
+
+当我们访问 `http://localhost:3000` 时，会返回 `{ port: 3000 }`。
+
+### 使用工厂函数配置命名空间
+
+由于环境变量是使用 `key`-`value` 的形式存储的，它是扁平的，无法对环境变量进行分组。比如我们有如下环境变量。
+
+```
+DB_HOST=example.com
+DB_PASSWORD=123456
+PORT=3000
+```
+
+我们可以看出，`DB_HOST`、`DB_PORT`、`DB_PASSWORD` 是数据库的配置，`PORT` 是服务器的配置。如果分组的话，应该是这样的。
+
+```json
+{
+  "database": {
+    "host": "example.com",
+    "password": "123456"
+  },
+  "port": "3000"
+}
+```
+
+如果需要对环境变量进行分组，可以使用工厂函数配置命名空间。
+
+修改 `configuration.factory.ts`，使用 `registerAs` 方法配置命名空间，第一个参数是命名空间，第二个参数是回调函数，返回整理好的对象。
+
+```TypeScript
+import { registerAs } from '@nestjs/config'
+
+export default registerAs('database', () => ({
+    host: process.env.DB_HOST,
+    password: process.env.DB_PASSWORD
+}))
+```
+
+修改 `app.controller.ts`，可以像操作对象一样获取环境变量。
+
+```TypeScript
+import { Controller, Get } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+
+@Controller()
+export class AppController {
+    constructor(private readonly configService: ConfigService) {}
+
+    @Get()
+    get() {
+        const database = this.configService.get('database')
+        const host = this.configService.get('database.host')
+        return { database, host }
+    }
+}
+```
+
+当我们访问 `http://localhost:3000` 时，会返回如下内容。
+
+```json
+{
+  "database": {
+    "host": "example.com",
+    "password": "123456"
+  },
+  "host": "example.com"
+}
+```
+
+### 在 `main.ts` 中使用
+

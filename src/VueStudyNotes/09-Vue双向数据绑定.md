@@ -2,7 +2,7 @@
 title: Vue 双向数据绑定
 cover: https://t.alcy.cc/fj?t=1726639200000
 order: 9
-date: 2024-09-18 14:00
+date: 2024-09-18 14:00:00
 category: 开发
 tag: Vue
 excerpt: false

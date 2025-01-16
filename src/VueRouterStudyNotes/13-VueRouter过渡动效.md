@@ -2,7 +2,7 @@
 title: Vue Router 过渡动效
 cover: https://t.alcy.cc/fj?t=1730179800000
 order: 13
-date: 2024-10-29 13:30
+date: 2024-10-29 13:30:00
 category: 开发
 tag:
   - Vue

@@ -2,7 +2,7 @@
 title: Vue Router 命名路由
 cover: https://t.alcy.cc/fj?t=1729836000000
 order: 3
-date: 2024-10-25 14:00
+date: 2024-10-25 14:00:00
 category: 开发
 tag:
   - Vue

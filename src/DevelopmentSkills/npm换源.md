@@ -1,6 +1,6 @@
 ---
 cover: https://t.alcy.cc/fj?t=1723905000
-date: 2024-08-17 22:30
+date: 2024-08-17 22:30:00
 category: 开发
 tag: npm
 excerpt: false

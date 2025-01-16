@@ -2,7 +2,7 @@
 title: Vue 传递 props
 cover: https://t.alcy.cc/fj?t=1727242200000
 order: 16
-date: 2024-09-25 13:30
+date: 2024-09-25 13:30:00
 category: 开发
 tag: Vue
 excerpt: false

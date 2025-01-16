@@ -2,7 +2,7 @@
 title: Vue Router 路由元信息
 cover: https://t.alcy.cc/fj?t=1730172600000
 order: 12
-date: 2024-10-29 11:30
+date: 2024-10-29 11:30:00
 category: 开发
 tag:
   - Vue

@@ -1,6 +1,6 @@
 ---
 cover: https://t.alcy.cc/fj?t=1726106400000
-date: 2024-09-12 10:00
+date: 2024-09-12 10:00:00
 category: 开发
 tag:
   - uni-app

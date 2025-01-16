@@ -2,7 +2,7 @@
 title: Vue 组件化编程
 cover: https://t.alcy.cc/fj?t=1727056800000
 order: 15
-date: 2024-09-23 10:00
+date: 2024-09-23 10:00:00
 category: 开发
 tag: Vue
 excerpt: false

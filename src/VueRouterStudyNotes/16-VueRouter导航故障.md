@@ -2,7 +2,7 @@
 title: Vue Router 导航故障
 cover: https://t.alcy.cc/fj?t=1730187000000
 order: 16
-date: 2024-10-29 15:30
+date: 2024-10-29 15:30:00
 category: 开发
 tag:
   - Vue

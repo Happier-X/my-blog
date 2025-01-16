@@ -1,7 +1,7 @@
 ---
 title: 桥式 CMLL 公式
 cover: https://t.alcy.cc/fj?t=1718499600
-date: 2024-06-16 09:00
+date: 2024-06-16 09:00:00
 category: 魔方
 tag: 
  - 桥式

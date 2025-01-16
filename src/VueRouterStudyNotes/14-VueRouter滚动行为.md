@@ -2,7 +2,7 @@
 title: Vue Router 滚动行为
 cover: https://t.alcy.cc/fj?t=1730183400000
 order: 14
-date: 2024-10-29 14:30
+date: 2024-10-29 14:30:00
 category: 开发
 tag:
   - Vue

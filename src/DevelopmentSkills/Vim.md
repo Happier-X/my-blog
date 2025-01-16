@@ -1,6 +1,6 @@
 ---
 cover: https://t.alcy.cc/fj?t=1724590800
-date: 2024-08-25 21:00
+date: 2024-08-25 21:00:00
 category: 开发
 tag:
     - Vim

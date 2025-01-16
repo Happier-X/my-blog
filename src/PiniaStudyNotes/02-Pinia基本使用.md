@@ -2,7 +2,7 @@
 title: Pinia 基本使用
 cover: https://t.alcy.cc/fj?t=1730257200000
 order: 2
-date: 2024-10-30 11:00
+date: 2024-10-30 11:00:00
 category: 开发
 tag:
   - Vue

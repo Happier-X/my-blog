@@ -2,7 +2,7 @@
 title: Vue 自定义指令
 cover: https://t.alcy.cc/fj?t=1727859600
 order: 25
-date: 2024-10-02 17:00
+date: 2024-10-02 17:00:00
 category: 开发
 tag: Vue
 excerpt: false

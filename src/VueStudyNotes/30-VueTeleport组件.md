@@ -2,7 +2,7 @@
 title: Vue Teleport 组件
 cover: https://t.alcy.cc/fj?t=1728043200
 order: 30
-date: 2024-10-04 20:00
+date: 2024-10-04 20:00:00
 category: 开发
 tag: Vue
 excerpt: false

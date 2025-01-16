@@ -2,7 +2,7 @@
 title: Vue Router 导航守卫
 cover: https://t.alcy.cc/fj?t=1730091600000
 order: 11
-date: 2024-10-28 13:00
+date: 2024-10-28 13:00:00
 category: 开发
 tag:
   - Vue

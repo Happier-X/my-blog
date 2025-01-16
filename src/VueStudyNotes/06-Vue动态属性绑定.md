@@ -2,7 +2,7 @@
 title: Vue 动态属性绑定
 cover: https://t.alcy.cc/fj?t=1726146000
 order: 6
-date: 2024-09-12 21:00
+date: 2024-09-12 21:00:00
 category: 开发
 tag: Vue
 excerpt: false

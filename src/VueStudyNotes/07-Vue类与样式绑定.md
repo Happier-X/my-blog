@@ -2,7 +2,7 @@
 title: Vue 类与样式绑定
 cover: https://t.alcy.cc/fj?t=1726207200000
 order: 7
-date: 2024-09-13 14:00
+date: 2024-09-13 14:00:00
 category: 开发
 tag: Vue
 excerpt: false

@@ -1,6 +1,6 @@
 ---
 cover: https://t.alcy.cc/fj?t=1729231200000
-date: 2024-10-18 14:00
+date: 2024-10-18 14:00:00
 category: 开发
 tag: Git
 excerpt: false

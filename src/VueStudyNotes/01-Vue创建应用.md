@@ -2,7 +2,7 @@
 title: Vue 创建应用
 cover: https://t.alcy.cc/fj?t=1724250600
 order: 1
-date: 2024-08-21 22:30
+date: 2024-08-21 22:30:00
 category: 开发
 tag: Vue
 excerpt: false

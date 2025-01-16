@@ -2,7 +2,7 @@
 title: Vue Router 路由懒加载
 cover: https://t.alcy.cc/fj?t=1730185200000
 order: 15
-date: 2024-10-29 15:00
+date: 2024-10-29 15:00:00
 category: 开发
 tag:
   - Vue

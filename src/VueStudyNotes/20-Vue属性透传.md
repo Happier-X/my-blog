@@ -2,7 +2,7 @@
 title: Vue 属性透传
 cover: https://t.alcy.cc/fj?t=1727418600000
 order: 20
-date: 2024-09-27 14:30
+date: 2024-09-27 14:30:00
 category: 开发
 tag: Vue
 excerpt: false

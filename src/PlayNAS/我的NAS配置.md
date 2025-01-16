@@ -1,6 +1,6 @@
 ---
 cover: https://t.alcy.cc/fj?t=1735630200000
-date: 2024-12-31 15:30
+date: 2024-12-31 15:30:00
 category: 开发
 tag: Nest
 excerpt: false

@@ -2,7 +2,7 @@
 title: Vue 模板语法
 cover: https://t.alcy.cc/fj?t=1725971400
 order: 2
-date: 2024-09-10 20:30
+date: 2024-09-10 20:30:00
 category: 开发
 tag: Vue
 excerpt: false

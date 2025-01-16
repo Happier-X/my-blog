@@ -2,7 +2,7 @@
 title: Vue Transition 组件
 cover: https://t.alcy.cc/fj?t=1727922600
 order: 27
-date: 2024-10-03 10:30
+date: 2024-10-03 10:30:00
 category: 开发
 tag: Vue
 excerpt: false

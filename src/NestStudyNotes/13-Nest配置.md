@@ -246,3 +246,52 @@ export class AppController {
 
 ### 在 `main.ts` 中使用
 
+可以使用 `app.get()` 方法获取 `ConfigService`。
+
+```TypeScript
+import { NestFactory } from '@nestjs/core'
+import { AppModule } from './app.module'
+import { ConfigService } from '@nestjs/config'
+
+async function bootstrap() {
+    const app = await NestFactory.create(AppModule)
+    const configService = app.get(ConfigService)
+    console.log(configService.get('port'))
+    await app.listen(configService.get('port'))
+}
+bootstrap()
+```
+
+当我们访问 `http://localhost:3000` 时，会在控制台输出 `3000`。
+
+### 环境变量中的模板字符串
+
+在环境变量中，可以使用模板字符串。
+
+```
+APP_DOMAIN=example.com
+APP_REDIRECT_URL=${APP_DOMAIN}/redirect
+```
+
+### 全局使用配置模块
+
+通过将选项 `isGlobal` 设置为 `true`，可以全局使用配置模块。修改 `app.module.ts`。
+
+```TypeScript
+import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+
+@Module({
+    imports: [
+        ConfigModule.forRoot({
+            envFilePath: 'development.env',
+            isGlobal: true
+        })
+    ],
+    controllers: [AppController],
+    providers: [AppService]
+})
+export class AppModule {}
+```

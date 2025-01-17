@@ -2,8 +2,8 @@
 cover: https://t.alcy.cc/fj?t=1735630200000
 date: 2024-12-31 15:30:00
 order: -20241231153000
-category: 开发
-tag: Nest
+category: 工具使用
+tag: NAS
 excerpt: false
 ---
 

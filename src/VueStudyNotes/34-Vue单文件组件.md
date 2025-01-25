@@ -1,5 +1,5 @@
 ---
-cover: https://t.alcy.cc/fj?t=1730768400000
+cover: https://t.alcy.cc/fj?t=20241105090000
 order: 34
 date: 2024-11-05 09:00:00
 category: 开发
@@ -157,6 +157,21 @@ import { myDirective as vMyDirective } from "./MyDirective.js";
 ### defineExpose()
 
 可以通过 `defineExpose` 编译器宏来显式指定在 `<script setup>` 组件中要暴露出去的属性。
+
+```vue
+<script setup>
+import { ref } from "vue";
+
+const a = ref(1);
+function b() {
+  console.log(a.value);
+}
+defineExpose({
+  a,
+  b,
+});
+</script>
+```
 
 ### defineOptions()
 

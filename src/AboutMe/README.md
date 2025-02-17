@@ -29,10 +29,9 @@ timeline: false
 
 《Shameless》
 
+《猎罪图鉴》
+
 ## 联系方式
 
-- QQ：3407085928
-- 微信：Pisces12013
 - 邮箱：[zhf5256@qq.com](mailto:zhf5256@qq.com)
-- 博客：[Happier's Blog](https://blog.happierx.top/)
 - GitHub：[https://github.com/Happier-X](https://github.com/Happier-X)

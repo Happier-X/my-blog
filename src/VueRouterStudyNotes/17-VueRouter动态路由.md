@@ -1,6 +1,5 @@
 ---
-title: Vue Router 动态路由
-cover: https://t.alcy.cc/fj?t=1730192400000
+cover: https://t.alcy.cc/fj?t=20241029170000
 order: 17
 date: 2024-10-29 17:00:00
 category: 开发
@@ -9,6 +8,8 @@ tag:
   - Vue Router
 excerpt: false
 ---
+
+# Vue Router 动态路由
 
 对路由的添加通常是通过 `routes` 选项来完成的，但是在某些情况下，你可能想在应用程序已经运行的时候添加或删除路由。
 

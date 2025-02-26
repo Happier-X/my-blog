@@ -12,15 +12,15 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.5.0",
-    "@commitlint/config-conventional": "^19.5.0",
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
     "@vuepress/bundler-vite": "2.0.0-rc.19",
-    "@vuepress/plugin-comment": "^2.0.0-rc.70",
-    "@vuepress/plugin-slimsearch": "^2.0.0-rc.70",
-    "@waline/client": "^3.5.0",
-    "husky": "^9.1.6",
-    "mermaid": "^11.3.0",
-    "sass-embedded": "^1.79.5",
+    "@vuepress/plugin-comment": "^2.0.0-rc.78",
+    "@vuepress/plugin-slimsearch": "^2.0.0-rc.78",
+    "@waline/client": "^3.5.2",
+    "husky": "^9.1.7",
+    "mermaid": "^11.4.1",
+    "sass-embedded": "^1.85.0",
     "vue": "^3.5.13",
     "vuepress": "2.0.0-rc.19",
     "vuepress-theme-hope": "2.0.0-rc.68"

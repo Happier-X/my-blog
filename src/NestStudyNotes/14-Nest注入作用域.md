@@ -105,3 +105,319 @@ export class AppService {
   }
 }
 ```
+
+## 代码演示
+
+首先建立 `StorageModule` 和 `BookModule` 两个模块。
+
+```sh
+nest generate module common/storage
+nest generate service common/storage
+nest generate module common/book
+nest generate service common/book
+```
+
+在 `storage.service.ts` 的 `constructor` 中打印含有随机数的字符串，通过随机数可以让我们知道该实例是否为同一实例。
+
+```typescript
+import { Injectable } from "@nestjs/common";
+
+@Injectable()
+export class StorageService {
+  constructor() {
+    console.log(`Storage:${Math.random()}`);
+  }
+  private list: any[] = [];
+  public getItems(): any[] {
+    return this.list;
+  }
+  public addItem(item: any): void {
+    this.list.push(item);
+  }
+}
+```
+
+调整 `storage.module.ts`，将 `StorageService` 导出。
+
+```typescript
+import { Module } from "@nestjs/common";
+import { StorageService } from "./storage.service";
+
+@Module({
+  providers: [StorageService],
+  exports: [StorageService],
+})
+export class StorageModule {}
+```
+
+在 `book.service.ts` 中注入 `StorageService`，同样打印含有随机数的字符串。
+
+```typescript
+import { Injectable } from "@nestjs/common";
+import { StorageService } from "../storage/storage.service";
+
+@Injectable()
+export class BookService {
+  constructor(private readonly storage: StorageService) {
+    console.log(`Book:${Math.random()}`);
+  }
+  public getBooks(): any[] {
+    return this.storage.getItems();
+  }
+  public addBook(book: any): void {
+    this.storage.addItem(book);
+  }
+}
+```
+
+因为使用了 `StorageService`，所以需要调整 `book.module.ts`，将 `StorageModule` 导入。
+
+```typescript
+import { Module } from "@nestjs/common";
+import { BookService } from "./book.service";
+import { StorageModule } from "../storage/storage.module";
+
+@Module({
+  imports: [StorageModule],
+  providers: [BookService],
+  exports: [BookService],
+})
+export class BookModule {}
+```
+
+调整 `app.service.ts`，将 `BookService` 和 `StorageService` 注入，同样打印含有随机数的字符串。
+
+```typescript
+import { Injectable } from "@nestjs/common";
+import { BookService } from "./common/book/book.service";
+import { StorageService } from "./common/storage/storage.service";
+
+@Injectable()
+export class AppService {
+  constructor(
+    private readonly bookService: BookService,
+    private readonly storage: StorageService
+  ) {
+    console.log(`AppService:${Math.random()}`);
+  }
+  public addBookToStorage(book: any): void {
+    this.storage.addItem(book);
+  }
+  public addBookToBookStorage(book: any): void {
+    this.bookService.addBook(book);
+  }
+  public getStorageList(): any[] {
+    return this.storage.getItems();
+  }
+  public getBookList(): any[] {
+    return this.bookService.getBooks();
+  }
+}
+```
+
+修改 `app.controller.ts`，在 `constructor` 通过 `AppService` 去调用 `addBookToStorage` 和 `addBookToBookStorage` 方法。同时设计一个 `/compare` 路由来查看是否存取相同的 `StorageService` 实例。
+
+```typescript
+import { Controller, Get } from "@nestjs/common";
+import { AppService } from "./app.service";
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {
+    this.appService.addBookToStorage({ name: "Book 1" });
+    this.appService.addBookToBookStorage({ name: "Book 2" });
+    console.log(`AppController:${Math.random()}`);
+  }
+
+  @Get("/compare")
+  getCompare() {
+    return {
+      storage: this.appService.getStorageList(),
+      books: this.appService.getBookList(),
+    };
+  }
+}
+```
+
+### 默认作用域
+
+直接启动项目，可以在终端中看到以下信息。
+
+```sh
+Storage:0.30562040480709274
+Book:0.3482662544870303
+AppService:0.4339464269829618
+AppController:0.7409949952291639
+```
+
+因为是单例模式，在 Nest 建立的时候，所有的依赖都会被创建，并持续到 Nest 关闭，所以我们会在启动时就看见这些字符串，并且不会再看到它们，直到下次重新启动。
+
+此时访问 `http://localhost:3000/compare`，可以看到以下信息，会发现 `BookModule` 与 `AppModule` 会共享 `StorageService` 实例。
+
+```json
+{
+  "storage": [
+    {
+      "name": "Book 1"
+    },
+    {
+      "name": "Book 2"
+    }
+  ],
+  "books": [
+    {
+      "name": "Book 1"
+    },
+    {
+      "name": "Book 2"
+    }
+  ]
+}
+```
+
+### 请求作用域
+
+将请求作用域配置在 `BookService` 上，此时 `StorageService` 是单例的，而 `BookService`、`AppService`、`AppController` 会为每个请求创建新的实例。这里修改一下 `book.service.ts`。
+
+```typescript
+import { Injectable, Scope } from "@nestjs/common";
+import { StorageService } from "../storage/storage.service";
+
+@Injectable({ scope: Scope.REQUEST })
+export class BookService {
+  constructor(private readonly storage: StorageService) {
+    console.log(`Book:${Math.random()}`);
+  }
+  public getBooks(): any[] {
+    return this.storage.getItems();
+  }
+  public addBook(book: any): void {
+    this.storage.addItem(book);
+  }
+}
+```
+
+此时启动项目，可以看到以下信息。
+
+```sh
+Storage:0.8921433620433323
+```
+
+只看到 `Storage` 的实例是因为 `StorageService` 保持单例模式，所以在启动时就会被创建，但 `BookService` 是请求作用域，只有当请求时才会创建，所以不会在启动时创建。
+
+此时访问 `http://localhost:3000/compare`，可以在终端中看到以下信息。
+
+```sh
+Book:0.8971852027632254
+AppService:0.7298861325599422
+AppController:0.7539436362974361
+```
+
+在浏览器中会看到以下信息，跟默认作用域一样。
+
+```json
+{
+  "storage": [
+    {
+      "name": "Book 1"
+    },
+    {
+      "name": "Book 2"
+    }
+  ],
+  "books": [
+    {
+      "name": "Book 1"
+    },
+    {
+      "name": "Book 2"
+    }
+  ]
+}
+```
+
+但是当重新刷新页面时，可以看到以下信息。原因是只要 `AppController` 实例化的时候就会重新添加 `Book`，所以会增加 `Book` 到 `StorageService` 中。
+
+```json
+{
+  "storage": [
+    {
+      "name": "Book 1"
+    },
+    {
+      "name": "Book 2"
+    },
+    {
+      "name": "Book 1"
+    },
+    {
+      "name": "Book 2"
+    }
+  ],
+  "books": [
+    {
+      "name": "Book 1"
+    },
+    {
+      "name": "Book 2"
+    },
+    {
+      "name": "Book 1"
+    },
+    {
+      "name": "Book 2"
+    }
+  ]
+}
+```
+
+### 独立作用域
+
+修改 `StorageService`，将作用域设置为 `独立作用域`，将 `BookService` 的 `scope` 移除。修改 `storage.service.ts`。
+
+```typescript
+import { Injectable, Scope } from "@nestjs/common";
+
+@Injectable({ scope: Scope.TRANSIENT })
+export class StorageService {
+  constructor() {
+    console.log(`Storage:${Math.random()}`);
+  }
+  private list: any[] = [];
+  public getItems(): any[] {
+    return this.list;
+  }
+  public addItem(item: any): void {
+    this.list.push(item);
+  }
+}
+```
+
+此时启动项目，可以看到以下信息。
+
+```sh
+Storage:0.27259960782090276
+Storage:0.6628122650655031
+Book:0.17987248414180756
+AppService:0.25920662562033203
+AppController:0.2952754682634724
+```
+
+会发现 `StorageService` 会创建两个实例，原因是独立作用域在各个提供者之间是不共享实例的，而 `StorageService` 在 `BookService` 与 `AppService` 各建立了一次，所以会创建两个实例。
+
+此时访问 `http://localhost:3000/compare`，可以看到以下信息。发现两个 `Book` 不一样，是因为两个是不同的实例。
+
+```json
+{
+  "storage": [
+    {
+      "name": "Book 1"
+    }
+  ],
+  "books": [
+    {
+      "name": "Book 2"
+    }
+  ]
+}
+```

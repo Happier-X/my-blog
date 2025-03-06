@@ -119,7 +119,7 @@ export class AppController implements OnModuleInit {
 }
 ```
 
-### 共享子树
+#### 共享子树
 
 在请求作用域下，可以通过 `ContextIdFactory` 的 `getByRequest` 方法来基于请求对象建立上下文标识符，进而达到共享子树的效果。
 

@@ -113,4 +113,43 @@ MongoDB 最基本的元素为 `document`，多个 `document` 形成的集合为 
 
 ## Schema 设计
 
+在 `Nest` 中设计 `schema` 有两种方式，一种是采用 `mongoose` 的写法，一种是采用 `Nest` 的装饰器。通过装饰器设计的 `schema` 主要是由 `@Schema` 与 `@Prop` 组成。
 
+### Schema 装饰器
+
+`@Schema` 装饰器会将 `class` 定义为 `schema` 的格式，并且可以接受一个参数，该参数对应到 `mongoose` 的 `schema` 配置 (详见[官方文档](https://mongoosejs.com/docs/guide.html#options))。
+
+这里设计一个 `Todo` 类，并使用 `@Schema` 装饰器，在 `src/common/models` 文件夹下建立一个名为 `todo.model.ts` 文件。
+
+```typescript
+import { Schema } from "@nestjs/mongoose";
+
+@Schema()
+export class Todo {}
+```
+
+### Prop 装饰器
+
+`@Prop` 装饰器定义了 `document` 的字段，它应用与类中的属性。它具有基本的类型推断功能。但如果是数组或嵌套的对象等复杂类型，则需要在 `@Prop` 中传入参数来指定其类型，而传入的参数实际上就是 `mongoose` 的 `SchemaType` (详见[官方文档](https://mongoosejs.com/docs/schematypes.html#schematype-options))。
+
+修改一下 `todo.model.ts` 的内容，配置 `title`、`description` 以及 `completed` 这三个字段，其中，`title` 与 `completed` 为必填，而 `title` 最多接受 20 个字，`description` 最多接受 200 个字。
+
+```typescript
+import { Prop, Schema } from "@nestjs/mongoose";
+
+@Schema()
+export class Todo {
+  @Prop({ required: true, maxLength: 20 })
+  title: string;
+
+  @Prop({ maxLength: 200 })
+  description: string;
+
+  @Prop({ required: true })
+  completed: boolean;
+}
+```
+
+#### 创建 Document 类型
+
+`schema` 是定义 `document` 的数据结构，而 `model` 是基于 `schema` 所产生出来的，这里我们就可以简单推断出 `model` 的操作会返回的东西为 `document`，`mongoose` 也很贴心地提供了基本的 `Document` 类型，但因为 `document` 会根据 `schema` 定义的数据结构而有所不同，所以我们需要设计一个类型来让 `model` 可以顺利拿到 `schema` 定义的字段。

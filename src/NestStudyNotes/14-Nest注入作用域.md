@@ -79,15 +79,15 @@ export class AppController {
 
 作用域的配置会影响整个注入链作用域。
 
-![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/NestStudyNotes/Nest%E6%B3%A8%E5%85%A5%E4%BD%9C%E7%94%A8%E5%9F%9F01.png)
+![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/NestStudyNotes/Nest%E6%B3%A8%E5%85%A5%E4%BD%9C%E7%94%A8%E5%9F%9F01.jpg)
 
 从上图中可以看到 `StorageService` 分别在 `AppModule` 与 `BookModule` 被使用，而 `BookService` 又在 `AppModule` 被使用，此时，如果我们把 `StorageService` 的作用域设置为 `请求作用域`，那么依赖于 `StorageService` 的 `BookService` 与 `AppService` 都会变成 `请求作用域`。如图。
 
-![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/NestStudyNotes/Nest%E6%B3%A8%E5%85%A5%E4%BD%9C%E7%94%A8%E5%9F%9F02.png)
+![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/NestStudyNotes/Nest%E6%B3%A8%E5%85%A5%E4%BD%9C%E7%94%A8%E5%9F%9F02.jpg)
 
 但如果是把 `BookService` 设为 `请求作用域`，那就仅有 `AppService` 与 `AppController` 会是 `请求作用域`，因为 `StorageService` 不依赖于 `BookService`。如图。
 
-![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/NestStudyNotes/Nest%E6%B3%A8%E5%85%A5%E4%BD%9C%E7%94%A8%E5%9F%9F03.png)
+![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/NestStudyNotes/Nest%E6%B3%A8%E5%85%A5%E4%BD%9C%E7%94%A8%E5%9F%9F03.jpg)
 
 ### 请求作用域与请求对象
 

@@ -111,6 +111,6 @@ MongoDB 最基本的元素为 `document`，多个 `document` 形成的集合为 
 
 通过 `schema` 制定结构后，无法直接通过它存取数据库，真正执行存取元素的是 `model`，所有的 `model` 都是基于 `schema` 产生的，通过 `model` 便可以操作该 `schema` 所对应的 `collection`，并且所有的增、删、改、查都会根据 `schema` 的定义来执行。
 
-## Schema设计
+## Schema 设计
 
 

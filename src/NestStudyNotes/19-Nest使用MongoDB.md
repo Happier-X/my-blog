@@ -153,3 +153,5 @@ export class Todo {
 #### 创建 Document 类型
 
 `schema` 是定义 `document` 的数据结构，而 `model` 是基于 `schema` 所产生出来的，这里我们就可以简单推断出 `model` 的操作会返回的东西为 `document`，`mongoose` 也很贴心地提供了基本的 `Document` 类型，但因为 `document` 会根据 `schema` 定义的数据结构而有所不同，所以我们需要设计一个类型来让 `model` 可以顺利拿到 `schema` 定义的字段。
+
+<!-- TODO -->

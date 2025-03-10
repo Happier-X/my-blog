@@ -83,29 +83,44 @@ npm install @prisma/client
 
 ## 使用 Prisma Client
 
-在 `src` 下创建一个名为 `prisma.service.ts` 的文件，并添加以下代码。
+创建 Prisma 服务。
+
+```sh
+nest generate service prisma
+```
+
+> 在 `app.module.ts` 的 `providers` 数组中自动添加了 `PrismaService`，把它移除。
+
+修改 `prisma.service.ts` 文件。
 
 ```typescript
-import { Injectable, OnModuleInit } from "@nestjs/common";
+import { Injectable, OnModuleInit, OnModuleDestroy } from "@nestjs/common";
 import { PrismaClient } from "@prisma/client";
 
 @Injectable()
-export class PrismaService extends PrismaClient implements OnModuleInit {
+export class PrismaService
+  extends PrismaClient
+  implements OnModuleInit, OnModuleDestroy
+{
   async onModuleInit() {
     await this.$connect();
+  }
+
+  async onModuleDestroy() {
+    await this.$disconnect();
   }
 }
 ```
 
-接下来就可以在其他服务中注入 `PrismaService` 并使用了。这里以 `app.service.ts` 为例。
+接下来就可以在其他服务中注入 `PrismaService` 并使用了。这里以 `user.service.ts` 为例。
 
 ```typescript
 import { Injectable } from "@nestjs/common";
-import { PrismaService } from "./prisma.service";
+import { PrismaService } from "./prisma/prisma.service";
 import { User } from "@prisma/client";
 
 @Injectable()
-export class AppService {
+export class UserService {
   constructor(private prisma: PrismaService) {}
   async findUser(id: number): Promise<User | null> {
     return this.prisma.user.findUnique({
@@ -115,4 +130,22 @@ export class AppService {
     });
   }
 }
+```
+
+还需要在模块的 `providers` 数组中添加 `PrismaService`。
+
+这里在 `user.module.ts` 中添加 `PrismaService` 到 `providers` 数组中。
+
+```typescript
+import { Module } from "@nestjs/common";
+import { UserController } from "./user.controller";
+import { UserService } from "./user.service";
+import { PrismaService } from "./prisma/prisma.service";
+
+@Module({
+  imports: [],
+  controllers: [UserController],
+  providers: [UserService, PrismaService],
+})
+export class UserModule {}
 ```

@@ -25,32 +25,32 @@ npm install prisma --save-dev
 npx prisma init
 ```
 
-这将创建一个新的 `prisma` 目录，其中包含一个 `schema.prisma` 文件，它指定了数据库连接信息和数据库架构。
+这将创建一个新的 `prisma` 目录，其中包含一个 `schema.prisma` 文件，它指定了数据库连接信息和数据库架构，并且还会在根目录生成一个 `.env` 文件。
 
 ## 配置数据库连接
 
-在 `.env` 文件中配置数据库连接 URL：
+在 `.env` 文件中配置数据库连接 URL。
 
 ```env
-DATABASE_URL="mysql://用户名:密码@localhost:3306/数据库名"
+DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/DATABASE_NAME"
 ```
 
-在 `schema.prisma` 文件中配置数据库提供者：
+在 `schema.prisma` 文件中配置数据库提供者。
 
 ```prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
-
-generator client {
-  provider = "prisma-client-js"
-}
 ```
 
-### 4。定义数据模型
+## 使用 Prisma Migrate 创建数据库表
 
-在 `schema.prisma` 文件中定义你的数据模型：
+在 `schema.prisma` 文件中定义你的数据模型。
 
 ```prisma
 model User {
@@ -63,198 +63,56 @@ model User {
 }
 ```
 
-### 5。创建 Prisma 服务
+设置好 Prisma 模型后，可以生成 SQL 迁移文件并将其应用到数据库中。在终端中运行以下命令。
 
-创建一个 Prisma 模块和服务：
-
-```bash
-nest g module prisma
-nest g service prisma
-```
-
-实现 PrismaService：
-
-```typescript
-// src/prisma/prisma.service.ts
-import { Injectable, OnModuleInit, OnModuleDestroy } from "@nestjs/common";
-import { PrismaClient } from "@prisma/client";
-
-@Injectable()
-export class PrismaService
-  extends PrismaClient
-  implements OnModuleInit, OnModuleDestroy
-{
-  async onModuleInit() {
-    await this.$connect();
-  }
-
-  async onModuleDestroy() {
-    await this.$disconnect();
-  }
-}
-```
-
-配置 PrismaModule：
-
-```typescript
-// src/prisma/prisma.module.ts
-import { Global, Module } from "@nestjs/common";
-import { PrismaService } from "./prisma.service";
-
-@Global()
-@Module({
-  providers: [PrismaService],
-  exports: [PrismaService],
-})
-export class PrismaModule {}
-```
-
-### 6。数据库迁移
-
-生成并应用迁移：
-
-```bash
+```sh
 npx prisma migrate dev --name init
 ```
 
-这个命令会：
+## 安装并生成 Prisma 客户端
 
-1. 保存迁移记录到 `prisma/migrations` 目录
-2. 应用迁移到数据库
-3. 生成 Prisma Client
-4. 触发 `prisma generate` 命令
+Prisma Client 是一个从 Prisma 模型定义中生成的类型安全的数据库客户端。
 
-### 7。在服务中使用
+要在项目中使用 Prisma Client，需要安装 Prisma 客户端。
 
-示例：创建用户服务
+```sh
+npm install @prisma/client
+```
+
+> 注意，在安装过程中，Prisma 会自动调用 `npx prisma generate` 命令，将来每次对 Prisma 模型进行修改后，都需要运行 `npx prisma generate` 命令来重新生成 Prisma 客户端。
+
+## 使用 Prisma Client
+
+在 `src` 下创建一个名为 `prisma.service.ts` 的文件，并添加以下代码。
 
 ```typescript
-// src/users/users.service.ts
-import { Injectable } from "@nestjs/common";
-import { PrismaService } from "../prisma/prisma.service";
-import { User, Prisma } from "@prisma/client";
+import { Injectable, OnModuleInit } from "@nestjs/common";
+import { PrismaClient } from "@prisma/client";
 
 @Injectable()
-export class UsersService {
+export class PrismaService extends PrismaClient implements OnModuleInit {
+  async onModuleInit() {
+    await this.$connect();
+  }
+}
+```
+
+接下来就可以在其他服务中注入 `PrismaService` 并使用了。这里以 `app.service.ts` 为例。
+
+```typescript
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "./prisma.service";
+import { User } from "@prisma/client";
+
+@Injectable()
+export class AppService {
   constructor(private prisma: PrismaService) {}
-
-  async user(
-    userWhereUniqueInput: Prisma.UserWhereUniqueInput
-  ): Promise<User | null> {
+  async findUser(id: number): Promise<User | null> {
     return this.prisma.user.findUnique({
-      where: userWhereUniqueInput,
-    });
-  }
-
-  async users(params: {
-    skip?: number;
-    take?: number;
-    where?: Prisma.UserWhereInput;
-    orderBy?: Prisma.UserOrderByWithRelationInput;
-  }): Promise<User[]> {
-    const { skip, take, where, orderBy } = params;
-    return this.prisma.user.findMany({
-      skip,
-      take,
-      where,
-      orderBy,
-    });
-  }
-
-  async createUser(data: Prisma.UserCreateInput): Promise<User> {
-    return this.prisma.user.create({
-      data,
-    });
-  }
-
-  async updateUser(params: {
-    where: Prisma.UserWhereUniqueInput;
-    data: Prisma.UserUpdateInput;
-  }): Promise<User> {
-    const { where, data } = params;
-    return this.prisma.user.update({
-      data,
-      where,
-    });
-  }
-
-  async deleteUser(where: Prisma.UserWhereUniqueInput): Promise<User> {
-    return this.prisma.user.delete({
-      where,
+      where: {
+        id: id,
+      },
     });
   }
 }
 ```
-
-## 最佳实践
-
-1. **错误处理**：使用 try-catch 处理数据库操作可能出现的错误
-
-```typescript
-try {
-  await this.prisma.user.create({
-    data: userData,
-  });
-} catch (error) {
-  if (error instanceof Prisma.PrismaClientKnownRequestError) {
-    // 处理已知错误
-  }
-  throw error;
-}
-```
-
-2. **事务处理**：使用事务确保数据一致性
-
-```typescript
-await this.prisma.$transaction(async (tx) => {
-  // 在事务中执行多个操作
-  const user = await tx.user.create({
-    data: userData,
-  });
-  await tx.profile.create({
-    data: {
-      userId: user.id,
-      ...profileData,
-    },
-  });
-});
-```
-
-3. **中间件使用**：可以使用 Prisma 中间件记录查询或修改数据
-
-```typescript
-this.prisma.$use(async (params, next) => {
-  const before = Date.now();
-  const result = await next(params);
-  const after = Date.now();
-  console.log(
-    `查询 ${params.model}.${params.action} 耗时: ${after - before}ms`
-  );
-  return result;
-});
-```
-
-## 常见问题
-
-1. **连接问题**：确保数据库连接字符串正确，并且数据库服务器正在运行
-
-2. **模型定义**：注意模型关系的定义，确保外键约束正确
-
-3. **性能优化**：
-
-   - 使用适当的索引
-   - 避免 N+1 查询问题
-   - 合理使用 include 和 select
-
-4. **类型安全**：充分利用 Prisma 的类型系统，配合 TypeScript 使用
-
-## 总结
-
-Prisma 是一个强大的 ORM 工具，它与 NestJS 完美集成，提供了：
-
-- 类型安全的数据库操作
-- 直观的数据模型定义
-- 简单的迁移管理
-- 优秀的开发体验
-
-通过合理使用 Prisma，可以大大提高开发效率和代码质量。

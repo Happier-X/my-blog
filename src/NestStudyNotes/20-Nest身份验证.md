@@ -44,38 +44,28 @@ model User {
 }
 ```
 
-### 封装加密方法
+### 封装密码哈希方法
 
-加盐加密通常用于密码的加密，通过将密码与某个特定的值 (盐) 进行混合，从而生成一个加密后的结果 (哈希值)。只需要将 `盐` 和 `哈希值` 存储到数据库中，就可以在后续的验证过程中使用 `盐` 和 `哈希值` 来验证密码是否正确。
+对密码进行哈希加密，可以防止数据库泄露后密码被破解。
 
-这里使用 `crypto` 模块来实现加盐加密，在 `src/utils` 目录下创建 `crypto.util.ts` 文件，并实现加盐加密方法。
+这里使用 `Argon2` 库来实现。
+
+```sh
+npm i argon2
+```
+
+在 `src/utils` 目录下创建 `crypto.util.ts` 文件，并实现哈希加密方法。
 
 ```typescript
-import { pbkdf2Sync, randomBytes } from "crypto";
+import * as argon2 from "argon2";
 
 /**
  * 加密工具类
  */
 export class CryptoUtil {
-  /**
-   * 使用盐值对输入字符串进行加密
-   * @param input 需要加密的字符串
-   * @param salt 盐值,默认生成 16 字节的随机盐值
-   * @returns 返回加密后的 hash 值和使用的盐值
-   */
-  public static encryptBySalt(
-    input: string,
-    salt = randomBytes(16).toString("hex")
-  ) {
-    // 使用 PBKDF2 算法对输入字符串进行加密
-    // input: 输入字符串
-    // salt: 盐值
-    // 1000: 迭代次数
-    // 64: 生成的密钥长度(字节)
-    // sha256: 使用的哈希算法
-    // 最后转换为 16 进制字符串
-    const hash = pbkdf2Sync(input, salt, 1000, 64, "sha256").toString("hex");
-    return { hash, salt };
+  public static encrypt(input: string) {
+    // 使用 Argon2 加密
+    return argon2.hash(input);
   }
 }
 ```
@@ -84,3 +74,76 @@ export class CryptoUtil {
 
 需要建立两个模块：`UserModule` 与 `AuthModule`，`UserModule` 用于处理用户相关的操作，`AuthModule` 用于处理身份验证相关的操作。
 
+#### User 模块
+
+使用如下命令创建 `UserModule` 和 `UserService`。
+
+```sh
+nest generate module user
+nest generate service user
+```
+
+修改 `user.module.ts` 文件，引入 `PrismaService` 来操作数据库，同时要导出 `UserService` 以便在 `AuthModule` 中使用。
+
+```typescript
+import { Module } from "@nestjs/common";
+import { UserService } from "./user.service";
+import { PrismaService } from "src/prisma/prisma.service";
+
+@Module({
+  providers: [UserService, PrismaService],
+  exports: [UserService],
+})
+export class UserModule {}
+```
+
+安装 `class-validator` 和 `class-transformer` 来实现对用户注册信息进行验证。
+
+```sh
+npm install class-validator class-transformer
+```
+
+设计一个 `DTO` 来对用户注册信息进行验证。在 `src/user/dto` 目录下创建 `create-user.dto.ts` 文件。
+
+```typescript
+import { IsNotEmpty, MaxLength, MinLength } from "class-validator";
+
+export class CreateUserDto {
+  @MinLength(6)
+  @MaxLength(16)
+  public readonly username: string;
+
+  @MinLength(8)
+  @MaxLength(20)
+  public readonly password: string;
+
+  @IsNotEmpty()
+  public readonly email: string;
+}
+```
+
+然后在 `user.service.ts` 文件中实现注册方法。
+
+```typescript
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "src/prisma/prisma.service";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { CryptoUtil } from "src/utils/crypto.util";
+
+@Injectable()
+export class UserService {
+  constructor(private readonly prisma: PrismaService) {}
+
+  async createUser(user: CreateUserDto) {
+    const { username, email } = user;
+    const password = await CryptoUtil.encrypt(user.password);
+    return this.prisma.user.create({
+      data: {
+        username,
+        email,
+        password,
+      },
+    });
+  }
+}
+```

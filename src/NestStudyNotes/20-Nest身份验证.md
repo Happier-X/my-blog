@@ -70,31 +70,29 @@ export class CryptoUtil {
 }
 ```
 
-### 模块设计
+### 创建 Auth 模块
 
-需要建立两个模块：`UserModule` 与 `AuthModule`，`UserModule` 用于处理用户相关的操作，`AuthModule` 用于处理身份验证相关的操作。
-
-#### User 模块
-
-使用如下命令创建 `UserModule` 和 `UserService`。
+使用如下命令创建 `AuthModule`、`AuthService` 和 `AuthController`。
 
 ```sh
-nest generate module user
-nest generate service user
+nest generate module auth
+nest generate service auth
+nest generate controller auth
 ```
 
-修改 `user.module.ts` 文件，引入 `PrismaService` 来操作数据库，同时要导出 `UserService` 以便在 `AuthModule` 中使用。
+修改 `auth.module.ts` 文件，引入 `PrismaService` 来操作数据库。
 
 ```typescript
 import { Module } from "@nestjs/common";
-import { UserService } from "./user.service";
+import { AuthController } from "./auth.controller";
+import { AuthService } from "./auth.service";
 import { PrismaService } from "src/prisma/prisma.service";
 
 @Module({
-  providers: [UserService, PrismaService],
-  exports: [UserService],
+  controllers: [AuthController],
+  providers: [AuthService, PrismaService],
 })
-export class UserModule {}
+export class AuthModule {}
 ```
 
 安装 `class-validator` 和 `class-transformer` 来实现对用户注册信息进行验证。
@@ -103,40 +101,40 @@ export class UserModule {}
 npm install class-validator class-transformer
 ```
 
-设计一个 `DTO` 来对用户注册信息进行验证。在 `src/user/dto` 目录下创建 `create-user.dto.ts` 文件。
+设计一个 `DTO` 来对用户注册信息进行验证。在 `src/auth/dto` 目录下创建 `register.dto.ts` 文件。
 
 ```typescript
 import { IsNotEmpty, MaxLength, MinLength } from "class-validator";
 
-export class CreateUserDto {
+export class RegisterDto {
   @MinLength(6)
   @MaxLength(16)
   public readonly username: string;
 
+  @IsNotEmpty()
+  public readonly email: string;
+
   @MinLength(8)
   @MaxLength(20)
   public readonly password: string;
-
-  @IsNotEmpty()
-  public readonly email: string;
 }
 ```
 
-然后在 `user.service.ts` 文件中实现注册方法。
+然后在 `auth.service.ts` 文件中实现注册方法。
 
 ```typescript
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
-import { CreateUserDto } from "./dto/create-user.dto";
+import { RegisterDto } from "./register.dto";
 import { CryptoUtil } from "src/utils/crypto.util";
 
 @Injectable()
-export class UserService {
+export class AuthService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createUser(user: CreateUserDto) {
-    const { username, email } = user;
-    const password = await CryptoUtil.encrypt(user.password);
+  async register(registerObj: RegisterDto) {
+    const { username, email } = registerObj;
+    const password = await CryptoUtil.encrypt(registerObj.password);
     return this.prisma.user.create({
       data: {
         username,

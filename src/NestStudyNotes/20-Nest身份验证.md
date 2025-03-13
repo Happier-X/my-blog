@@ -272,8 +272,20 @@ export class AuthController {
 
 这样我们就实现了本地验证的登录功能。
 
-## Token 
+## Token
 
 我们已经处理好注册与登录的部分，但一个完整的账户机制还需要包含登录后的身份识别，要实现这样的识别功能有很多种做法，`Token` 是其中一个被广泛运用的方案。
 
 `Token` 就是一个用来表示身份的媒介，当使用者成功登录时，系统会产生出一个独一无二的 `Token`，并将该 `Token` 返回给使用者，只要在 `Token` 有效期间内，该使用者在请求中带上该 `Token`，系统便会识别出此操作的使用者是谁。
+
+目前最常见的 `Token` 生成方式是使用 `JWT`。`JWT` 是一种较新的 `Token` 设计方法，它最大的特点是可以在 `Token` 中含有使用者信息，不过仅限于较不敏感的内容，比如：使用者名称、性别等，原因是 `JWT` 是用 `Base64` 进行编码，使用者信息可以透过 `Base64` 进行还原，使用上需要特别注意。
+
+## 安装 JWT
+
+安装依赖。
+
+```sh
+npm install @nestjs/jwt passport-jwt
+npm install @types/passport-jwt -D
+```
+

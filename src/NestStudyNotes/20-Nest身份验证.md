@@ -155,7 +155,7 @@ npm install @types/passport-local -D
 
 ### 实现策略
 
-在 `AuthService` 中实现一个 `login` 方法，来验证用户名和密码，如果验证成功，则返回用户信息，否则返回 `null`。
+在 `AuthService` 中实现一个 `validate` 方法，来验证用户名和密码，如果验证成功，则返回用户信息，否则返回 `null`。
 
 ```typescript
 import { Injectable } from "@nestjs/common";
@@ -179,7 +179,7 @@ export class AuthService {
     });
   }
 
-  async login(username: string, password: string) {
+  async validate(username: string, password: string) {
     const user = await this.prisma.user.findFirst({
       where: {
         username,
@@ -200,10 +200,72 @@ export class AuthService {
 }
 ```
 
-完成了登录验证方法后，需要将它与 `passport` 搭配，我们需要建立一个提供者作为 `strategy`，通过该提供者与 `passport` 进行搭配。
+完成了验证方法后，需要将它与 `passport` 搭配，我们需要建立一个提供者作为 `strategy`，通过该提供者与 `passport` 进行搭配。
 
-在 `src/auth` 下面创建一个 `strategy` 文件夹并创建 `local.strategy.ts`，在这个文件中实现一个 `LocalStrategy` 的 `class`，需要特别注意的是这个 `class` 要继承 `passport-local` 的 `strategy`。但是需要通过 Nest 的函数连接，并实现 `validate(username: string, password: string)` 方法，这个方法就是 passport 流程的入口，在这里我们调用 `AuthService` 的 `login` 方法进行验证。
+在 `src/auth` 下面创建一个 `strategy` 文件夹并创建 `local.strategy.ts`，在这个文件中实现一个 `LocalStrategy` 的 `class`，需要特别注意的是这个 `class` 要继承 `passport-local` 的 `strategy`。但是需要通过 Nest 的函数连接，并实现 `validate(username: string, password: string)` 方法，这个方法就是 passport 流程的入口，在这里我们调用 `AuthService` 的 `validate` 方法进行验证。
 
 ```typescript
+import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { PassportStrategy } from "@nestjs/passport";
+import { AuthService } from "../auth.service";
+import { Strategy } from "passport-local";
 
+@Injectable()
+export class LocalStrategy extends PassportStrategy(Strategy) {
+  constructor(private readonly authService: AuthService) {
+    super();
+  }
+
+  async validate(username: string, password: string) {
+    const user = await this.authService.validate(username, password);
+    if (!user) {
+      throw new UnauthorizedException();
+    }
+    return { username: user.username, email: user.email };
+  }
+}
+```
+
+还需要在 `auth.module.ts` 文件中注册 `LocalStrategy`。
+
+```typescript
+import { Module } from "@nestjs/common";
+import { AuthController } from "./auth.controller";
+import { AuthService } from "./auth.service";
+import { PrismaService } from "src/prisma/prisma.service";
+import { LocalStrategy } from "./strategy/local.strategy";
+
+@Module({
+  controllers: [AuthController],
+  providers: [AuthService, PrismaService, LocalStrategy],
+})
+export class AuthModule {}
+```
+
+### 实现守卫
+
+实现完 `strategy` 以后，就要实现一个 API 来处理登录验证，我们在 `AuthController` 中添加一个 `login` 方法并套用 `AuthGuard`，因为我们是使用 `passport-local` 这个 `strategy`，所以要在 `AuthGuard` 带入 `local` 这个字符串，`passport` 会自动与本地策略进行搭配，然后 `passport` 会将 `LocalStrategy` 的 `validate` 方法进行调用，并传入 `username` 和 `password`。
+
+```typescript
+import { Controller, Post, Body, UseGuards, Req } from "@nestjs/common";
+import { RegisterDto } from "./dto/register.dto";
+import { AuthService } from "./auth.service";
+import { AuthGuard } from "@nestjs/passport";
+import { Request } from "express";
+
+@Controller("auth")
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+
+  @Post("register")
+  register(@Body() registerObj: RegisterDto) {
+    return this.authService.register(registerObj);
+  }
+
+  @UseGuards(AuthGuard("local"))
+  @Post("login")
+  login(@Req() req: Request) {
+    return req.user;
+  }
+}
 ```

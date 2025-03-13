@@ -44,32 +44,6 @@ model User {
 }
 ```
 
-### 封装密码哈希方法
-
-对密码进行哈希加密，可以防止数据库泄露后密码被破解。
-
-这里使用 `Argon2` 库来实现。
-
-```sh
-npm i argon2
-```
-
-在 `src/utils` 目录下创建 `crypto.util.ts` 文件，并实现哈希加密方法。
-
-```typescript
-import * as argon2 from "argon2";
-
-/**
- * 加密工具类
- */
-export class CryptoUtil {
-  public static encrypt(input: string) {
-    // 使用 Argon2 加密
-    return argon2.hash(input);
-  }
-}
-```
-
 ### 创建 Auth 模块
 
 使用如下命令创建 `AuthModule`、`AuthService` 和 `AuthController`。
@@ -120,13 +94,19 @@ export class RegisterDto {
 }
 ```
 
-然后在 `auth.service.ts` 文件中实现注册方法。
+然后在 `auth.service.ts` 文件中实现注册方法。对密码进行哈希加密，可以防止数据库泄露后密码被破解。
+
+这里使用 `Argon2` 库来实现。
+
+```sh
+npm i argon2
+```
 
 ```typescript
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
-import { RegisterDto } from "./register.dto";
-import { CryptoUtil } from "src/utils/crypto.util";
+import { RegisterDto } from "./dto/register.dto";
+import * as argon2 from "argon2";
 
 @Injectable()
 export class AuthService {
@@ -134,7 +114,7 @@ export class AuthService {
 
   async register(registerObj: RegisterDto) {
     const { username, email } = registerObj;
-    const password = await CryptoUtil.encrypt(registerObj.password);
+    const password = await argon2.hash(registerObj.password);
     return this.prisma.user.create({
       data: {
         username,
@@ -144,4 +124,65 @@ export class AuthService {
     });
   }
 }
+```
+
+在 `auth.controller.ts` 文件中实现注册方法。
+
+```typescript
+import { Controller, Post, Body } from "@nestjs/common";
+import { RegisterDto } from "./dto/register.dto";
+import { AuthService } from "./auth.service";
+
+@Controller("auth")
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+
+  @Post("register")
+  register(@Body() registerObj: RegisterDto) {
+    return this.authService.register(registerObj);
+  }
+}
+```
+
+## 实现本地验证
+
+本地验证是使用用户名和密码进行验证，通常会使用 `passport-local`这个策略与`passport`进行搭配。安装 `passport-local` 策略。
+
+```sh
+npm install passport-local
+npm install @types/passport-local -D
+```
+
+### 实现策略
+
+创建`UserModule`、`UserService`、`UserController`,并在`UserService`中实现一个`findUser`方法来进行测试。
+
+```sh
+nest generate module user
+nest generate service user
+nest generate controller user
+```
+
+```typescript
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "src/prisma/prisma.service";
+
+@Injectable()
+export class UserService {
+  constructor(private readonly prisma: PrismaService) {}
+
+  async findUser(name: string) {
+    return this.prisma.user.findFirst({
+      where: {
+        username: name,
+      },
+    });
+  }
+}
+```
+
+然后在`AuthService`中实现一个`validateUser`方法，来验证用户名和密码,如果验证成功，则返回用户信息，否则返回`null`。
+
+```typescript
+
 ```

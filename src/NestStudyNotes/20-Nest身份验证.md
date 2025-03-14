@@ -272,7 +272,7 @@ export class AuthController {
 
 这样我们就实现了本地验证的登录功能。
 
-## Token
+## Token 验证
 
 我们已经处理好注册与登录的部分，但一个完整的账户机制还需要包含登录后的身份识别，要实现这样的识别功能有很多种做法，`Token` 是其中一个被广泛运用的方案。
 
@@ -280,7 +280,7 @@ export class AuthController {
 
 目前最常见的 `Token` 生成方式是使用 `JWT`。`JWT` 是一种较新的 `Token` 设计方法，它最大的特点是可以在 `Token` 中含有使用者信息，不过仅限于较不敏感的内容，比如：使用者名称、性别等，原因是 `JWT` 是用 `Base64` 进行编码，使用者信息可以透过 `Base64` 进行还原，使用上需要特别注意。
 
-## 安装 JWT
+### 安装 JWT
 
 安装依赖。
 
@@ -289,3 +289,33 @@ npm install @nestjs/jwt passport-jwt
 npm install @types/passport-jwt -D
 ```
 
+### 实现 JWT 验证
+
+首先在`.env`文件中添加`JWT_SECRET`，用于存储 JWT 的密钥。
+
+```
+JWT_SECRET=your-secret-key
+```
+
+引入`@nestjs/config`，用于读取`.env`文件中的配置。
+
+```sh
+npm install @nestjs/config --save
+```
+
+然后修改`app.module.ts`文件，引入`ConfigModule`。
+
+```typescript
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { AuthModule } from "./auth/auth.module";
+import { ConfigModule } from "@nestjs/config";
+
+@Module({
+  imports: [AuthModule, ConfigModule.forRoot()],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
+```

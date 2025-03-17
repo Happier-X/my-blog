@@ -291,19 +291,19 @@ npm install @types/passport-jwt -D
 
 ### 实现 JWT 验证
 
-首先在`.env`文件中添加`JWT_SECRET`，用于存储 JWT 的密钥。
+首先在 `.env` 文件中添加 `JWT_SECRET`，用于存储 JWT 的密钥。
 
 ```
 JWT_SECRET=your-secret-key
 ```
 
-引入`@nestjs/config`，用于读取`.env`文件中的配置。
+引入 `@nestjs/config`，用于读取 `.env` 文件中的配置。
 
 ```sh
 npm install @nestjs/config --save
 ```
 
-然后修改`app.module.ts`文件，引入`ConfigModule`。
+然后修改 `app.module.ts` 文件，引入 `ConfigModule`。
 
 ```typescript
 import { Module } from "@nestjs/common";
@@ -319,3 +319,146 @@ import { ConfigModule } from "@nestjs/config";
 })
 export class AppModule {}
 ```
+
+完成密钥配置后，在处理验证的 `AuthModule` 中导入 `JwtModule`，并使用 `registerAsync` 方法来配置 JWT。
+
+```typescript
+import { Module } from "@nestjs/common";
+import { AuthController } from "./auth.controller";
+import { AuthService } from "./auth.service";
+import { PrismaService } from "src/prisma/prisma.service";
+import { LocalStrategy } from "./strategy/local.strategy";
+import { JwtModule } from "@nestjs/jwt";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+
+@Module({
+  imports: [
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => {
+        const secret = config.get("JWT_SECRET");
+        return {
+          secret,
+          signOptions: {
+            expiresIn: "1d",
+          },
+        };
+      },
+    }),
+  ],
+  controllers: [AuthController],
+  providers: [AuthService, PrismaService, LocalStrategy],
+})
+export class AuthModule {}
+```
+
+上面我们是让用户登录后获得用户的信息，这里我们将会把这个机制换成回传 JWT，让用户可以顺利拿到它来使用授权的功能，所以我们要在 `AuthService` 中设计一个 `generateJwt` 方法来调用 `JwtService` 的 `sign` 方法产生 JWT，该方法需要传入要放在 “内容” 部分的数据，这里我们就放入用户的 `id` 和 `username`。
+
+```typescript
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "src/prisma/prisma.service";
+import { RegisterDto } from "./dto/register.dto";
+import * as argon2 from "argon2";
+import { JwtService } from "@nestjs/jwt";
+import { User } from "@prisma/client";
+
+@Injectable()
+export class AuthService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly jwtService: JwtService
+  ) {}
+
+  async register(registerObj: RegisterDto) {
+    const { username, email } = registerObj;
+    const password = await argon2.hash(registerObj.password);
+    return this.prisma.user.create({
+      data: {
+        username,
+        email,
+        password,
+      },
+    });
+  }
+
+  async validate(username: string, password: string) {
+    const user = await this.prisma.user.findFirst({
+      where: {
+        username,
+      },
+    });
+
+    if (!user) {
+      return null;
+    }
+
+    const isPasswordValid = await argon2.verify(user.password, password);
+    if (!isPasswordValid) {
+      return null;
+    }
+
+    return user;
+  }
+
+  generateJwt(user: User) {
+    const payload = { username: user.username, sub: user.id };
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
+  }
+}
+```
+
+上面我们在 `LocalStrategy` 中只返回了 `username` 和 `email`，现在我们要修改一下，返回整个用户的信息。
+
+```typescript
+import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { PassportStrategy } from "@nestjs/passport";
+import { AuthService } from "../auth.service";
+import { Strategy } from "passport-local";
+
+@Injectable()
+export class LocalStrategy extends PassportStrategy(Strategy) {
+  constructor(private readonly authService: AuthService) {
+    super();
+  }
+
+  async validate(username: string, password: string) {
+    const user = await this.authService.validate(username, password);
+    if (!user) {
+      throw new UnauthorizedException();
+    }
+    return user;
+  }
+}
+```
+
+最后在 `AuthController` 中，我们需要修改一下 `login` 方法，返回 `token`。
+
+```typescript
+import { Controller, Post, Body, UseGuards, Req } from "@nestjs/common";
+import { RegisterDto } from "./dto/register.dto";
+import { AuthService } from "./auth.service";
+import { AuthGuard } from "@nestjs/passport";
+import { Request } from "express";
+import { User } from "@prisma/client";
+
+@Controller("auth")
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+
+  @Post("register")
+  register(@Body() registerObj: RegisterDto) {
+    return this.authService.register(registerObj);
+  }
+
+  @UseGuards(AuthGuard("local"))
+  @Post("login")
+  login(@Req() req: Request) {
+    return this.authService.generateJwt(req.user as User);
+  }
+}
+```
+
+此时，我们登录后，会返回一个 `token`。

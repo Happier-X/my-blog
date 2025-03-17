@@ -289,7 +289,7 @@ npm install @nestjs/jwt passport-jwt
 npm install @types/passport-jwt -D
 ```
 
-### 实现 JWT 验证
+### 生成 JWT
 
 首先在 `.env` 文件中添加 `JWT_SECRET`，用于存储 JWT 的密钥。
 
@@ -330,9 +330,12 @@ import { PrismaService } from "src/prisma/prisma.service";
 import { LocalStrategy } from "./strategy/local.strategy";
 import { JwtModule } from "@nestjs/jwt";
 import { ConfigModule, ConfigService } from "@nestjs/config";
+import { PassportModule } from "@nestjs/passport";
 
 @Module({
   imports: [
+    PassportModule,
+    ConfigModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -462,3 +465,125 @@ export class AuthController {
 ```
 
 此时，我们登录后，会返回一个 `token`。
+
+### 验证 JWT
+
+接下来我们需要实现 `JwtStrategy` 与 `passport` 进行配合，跟 `LocalStrategy` 的实现方式差不多，必须继承 `passport-jwt` 的 `strategy`，不同的地方在于 `super` 传入的参数。在 `src/auth/strategy` 下创建一个 `jwt.strategy.ts` 文件。
+
+```typescript
+import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { PassportStrategy } from "@nestjs/passport";
+import { ExtractJwt, Strategy } from "passport-jwt";
+
+@Injectable()
+export class JwtStrategy extends PassportStrategy(Strategy) {
+  constructor(config: ConfigService) {
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ignoreExpiration: false,
+      secretOrKey: config.get("JWT_SECRET")!,
+    });
+  }
+  validate(payload: any) {
+    return {
+      id: payload.sub,
+      username: payload.username,
+    };
+  }
+}
+```
+
+然后在 `AuthModule` 中引入 `JwtStrategy`。
+
+```typescript
+import { Module } from "@nestjs/common";
+import { AuthController } from "./auth.controller";
+import { AuthService } from "./auth.service";
+import { PrismaService } from "src/prisma/prisma.service";
+import { LocalStrategy } from "./strategy/local.strategy";
+import { JwtModule } from "@nestjs/jwt";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import { JwtStrategy } from "./strategy/jwt.strategy";
+import { PassportModule } from "@nestjs/passport";
+
+@Module({
+  imports: [
+    PassportModule,
+    ConfigModule,
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => {
+        const secret = config.get("JWT_SECRET");
+        return {
+          secret,
+          signOptions: {
+            expiresIn: "1d",
+          },
+        };
+      },
+    }),
+  ],
+  controllers: [AuthController],
+  providers: [AuthService, PrismaService, LocalStrategy, JwtStrategy],
+})
+export class AuthModule {}
+```
+
+### 保护路由
+
+使用 `@UseGuards(AuthGuard('jwt'))` 装饰器来保护需要验证的路由。
+
+### 全局启用守卫
+
+在任何模块中使用如下结构可以将 `JwtAuthGuard` 注册为全局守卫。
+
+```typescript
+providers: [
+  {
+    provide: APP_GUARD,
+    useClass: JwtAuthGuard,
+  },
+];
+```
+
+但是我们必须提供一种机制来声明某些路由是公开的。我们可以通过创建一个自定义装饰器来实现这一点。
+
+在 `src/auth/decorator` 下创建一个 `auth.decorator.ts` 文件。
+
+```typescript
+import { SetMetadata } from "@nestjs/common";
+
+export const IS_PUBLIC_KEY = "isPublic";
+export const Public = () => SetMetadata(IS_PUBLIC_KEY, true);
+```
+
+在``src/auth/guard `下创建一个` jwt-auth.guard.ts `文件,来扩展` AuthGuard`。
+
+```typescript
+import { ExecutionContext, Injectable } from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
+import { IS_PUBLIC_KEY } from "./decorator/auth.decorator";
+import { Reflector } from "@nestjs/core";
+
+@Injectable()
+export class JwtAuthGuard extends AuthGuard("jwt") {
+  constructor(private reflector: Reflector) {
+    super();
+  }
+
+  canActivate(context: ExecutionContext) {
+    const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+    if (isPublic) {
+      return true;
+    }
+    return super.canActivate(context);
+  }
+}
+```
+
+此时我们可以在任何路由上使用 `@Public()` 装饰器来声明该路由是公开的。

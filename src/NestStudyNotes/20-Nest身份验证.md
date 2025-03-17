@@ -303,7 +303,7 @@ JWT_SECRET=your-secret-key
 npm install @nestjs/config --save
 ```
 
-然后修改 `app.module.ts` 文件，引入 `ConfigModule`。
+然后修改 `app.module.ts` 文件，引入 `ConfigModule`，并使其全局可用。
 
 ```typescript
 import { Module } from "@nestjs/common";
@@ -313,7 +313,12 @@ import { AuthModule } from "./auth/auth.module";
 import { ConfigModule } from "@nestjs/config";
 
 @Module({
-  imports: [AuthModule, ConfigModule.forRoot()],
+  imports: [
+    AuthModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
@@ -324,20 +329,18 @@ export class AppModule {}
 
 ```typescript
 import { Module } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { JwtModule } from "@nestjs/jwt";
+import { PassportModule } from "@nestjs/passport";
+import { PrismaService } from "src/prisma/prisma.service";
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
-import { PrismaService } from "src/prisma/prisma.service";
 import { LocalStrategy } from "./strategy/local.strategy";
-import { JwtModule } from "@nestjs/jwt";
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import { PassportModule } from "@nestjs/passport";
 
 @Module({
   imports: [
     PassportModule,
-    ConfigModule,
     JwtModule.registerAsync({
-      imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
         const secret = config.get("JWT_SECRET");
@@ -503,16 +506,14 @@ import { AuthService } from "./auth.service";
 import { PrismaService } from "src/prisma/prisma.service";
 import { LocalStrategy } from "./strategy/local.strategy";
 import { JwtModule } from "@nestjs/jwt";
-import { ConfigModule, ConfigService } from "@nestjs/config";
+import { ConfigService } from "@nestjs/config";
 import { JwtStrategy } from "./strategy/jwt.strategy";
 import { PassportModule } from "@nestjs/passport";
 
 @Module({
   imports: [
     PassportModule,
-    ConfigModule,
     JwtModule.registerAsync({
-      imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
         const secret = config.get("JWT_SECRET");
@@ -559,7 +560,7 @@ export const IS_PUBLIC_KEY = "isPublic";
 export const Public = () => SetMetadata(IS_PUBLIC_KEY, true);
 ```
 
-在``src/auth/guard `下创建一个` jwt-auth.guard.ts `文件,来扩展` AuthGuard`。
+在``src/auth/guard `下创建一个`jwt-auth.guard.ts`文件,来扩展` AuthGuard`。
 
 ```typescript
 import { ExecutionContext, Injectable } from "@nestjs/common";

@@ -560,7 +560,7 @@ export const IS_PUBLIC_KEY = "isPublic";
 export const Public = () => SetMetadata(IS_PUBLIC_KEY, true);
 ```
 
-在``src/auth/guard `下创建一个` jwt-auth.guard.ts `文件,来扩展` AuthGuard`。
+在 `src/auth/guard ` 下创建一个 ` jwt-auth.guard.ts ` 文件，来扩展 ` AuthGuard`。
 
 ```typescript
 import { ExecutionContext, Injectable } from "@nestjs/common";

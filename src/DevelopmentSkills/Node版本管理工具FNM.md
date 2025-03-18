@@ -20,7 +20,7 @@ FNM 是一个用于 Node 版本管理和切换的工具，它使用 Rust 编写�
 
 这里以 Windows 系统为例，其它系统请参考[官方文档](https://github.com/Schniz/fnm)。
 
-打开命令行工具，输入以下命令：
+打开命令行工具，输入以下命令。
 
 ```sh
 winget install Schniz.fnm --location D:\Software\FNM
@@ -30,13 +30,21 @@ winget install Schniz.fnm --location D:\Software\FNM
 
 ## Shell 配置
 
-打开 PowerShell (其它 Shell 参考[官方文档](https://github.com/Schniz/fnm)) 输入以下命令：
+这里以 Windows PowerShell 为例，其它 Shell 参考[官方文档](https://github.com/Schniz/fnm)。
+
+配置文件位置在 `%userprofile%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1` 或 `%userprofile%\Documents\PowerShell\Microsoft.PowerShell_profile.ps1`，如果没有则使用如下命令创建一个。
 
 ```sh
-notepad $PROFILE
+if (-not (Test-Path $profile)) { New-Item $profile -Force }
 ```
 
-在打开的文件中添加以下内容：
+然后运行以下命令来编辑文件。
+
+```sh
+Invoke-Item $profile
+```
+
+在打开的文件中添加以下内容。
 
 ```sh
 fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
@@ -44,37 +52,37 @@ fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 
 ## 使用
 
-切换 Node 版本
+切换 Node 版本。
 
 ```sh
 fnm use <version>
 ```
 
-查看已安装的 Node 版本
+查看已安装的 Node 版本。
 
 ```sh
 fnm list
 ```
 
-安装 Node 版本
+安装 Node 版本。
 
 ```sh
 fnm install <version>
 ```
 
-卸载 Node 版本
+卸载 Node 版本。
 
 ```sh
 fnm uninstall <version>
 ```
 
-设置默认 Node 版本
+设置默认 Node 版本。
 
 ```sh
 fnm default <version>
 ```
 
-打印当前 Node 版本
+打印当前 Node 版本。
 
 ```sh
 fnm current

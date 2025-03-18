@@ -42,3 +42,5 @@ bootstrap();
 ```
 
 此时访问 `http://localhost:3000/api` 即可看到 Swagger 的 UI 界面。
+
+> 要生成并下载 Swagger JSON 文件，可以访问 `http://localhost:3000/api-json`。

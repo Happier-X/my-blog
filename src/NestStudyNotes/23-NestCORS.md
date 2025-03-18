@@ -27,7 +27,7 @@ async function bootstrap() {
 bootstrap();
 ```
 
-`enableCors()` 方法接受一个可选的配置对象参数。这个对象的可用属性在官方的 [CORS 文档](https://github.com/expressjs/cors#configuration-options)中有描述。另一种方法是传递一个回调函数，让您可以根据请求 (即时) 异步地定义配置对象。
+`enableCors()` 方法接受一个可选的配置对象参数。这个对象的可用属性在官方的 [CORS 文档](https://github.com/expressjs/cors#configuration-options)中有描述。另一种方法是传递一个[回调函数](https://github.com/expressjs/cors#configuring-cors-asynchronously)，让您可以根据请求 (即时) 异步地定义配置对象。
 
 另外，您还可以通过 `create()` 方法的选项对象来启用 CORS。将 `cors` 属性设置为 `true`，以使用默认设置启用 CORS。或者，将 CORS 配置对象或回调函数作为 `cors` 属性的值，以定制其行为。
 

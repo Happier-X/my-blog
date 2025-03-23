@@ -35,7 +35,7 @@ export default hopeTheme(
     },
     plugins: {
       icon: {
-        assets: "//at.alicdn.com/t/c/font_4729614_6gl9dhn0nkc.css",
+        assets: "//at.alicdn.com/t/c/font_4729614_rnqe0h4tdco.css",
         prefix: "iconfont icon-",
       },
       blog: {

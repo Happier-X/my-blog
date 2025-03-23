@@ -17,4 +17,5 @@ export default sidebar({
   "/ComputerUsageSkills/": "structure",
   "/WritingSkills/": "structure",
   "/PlayNAS/": "structure",
+  "/ElectronStudyNotes/": "structure",
 });

@@ -91,7 +91,7 @@ function createWindow() {
     width: 800,
     height: 600,
   });
-  //   也可以用 loadURL 方法加载链接
+  // 也可以用 loadURL 方法加载链接
   mainWindow.loadURL("http://www.baidu.com");
   mainWindow.loadFile(path.resolve(__dirname, "index.html"));
 }

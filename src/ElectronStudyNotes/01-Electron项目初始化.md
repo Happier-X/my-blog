@@ -141,9 +141,9 @@ app.on("window-all-closed", () => {
 });
 ```
 
-## 隐藏菜单栏
+## 无边框效果实现
 
-在 `main.js` 中可以隐藏菜单栏。
+在 `main.js` 中可以隐藏边框。
 
 ```javascript
 const { app, BrowserWindow } = require("electron");
@@ -155,7 +155,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    frame: false, // 隐藏菜单栏
+    frame: false, // 隐藏边框
   });
   mainWindow.loadFile(path.resolve(__dirname, "index.html"));
 }
@@ -176,3 +176,4 @@ app.on("window-all-closed", () => {
 });
 ```
 
+隐藏边框后会无法拖动窗口。此时，可以在需要触发拖拽行为的元素上添加 `-webkit-app-region:drag;` 样式，即可恢复拖拽功能。

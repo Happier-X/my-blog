@@ -32,8 +32,10 @@ npm install electron -D
 ```js
 const { app, BrowserWindow } = require("electron");
 
+let mainWindow = null;
+
 function createWindow() {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
   });
@@ -86,17 +88,56 @@ npm run dev
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 
+let mainWindow = null;
+
 function createWindow() {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
   });
   // 也可以用 loadURL 方法加载链接
-  mainWindow.loadURL("http://www.baidu.com");
+  // mainWindow.loadURL("http://www.baidu.com");
   mainWindow.loadFile(path.resolve(__dirname, "index.html"));
 }
 
 app.whenReady().then(() => {
   createWindow();
+});
+```
+
+## 处理不同平台窗口行为的差异
+
+Electron 提供了 `process.platform` 属性，可以判断当前运行的平台。
+
+在 `main.js` 中可以根据平台做不同的处理，处理窗口行为的差异。
+
+```javascript
+const { app, BrowserWindow } = require("electron");
+const path = require("path");
+
+let mainWindow = null;
+
+function createWindow() {
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+  });
+  mainWindow.loadFile(path.resolve(__dirname, "index.html"));
+}
+
+app.whenReady().then(() => {
+  createWindow();
+  // 苹果电脑当关闭所有窗口后，点击图标时创建新窗口
+  app.on("activate", () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+  });
+});
+
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
 });
 ```

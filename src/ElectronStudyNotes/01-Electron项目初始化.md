@@ -208,9 +208,7 @@ npm i -D concurrently
 ```json
 "scripts": {
   "dev": "concurrently \"vite\" \"electron .\"",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
-  }
+}
 ```
 
 在 `package.json` 中添加 `main` 字段，这是主进程文件。

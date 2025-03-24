@@ -177,3 +177,67 @@ app.on("window-all-closed", () => {
 ```
 
 隐藏边框后会无法拖动窗口。此时，可以在需要触发拖拽行为的元素上添加 `-webkit-app-region:drag;` 样式，即可恢复拖拽功能。
+
+## 配合 Vite、Vue 使用
+
+> 在开发中推荐使用成熟的脚手架，如 [Electron-Vite](https://cn.electron-vite.org/)。
+> 这里只是简单介绍一下如何自己搭建一个 Electron + Vite 项目。
+
+搭建 Vite 项目。
+
+```sh
+npm create vite@latest
+```
+
+根据提示选择 Vue 模板，并安装依赖。
+
+在项目中安装 Electron。
+
+```sh
+npm install electron -D
+```
+
+安装 `concurrently` 来执行两个命令。
+
+```sh
+npm i -D concurrently
+```
+
+修改 `package.json` 中的 `scripts` 字段来执行两个命令。
+
+```json
+"scripts": {
+  "dev": "concurrently \"vite\" \"electron .\"",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  }
+```
+
+在 `package.json` 中添加 `main` 字段，这是主进程文件。
+
+```json
+"main": "main.js"
+```
+
+在项目根目录下创建一个 `main.js` 文件。
+
+```javascript
+import { BrowserWindow, app } from "electron";
+
+let mainWindow = null;
+
+function createWindow() {
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+  });
+  mainWindow.loadURL("http://localhost:5175");
+  // 真正使用时应根据环境变量使用 mainWindow.loadFile()
+}
+
+app.whenReady().then(() => {
+  createWindow();
+});
+```
+
+在控制台中运行 `npm run dev` 命令，即可启动 Electron 项目。

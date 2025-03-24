@@ -127,7 +127,6 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createWindow();
-  // 苹果电脑当关闭所有窗口后，点击图标时创建新窗口
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
@@ -141,3 +140,39 @@ app.on("window-all-closed", () => {
   }
 });
 ```
+
+## 隐藏菜单栏
+
+在 `main.js` 中可以隐藏菜单栏。
+
+```javascript
+const { app, BrowserWindow } = require("electron");
+const path = require("path");
+
+let mainWindow = null;
+
+function createWindow() {
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    frame: false, // 隐藏菜单栏
+  });
+  mainWindow.loadFile(path.resolve(__dirname, "index.html"));
+}
+
+app.whenReady().then(() => {
+  createWindow();
+  app.on("activate", () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+  });
+});
+
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
+});
+```
+

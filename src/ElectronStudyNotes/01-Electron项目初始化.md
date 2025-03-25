@@ -252,7 +252,7 @@ app.whenReady().then(() => {
 ```
 也可以配置其他允许加载的资源。
 ```html
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' *.test.com; script-src 'self'" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' *.trusted.com; script-src '*.test.com'" />
 ```
 
 1. `default-src 'self' *.trusted.com`

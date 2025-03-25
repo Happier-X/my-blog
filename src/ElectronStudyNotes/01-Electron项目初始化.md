@@ -239,3 +239,27 @@ app.whenReady().then(() => {
 ```
 
 在控制台中运行 `npm run dev` 命令，即可启动 Electron 项目。
+
+## 安全策略
+
+因为 Electron 项目可以执行 JavaScript 代码，同时可以访问用户的电脑文件，所以访问任何不受信任的内容都可能带来安全隐患。
+
+内容安全策略 (CSP) 是应对跨站脚本攻击和数据注入攻击的一种方式。我们可以在 `index.html` 中配置。
+
+```html
+<!-- 访问内容均来自项目资源 -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+```
+也可以配置其他允许加载的资源。
+```html
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' *.test.com; script-src 'self'" />
+```
+
+1. `default-src 'self' *.trusted.com`
+   - `default-src` 是一个回退策略，用于其他资源类型没有被明确指定时。
+   - `'self'` 表示允许从当前源 (相同的协议、域名和端口) 加载资源。
+   - `*.trusted.com` 允许从任何 `trusted.com` 的子域名加载资源。
+
+2. `script-src '*.test.com'`
+   - 专门控制 JavaScript 脚本的加载来源。
+   - 只允许从 `test.com` 的子域名加载脚本。

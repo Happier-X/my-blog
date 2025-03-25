@@ -255,11 +255,11 @@ app.whenReady().then(() => {
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' *.trusted.com; script-src '*.test.com'" />
 ```
 
-1. `default-src 'self' *.trusted.com`
+- `default-src 'self' *.trusted.com`
    - `default-src` 是一个回退策略，用于其他资源类型没有被明确指定时。
    - `'self'` 表示允许从当前源 (相同的协议、域名和端口) 加载资源。
    - `*.trusted.com` 允许从任何 `trusted.com` 的子域名加载资源。
 
-2. `script-src '*.test.com'`
+- `script-src '*.test.com'`
    - 专门控制 JavaScript 脚本的加载来源。
    - 只允许从 `test.com` 的子域名加载脚本。

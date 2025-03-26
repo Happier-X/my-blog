@@ -29,7 +29,7 @@ excerpt: false
 
 例如，我们使用预加载脚本通过 `Node.js` 来获取软件版本信息。
 
-```JavaScript {2,10-12} title="main.js"
+```JavaScript {10-12} title="main.js"
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 

@@ -111,7 +111,7 @@ Electron 提供了 `process.platform` 属性，可以判断当前运行的平台
 
 在 `main.js` 中可以根据平台做不同的处理，处理窗口行为的差异。
 
-```JavaScript {2,11,16-20,23-27} title="main.js"
+```JavaScript {16-20,23-27} title="main.js"
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 

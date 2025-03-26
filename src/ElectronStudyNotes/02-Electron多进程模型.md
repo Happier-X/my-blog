@@ -9,9 +9,3 @@ excerpt: false
 
 # Electron 多进程模型
 
-```JavaScript twoslash {1}
-const a = 10
-for(let i = 0;i<10;i++){
-    console.log(i,a)
-}
-```

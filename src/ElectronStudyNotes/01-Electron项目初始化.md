@@ -29,7 +29,7 @@ npm install electron -D
 
 在项目根目录下创建一个 `main.js` 文件，这是主进程文件。
 
-```js
+```JavaScript title="main.js"
 const { app, BrowserWindow } = require("electron");
 
 let mainWindow = null;
@@ -48,7 +48,7 @@ app.whenReady().then(() => {
 
 在 `package.json` 中修改 `main`，并添加运行的命令。
 
-```json
+```json {2,4} title="package.json"
 {
   "main": "main.js",
   "scripts": {
@@ -69,7 +69,7 @@ npm run dev
 
 在项目根目录下创建一个 `index.html` 文件。
 
-```html
+```html title="index.html"
 <!DOCTYPE html>
 <html>
   <head>
@@ -84,7 +84,7 @@ npm run dev
 
 在 `main.js` 中渲染 `index.html`。
 
-```js
+```JavaScript {2,11,12,13} title="main.js"
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 
@@ -111,7 +111,7 @@ Electron 提供了 `process.platform` 属性，可以判断当前运行的平台
 
 在 `main.js` 中可以根据平台做不同的处理，处理窗口行为的差异。
 
-```javascript
+```JavaScript {2,11,16-20,23-27} title="main.js"
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 
@@ -145,7 +145,7 @@ app.on("window-all-closed", () => {
 
 在 `main.js` 中可以隐藏边框。
 
-```javascript
+```javascript {10} title="main.js"
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 
@@ -205,7 +205,7 @@ npm i -D concurrently
 
 修改 `package.json` 中的 `scripts` 字段来执行两个命令。
 
-```json
+```json {2} title="package.json"
 "scripts": {
   "dev": "concurrently \"vite\" \"electron .\"",
 }
@@ -213,13 +213,13 @@ npm i -D concurrently
 
 在 `package.json` 中添加 `main` 字段，这是主进程文件。
 
-```json
+```json title="package.json"
 "main": "main.js"
 ```
 
 在项目根目录下创建一个 `main.js` 文件。
 
-```javascript
+```javascript title="main.js"
 import { BrowserWindow, app } from "electron";
 
 let mainWindow = null;

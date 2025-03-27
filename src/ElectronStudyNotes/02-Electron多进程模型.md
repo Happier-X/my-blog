@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 ## 进程通信
 
-### 渲染进程到主进程（单向）
+### 渲染进程到主进程
 
 这里实现从渲染进程向主进程发送请求，更改窗口标题。
 
@@ -152,3 +152,8 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 ```
+
+## 主进程到渲染进程
+
+这里实现由主进程菜单控制渲染进程页面的数字计数器。
+

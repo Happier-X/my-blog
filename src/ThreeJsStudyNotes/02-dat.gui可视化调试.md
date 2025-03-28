@@ -142,3 +142,7 @@ const gui = new GUI();
   const controls = new OrbitControls(camera, renderer.domElement);
 }
 ```
+
+## 创建不同的控件
+
+在 dat.gui 中，我们可以创建不同类型的控件，包括滑块、颜色选择器、复选框等。

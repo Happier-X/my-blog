@@ -137,12 +137,12 @@ contextBridge.exposeInMainWorld("electronAPI", {
 <body>
     标题:<input id="title" type="text" placeholder="请输入标题" />
     <button id="btn">提交</button>
-    <script src="./render.js"></script>
+    <script src="./renderer.js"></script>
 </body>
 </html>
 ```
 
-```JavaScript {1-8} title="render.js"
+```JavaScript {1-8} title="renderer.js"
 window.addEventListener("DOMContentLoaded", () => {
   const btn = document.querySelector("#btn");
   btn.addEventListener("click", () => {
@@ -213,12 +213,12 @@ contextBridge.exposeInMainWorld("electronAPI", {
   </head>
   <body>
     当前值：<strong id="counter">0</strong>
-    <script src="render.js"></script>
+    <script src="renderer.js"></script>
   </body>
 </html>
 ```
 
-```JavaScript {1-8} title="render.js"
+```JavaScript {1-8} title="renderer.js"
 window.addEventListener("DOMContentLoaded", () => {
   const counter = document.querySelector("#counter");
   window.electronAPI.onUpdateCounter((value) => {
@@ -241,7 +241,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
 });
 ```
 
-```JavaScript {7} title="render.js"
+```JavaScript {7} title="renderer.js"
 window.addEventListener("DOMContentLoaded", () => {
   const counter = document.querySelector("#counter");
   window.electronAPI.onUpdateCounter((value) => {

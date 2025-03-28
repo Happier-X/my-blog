@@ -228,7 +228,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 ```
 
-我们可以从`ipcRenderer.on`回调中将回复发送到主进程，这样就可以实现双向通信。
+我们可以从 `ipcRenderer.on` 回调中将回复发送到主进程，这样就可以实现双向通信。
 
 ```JavaScript {6} title="preload.js"
 const { contextBridge, ipcRenderer } = require("electron");

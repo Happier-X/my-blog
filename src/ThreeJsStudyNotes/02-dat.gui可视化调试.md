@@ -13,7 +13,7 @@ excerpt: false
 
 ## 引入并使用 dat.gui
 
-```JavaScript {3,6,17-20,29-32} title="index.js"
+```JavaScript {3,6,17-20,28-31} title="index.js"
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GUI } from "three/addons/libs/lil-gui.module.min.js";

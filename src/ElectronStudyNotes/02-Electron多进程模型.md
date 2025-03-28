@@ -53,7 +53,7 @@ app.whenReady().then(() => {
 });
 ```
 
-```JavaScript title="preload.js"
+```JavaScript {1-7} title="preload.js"
 document.addEventListener("DOMContentLoaded", () => {
   for (const soft of ["chrome", "electron", "node"]) {
     console.log(soft);
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 ```
 
-```JavaScript title="index.html"
+```JavaScript {8-11} title="index.html"
 <!DOCTYPE html>
 <html>
   <head>
@@ -118,7 +118,7 @@ app.whenReady().then(() => {
 });
 ```
 
-```JavaScript title="preload.js"
+```JavaScript {1,3-5} title="preload.js"
 const { contextBridge, ipcRenderer } = require("electron/renderer");
 
 contextBridge.exposeInMainWorld("electronAPI", {
@@ -126,7 +126,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
 });
 ```
 
-```Html {10,11} title="index.html"
+```Html {9-11} title="index.html"
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -142,7 +142,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
 </html>
 ```
 
-```JavaScript title="render.js"
+```JavaScript {1-8} title="render.js"
 window.addEventListener("DOMContentLoaded", () => {
   const btn = document.querySelector("#btn");
   btn.addEventListener("click", () => {
@@ -157,3 +157,74 @@ window.addEventListener("DOMContentLoaded", () => {
 
 这里实现由主进程菜单控制渲染进程页面的数字计数器。
 
+```JavaScript {14,29} title="main.js"
+const { app, BrowserWindow, Menu } = require("electron");
+const path = require("path");
+
+let mainWindow = null;
+
+function createWindow() {
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.resolve(__dirname, "preload.js"),
+    },
+  });
+  const menu = Menu.buildFromTemplate([
+    {
+      label: "计数器菜单",
+      submenu: [
+        {
+          click: () => mainWindow.webContents.send("update-counter", 1),
+          label: "增加",
+        },
+        {
+          click: () => mainWindow.webContents.send("update-counter", -1),
+          label: "减少",
+        },
+      ],
+    },
+  ]);
+  Menu.setApplicationMenu(menu);
+  mainWindow.loadFile(path.resolve(__dirname, "index.html"));
+}
+
+app.whenReady().then(() => {
+  createWindow();
+});
+```
+
+```JavaScript {1,3-6} title="preload.js"
+const { contextBridge, ipcRenderer } = require("electron");
+
+contextBridge.exposeInMainWorld("electronAPI", {
+  onUpdateCounter: (callback) =>
+    ipcRenderer.on("update-counter", (_event, value) => callback(value)),
+});
+```
+
+```Html {8,9} title="index.html"
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World!</title>
+  </head>
+  <body>
+    当前值：<strong id="counter">0</strong>
+    <script src="render.js"></script>
+  </body>
+</html>
+```
+
+```JavaScript {1-8} title="render.js"
+window.addEventListener("DOMContentLoaded", () => {
+  const counter = document.querySelector("#counter");
+  window.electronAPI.onUpdateCounter((value) => {
+    const oldValue = Number(counter.innerText);
+    const newValue = oldValue + value;
+    counter.innerText = newValue.toString();
+  });
+});
+```

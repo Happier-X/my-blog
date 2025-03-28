@@ -100,7 +100,7 @@ const createWindow = () => {
 };
 app.whenReady().then(() => {
   // 主进程事件监听
-  ipcMain.on("setTitle", (event, title) => {
+  ipcMain.on("set-title", (event, title) => {
     // 获取当前窗口对象
     const webContents = event.sender;
     // 获取窗口对象
@@ -119,10 +119,10 @@ app.whenReady().then(() => {
 ```
 
 ```JavaScript {1,3-5} title="preload.js"
-const { contextBridge, ipcRenderer } = require("electron/renderer");
+const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("electronAPI", {
-  setTitle: (title) => ipcRenderer.send("setTitle", title),
+  setTitle: (title) => ipcRenderer.send("set-title", title),
 });
 ```
 

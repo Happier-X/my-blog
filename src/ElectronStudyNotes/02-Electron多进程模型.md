@@ -74,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
     <div id="chrome"></div>
     <div id="node"></div>
     <div id="electron"></div>
-    <script src="renderer.js"></script>
   </body>
 </html>
 ```
@@ -157,7 +156,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 这里实现由主进程菜单控制渲染进程页面的数字计数器。
 
-```JavaScript {14,29} title="main.js"
+```JavaScript {14-29} title="main.js"
 const { app, BrowserWindow, Menu } = require("electron");
 const path = require("path");
 

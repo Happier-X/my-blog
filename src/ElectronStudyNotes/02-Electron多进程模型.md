@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 ## 进程通信
 
-### 渲染进程到主进程
+### 渲染进程到主进程 （单向）
 
 这里实现从渲染进程向主进程发送请求，更改窗口标题。
 
@@ -152,7 +152,72 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 ```
 
-## 主进程到渲染进程
+### 渲染进程到主进程（双向）
+
+这里我们从渲染器进程打开一个原生的文件对话框，并返回所选文件的路径。
+
+```JavaScript {18-23} title="main.js"
+const { app, BrowserWindow, dialog, ipcMain } = require("electron");
+const path = require("path");
+
+let mainWindow = null;
+
+function createWindow() {
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.resolve(__dirname, "preload.js"),
+    },
+  });
+  mainWindow.loadFile(path.resolve(__dirname, "index.html"));
+}
+
+app.whenReady().then(() => {
+  ipcMain.handle("dialog:openFile", async () => {
+    const { canceled, filePaths } = await dialog.showOpenDialog({});
+    if (!canceled) {
+      return filePaths[0];
+    }
+  });
+  createWindow();
+});
+```
+
+```JavaScript {1-4} title="preload.js"
+const { contextBridge, ipcRenderer } = require("electron");
+contextBridge.exposeInMainWorld("electronAPI", {
+  openFile: () => ipcRenderer.invoke("dialog:openFile"),
+});
+```
+
+```Html {8-10} title="index.html"
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <button type="button" id="btn">打开文件</button>
+    文件路径：<strong id="filePath"></strong>
+    <script src="renderer.js"></script>
+  </body>
+</html>
+```
+
+```JavaScript {1-8} title="renderer.js"
+window.addEventListener("DOMContentLoaded", () => {
+  const btn = document.querySelector("#btn");
+  const filePathElement = document.querySelector("#filePath");
+  btn?.addEventListener("click", async () => {
+    const filePath = await window.electronAPI.openFile();
+    filePathElement.innerText = filePath;
+  });
+});
+```
+
+### 主进程到渲染进程（单向）
 
 这里实现由主进程菜单控制渲染进程页面的数字计数器。
 
@@ -227,6 +292,8 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 ```
+
+### 主进程到渲染进程（双向）
 
 我们可以从 `ipcRenderer.on` 回调中将回复发送到主进程，这样就可以实现双向通信。
 

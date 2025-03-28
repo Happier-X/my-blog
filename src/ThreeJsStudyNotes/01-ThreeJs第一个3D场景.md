@@ -47,7 +47,6 @@ npm i -D @types/three
       {
         "imports": {
           "three": "https://unpkg.com/three@0.174.0/build/three.module.js",
-          "three/addons/": "https://unpkg.com/three@0.174.0/examples/jsm/"
         }
       }
     </script>
@@ -113,6 +112,33 @@ const scene = new THREE.Scene();
 整个流程是：在 Scene 中添加各种 Mesh，每个 Mesh 都是由几何体 Geometry 和材质 Material 构成，设置相机 Camera 的角度和可视范围，设置灯光 Light 的位置，然后通过渲染器 Renderer 渲染到 Canvas 元素上，把这个 Canvas 挂载到 DOM。
 
 实现通过鼠标拖拽来旋转物体。
+
+```html {18} title="index.html"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin:0;
+        }
+    </style>
+</head>
+<body>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.174.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.174.0/examples/jsm/"
+            }
+        }
+        </script>
+        <script type="module" src="./index.js"></script>
+</body>
+</html>
+```
 
 ```JavaScript {2,49-54,59} title="index.js"
 import * as THREE from "three";

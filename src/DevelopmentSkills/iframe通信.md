@@ -15,8 +15,7 @@ excerpt: false
 
 ## 主页面向 iframe 页面发送消息
 
-```html
-// parent.html
+```html title="parent.html"
 <iframe src="./child.html" id="childIframe"></iframe>
 <script>
   // 获取子页面的iframe
@@ -28,8 +27,7 @@ excerpt: false
 </script>
 ```
 
-```html
-// child.html
+```html title="child.html"
 <script>
   window.addEventListener("message", (event) => {
     console.log(event.data); // 接收到消息
@@ -39,15 +37,13 @@ excerpt: false
 
 ## iframe 页面向主页面发送消息
 
-```html
-// child.html
+```html title="child.html"
 <script>
   window.parent.postMessage("hello", "*"); // 发送消息给父页面
 </script>
 ```
 
-```html
-// parent.html
+```html title="parent.html"
 <iframe src="./child.html" id="childIframe"></iframe>
 <script>
   window.addEventListener("message", (event) => {

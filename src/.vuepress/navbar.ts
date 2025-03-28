@@ -32,7 +32,8 @@ export default navbar([
           "/PiniaStudyNotes/",
           "/TypeScriptStudyNotes/",
           "/STM32StudyNotes/",
-          "/ElectronStudyNotes/"
+          "/ElectronStudyNotes/",
+          "/ThreeJsStudyNotes/",
         ],
       },
       {

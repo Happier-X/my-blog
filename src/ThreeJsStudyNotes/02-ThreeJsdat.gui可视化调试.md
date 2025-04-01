@@ -75,7 +75,7 @@ const gui = new GUI();
 }
 ```
 
-![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/Three.js dat.gui 可视化调试01.png)
+![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/Three.jsdat.gui可视化调试01.png)
 
 ## 为控件创建分组
 
@@ -145,7 +145,7 @@ const gui = new GUI();
 }
 ```
 
-![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/Three.js dat.gui 可视化调试02.png)
+![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/Three.jsdat.gui可视化调试02.png)
 
 ## 创建不同的控件
 
@@ -241,4 +241,4 @@ const gui = new GUI();
 }
 ```
 
-![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/Three.js dat.gui 可视化调试03.png)
+![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/Three.jsdat.gui可视化调试03.png)

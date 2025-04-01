@@ -135,7 +135,7 @@ export default mesh;
 
 我们可以看到，有两个顶点是重叠的，数据也是重复的。我们可以使用设置索引的方式，这样就可以避免重复数据。
 
-```javascript {5} title="mesh.js"
+```javascript {5，10,11} title="mesh.js"
 import * as THREE from "three";
 
 const geometry = new THREE.BufferGeometry();

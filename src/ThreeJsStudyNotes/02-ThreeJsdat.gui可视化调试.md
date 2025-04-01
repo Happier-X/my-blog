@@ -75,6 +75,8 @@ const gui = new GUI();
 }
 ```
 
+![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/Three.js dat.gui 可视化调试01.png)
+
 ## 为控件创建分组
 
 在 dat.gui 中，我们可以使用 `gui.addFolder` 方法为控件创建分组，这样可以更好地组织和管理控件。每个分组可以包含多个控件，并且可以折叠和展开，以便于查看和调整参数。
@@ -142,6 +144,8 @@ const gui = new GUI();
   const controls = new OrbitControls(camera, renderer.domElement);
 }
 ```
+
+![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/Three.js dat.gui 可视化调试02.png)
 
 ## 创建不同的控件
 
@@ -236,3 +240,5 @@ const gui = new GUI();
   });
 }
 ```
+
+![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/Three.js dat.gui 可视化调试03.png)

@@ -115,6 +115,8 @@ const scene = new THREE.Scene();
 
 实现通过鼠标拖拽来旋转物体。
 
+使用鼠标左键拖拽来旋转物体，鼠标右键拖拽来平移物体，鼠标滚轮来缩放物体。
+
 ```html {18} title="index.html"
 <!DOCTYPE html>
 <html lang="en">

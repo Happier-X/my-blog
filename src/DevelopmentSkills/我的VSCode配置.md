@@ -1,5 +1,5 @@
 ---
-cover: https://t.alcy.cc/fj?t=1709949600
+cover: https://t.alcy.cc/fj?t=20240309100000
 date: 2024-03-09 10:00:00
 order: -20240309100000
 category: 开发
@@ -75,7 +75,7 @@ excerpt: false
 
 ### 设置 JavaScript 语义检查
 
-在设置中找到 `JS/TS › Implicit Project Config: Check JS` 并将它勾选。这样，编辑器会在 JavaScript 和 TypeScript 文件中启用语义检查。
+在设置中找到 `JS/TS › Implicit Project Config: Check JS` 并将它勾选。这样，编辑器会在 JavaScript 文件中启用语义检查。
 
 ## 扩展推荐
 

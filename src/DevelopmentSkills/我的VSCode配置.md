@@ -4,7 +4,7 @@ date: 2024-03-09 10:00:00
 order: -20240309100000
 category: 开发
 tag: VSCode
-excerpt: false 
+excerpt: false
 ---
 
 # 我的 VSCode 配置
@@ -97,9 +97,9 @@ excerpt: false
 
 功能：检查代码中的单词拼写错误。
 
-### CodeGeeX: AI Code AutoComplete, Chat, Auto Comment
+### GitHub Copilot
 
-下载地址：[CodeGeeX：AI Code AutoComplete，Chat，Auto Comment](https://marketplace.visualstudio.com/items?itemName=aminer.codegeex)。
+下载地址：[GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)。
 
 功能：AI 代码自动补全、聊天、自动注释。
 
@@ -188,3 +188,9 @@ excerpt: false
 下载地址：[Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar)。
 
 功能：Vue.js 开发工具，支持语法高亮、代码补全、错误检查等功能。
+
+### PicGo
+
+下载地址：[PicGo](https://marketplace.visualstudio.com/items?itemName=Spades.vs-picgo)。
+
+功能：PicGo 插件，支持将图片上传到图床。

@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 ## 进程通信
 
-### 渲染进程到主进程 （单向）
+### 渲染进程到主进程 (单向)
 
 这里实现从渲染进程向主进程发送请求，更改窗口标题。
 
@@ -152,7 +152,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 ```
 
-### 渲染进程到主进程（双向）
+### 渲染进程到主进程 (双向)
 
 这里我们从渲染器进程打开一个原生的文件对话框，并返回所选文件的路径。
 
@@ -217,7 +217,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 ```
 
-### 主进程到渲染进程（单向）
+### 主进程到渲染进程 (单向)
 
 这里实现由主进程菜单控制渲染进程页面的数字计数器。
 
@@ -293,7 +293,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 ```
 
-### 主进程到渲染进程（双向）
+### 主进程到渲染进程 (双向)
 
 我们可以从 `ipcRenderer.on` 回调中将回复发送到主进程，这样就可以实现双向通信。
 

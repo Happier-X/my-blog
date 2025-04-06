@@ -559,7 +559,7 @@ export const Public = () => SetMetadata(IS_PUBLIC_KEY, true);
 ```typescript title="jwt-auth.guard.ts"
 import { ExecutionContext, Injectable } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
-import { IS_PUBLIC_KEY } from "./decorator/auth.decorator";
+import { IS_PUBLIC_KEY } from "../decorator/auth.decorator";
 import { Reflector } from "@nestjs/core";
 
 @Injectable()

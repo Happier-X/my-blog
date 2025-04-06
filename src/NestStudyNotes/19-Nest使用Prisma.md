@@ -31,13 +31,13 @@ npx prisma init
 
 在 `.env` 文件中配置数据库连接 URL。
 
-```env
+```env title=".env"
 DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/DATABASE_NAME"
 ```
 
 在 `schema.prisma` 文件中配置数据库提供者。
 
-```prisma
+```prisma {6} title="schema.prisma"
 generator client {
   provider = "prisma-client-js"
 }
@@ -52,7 +52,7 @@ datasource db {
 
 在 `schema.prisma` 文件中定义你的数据模型。
 
-```prisma
+```prisma title="schema.prisma"
 model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
@@ -93,7 +93,7 @@ nest generate service prisma
 
 修改 `prisma.service.ts` 文件。
 
-```typescript
+```typescript title="prisma.service.ts"
 import { Injectable, OnModuleInit, OnModuleDestroy } from "@nestjs/common";
 import { PrismaClient } from "@prisma/client";
 
@@ -114,7 +114,7 @@ export class PrismaService
 
 接下来就可以在其他服务中注入 `PrismaService` 并使用了。这里以 `user.service.ts` 为例。
 
-```typescript
+```typescript {2,3,7-14} title="user.service.ts"
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "./prisma/prisma.service";
 import { User } from "@prisma/client";
@@ -136,7 +136,7 @@ export class UserService {
 
 这里在 `user.module.ts` 中添加 `PrismaService` 到 `providers` 数组中。
 
-```typescript
+```typescript {4,9} title="user.module.ts"
 import { Module } from "@nestjs/common";
 import { UserController } from "./user.controller";
 import { UserService } from "./user.service";

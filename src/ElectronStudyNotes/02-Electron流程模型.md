@@ -7,7 +7,7 @@ tag: Electron
 excerpt: false
 ---
 
-# Electron 多进程模型
+# Electron 流程模型
 
 ## 多进程模型
 

@@ -35,7 +35,7 @@ npm install @nestjs/passport passport
 
 其中 `user` 数据模型如下。
 
-```schema
+```schema title="schema.prisma"
 model User {
   id        Int      @id @default(autoincrement())
   username  String   @unique
@@ -56,7 +56,7 @@ nest generate controller auth
 
 修改 `auth.module.ts` 文件，引入 `PrismaService` 来操作数据库。
 
-```typescript
+```typescript {4,8} title="auth.module.ts"
 import { Module } from "@nestjs/common";
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
@@ -77,7 +77,7 @@ npm install class-validator class-transformer
 
 设计一个 `DTO` 来对用户注册信息进行验证。在 `src/auth/dto` 目录下创建 `register.dto.ts` 文件。
 
-```typescript
+```typescript title="register.dto.ts"
 import { IsNotEmpty, MaxLength, MinLength } from "class-validator";
 
 export class RegisterDto {
@@ -102,7 +102,7 @@ export class RegisterDto {
 npm i argon2
 ```
 
-```typescript
+```typescript {2-4,8,10-20} title="auth.service.ts"
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { RegisterDto } from "./dto/register.dto";
@@ -128,7 +128,7 @@ export class AuthService {
 
 在 `auth.controller.ts` 文件中实现注册方法。
 
-```typescript
+```typescript {1-3,7,9-12} title="auth.controller.ts"
 import { Controller, Post, Body } from "@nestjs/common";
 import { RegisterDto } from "./dto/register.dto";
 import { AuthService } from "./auth.service";
@@ -157,7 +157,7 @@ npm install @types/passport-local -D
 
 在 `AuthService` 中实现一个 `validate` 方法，来验证用户名和密码，如果验证成功，则返回用户信息，否则返回 `null`。
 
-```typescript
+```typescript {22-36} title="auth.service.ts"
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { RegisterDto } from "./dto/register.dto";
@@ -185,16 +185,13 @@ export class AuthService {
         username,
       },
     });
-
     if (!user) {
       return null;
     }
-
     const isPasswordValid = await argon2.verify(user.password, password);
     if (!isPasswordValid) {
       return null;
     }
-
     return user;
   }
 }
@@ -204,7 +201,7 @@ export class AuthService {
 
 在 `src/auth` 下面创建一个 `strategy` 文件夹并创建 `local.strategy.ts`，在这个文件中实现一个 `LocalStrategy` 的 `class`，需要特别注意的是这个 `class` 要继承 `passport-local` 的 `strategy`。但是需要通过 Nest 的函数连接，并实现 `validate(username: string, password: string)` 方法，这个方法就是 passport 流程的入口，在这里我们调用 `AuthService` 的 `validate` 方法进行验证。
 
-```typescript
+```typescript title="local.strategy.ts"
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { AuthService } from "../auth.service";
@@ -228,7 +225,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
 
 还需要在 `auth.module.ts` 文件中注册 `LocalStrategy`。
 
-```typescript
+```typescript {5,9} title="auth.module.ts"
 import { Module } from "@nestjs/common";
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
@@ -246,7 +243,7 @@ export class AuthModule {}
 
 实现完 `strategy` 以后，就要实现一个 API 来处理登录验证，我们在 `AuthController` 中添加一个 `login` 方法并套用 `AuthGuard`，因为我们是使用 `passport-local` 这个 `strategy`，所以要在 `AuthGuard` 带入 `local` 这个字符串，`passport` 会自动与本地策略进行搭配，然后 `passport` 会将 `LocalStrategy` 的 `validate` 方法进行调用，并传入 `username` 和 `password`。
 
-```typescript
+```typescript {1,4,5,16-20} title="auth.controller.ts"
 import { Controller, Post, Body, UseGuards, Req } from "@nestjs/common";
 import { RegisterDto } from "./dto/register.dto";
 import { AuthService } from "./auth.service";
@@ -293,7 +290,7 @@ npm install @types/passport-jwt -D
 
 首先在 `.env` 文件中添加 `JWT_SECRET`，用于存储 JWT 的密钥。
 
-```
+```env title=".env"
 JWT_SECRET=your-secret-key
 ```
 
@@ -305,7 +302,7 @@ npm install @nestjs/config --save
 
 然后修改 `app.module.ts` 文件，引入 `ConfigModule`，并使其全局可用。
 
-```typescript
+```typescript {5,8-13} title="app.module.ts"
 import { Module } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
@@ -327,15 +324,15 @@ export class AppModule {}
 
 完成密钥配置后，在处理验证的 `AuthModule` 中导入 `JwtModule`，并使用 `registerAsync` 方法来配置 JWT。
 
-```typescript
+```typescript {6-8,11-25} title="auth.module.ts"
 import { Module } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
-import { JwtModule } from "@nestjs/jwt";
-import { PassportModule } from "@nestjs/passport";
 import { PrismaService } from "src/prisma/prisma.service";
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
 import { LocalStrategy } from "./strategy/local.strategy";
+import { ConfigService } from "@nestjs/config";
+import { JwtModule } from "@nestjs/jwt";
+import { PassportModule } from "@nestjs/passport";
 
 @Module({
   imports: [
@@ -361,7 +358,7 @@ export class AuthModule {}
 
 上面我们是让用户登录后获得用户的信息，这里我们将会把这个机制换成回传 JWT，让用户可以顺利拿到它来使用授权的功能，所以我们要在 `AuthService` 中设计一个 `generateJwt` 方法来调用 `JwtService` 的 `sign` 方法产生 JWT，该方法需要传入要放在 “内容” 部分的数据，这里我们就放入用户的 `id` 和 `username`。
 
-```typescript
+```typescript {5,6,12,43-48} title="auth.service.ts"
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { RegisterDto } from "./dto/register.dto";
@@ -394,16 +391,13 @@ export class AuthService {
         username,
       },
     });
-
     if (!user) {
       return null;
     }
-
     const isPasswordValid = await argon2.verify(user.password, password);
     if (!isPasswordValid) {
       return null;
     }
-
     return user;
   }
 
@@ -418,7 +412,7 @@ export class AuthService {
 
 上面我们在 `LocalStrategy` 中只返回了 `username` 和 `email`，现在我们要修改一下，返回整个用户的信息。
 
-```typescript
+```typescript {17} title="local.strategy.ts"
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { AuthService } from "../auth.service";
@@ -442,7 +436,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
 
 最后在 `AuthController` 中，我们需要修改一下 `login` 方法，返回 `token`。
 
-```typescript
+```typescript {6,20} title="auth.controller.ts"
 import { Controller, Post, Body, UseGuards, Req } from "@nestjs/common";
 import { RegisterDto } from "./dto/register.dto";
 import { AuthService } from "./auth.service";
@@ -473,7 +467,7 @@ export class AuthController {
 
 接下来我们需要实现 `JwtStrategy` 与 `passport` 进行配合，跟 `LocalStrategy` 的实现方式差不多，必须继承 `passport-jwt` 的 `strategy`，不同的地方在于 `super` 传入的参数。在 `src/auth/strategy` 下创建一个 `jwt.strategy.ts` 文件。
 
-```typescript
+```typescript title="jwt.strategy.ts"
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { PassportStrategy } from "@nestjs/passport";
@@ -499,16 +493,16 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
 然后在 `AuthModule` 中引入 `JwtStrategy`。
 
-```typescript
+```typescript {9,28} title="auth.module.ts"
 import { Module } from "@nestjs/common";
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
 import { PrismaService } from "src/prisma/prisma.service";
 import { LocalStrategy } from "./strategy/local.strategy";
-import { JwtModule } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
-import { JwtStrategy } from "./strategy/jwt.strategy";
+import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
+import { JwtStrategy } from "./strategy/jwt.strategy";
 
 @Module({
   imports: [
@@ -553,7 +547,7 @@ providers: [
 
 在 `src/auth/decorator` 下创建一个 `auth.decorator.ts` 文件。
 
-```typescript
+```typescript title="auth.decorator.ts"
 import { SetMetadata } from "@nestjs/common";
 
 export const IS_PUBLIC_KEY = "isPublic";
@@ -562,10 +556,10 @@ export const Public = () => SetMetadata(IS_PUBLIC_KEY, true);
 
 在 `src/auth/guard` 下创建一个 `jwt-auth.guard.ts` 文件，来扩展 `AuthGuard`。
 
-```typescript
+```typescript title="jwt-auth.guard.ts"
 import { ExecutionContext, Injectable } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
-import { IS_PUBLIC_KEY } from "./decorator/auth.decorator";
+import { IS_PUBLIC_KEY } from "../decorator/auth.decorator";
 import { Reflector } from "@nestjs/core";
 
 @Injectable()

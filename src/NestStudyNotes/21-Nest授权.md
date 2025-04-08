@@ -17,7 +17,7 @@ RBAC (Role-Based Access Control，基于角色的访问控制) 是一种常见�
 
 首先更新数据库中的数据模型，添加角色字段。
 
-```schema
+```schema title="schema.prisma"
 model User {
   id        Int      @id @default(autoincrement())
   username  String   @unique
@@ -41,7 +41,7 @@ npx prisma generate
 
 然后在 `src/auth/enum` 目录下创建一个 `role.enum.ts` 文件，定义角色枚举。
 
-```typescript
+```typescript title="role.enum.ts"
 export enum Role {
   Admin = "admin",
   User = "user",
@@ -50,7 +50,7 @@ export enum Role {
 
 可以创建一个 `@Roles()` 装饰器，用于允许指定访问特定资源所需的角色。在 `src/auth/decorator` 目录下创建一个 `roles.decorator.ts` 文件。
 
-```typescript
+```typescript title="roles.decorator.ts"
 import { SetMetadata } from "@nestjs/common";
 import { Role } from "../enum/role.enum";
 
@@ -60,7 +60,7 @@ export const Roles = (...roles: Role[]) => SetMetadata(ROLES_KEY, roles);
 
 现在我们可以将 `@Roles()` 装饰器添加到控制器或路由处理程序上，以限制对特定资源的访问。
 
-```typescript
+```typescript {2}
 @Post()
 @Roles(Role.Admin)
 async create(@Body() createUserDto: CreateUserDto) {
@@ -72,7 +72,7 @@ async create(@Body() createUserDto: CreateUserDto) {
 
 在 `src/auth/guard` 目录下创建一个 `roles.guard.ts` 文件。
 
-```typescript
+```typescript title="roles.guard.ts"
 import { Injectable, CanActivate, ExecutionContext } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { Role } from "../enum/role.enum";

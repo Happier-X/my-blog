@@ -19,7 +19,7 @@ npm install echarts --save
 
 ## 引入 ECharts
 
-```vue
+```vue {2}
 <script setup>
 import * as echarts from "echarts";
 </script>

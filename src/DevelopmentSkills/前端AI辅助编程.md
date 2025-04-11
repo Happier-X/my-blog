@@ -1,3 +1,13 @@
+---
+cover: https://t.alcy.cc/fj?t=20250411160000
+date: 2025-04-11 16:00:00
+order: -20250411160000
+category: 开发
+tag:
+  - AI
+excerpt: false
+---
+
 # AI 辅助编程工具
 
 AI 辅助编程目前主要是两种方式：

@@ -25,6 +25,7 @@ Navidrome 是一个开源的流媒体服务器，支持多种音频格式，包�
 services:
   navidrome:
     image: deluan/navidrome:latest
+    container_name: navidrome
     user: 1000:1000 
     ports:
       - "4533:4533"
@@ -47,6 +48,7 @@ services:
 services:
   navidrome:
     image: deluan/navidrome:latest
+    container_name: navidrome
     user: 1000:1000 
     ports:
       - "4533:4533"

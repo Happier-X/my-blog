@@ -21,7 +21,7 @@ excerpt: false
 
 在 `dockerComposeConfig` 文件夹下创建一个 `frpc` 文件夹，然后在 `frpc` 文件夹下创建一个 `docker-compose.yml` 文件，内容如下。
 
-```yaml
+```yaml title="docker-compose.yml"
 services:
   frpc:
     image: snowdreamtech/frpc
@@ -36,7 +36,7 @@ services:
 
 我的配置如下。
 
-```yaml
+```yaml title="docker-compose.yml"
 services:
   frpc:
     image: snowdreamtech/frpc

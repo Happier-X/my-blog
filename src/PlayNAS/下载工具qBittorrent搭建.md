@@ -21,7 +21,7 @@ qBittorrent 是一个开源的下载工具，支持多种下载协议，包括 H
 
 在 `dockerComposeConfig` 文件夹下创建一个 `qBittorrent` 文件夹，然后在 `qBittorrent` 文件夹下创建一个 `docker-compose.yml` 文件，内容如下。
 
-```yaml
+```yaml title="docker-compose.yml"
 services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
@@ -46,7 +46,7 @@ services:
 
 我的配置如下。
 
-```yaml
+```yaml title="docker-compose.yml"
 services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest

@@ -21,7 +21,7 @@ Navidrome 是一个开源的流媒体服务器，支持多种音频格式，包�
 
 在 `dockerComposeConfig` 文件夹下创建一个 `navidrome` 文件夹，然后在 `navidrome` 文件夹下创建一个 `docker-compose.yml` 文件，内容如下。
 
-```yaml
+```yaml title="docker-compose.yml"
 services:
   navidrome:
     image: deluan/navidrome:latest
@@ -44,7 +44,7 @@ services:
 
 我的配置如下。
 
-```yaml
+```yaml title="docker-compose.yml"
 services:
   navidrome:
     image: deluan/navidrome:latest

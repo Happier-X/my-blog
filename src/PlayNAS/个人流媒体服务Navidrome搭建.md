@@ -19,7 +19,7 @@ Navidrome 是一个开源的流媒体服务器，支持多种音频格式，包�
 
 这里以 fnOS 为例，使用 Docker Compose 来安装 Navidrome。
 
-在 `dockerConfig` 文件夹下创建一个 `navidrome` 文件夹，然后在 `navidrome` 文件夹下创建一个 `docker-compose.yml` 文件，内容如下。
+在 `dockerComposeConfig` 文件夹下创建一个 `navidrome` 文件夹，然后在 `navidrome` 文件夹下创建一个 `docker-compose.yml` 文件，内容如下。
 
 ```yaml
 services:

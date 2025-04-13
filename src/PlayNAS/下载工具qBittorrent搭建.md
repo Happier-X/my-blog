@@ -19,7 +19,7 @@ qBittorrent 是一个开源的下载工具，支持多种下载协议，包括 H
 
 这里以 fnOS 为例，使用 Docker Compose 来安装 qBittorrent。
 
-在 `dockerComposeConfig` 文件夹下创建一个 `qbittorrent` 文件夹，然后在 `qbittorrent` 文件夹下创建一个 `docker-compose.yml` 文件，内容如下。
+在 `dockerComposeConfig` 文件夹下创建一个 `qBittorrent` 文件夹，然后在 `qBittorrent` 文件夹下创建一个 `docker-compose.yml` 文件，内容如下。
 
 ```yaml
 services:

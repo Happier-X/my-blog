@@ -54,19 +54,19 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Etc/UTC
+      - TZ=Asia/shanghai
       - WEBUI_PORT=8080
-      - TORRENTING_PORT=6881
+      - TORRENTING_PORT=50000
     volumes:
       - ./config:/config
-      - /vol1/1000/downloads:/downloads
+      - /vol3/1000/media/download:/downloads
     ports:
       - 8080:8080
-      - 6881:6881
-      - 6881:6881/udp
+      - 50000:50000
+      - 50000:50000/udp
     restart: unless-stopped
 ```
 
 ## 访问 qBittorrent
 
-在浏览器中访问 `8080` 端口，就可以看到 qBittorrent 的界面了。
+在浏览器中访问 `8080` 端口，就可以看到 qBittorrent 的界面了，用户名为 `admin`，密码需要在日志文件中查看。

@@ -59,7 +59,7 @@ services:
       - TORRENTING_PORT=50000
     volumes:
       - ./config:/config
-      - /vol3/1000/media/download:/downloads
+      - /vol3/1000/media:/media
     ports:
       - 8080:8080
       - 50000:50000

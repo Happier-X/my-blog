@@ -9,7 +9,7 @@ excerpt: false
 
 # Three.js 实现隧道穿梭
 
-```javascript index.js
+```javascript title="index.js"
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import mesh, { tubePoints } from "./mesh.js";
@@ -52,7 +52,7 @@ document.body.append(renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
 ```
 
-```javascript mesh.js
+```javascript title="mesh.js"
 import * as THREE from "three";
 
 const path = new THREE.CatmullRomCurve3([

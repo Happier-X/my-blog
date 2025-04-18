@@ -11,7 +11,7 @@ excerpt: false
 
 可以使用 uv 动画来实现无限隧道穿梭的效果。uv 动画是通过改变纹理坐标来实现的，可以让物体表面的纹理在一定范围内移动，从而产生穿梭的效果。
 
-```javascript index.js
+```javascript title="index.js"
 import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
@@ -49,7 +49,7 @@ document.body.append(renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
 ```
 
-```javascript mesh.js
+```javascript title="mesh.js"
 import * as THREE from "three";
 
 const geometry = new THREE.CylinderGeometry(30, 50, 1000, 32, 32, true);

@@ -26,13 +26,13 @@ services:
   navidrome:
     image: deluan/navidrome:latest
     container_name: navidrome
-    user: 1000:1000 
+    user: 1000:1000
     ports:
       - "4533:4533"
     restart: unless-stopped
     environment:
       ND_SCANSCHEDULE: 1h
-      ND_LOGLEVEL: info  
+      ND_LOGLEVEL: info
       ND_SESSIONTIMEOUT: 24h
       ND_BASEURL: ""
     volumes:
@@ -49,13 +49,13 @@ services:
   navidrome:
     image: deluan/navidrome:latest
     container_name: navidrome
-    user: 1000:1000 
+    user: 1000:1000
     ports:
       - "4533:4533"
-    restart: unless-stopped
+    restart: always
     environment:
       ND_SCANSCHEDULE: 1h
-      ND_LOGLEVEL: info  
+      ND_LOGLEVEL: info
       ND_SESSIONTIMEOUT: 24h
       ND_BASEURL: ""
     volumes:

@@ -64,7 +64,7 @@ services:
       - 8080:8080
       - 50000:50000
       - 50000:50000/udp
-    restart: unless-stopped
+    restart: always
 ```
 
 ## 访问 qBittorrent

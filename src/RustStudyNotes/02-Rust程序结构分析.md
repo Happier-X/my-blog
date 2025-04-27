@@ -18,7 +18,7 @@ cargo new hello-world
 
 ## 代码分析
 
-```rust
+```rust title="main.rs"
 use std::io::stdin; //引入标准库io模块的stdin函数
 // prelude 是std模块下自动导入到每个Rust程序中的一些内容，不需要显示的引入
 

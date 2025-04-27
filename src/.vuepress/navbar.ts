@@ -25,7 +25,6 @@ export default navbar([
         text: "开发",
         children: [
           "/DevelopmentSkills/",
-          "/GoStudyNotes/",
           "/NestStudyNotes/",
           "/VueStudyNotes/",
           "/VueRouterStudyNotes/",
@@ -34,6 +33,7 @@ export default navbar([
           "/STM32StudyNotes/",
           "/ElectronStudyNotes/",
           "/ThreeJsStudyNotes/",
+          "/RustStudyNotes/",
         ],
       },
       {

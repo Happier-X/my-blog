@@ -8,7 +8,7 @@ export default sidebar({
   "/TravelRecord": "structure",
   "/3x3x3": "structure",
   "/3x3x3BLD": "structure",
-  "/GoStudyNotes/": "structure",
+  "/RustStudyNotes/": "structure",
   "/VueStudyNotes/": "structure",
   "/VueRouterStudyNotes/": "structure",
   "/ThoughtsAfterReading/": "structure",

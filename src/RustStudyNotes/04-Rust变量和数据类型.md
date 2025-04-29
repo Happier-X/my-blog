@@ -8,7 +8,7 @@ tag:
 excerpt: false
 ---
 
-# Rust 基本语法和数据类型
+# Rust 变量和数据类型
 
 ## 变量与可变性
 

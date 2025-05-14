@@ -41,6 +41,10 @@ excerpt: false
 
 在设置中找到 `Editor: Cursor Smooth Caret Animation` 并设置为 `on`。这样，编辑器会有平滑插入动画。
 
+在设置中找到 `Workbench>List: Smooth Scrolling` 并将它勾选上。这样，编辑器在滚动列表时会使用平滑滚动效果。
+
+在设置中找到 `Terminal › Integrated: Smooth Scrolling` 并将它勾选上。这样，终端在滚动时会使用平滑滚动效果。
+
 ### 调整建议列表中预先选择最近使用过的建议
 
 在设置中找到 `Editor: Suggest Selection` 并设置为 `recentlyUsed`。这样，编辑器会在建议列表中预先选择最近使用过的建议。
@@ -59,7 +63,7 @@ excerpt: false
 
 ### 设置 Git Auto Fetch
 
-在设置中找到 `Git: Auto Fetch` 并将它设置为`true`。这样，编辑器会自动从远程仓库获取更新。
+在设置中找到 `Git: Auto Fetch` 并将它设置为 `true`。这样，编辑器会自动从远程仓库获取更新。
 
 ### 设置终端光标样式
 

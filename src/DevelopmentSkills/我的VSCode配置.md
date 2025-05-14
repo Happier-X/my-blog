@@ -73,9 +73,17 @@ excerpt: false
 
 在设置中找到 `Git: Auto Stash` 并将它勾选。这样，编辑器会在拉取前暂存所有更改，在成功拉取后还原这些更改。
 
-### 设置 JavaScript 语义检查
+### 设置 Git Auto Fetch
 
-在设置中找到 `JS/TS › Implicit Project Config: Check JS` 并将它勾选。这样，编辑器会在 JavaScript 文件中启用语义检查。
+在设置中找到 `Git: Auto Fetch` 并将它勾选。这样，编辑器会自动从远程仓库获取更新。
+
+### 设置终端光标样式
+
+在设置中找到 `Terminal › Integrated: Cursor Blinking` 并将它勾选。这样，终端的光标会闪烁。
+
+在设置中找到 `Terminal › Integrated: Cursor Style` 并将它设置为 `line`。这样，终端的光标在聚焦时会显示为一条线。
+
+在设置中找到 `Terminal › Integrated: Cursor Style Inactive` 并将它设置为 `none`。这样，终端的光标在失去焦点时会消失。
 
 ## 扩展推荐
 
@@ -115,31 +123,11 @@ excerpt: false
 
 功能：One Dark Pro 主题，我最喜欢的 VSCode 主题。
 
-### Todo Tree
-
-下载地址：[Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree)。
-
-功能：在编辑器中显示所有 TODO、FIXME 和其他标记。
-
-### Vim
-
-下载地址：[Vim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim)。
-
-功能：支持 Vim 模式。
-
-相关文章：[Vim](./Vim.md)。
-
 ### vscode-icons
 
 下载地址：[vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)。
 
 功能：在编辑器中显示图标，使文件和文件夹更易于识别。
-
-### Office Viewer(Markdown Editor)
-
-下载地址：[Office Viewer(Markdown Editor)](https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-office)。
-
-功能：在编辑器中所见即所得的书写 Markdown 文件，同时支持导出为 PDF、HTML 等格式。
 
 ### CodeSnap
 
@@ -194,3 +182,15 @@ excerpt: false
 下载地址：[PicGo](https://marketplace.visualstudio.com/items?itemName=Spades.vs-picgo)。
 
 功能：PicGo 插件，支持将图片上传到图床。
+
+### Color Highlight
+
+下载地址：[Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)。
+
+功能：在编辑器中高亮显示颜色代码。
+
+### Path Intellisense
+
+下载地址：[Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)。
+
+功能：在编辑器中自动补全文件路径。

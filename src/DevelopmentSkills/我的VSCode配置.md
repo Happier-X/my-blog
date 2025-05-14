@@ -29,10 +29,6 @@ excerpt: false
 
 在设置中找到 `Editor › Guides: Bracket Pairs` 并设置为 `true`。这样，编辑器会在括号对之间显示一条指南。
 
-### 突出显示活动的缩进参考线
-
-在设置中找到 `Editor › Guides: Highlight Active Indentation` 并设置为 `always`。这样，编辑器会在活动的缩进参考线周围显示一条高亮线。
-
 ### 启用 HTML 标签关联编辑
 
 在设置中找到 `Editor: Linked Editing` 并设置为 `true`。这样，当你在 HTML 文件中编辑一个标签时，与之关联的标签也会自动被编辑。
@@ -45,17 +41,9 @@ excerpt: false
 
 在设置中找到 `Editor: Cursor Smooth Caret Animation` 并设置为 `on`。这样，编辑器会有平滑插入动画。
 
-### 开启自动格式化
-
-在设置中找到 `Editor: Format On Save` 并设置为 `true`。这样，编辑器会在保存文件时自动格式化文件。
-
 ### 调整建议列表中预先选择最近使用过的建议
 
 在设置中找到 `Editor: Suggest Selection` 并设置为 `recentlyUsed`。这样，编辑器会在建议列表中预先选择最近使用过的建议。
-
-### 给未保存更改的选项卡上绘制顶部边框
-
-在设置中找到 `Workbench › Editor: Highlight Modified Tabs` 并把它勾选上。这样，编辑器会在未保存更改的选项卡上绘制顶部边框。
 
 ### 设置对话框样式
 
@@ -65,17 +53,13 @@ excerpt: false
 
 在设置中找到 `Explorer: Enable Drag And Drop` 并取消勾选。因为我经常会不小心拖动文件和文件夹，导致文件混乱。
 
-### 使用重复的样式定义时报警告
-
-在设置中找到 `CSS › Lint: Duplicate Properties` 并设置为 `warning`。这样，编辑器会在发现重复的样式定义后报警告。
-
 ### 设置 Git Auto Stash
 
 在设置中找到 `Git: Auto Stash` 并将它勾选。这样，编辑器会在拉取前暂存所有更改，在成功拉取后还原这些更改。
 
 ### 设置 Git Auto Fetch
 
-在设置中找到 `Git: Auto Fetch` 并将它勾选。这样，编辑器会自动从远程仓库获取更新。
+在设置中找到 `Git: Auto Fetch` 并将它设置为`true`。这样，编辑器会自动从远程仓库获取更新。
 
 ### 设置终端光标样式
 

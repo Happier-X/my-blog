@@ -1,0 +1,31 @@
+{
+  "name": "my-blog",
+  "description": "Happier's Blog",
+  "version": "2.0.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "docs:build": "vuepress-vite build src",
+    "docs:clean-dev": "vuepress-vite dev src --clean-cache",
+    "docs:dev": "vuepress-vite dev src",
+    "docs:update-package": "npx vp-update",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "@vuepress/bundler-vite": "2.0.0-rc.21",
+    "@vuepress/plugin-comment": "2.0.0-rc.95",
+    "@waline/client": "^3.5.5",
+    "husky": "^9.1.7",
+    "mermaid": "^11.4.1",
+    "sass-embedded": "^1.85.1",
+    "vue": "^3.5.13",
+    "vuepress": "2.0.0-rc.21",
+    "vuepress-theme-hope": "2.0.0-rc.82"
+  },
+  "dependencies": {
+    "@vuepress/plugin-slimsearch": "2.0.0-rc.94",
+    "nodejs-jieba": "^0.2.1"
+  }
+}

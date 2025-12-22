@@ -1,0 +1,23 @@
+# 我的NAS配置
+
+type: Post
+status: Published
+date: 2024/12/31
+tags: NAS, fnOS
+category: 玩转NAS
+
+## 硬件
+
+| 配件 | 型号 | 备注 |
+| --- | --- | --- |
+| 主板 | 技嘉 GA-B250M-D3H | 支持第 6/7 代 Intel Core CPU；双通道 DDR4 2400/2133 MHz 内存；M.2 接口；HDMI 接口；千兆网卡 |
+| CPU | Intel 奔腾 G4600 | 双核心四线程；Intel HD Graphics 630 显卡 |
+| 内存 | 台威刚 | 4G DDR4 2400 MHz |
+| 系统盘 | 忆联 AM6A0 | 128G |
+| 电源 | 航嘉 | 额定 300W |
+| 散热 | Intel 原装散热器 |  |
+| 机箱 | H2 | 支持 M-ATX、ITX 主板；3.5 寸硬盘位 * 3；2.5 寸硬盘位 * 1 |
+
+## 软件
+
+系统采用国产 fnOS。

@@ -17,7 +17,7 @@ export default defineNuxtConfig({
       branch: "main",
     },
     i18n: {
-      defaultLocale: "cn",
+      defaultLocale: "zh",
     },
   },
 });

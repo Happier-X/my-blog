@@ -23,8 +23,8 @@ const items = computed<NavigationMenuItem[]>(() => [
     },
     {
         label: '文章',
-        to: '/articles',
-        active: route.path.startsWith('/articles')
+        to: '/posts',
+        active: route.path.startsWith('/posts')
     },
     {
         label: '分类',

@@ -1,4 +1,4 @@
-# 彳亍法的坐标系、编码、缓冲与色相
+# 彳亍法基本概念
 
 type: Post
 status: Published

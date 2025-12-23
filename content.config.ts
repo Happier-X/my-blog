@@ -1,4 +1,5 @@
 import { defineContentConfig, defineCollection } from "@nuxt/content";
+import { z } from "zod";
 
 export default defineContentConfig({
   collections: {
@@ -6,6 +7,10 @@ export default defineContentConfig({
     content: defineCollection({
       type: "page",
       source: "**/*.md",
+      schema: z.object({
+        createAt: z.date(),
+        updateAt: z.date(),
+      }),
     }),
     // 玩转 NAS
     playNAS: defineCollection({

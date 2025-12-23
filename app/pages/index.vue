@@ -1,14 +1,14 @@
 <template>
-    <NuxtLink v-for="doc in docs" :key="doc.path" :to="doc.path">
-        <h2>{{ doc.title }}</h2>
-        <p>{{ doc.description }}</p>
-    </NuxtLink>
+    <UPage>
+        <UBlogPosts>
+            <UBlogPost v-for="(post, index) in posts" :key="index" v-bind="post" :to="post.path" />
+        </UBlogPosts>
+        <template #right> </template>
+    </UPage>
 </template>
 
 <script setup lang="ts">
-const { data: docs } = await useAsyncData('documents-list', () => {
-    return queryCollection('techShare')
-        .select('title', 'path', 'description')
-        .all()
+const { data: posts } = await useAsyncData('index-posts', () => {
+    return queryCollection('content').order('updateAt', 'DESC').select('title', 'path', 'description').limit(12).all()
 })
 </script>

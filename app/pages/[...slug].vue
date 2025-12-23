@@ -1,15 +1,33 @@
+<template>
+  <UPage>
+    <UPageHeader :title="page.title" :description="page.description" />
+
+    <UPageBody>
+      <ContentRenderer :value="page" />
+
+      <USeparator />
+
+      <UContentSurround :surround="surround" />
+    </UPageBody>
+
+    <template #right>
+      <UContentToc :links="page.body.toc.links" />
+    </template>
+  </UPage>
+</template>
+
 <script setup lang="ts">
 const route = useRoute()
 
-const { data: page } = await useAsyncData('page-' + route.path, () => {
+definePageMeta({
+  layout: 'docs'
+})
+
+const { data: page } = await useAsyncData(route.path, () => {
   return queryCollection('content').path(route.path).first()
 })
 
-if (!page.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
-}
+const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
+  return queryCollectionItemSurroundings('content', route.path)
+})
 </script>
-
-<template>
-  <ContentRenderer class="prose" v-if="page" :value="page" />
-</template>

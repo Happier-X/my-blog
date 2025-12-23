@@ -1,10 +1,24 @@
+---
+title: WSL 使用
+description: |-
+  type: Post
+  status: Published
+  date: 2025/08/05
+  tags: WSL
+  category: 技术分享
+seo:
+  title: WSL使用
+  description: |-
+    type: Post
+    status: Published
+    date: 2025/08/05
+    tags: WSL
+    category: 技术分享
+---
+
 # WSL使用
 
-type: Post
-status: Published
-date: 2025/08/05
-tags: WSL
-category: 技术分享
+type: Post--- Unknown node: hardBreak ---status: Published--- Unknown node: hardBreak ---date: 2025/08/05--- Unknown node: hardBreak ---tags: WSL--- Unknown node: hardBreak ---category: 技术分享，测试
 
 ## 安装部署常用命令
 

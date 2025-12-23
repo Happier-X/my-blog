@@ -16,5 +16,8 @@ export default defineNuxtConfig({
       repo: "my-blog",
       branch: "main",
     },
+    i18n: {
+      defaultLocale: "cn",
+    },
   },
 });

@@ -1,10 +1,7 @@
 <template>
-    <UPage>
-        <UBlogPosts>
-            <UBlogPost v-for="(post, index) in posts" :key="index" v-bind="post" :to="post.path" />
-        </UBlogPosts>
-        <template #right> </template>
-    </UPage>
+    <UBlogPosts>
+        <UBlogPost v-for="(post, index) in posts" :key="index" v-bind="post" :to="post.path" />
+    </UBlogPosts>
 </template>
 
 <script setup lang="ts">

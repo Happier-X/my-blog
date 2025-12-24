@@ -1,3 +1,15 @@
+---
+title: 彳亍法基本概念
+seo:
+  title: 彳亍法基本概念
+  description: |-
+    type: Post
+    status: Published
+    date: 2024/06/24
+    tags: 盲拧
+    category: 三阶魔方盲拧
+---
+
 # 彳亍法基本概念
 
 type: Post
@@ -12,9 +24,7 @@ category: 三阶魔方盲拧
 
 ## 编码
 
-![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/3x3x3BLD/%E5%BD%B3%E4%BA%8D%E6%B3%95%E7%BC%96%E7%A0%81%E5%9B%BE01.jpg)
-
-![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/3x3x3BLD/%E5%BD%B3%E4%BA%8D%E6%B3%95%E7%BC%96%E7%A0%81%E5%9B%BE02.jpg)
+![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/3x3x3BLD/%E5%BD%B3%E4%BA%8D%E6%B3%95%E7%BC%96%E7%A0%81%E5%9B%BE01.jpg)![](https://happier-blog.oss-cn-qingdao.aliyuncs.com/3x3x3BLD/%E5%BD%B3%E4%BA%8D%E6%B3%95%E7%BC%96%E7%A0%81%E5%9B%BE02.jpg)
 
 ## 缓冲
 

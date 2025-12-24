@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 const { data: posts } = await useAsyncData('index-posts', () =>
-    queryCollection('content').select('title', 'path', 'createAt').all()
+    queryCollection('content').all()
     , {
         transform: (data) => {
             console.log(data)

@@ -10,7 +10,8 @@ export default defineContentConfig({
       schema: z.object({
         createAt: z.date(),
         updateAt: z.date(),
-        readingTime: z.number().optional()
+        readingTime: z.number().optional(),
+        wordCount: z.number().optional(),
       }),
     }),
     // 玩转 NAS

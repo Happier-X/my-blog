@@ -1,3 +1,15 @@
+---
+title: qBittorrent 搭建
+createAt: 2025-01-27
+description: qBittorrent 是一款开源下载工具，支持多种协议和功能。文章介绍了如何通过 Docker Compose 在 fnOS 上安装 qBittorrent，并提供了配置示例及访问方式。
+readingTime: 1
+seo:
+  description: qBittorrent 是一个开源的下载工具，支持多种下载协议，包括 HTTP、FTP、SFTP 等。它允许你下载文件，并支持多线程下载、断点续传、下载队列等功能。qBittorrent 还支持 RSS 订阅、种子文件下载、磁力链接下载等功能。
+  title: qBittorrent 搭建
+updateAt: 2025-01-27
+wordCount: 212
+---
+
 qBittorrent 是一个开源的下载工具，支持多种下载协议，包括 HTTP、FTP、SFTP 等。它允许你下载文件，并支持多线程下载、断点续传、下载队列等功能。qBittorrent 还支持 RSS 订阅、种子文件下载、磁力链接下载等功能。
 
 ## 安装 qBittorrent

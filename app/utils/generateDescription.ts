@@ -9,10 +9,8 @@ export async function generateDescription(file: ContentFile): Promise<string> {
   const apiKey = process.env.AI_API_KEY;
   const apiBaseUrl = process.env.AI_API_BASE_URL;
   const model = process.env.AI_MODEL;
-  const enableAI = process.env.ENABLE_AI_DESCRIPTION !== "false";
 
-  // 如果没有配置 API 或在构建时禁用了 AI，使用默认方式
-  if (!apiKey || !apiBaseUrl || !enableAI) {
+  if (!apiKey || !apiBaseUrl) {
     return getDefaultDescription(file);
   }
 

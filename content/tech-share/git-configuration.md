@@ -1,17 +1,4 @@
-# Git配置
-
-type: Post
-status: Published
-date: 2023/06/15
-tags: Git
-category: 技术分享
-
-<aside>
-😆 记录一下Git初始化配置
-
-</aside>
-
-# 绑定用户名和邮箱
+## 绑定用户名和邮箱
 
 ```bash
 git config --global user.name "你的用户名"

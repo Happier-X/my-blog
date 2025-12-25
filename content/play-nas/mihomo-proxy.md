@@ -1,11 +1,3 @@
-# 使用mihomo实现代理
-
-type: Post
-status: Published
-date: 2025/04/18
-tags: Docker, DockerCompose, NAS, fnOS, 代理
-category: 玩转NAS
-
 ## 安装 mihomo
 
 这里以 fnOS 为例，使用 Docker Compose 来安装 mihomo。

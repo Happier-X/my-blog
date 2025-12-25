@@ -1,11 +1,3 @@
-# 三阶魔方盲拧联想词
-
-type: Post
-status: Published
-date: 2024/06/24
-tags: 盲拧
-category: 三阶魔方盲拧
-
 ## 如何更好地使用联想词记忆
 
 1. 一个联想词通常是两个字

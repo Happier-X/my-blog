@@ -1,11 +1,3 @@
-# VSCode配置分享
-
-type: Post
-status: Published
-date: 2023/03/23
-tags: VSCode
-category: 技术分享
-
 分享一下我的 VSCode 配置和推荐的扩展。
 
 ## 设置

@@ -1,11 +1,3 @@
-# 下载工具qBittorrent搭建
-
-type: Post
-status: Published
-date: 2025/01/27
-tags: Docker, DockerCompose, NAS, fnOS
-category: 玩转NAS
-
 qBittorrent 是一个开源的下载工具，支持多种下载协议，包括 HTTP、FTP、SFTP 等。它允许你下载文件，并支持多线程下载、断点续传、下载队列等功能。qBittorrent 还支持 RSS 订阅、种子文件下载、磁力链接下载等功能。
 
 ## 安装 qBittorrent

@@ -1,11 +1,3 @@
-# FNM-超快的Node版本管理工具
-
-type: Post
-status: Published
-date: 2024/10/14
-tags: FNM, Husky, Node
-category: 技术分享
-
 ## 简介
 
 FNM 是一个用于 Node 版本管理和切换的工具,它使用 Rust 编写,速度非常快,并且支持 Windows、macOS 和 Linux 系统。
@@ -21,7 +13,6 @@ winget install Schniz.fnm --location D:\Software\FNM
 ```
 
 > 这里的 `D:\Software\FNM` 是你希望安装的路径,可以根据自己的需求进行修改,也可以不添加 `--location 路径` 来使用默认路径。
-> 
 
 ## Shell 配置
 

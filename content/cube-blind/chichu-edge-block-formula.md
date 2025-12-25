@@ -1,11 +1,3 @@
-# 彳亍法棱块公式
-
-type: Post
-status: Published
-date: 2024/09/22
-tags: 盲拧
-category: 三阶魔方盲拧
-
 | 编码 | 基础公式 |
 | --- | --- |
 | CI | `U' M' U2 M U'` |

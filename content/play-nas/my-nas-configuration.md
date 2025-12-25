@@ -1,11 +1,3 @@
-# 我的NAS配置
-
-type: Post
-status: Published
-date: 2024/12/31
-tags: NAS, fnOS
-category: 玩转NAS
-
 ## 硬件
 
 | 配件 | 型号 | 备注 |

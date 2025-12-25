@@ -1,23 +1,3 @@
----
-title: 彳亍法基本概念
-seo:
-  title: 彳亍法基本概念
-  description: |-
-    type: Post
-    status: Published
-    date: 2024/06/24
-    tags: 盲拧
-    category: 三阶魔方盲拧
----
-
-# 彳亍法基本概念
-
-type: Post
-status: Published
-date: 2024/06/24
-tags: 盲拧
-category: 三阶魔方盲拧
-
 ## 坐标系
 
 黄顶红前

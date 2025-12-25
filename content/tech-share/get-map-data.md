@@ -1,3 +1,15 @@
+---
+title: 获取地图数据
+createAt: 2024-11-22
+description: 本文介绍了获取各级地图数据的方法，包括世界地图和中国地图的来源及处理算法。提供了JSON格式的地图数据链接及代码实现，帮助开发者获取和处理地理信息。
+readingTime: 4
+seo:
+  description: 在开发中，我们可能需要获取各种级别的地图数据，比如世界、全国、省、市、区县、乡镇等。这里整理了一些获取地图数据的方法。
+  title: 获取地图数据
+updateAt: 2024-11-22
+wordCount: 257
+---
+
 在开发中，我们可能需要获取各种级别的地图数据，比如世界、全国、省、市、区县、乡镇等。这里整理了一些获取地图数据的方法。
 
 ## 世界地图
@@ -68,7 +80,6 @@ export default worldJson
 ```
 
 > 该算法目前存在问题：南极洲部分区域显示异常，可以将南极洲部分区域删除。
-> 
 
 ### 关于国家按大洲划分版本
 
@@ -179,4 +190,4 @@ export const Antarctica = createCollection(ISOCode.Antarctica)
 
 可以从[五级区划查询与下载](https://map.ruiduobao.com/)获取省、市、区县、乡镇、村庄地图数据。
 
-开源地址：[gaode_MAP_CUN](https://github.com/ruiduobao/gaode_MAP_CUN)。
+开源地址：[gaode\_MAP\_CUN](https://github.com/ruiduobao/gaode_MAP_CUN)。

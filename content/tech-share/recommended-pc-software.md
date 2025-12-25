@@ -1,3 +1,15 @@
+---
+title: 电脑软件推荐
+createAt: 2024-03-17
+description: 本文介绍了一系列实用软件，包括社交应用、卸载工具、压缩工具、代理软件、截图工具、版本控制系统等，提供下载链接和官网信息。
+readingTime: 1
+seo:
+  description: 本文介绍了一系列实用软件，包括社交应用、卸载工具、压缩工具、代理软件、截图工具、版本控制系统等，提供下载链接和官网信息。
+  title: Recommended Pc Software
+updateAt: 2024-03-17
+wordCount: 159
+---
+
 - 微信 — 社交软件。下载：[weixin.qq.com](http://weixin.qq.com)
 - QQ — 社交软件。下载：[im.qq.com](http://im.qq.com)
 - Geek — 高效、免费、小巧的软件卸载工具。官网：[geekuninstaller.com](http://geekuninstaller.com)
@@ -8,4 +20,4 @@
 - VSCode — 免费开源的代码编辑器。官网：[code.visualstudio.com](http://code.visualstudio.com)
 - Node.js — 基于 V8 的 JavaScript 运行时。官网：[nodejs.org](http://nodejs.org)
 - DirectX 修复工具 — 检测并修复系统 DirectX 异常。介绍：[blog.csdn.net](http://blog.csdn.net)
-- FNM - 超快的 Node 版本管理工具。官网：[Schniz/fnm: 🚀 Fast and simple Node.js version manager, built in Rust](https://github.com/Schniz/fnm)
+- FNM - 超快的 Node 版本管理工具。官网：[Schniz/fnm:](https://github.com/Schniz/fnm) 🚀 [Fast and simple Node.js version manager, built in Rust](https://github.com/Schniz/fnm)

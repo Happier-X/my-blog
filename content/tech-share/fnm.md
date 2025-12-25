@@ -1,3 +1,15 @@
+---
+title: FNM
+createAt: 2024-10-14
+description: FNM 是一个高效的 Node 版本管理工具，支持多平台。文章介绍了其安装、配置、使用方法及与 Husky 的兼容性注意事项。
+readingTime: 1
+seo:
+  description: FNM 是一个高效的 Node 版本管理工具，支持多平台。文章介绍了其安装、配置、使用方法及与 Husky 的兼容性注意事项。
+  title: Fnm
+updateAt: 2024-10-14
+wordCount: 281
+---
+
 ## 简介
 
 FNM 是一个用于 Node 版本管理和切换的工具,它使用 Rust 编写,速度非常快,并且支持 Windows、macOS 和 Linux 系统。

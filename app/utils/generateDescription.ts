@@ -9,9 +9,10 @@ export async function generateDescription(file: ContentFile): Promise<string> {
   const apiKey = process.env.AI_API_KEY;
   const apiBaseUrl = process.env.AI_API_BASE_URL;
   const model = process.env.AI_MODEL;
+  const enableAI = process.env.ENABLE_AI_DESCRIPTION !== "false";
 
-  // 如果没有配置 API，使用默认方式
-  if (!apiKey || !apiBaseUrl) {
+  // 如果没有配置 API 或在构建时禁用了 AI，使用默认方式
+  if (!apiKey || !apiBaseUrl || !enableAI) {
     return getDefaultDescription(file);
   }
 
@@ -53,6 +54,13 @@ function extractContent(file: ContentFile): string {
     content = JSON.stringify(file.body);
   }
 
+  // 限制内容长度以适应 AI 模型和 Vercel 超时限制
+  // 8000 字符对大多数模型来说是合理的，同时避免处理时间过长
+  const maxLength = 8000;
+  if (content.length > maxLength) {
+    content = content.substring(0, maxLength);
+  }
+
   return content;
 }
 
@@ -65,6 +73,10 @@ async function callAIAPI(
   model: string,
   content: string
 ): Promise<string | null> {
+  // 设置 8 秒超时，适应 Vercel Serverless Function 限制
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 8000);
+
   try {
     const response = await fetch(`${baseUrl}/v1/chat/completions`, {
       method: "POST",
@@ -88,7 +100,10 @@ async function callAIAPI(
         temperature: 0.7,
         max_tokens: 150,
       }),
+      signal: controller.signal,
     });
+
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       console.error(
@@ -102,7 +117,12 @@ async function callAIAPI(
 
     return description || null;
   } catch (error) {
-    console.error("调用 AI API 失败:", error);
+    clearTimeout(timeoutId);
+    if (error.name === "AbortError") {
+      console.error("AI API 调用超时（8秒）");
+    } else {
+      console.error("调用 AI API 失败:", error);
+    }
     return null;
   }
 }

@@ -51,14 +51,7 @@ function extractContent(file: ContentFile): string {
     // 如果 body 是对象，尝试提取文本
     content = JSON.stringify(file.body);
   }
-
-  // 限制内容长度以适应 AI 模型和 Vercel 超时限制
-  // 8000 字符对大多数模型来说是合理的，同时避免处理时间过长
-  const maxLength = 8000;
-  if (content.length > maxLength) {
-    content = content.substring(0, maxLength);
-  }
-
+  
   return content;
 }
 

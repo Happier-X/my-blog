@@ -1,3 +1,25 @@
+---
+title: 彳亍法棱块读码
+description: "# 彳亍法棱块读码"
+readingTime: 3
+seo:
+  title: 彳亍法棱块读码
+  description: |-
+    type: Post
+    status: Published
+    date: 2024/06/27
+    tags: 盲拧
+    category: 三阶魔方盲拧
+---
+
+# 彳亍法棱块读码
+
+type: Post
+status: Published
+date: 2024/06/27
+tags: 盲拧
+category: 三阶魔方盲拧
+
 以下打乱均采用黄顶红前的坐标打乱
 
 ## 正常情况

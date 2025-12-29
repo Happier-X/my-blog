@@ -2,6 +2,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { generateDescription } from "./app/utils/generateDescription";
 import { generateReadingTime } from "./app/utils/generateReadingTime";
 import { generateWordCount } from "./app/utils/generateWordCount";
+import matter from "gray-matter";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -24,11 +25,18 @@ export default defineNuxtConfig({
     },
   },
   hooks: {
-    async "content:file:afterParse"(ctx) {
-      const { file, content } = ctx;
-      content.readingTime = generateReadingTime(file);
-      content.wordCount = generateWordCount(file);
-      content.description = await generateDescription(file);
+    async "content:file:beforeParse"(ctx) {
+      console.log(11111111111, ctx);
+      console.log(22222222222, ctx.file, ctx.collection);
+
+      // 使用 gray-matter 解析文件内容
+      const parsed = matter(ctx.file.body);
+
+      // 修改 description 字段
+      parsed.data.description = "测试一下";
+
+      // 将修改后的内容写回
+      ctx.file.body = matter.stringify(parsed.content, parsed.data);
     },
   },
 });

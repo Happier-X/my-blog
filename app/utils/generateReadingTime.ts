@@ -1,8 +1,7 @@
 import type { ContentFile } from "@nuxt/content";
 
-export function generateReadingTime(file: ContentFile): number {
+export function generateReadingTime(content: string): number {
   const wordsPerMinute = 180;
-  const text = typeof file.body === "string" ? file.body : "";
-  const wordCount = text.split(/\s+/).length;
+  const wordCount = content.split(/\s+/).length;
   return Math.ceil(wordCount / wordsPerMinute);
 }

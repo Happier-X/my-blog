@@ -3,59 +3,8 @@ import type { ContentFile } from "@nuxt/content";
 /**
  * 生成文章的字数统计
  */
-export function generateWordCount(file: ContentFile): number {
-  const text = extractText(file);
-  return countWords(text);
-}
-
-/**
- * 提取文章文本内容
- */
-function extractText(file: ContentFile): string {
-  let text = "";
-
-  // 优先使用 body 内容
-  if (typeof file.body === "string") {
-    text = file.body;
-  } else if (file.body && typeof file.body === "object") {
-    // 如果 body 是对象，尝试递归提取文本
-    text = extractTextFromObject(file.body);
-  }
-
-  return text;
-}
-
-/**
- * 从对象中递归提取文本
- */
-function extractTextFromObject(obj: any): string {
-  let text = "";
-
-  if (typeof obj === "string") {
-    return obj;
-  }
-
-  if (Array.isArray(obj)) {
-    for (const item of obj) {
-      text += extractTextFromObject(item) + " ";
-    }
-  } else if (obj && typeof obj === "object") {
-    // 处理常见的内容节点
-    if (obj.type === "text" && obj.value) {
-      text += obj.value + " ";
-    } else if (obj.children) {
-      text += extractTextFromObject(obj.children) + " ";
-    } else {
-      // 递归处理所有属性
-      for (const key in obj) {
-        if (obj.hasOwnProperty(key) && key !== "type") {
-          text += extractTextFromObject(obj[key]) + " ";
-        }
-      }
-    }
-  }
-
-  return text;
+export function generateWordCount(content: string): number {
+  return countWords(content);
 }
 
 /**

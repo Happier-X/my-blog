@@ -26,16 +26,10 @@ export default defineNuxtConfig({
   },
   hooks: {
     async "content:file:beforeParse"(ctx) {
-      console.log(11111111111, ctx);
-      console.log(22222222222, ctx.file, ctx.collection);
-
-      // 使用 gray-matter 解析文件内容
       const parsed = matter(ctx.file.body);
-
-      // 修改 description 字段
-      parsed.data.description = "测试一下";
-
-      // 将修改后的内容写回
+      parsed.data.description = await generateDescription(parsed.content);
+      parsed.data.readingTime = generateReadingTime(parsed.content);
+      parsed.data.wordCount = generateWordCount(parsed.content);
       ctx.file.body = matter.stringify(parsed.content, parsed.data);
     },
   },

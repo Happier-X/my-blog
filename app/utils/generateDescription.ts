@@ -5,28 +5,17 @@ import type { ContentFile } from "@nuxt/content";
  * 如果配置了 AI API，将使用 AI 生成描述
  * 否则使用文章的第一行作为描述
  */
-export async function generateDescription(file: ContentFile): Promise<string> {
+export async function generateDescription(content: string): Promise<string> {
   const apiKey = process.env.AI_API_KEY;
   const apiBaseUrl = process.env.AI_API_BASE_URL;
   const model = process.env.AI_MODEL;
-
-  if (!apiKey || !apiBaseUrl) {
-    return getDefaultDescription(file);
-  }
-
   try {
-    // 提取文章内容用于生成描述
-    const content = extractContent(file);
-    if (!content || content.length < 50) {
-      return getDefaultDescription(file);
-    }
-
     // 调用 AI API 生成描述
     const description = await callAIAPI(apiBaseUrl, apiKey, model, content);
-    return description || getDefaultDescription(file);
+    return description || "";
   } catch (error) {
     console.error("生成描述失败，使用默认方式:", error);
-    return getDefaultDescription(file);
+    return "";
   }
 }
 
@@ -36,23 +25,6 @@ export async function generateDescription(file: ContentFile): Promise<string> {
 function getDefaultDescription(file: ContentFile): string {
   const text = typeof file.body === "string" ? file.body : "";
   return text.split("\n")[0] || "";
-}
-
-/**
- * 提取文章内容
- */
-function extractContent(file: ContentFile): string {
-  let content = "";
-
-  // 优先使用 body 内容
-  if (typeof file.body === "string") {
-    content = file.body;
-  } else if (file.body && typeof file.body === "object") {
-    // 如果 body 是对象，尝试提取文本
-    content = JSON.stringify(file.body);
-  }
-  
-  return content;
 }
 
 /**

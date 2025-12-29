@@ -1,13 +1,7 @@
 ---
 title: 电脑软件推荐
 createAt: 2024-03-17
-description: 本文介绍了一系列实用软件，包括社交应用、卸载工具、压缩工具、代理软件、截图工具、版本控制系统等，提供下载链接和官网信息。
-readingTime: 1
-seo:
-  description: 本文介绍了一系列实用软件，包括社交应用、卸载工具、压缩工具、代理软件、截图工具、版本控制系统等，提供下载链接和官网信息。
-  title: Recommended Pc Software
 updateAt: 2024-03-17
-wordCount: 159
 ---
 
 - 微信 — 社交软件。下载：[weixin.qq.com](http://weixin.qq.com)

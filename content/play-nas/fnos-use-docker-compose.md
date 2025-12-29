@@ -1,13 +1,7 @@
 ---
 title: fnOS 使用 DockerCompose
 createAt: 2025-01-17
-description: Docker Compose 是一个工具，用于通过 YAML 文件管理多容器 Docker 应用。文章介绍了在 fnOS 中配置存储目录和使用 Docker Compose 创建项目的步骤。
-readingTime: 1
-seo:
-  description: Docker Compose 是 Docker 官方提供的工具，用于定义和运行多容器 Docker 应用程序。它允许你通过一个 YAML 文件来配置和管理多个容器，包括它们的依赖关系、网络和卷。使用 Docker Compose 可以方便容器化应用程序的部署和管理。
-  title: fnOS 使用 DockerCompose
 updateAt: 2025-01-17
-wordCount: 288
 ---
 
 Docker Compose 是 Docker 官方提供的工具，用于定义和运行多容器 Docker 应用程序。它允许你通过一个 YAML 文件来配置和管理多个容器，包括它们的依赖关系、网络和卷。使用 Docker Compose 可以方便容器化应用程序的部署和管理。

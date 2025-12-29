@@ -1,13 +1,7 @@
 ---
 title: Navidrome 搭建
 createAt: 2025-01-26
-description: Navidrome 是一个开源流媒体服务器，支持多种音频格式，允许用户上传和管理音乐库。文章提供了基于 Docker Compose 的安装步骤，并说明了如何配置和访问 Navidrome。
-readingTime: 1
-seo:
-  description: Navidrome 是一个开源的流媒体服务器，支持多种音频格式，包括 MP3、FLAC、AAC 等。它允许你上传和管理你的音乐库，并通过 Web 界面或 API 访问你的音乐。Navidrome 还支持播放列表、音乐推荐、音乐分类等功能。
-  title: Navidrome 搭建
 updateAt: 2025-01-26
-wordCount: 242
 ---
 
 Navidrome 是一个开源的流媒体服务器，支持多种音频格式，包括 MP3、FLAC、AAC 等。它允许你上传和管理你的音乐库，并通过 Web 界面或 API 访问你的音乐。Navidrome 还支持播放列表、音乐推荐、音乐分类等功能。

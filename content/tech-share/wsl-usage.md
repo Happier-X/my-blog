@@ -1,13 +1,7 @@
 ---
 title: WSL 使用
 createAt: 2025-07-12
-description: 本文介绍了WSL（Windows子系统Linux）的安装、版本设置、可用发行版查看及关闭命令，并说明如何通过设置网络模式使用系统代理。
-readingTime: 1
-seo:
-  description: 本文介绍了WSL（Windows子系统Linux）的安装、版本设置、可用发行版查看及关闭命令，并说明如何通过设置网络模式使用系统代理。
-  title: Wsl Usag
 updateAt: 2025-07-12
-wordCount: 91
 ---
 
 ## 安装部署常用命令

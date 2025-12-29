@@ -1,13 +1,7 @@
 ---
 title: VsCode 配置
 createAt: 2024-03-09
-description: 文章分享了VSCode的配置和推荐扩展，包括自动保存、字体设置、Git管理和多种实用扩展，旨在提升开发效率。
-readingTime: 2
-seo:
-  description: 分享一下我的 VSCode 配置和推荐的扩展。
-  title: VsCode 配置
 updateAt: 2024-03-09
-wordCount: 903
 ---
 
 分享一下我的 VSCode 配置和推荐的扩展。

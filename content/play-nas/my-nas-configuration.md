@@ -1,13 +1,7 @@
 ---
 title: 我的 NAS 配置
 createAt: 2024-12-31
-description: 文章列出了一个电脑硬件配置清单，包括主板、CPU、内存、系统盘、电源、散热器和机箱，并提到系统使用国产的fnOS。
-readingTime: 1
-seo:
-  description: 文章列出了一个电脑硬件配置清单，包括主板、CPU、内存、系统盘、电源、散热器和机箱，并提到系统使用国产的fnOS。
-  title: w
 updateAt: 2024-12-31
-wordCount: 115
 ---
 
 ## 硬件

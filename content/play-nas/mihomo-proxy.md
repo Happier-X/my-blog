@@ -1,13 +1,7 @@
 ---
 title: "使用 mihomo 实现代理 "
 createAt: 2025-04-18
-description: 文章介绍了如何在 fnOS 上使用 Docker Compose 安装 mihomo，包括创建配置文件和访问 web 界面的步骤。
-readingTime: 1
-seo:
-  description: 文章介绍了如何在 fnOS 上使用 Docker Compose 安装 mihomo，包括创建配置文件和访问 web 界面的步骤。
-  title: ui'yMihomo Proxy
 updateAt: 2025-04-18
-wordCount: 154
 ---
 
 ## 安装 mihomo

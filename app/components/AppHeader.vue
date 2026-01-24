@@ -2,11 +2,11 @@
     <UHeader title="Happier's Blog">
         <UNavigationMenu :items="items" variant="link" />
         <template #right>
+            <UColorModeButton />
             <UTooltip text="访问 GitHub 仓库">
                 <UButton color="neutral" variant="ghost" to="https://github.com/happier-x/my-blog" target="_blank"
                     icon="i-simple-icons-github" aria-label="GitHub" />
             </UTooltip>
-            <UColorModeButton />
         </template>
     </UHeader>
 </template>

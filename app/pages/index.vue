@@ -5,8 +5,12 @@
 </template>
 
 <script setup lang="ts">
-const route = useRoute()
-const { data: posts } = await useAsyncData(route.path, () => {
-    return queryCollection('cubeBlind').select('title', 'path', 'description').all()
+const { data: posts } = await useAsyncData('all-posts', async () => {
+    const res = await Promise.all([
+        queryCollection('techShare').select('title', 'path', 'description').all(),
+        queryCollection('playNAS').select('title', 'path', 'description').all(),
+        queryCollection('cubeBlind').select('title', 'path', 'description').all(),
+    ])
+    return res.flat()
 })
 </script>

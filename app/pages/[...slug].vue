@@ -1,6 +1,6 @@
 <template>
   <UPage>
-    <UPageHeader :title="page.title" :description="page.description" />
+    <!-- <UPageHeader :title="page.title" :description="page.description" /> -->
 
     <UPageBody>
       <ContentRenderer :value="page" />

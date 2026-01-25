@@ -5,7 +5,8 @@
 </template>
 
 <script setup lang="ts">
-const { data: posts } = await useAsyncData('index-posts', () => {
-    return queryCollection('content').select('title', 'path', 'description').limit(12).all()
+const route = useRoute()
+const { data: posts } = await useAsyncData(route.path, () => {
+    return queryCollection('cubeBlind').select('title', 'path', 'description').all()
 })
 </script>

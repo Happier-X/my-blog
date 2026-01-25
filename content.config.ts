@@ -7,12 +7,12 @@ export default defineContentConfig({
     content: defineCollection({
       type: "page",
       source: "**/*.md",
-      schema: z.object({
-        createAt: z.date(),
-        updateAt: z.date(),
-        readingTime: z.number().optional(),
-        wordCount: z.number().optional(),
-      }),
+      // schema: z.object({
+      //   createAt: z.date(),
+      //   updateAt: z.date(),
+      //   readingTime: z.number().optional(),
+      //   wordCount: z.number().optional(),
+      // }),
     }),
     // 玩转 NAS
     playNAS: defineCollection({

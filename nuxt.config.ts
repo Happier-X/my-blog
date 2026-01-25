@@ -1,5 +1,5 @@
 import tailwindcss from "@tailwindcss/vite";
-import { generateDescription } from "./app/utils/generateDescription";
+// import { generateDescription } from "./app/utils/generateDescription";
 import { generateReadingTime } from "./app/utils/generateReadingTime";
 import { generateWordCount } from "./app/utils/generateWordCount";
 import matter from "gray-matter";
@@ -25,12 +25,17 @@ export default defineNuxtConfig({
     },
   },
   hooks: {
-    async "content:file:beforeParse"(ctx) {
-      const parsed = matter(ctx.file.body);
-      parsed.data.description = await generateDescription(parsed.content);
-      parsed.data.readingTime = generateReadingTime(parsed.content);
-      parsed.data.wordCount = generateWordCount(parsed.content);
-      ctx.file.body = matter.stringify(parsed.content, parsed.data);
+    async "content:file:afterParse"(ctx) {
+      // const parsed = matter(ctx.file.body);
+      // parsed.data.description = await generateDescription(parsed.content);
+      // parsed.data.readingTime = generateReadingTime(parsed.content);
+      // parsed.data.wordCount = generateWordCount(parsed.content);
+      // ctx.file.body = matter.stringify(parsed.content, parsed.data);
+      const { file, content } = ctx;
+      const wordsPerMinute = 180;
+      const text = typeof file.body === "string" ? file.body : "";
+      const wordCount = text.split(/\s+/).length;
+      content.readingTime = Math.ceil(wordCount / wordsPerMinute);
     },
   },
 });

@@ -1,8 +1,8 @@
 import tailwindcss from "@tailwindcss/vite";
 // import { generateDescription } from "./app/utils/generateDescription";
-import { generateReadingTime } from "./app/utils/generateReadingTime";
-import { generateWordCount } from "./app/utils/generateWordCount";
-import matter from "gray-matter";
+// import { generateReadingTime } from "./app/utils/generateReadingTime";
+// import { generateWordCount } from "./app/utils/generateWordCount";
+// import matter from "gray-matter";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({

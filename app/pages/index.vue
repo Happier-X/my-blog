@@ -6,6 +6,6 @@
 
 <script setup lang="ts">
 const { data: posts } = await useAsyncData('all-posts', () => {
-    return queryCollection('content').select('title', 'path', 'description').all()
+    return queryCollection('content').order('createdAt', 'DESC').all()
 })
 </script>

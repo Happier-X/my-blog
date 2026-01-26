@@ -1,5 +1,6 @@
 ---
 title: FNM
+readingTime: 1
 ---
 
 ## 简介

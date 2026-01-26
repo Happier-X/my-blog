@@ -15,6 +15,7 @@
     "better-sqlite3": "^12.6.2",
     "gray-matter": "^4.0.3",
     "nuxt": "^4.3.0",
+    "nuxt-content-git": "^6.0.1",
     "nuxt-studio": "^1.2.0",
     "zod": "^4.3.6"
   }

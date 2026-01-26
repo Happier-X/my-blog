@@ -7,7 +7,9 @@ export default defineContentConfig({
       type: "page",
       source: "**/*.md",
       schema: z.object({
-        readingTime: z.number().optional(),
+        readingTime: z.number(),
+        createdAt: z.date(),
+        updatedAt: z.date(),
       }),
     }),
     // // 三阶魔方盲拧

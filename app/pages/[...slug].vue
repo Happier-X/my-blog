@@ -22,9 +22,9 @@ definePageMeta({
 })
 const route = useRoute()
 const { data: page } = await useAsyncData(route.path, () => {
-  return queryCollection(['techShare', 'playNAS', 'cubeBlind']).path(route.path).first()
+  return queryCollection('content').path(route.path).first()
 })
-// const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
-//   return queryCollectionItemSurroundings('content', route.path)
-// })
+const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
+  return queryCollectionItemSurroundings('content', route.path)
+})
 </script>

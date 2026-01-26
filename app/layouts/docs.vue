@@ -5,7 +5,7 @@
             <UPage>
                 <template #left>
                     <UPageAside>
-                        <UContentNavigation :navigation="navigation" />
+                        <UContentNavigation :navigation="navigation" highlight />
                     </UPageAside>
                 </template>
                 <slot />

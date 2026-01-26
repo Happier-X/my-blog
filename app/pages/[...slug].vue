@@ -3,6 +3,8 @@
     <UPageHeader :title="page.title" :headline="page.headline" :links="page.links">
       <template #description>
         大约 {{ page.readingTime }} 分钟
+        {{ dayjs(page.createdAt).format('YYYY-MM-DD HH:mm') }}
+        {{ dayjs(page.updatedAt).format('YYYY-MM-DD HH:mm') }}
       </template>
     </UPageHeader>
     <UPageBody>
@@ -17,6 +19,8 @@
 </template>
 
 <script setup lang="ts">
+import dayjs from 'dayjs'
+
 definePageMeta({
   layout: 'docs'
 })

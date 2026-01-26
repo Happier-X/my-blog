@@ -8,10 +8,14 @@
                     icon="i-simple-icons-github" aria-label="GitHub" />
             </UTooltip>
         </template>
+        <template #body>
+            <UContentNavigation :navigation="navigation" highlight />
+        </template>
     </UHeader>
 </template>
 <script setup lang="ts">
 import type { NavigationMenuItem } from '@nuxt/ui'
+import type { ContentNavigationItem } from '@nuxt/content'
 
 const route = useRoute()
 
@@ -42,4 +46,6 @@ const items = computed<NavigationMenuItem[]>(() => [
         active: route.path.startsWith('/about')
     },
 ])
+
+const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
 </script>

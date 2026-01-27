@@ -1,5 +1,8 @@
 ---
 title: WSL 使用
+createdAt: 2026-01-25T03:35:38.000Z
+readingTime: 1
+updatedAt: 2026-01-25T04:40:20.000Z
 ---
 
 ## 安装部署常用命令
@@ -32,6 +35,12 @@ wsl --list --online
 
 ```bash
 wsl --shutdown
+```
+
+卸载 wsl
+
+```bash
+wsl --unregister Debian
 ```
 
 ## 使用系统代理

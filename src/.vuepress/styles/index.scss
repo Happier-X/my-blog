@@ -1,0 +1,11 @@
+// place your custom styles here
+// 文章内容背景网格
+.vp-page {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACFJREFUeNpiZGBg4GegAsBlCD8TqSYNQg2Mo6FEBAAIMACdPABtrSW/IQAAAABJRU5ErkJggg==");
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+// 侧边栏阴影效果
+.vp-sidebar {
+    box-shadow: 0px 2px 8px var(--vp-c-shadow);
+}

@@ -1,23 +1,31 @@
 {
-  "name": "blog",
-  "private": true,
+  "name": "my-blog",
+  "description": "Happier's Blog",
+  "version": "2.0.0",
+  "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "docs:build": "vuepress-vite build src",
+    "docs:clean-dev": "vuepress-vite dev src --clean-cache",
+    "docs:dev": "vuepress-vite dev src",
+    "docs:update-package": "npx vp-update",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "@vuepress/bundler-vite": "2.0.0-rc.26",
+    "@vuepress/plugin-comment": "2.0.0-rc.121",
+    "@waline/client": "^3.5.5",
+    "husky": "^9.1.7",
+    "mermaid": "^11.4.1",
+    "sass-embedded": "^1.85.1",
+    "vue": "^3.5.27",
+    "vuepress": "2.0.0-rc.26",
+    "vuepress-theme-hope": "2.0.0-rc.102"
   },
   "dependencies": {
-    "@nuxt/content": "^3.11.0",
-    "@nuxt/ui": "^4.4.0",
-    "@tailwindcss/vite": "^4.1.18",
-    "better-sqlite3": "^12.6.2",
-    "dayjs": "^1.11.19",
-    "gray-matter": "^4.0.3",
-    "nuxt": "^4.3.0",
-    "nuxt-content-git": "^6.0.1",
-    "nuxt-studio": "^1.2.0",
-    "zod": "^4.3.6"
+    "@vuepress/plugin-slimsearch": "2.0.0-rc.121",
+    "nodejs-jieba": "^0.2.1"
   }
 }
